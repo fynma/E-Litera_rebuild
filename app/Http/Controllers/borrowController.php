@@ -121,8 +121,17 @@ class borrowController extends Controller
         }
     }
 
+    public function showBorrow()
+    {
+
+        $borrow = Borrow::all();
+        return response()->json($borrow, 200);
+    }
+
 
     
+
+    //cancel belum fix 
     public function  cancelBorrow(Request $request)
     {
         // $user_id = $request->input('user_id');

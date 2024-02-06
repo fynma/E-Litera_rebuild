@@ -57,6 +57,7 @@ Route::group([
     Route::get('/loginpage', function () {
         return view('login'); });
 
+    Route::get  ('borrowList', [borrowController::class, 'showBorrow']);
     Route::get  ('comment', [CommentController::class, 'getComment']);
     Route::get  ('categoryList', [CategoryController::class, 'displayCategory']);
     Route::get  ('bookList', [BookController::class, 'bookList']);

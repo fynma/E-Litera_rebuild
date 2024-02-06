@@ -12,15 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('borrow', function (Blueprint $table) {
-            $table->id('id_borrow');
+            $table->id('borrow_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('book_id');
             $table->dateTime('tgl_pinjam');
             $table->dateTime('tgl_kembali');
             $table->bigInteger('jumlah_pinjam');
-            $table->boolean('konfirmasi_pinjam')->default(false);
-            $table->boolean('konfirmasi_kembali')->default(false);
-            $table->string('status')->default('tersedia');
+            $table->boolean('konfirmasi_pinjam');
+            $table->string('petugas_pinjam');
+            $table->boolean('konfirmasi_kembali');
+            $table->string('petugas_kembali');
+            $table->string('status')->default('Tersedia');
             $table->timestamps();
 
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');

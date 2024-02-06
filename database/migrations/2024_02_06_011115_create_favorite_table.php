@@ -11,17 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('denda', function (Blueprint $table) {
-            $table->id('denda_id');
-            $table->unsignedBigInteger('book_id');
+        Schema::create('favorite', function (Blueprint $table) {
+            $table->id('favorite_id');
             $table->unsignedBigInteger('user_id');
-            $table->integer('keterlambatan');
-            $table->unsignedBigInteger('tarif_denda');
+            $table->unsignedBigInteger('book_id');
+            $table->integer('favorite');
             $table->timestamps();
 
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
-            $table->foreign('book_id')->references('book_id')->on('book')->onDelete('cascade');    
- 
+            $table->foreign('book_id')->references('book_id')->on('book')->onDelete('cascade');  
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('denda');
+        Schema::dropIfExists('favorite');
     }
 };
