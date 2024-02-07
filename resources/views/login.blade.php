@@ -9,9 +9,9 @@
 </head>
 
 <body>
-    <form action="/api/login" method="post">
+    <form action="/postlogin" method="post">
         @csrf
-        <input type="text" name=email" id="">
+        <input type="text" name="email" id="">
         <input type="password" name="password" id="">
         <input type="submit" value="Submit">
     </form>

@@ -22,7 +22,6 @@ use App\Http\Controllers\Auth\AuthController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::post ('login', [AuthController::class, 'login'])->name('auth.login');
 
 Route::group([
 
@@ -53,10 +52,7 @@ Route::group([
     Route::post ('cancelBorrow', [borrowController::class, 'cancelBorrow']); //opsional wkwkwk belum selesai juga
     Route::post ('denda', [dendaController::class, 'newDenda']);
 
-
-    Route::get('/loginpage', function () {
-        return view('login'); });
-
+    
     Route::get  ('borrowList', [borrowController::class, 'showBorrow']);
     Route::get  ('comment', [CommentController::class, 'getComment']);
     Route::get  ('categoryList', [CategoryController::class, 'displayCategory']);
