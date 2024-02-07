@@ -34,7 +34,8 @@ Route::group([
     Route::post ('refresh', [AuthController::class, 'refresh']);
     Route::post ('me', [AuthController::class, 'me']);
     Route::post ('register', [AuthController::class, 'register']);
-});
+}); 
+    Route::post ('login-mobile', [AuthController::class, 'loginMob']);
     Route::post ('profile-edit', [ProfileController::class, 'editProfile']);
     Route::post ('forgot-password', [ResetController::class, 'resetPassword']);
     Route::post ('reset-password', [ResetController::class, 'updatepassword']);
@@ -52,7 +53,7 @@ Route::group([
     Route::post ('cancelBorrow', [borrowController::class, 'cancelBorrow']); //opsional wkwkwk belum selesai juga
     Route::post ('denda', [dendaController::class, 'newDenda']);
 
-    
+
     Route::get  ('borrowList', [borrowController::class, 'showBorrow']);
     Route::get  ('comment', [CommentController::class, 'getComment']);
     Route::get  ('categoryList', [CategoryController::class, 'displayCategory']);
