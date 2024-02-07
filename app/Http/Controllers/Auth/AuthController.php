@@ -52,7 +52,28 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register',]]);
+        $this->middleware('auth:api', ['except' => ['loginMob','login', 'register',]]);
+    }
+
+    public function loginMob(Request $request)
+    {
+        if (Auth::attempt($request->only('email', 'password'))) {
+            // Authentication successful
+            $user = User::where('email', $request->email)->first();
+            $token = auth()->attempt(['email' => $request->email, 'password' => $request->password]);
+
+            return response()->json([
+                'success' => 'success',
+                'user' => $user,
+                'auth' => [
+                    'token' => $token,
+                    'type' => 'Bearer',
+                    'expires_in' => auth()->factory()->getTTL() * 10080,
+                ]
+            ]);
+        } else {
+            dd('Authentication failed');
+        }
     }
 
     public function login(Request $request)
