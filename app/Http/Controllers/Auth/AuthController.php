@@ -98,7 +98,7 @@ class AuthController extends Controller
                 ]);
             case 'user':
                 // $request->session()->regenerate();
-                return redirect('user/dashboard')->with([
+                return redirect('user')->with([
                     'status' => 'success',
                     'user' => $user,
                     'auth' => [

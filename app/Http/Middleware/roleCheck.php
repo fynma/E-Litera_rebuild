@@ -33,7 +33,7 @@ class roleCheck
                 } else if ($userRole === 'administrator') {
                     return redirect('admin/dashboard')->with('message', 'no access');
                 } else  if ($userRole === 'user') {
-                    return redirect('user/dashboard')->with('message', 'no access');
+                    return redirect('user')->with('message', 'no access');
                 }
             }
         } else {    
