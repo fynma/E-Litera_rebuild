@@ -17,11 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['web'])->group(function () {
 
     Route::middleware(['guest'])->group(function () {
-        Route::get('/loginpage', function () {
-            return view('login');
+        Route::get('/Login', function () {
+            return view('Login');
         });
 
         Route::post('/postlogin', [AuthController::class, 'login'])->name('login.store');
+
+        Route::get('/register', function(){
+            return view('Daftar');
+        });
+
+        Route::post ('register', [AuthController::class, 'register'])->name('register');
     });
     Route::group(['middleware' => ['roleCheck:petugas']], function () {
         Route::get('/admin/dashboard', function () {
@@ -36,12 +42,12 @@ Route::middleware(['web'])->group(function () {
 
     });
     Route::group(['middleware' => ['roleCheck:user']], function () {
-        Route::get('/user/dashboard', function () {
-            return view('user.dashboard.index');
+        Route::get('/user', function () {
+            return view('user.index');
         });
 
     });
     Route::get('/', function () {
-        return view('welcome');
+        return view('index');
     });
 });
