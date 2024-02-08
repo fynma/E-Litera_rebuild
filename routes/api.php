@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\borrowController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
@@ -52,6 +53,11 @@ Route::group([
     Route::post ('returnBorrow', [borrowController::class, 'returnBorrow']);
     Route::post ('cancelBorrow', [borrowController::class, 'cancelBorrow']); //opsional wkwkwk belum selesai juga
     Route::post ('denda', [dendaController::class, 'newDenda']);
+
+    //googlenya belum dicoba si bisa apa engga ehehe :)
+    Route::get('google', [GoogleAuthController::class, 'redirectGoogle']);
+    Route::get('google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
+    Route::get('google-mobile/callback', [GoogleAuthController::class, 'handleGoogleCallbackMobile']);
 
 
     Route::get  ('borrowList', [borrowController::class, 'showBorrow']);
