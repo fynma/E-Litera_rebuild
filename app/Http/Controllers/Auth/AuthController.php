@@ -87,6 +87,7 @@ class AuthController extends Controller
             // Authentication failed
             dd('Authentication failed');
         }
+
         // dd($token);
         session(['user' => $user]);
         session(['user_id' => $user->user_id]);
@@ -99,7 +100,7 @@ class AuthController extends Controller
         switch ($user->access) {
             case 'petugas':
                 // $request->session()->regenerate();
-                return redirect('petugas/dashboard')->with([
+                return redirect('admin/dashboard')->with([
                     'status' => 'success',
                     'user' => $user,
                     'auth' => [
@@ -108,7 +109,7 @@ class AuthController extends Controller
                     ]
                 ]);
             case 'administrator':
-                $request->session()->regenerate();
+                // $request->session()->regenerate();
                 return redirect('admin/dashboard')->with([
                     'status' => 'success',
                     'user' => $user,
