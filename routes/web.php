@@ -30,14 +30,14 @@ Route::middleware(['web'])->group(function () {
         Route::post ('register', [AuthController::class, 'register'])->name('register');
     });
     Route::group(['middleware' => ['roleCheck:petugas']], function () {
-        Route::get('/admin/dashboard', function () {
-            return view('admin.dashboard.index');
+        Route::get('/admin', function () {
+            return view('admin/index');
         });
 
     });
     Route::group(['middleware' => ['roleCheck:administrator']], function () {
-        Route::get('/admin/dashboard', function () {
-            return view('admin.dashboard.index');
+        Route::get('/admin', function () {
+            return view('admin/index');
         });
 
     });

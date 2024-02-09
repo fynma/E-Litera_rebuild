@@ -150,7 +150,7 @@
           </button>
           <div class="links text-base">
             <p>Sudah mempunyai akun?</p>
-            <a href="/loginpage" class="font-bold">Masuk</a>
+            <a href="/Login" class="font-bold">Masuk</a>
           </div>
         </div>
       </div>
