@@ -51,7 +51,8 @@
         <div class="form-login">
           <h2>Hallo!</h2>
           <h3>Selamat datang di website E-Litera</h3>
-          <form>
+          <form method="POST" action="/postlogin">
+            @csrf
             <div class="relative mb-8">
               <input
                 type="email"
@@ -110,7 +111,7 @@
           </div>
           <button class="login-google font-bold rounded-md text-base w-full">
             <img src="img/google.png" />
-            <p><a href="#">MASUK DENGAN GOOGLE</a></p>
+            <p><a href="/google">MASUK DENGAN GOOGLE</a></p>
           </button>
           <div class="links text-base">
             <p>Belum mempunyai akun?</p>

@@ -26,10 +26,10 @@ class GoogleAuthController extends Controller
                     $newUser = User::create([
                         'email' => $google_user->getEmail(),
                         'username' => $google_user->getName(),
-                        'photo' => $google_user->getAvatar(),
+                        'google_id' => $google_user->getId(),
                     ]);
 
-                    Auth::login($newUser);
+                    return response()->json(['success' => true, 'user' => $newUser]);
                 } else {
                     Auth::login($user);
                     $token = $google_user->token;
@@ -78,7 +78,6 @@ class GoogleAuthController extends Controller
 
     public function handleGoogleCallbackMobile()
     {
-        try {
             //gampangya ini register cuy
             $google_user = Socialite::driver('google')->user();
 
@@ -90,7 +89,7 @@ class GoogleAuthController extends Controller
                     'username' => $google_user->getName(),
                 ]);
 
-                $user = $newUser;
+                return response()->json(['success' => true, 'user' => $newUser]);
             } else {
                 // nah ini login cuy
                 Auth::login($user);
@@ -106,6 +105,5 @@ class GoogleAuthController extends Controller
                     ]
                 ]);
             }
-        }
     }
 }
