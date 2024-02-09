@@ -13,7 +13,7 @@
   </head>
   <body>
     <header>
-      <a href="index.html"><img src="img/logo aplikasi billa 1.png" /></a>
+      <a href="index"><img src="img/logo aplikasi billa 1.png" /></a>
       <!-- <div class="toggle">
         <div class="bar1"></div>
         <div class="bar2"></div>
@@ -168,12 +168,12 @@
             </li>
           </ul>
         </li>
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="Tentang.html">Tentang</a></li>
+        <li><a href="index">Beranda</a></li>
+        <li><a href="Tentang">Tentang</a></li>
         <li>
           <a onclick="openModal(this)" style="cursor: pointer">Riwayat</a>
         </li>
-        <li><a href="Kontak.html">Kontak</a></li>
+        <li><a href="Kontak">Kontak</a></li>
       </ul>
       <div class="masuk-daftar">
         <a href="Login">Masuk</a>
@@ -188,7 +188,7 @@
           Jelajahi dunia literasi dengan koleksi digital kami. Baca, pelajari,
           dan temukan pengetahuan baru di perpustakaan digital kami.
         </p>
-        <a href="Tentang.html" class="btn-banner">Baca Selengkapnya</a>
+        <a href="Tentang" class="btn-banner">Baca Selengkapnya</a>
       </div>
     </section>
     <section class="rekomendasi">
@@ -209,7 +209,7 @@
               <a href="#">Adventure</a>, <a href="#">Fun</a>
             </div>
             <h3 id="judul-buku">
-              <a href="Books-Page.html">Help Me Find My Stomach</a>
+              <a href="Books-Page">Help Me Find My Stomach</a>
             </h3>
             <a href="#" id="penulis-buku">By: Angela Gunning</a>
             <div class="rating">
@@ -231,7 +231,7 @@
               <a href="#">Adventure</a>, <a href="#">Fun</a>
             </div>
             <h3 id="judul-buku">
-              <a href="Books-Page.html">Help Me Find My Stomach</a>
+              <a href="Books-Page">Help Me Find My Stomach</a>
             </h3>
             <a href="#" id="penulis-buku">By: Angela Gunning</a>
             <div class="rating">
@@ -253,7 +253,7 @@
               <a href="#">Adventure</a>, <a href="#">Fun</a>
             </div>
             <h3 id="judul-buku">
-              <a href="Books-Page.html">Help Me Find My Stomach</a>
+              <a href="Books-Page">Help Me Find My Stomach</a>
             </h3>
             <a href="#" id="penulis-buku">By: Angela Gunning</a>
             <div class="rating">
@@ -275,7 +275,7 @@
               <a href="#">Adventure</a>, <a href="#">Fun</a>
             </div>
             <h3 id="judul-buku">
-              <a href="Books-Page.html">Help Me Find My Stomach</a>
+              <a href="Books-Page">Help Me Find My Stomach</a>
             </h3>
             <a href="#" id="penulis-buku">By: Angela Gunning</a>
             <div class="rating">
@@ -297,7 +297,7 @@
               <a href="#">Adventure</a>, <a href="#">Fun</a>
             </div>
             <h3 id="judul-buku">
-              <a href="Books-Page.html">Help Me Find My Stomach</a>
+              <a href="Books-Page">Help Me Find My Stomach</a>
             </h3>
             <a href="#" id="penulis-buku">By: Angela Gunning</a>
             <div class="rating">
@@ -319,7 +319,7 @@
               <a href="#">Adventure</a>, <a href="#">Fun</a>
             </div>
             <h3 id="judul-buku">
-              <a href="Books-Page.html">Help Me Find My Stomach</a>
+              <a href="Books-Page">Help Me Find My Stomach</a>
             </h3>
             <a href="#" id="penulis-buku">By: Angela Gunning</a>
             <div class="rating">
@@ -346,8 +346,8 @@
           <img src="img/alert-icon1.png" />
           <h2>Masuk ke E-Litera untuk menikmati layanan!</h2>
           <div class="link-masuk-daftar">
-            <a href="Login.html">Masuk</a>
-            <a href="Daftar.html">Daftar</a>
+            <a href="Login">Masuk</a>
+            <a href="Daftar">Daftar</a>
           </div>
         </div>
       </div>
@@ -523,7 +523,7 @@
           </p>
         </div>
         <button class="btn-kontak">
-          <a href="Kontak.html">Kontak Kami</a><i class="bi bi-arrow-right"></i>
+          <a href="Kontak">Kontak Kami</a><i class="bi bi-arrow-right"></i>
         </button>
       </div>
     </section>
@@ -553,10 +553,10 @@
         <div class="informasi">
           <h2>Informasi</h2>
           <li>
-            <a href="Tentang.html">Tentang Kami</a>
+            <a href="Tentang">Tentang Kami</a>
           </li>
           <li>
-            <a href="Kontak.html">Hubungi Kami</a>
+            <a href="Kontak">Hubungi Kami</a>
           </li>
           <div class="sosmed">
             <a href="#"><i class="bi bi-facebook"></i></a>

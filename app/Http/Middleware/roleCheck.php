@@ -29,15 +29,15 @@ class roleCheck
             } else {
                 // Handle role-based redirection or response
                 if ($userRole === 'petugas') {
-                    return redirect('admin/dashboard')->with('message', 'no access');
+                    return redirect('admin')->with('message', 'no access');
                 } else if ($userRole === 'administrator') {
-                    return redirect('admin/dashboard')->with('message', 'no access');
+                    return redirect('admin')->with('message', 'no access');
                 } else  if ($userRole === 'user') {
                     return redirect('user')->with('message', 'no access');
                 }
             }
         } else {    
-            return redirect('/loginpage')->with('message', 'no access');
+            return redirect('/Login')->with('message', 'no access');
         }
 
         // } catch (\Exception $e) {
