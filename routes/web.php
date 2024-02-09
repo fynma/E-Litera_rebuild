@@ -30,19 +30,19 @@ Route::middleware(['web'])->group(function () {
         Route::post ('register', [AuthController::class, 'register'])->name('register');
     });
     Route::group(['middleware' => ['roleCheck:petugas']], function () {
-        Route::get('/admin', function () {
-            return view('admin/index');
+        Route::get('/admin/home', function () {
+            return view('admin.index');
         });
 
     });
     Route::group(['middleware' => ['roleCheck:administrator']], function () {
-        Route::get('/admin', function () {
-            return view('admin/index');
+        Route::get('/admin/homepage', function () {
+            return view('admin.index');
         });
 
     });
     Route::group(['middleware' => ['roleCheck:user']], function () {
-        Route::get('/user', function () {
+        Route::get('/user/homepage', function () {
             return view('user.index');
         });
 

@@ -100,7 +100,7 @@ class AuthController extends Controller
         switch ($user->access) {
             case 'petugas':
                 // $request->session()->regenerate();
-                return redirect('admin')->with([
+                return redirect('admin/home')->with([
                     'status' => 'success',
                     'user' => $user,
                     'auth' => [
@@ -110,7 +110,7 @@ class AuthController extends Controller
                 ]);
             case 'administrator':
                 // $request->session()->regenerate();
-                return redirect('admin')->with([
+                return redirect('admin/homepage')->with([
                     'status' => 'success',
                     'user' => $user,
                     'auth' => [
@@ -120,7 +120,7 @@ class AuthController extends Controller
                 ]);
             case 'user':
                 // $request->session()->regenerate();
-                return redirect('user')->with([
+                return redirect('user/homepage')->with([
                     'status' => 'success',
                     'user' => $user,
                     'auth' => [

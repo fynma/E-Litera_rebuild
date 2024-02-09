@@ -55,7 +55,6 @@ Route::group([
     Route::post ('denda', [dendaController::class, 'newDenda']);
 
     //googlenya belum dicoba si bisa apa engga ehehe :)
-    Route::get('google', [GoogleAuthController::class, 'redirectGoogle']);
     Route::get('google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
     Route::get('google-mobile/callback', [GoogleAuthController::class, 'handleGoogleCallbackMobile']);
 
