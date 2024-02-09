@@ -14,7 +14,7 @@
 
     <!-- Custom fonts for this template-->
     <link
-      href="vendor/fontawesome-free/css/all.min.css"
+      href="../vendor/fontawesome-free/css/all.min.css"
       rel="stylesheet"
       type="text/css"
     />
@@ -33,12 +33,12 @@
 
     <!-- Custom styles for this page -->
     <link
-      href="vendor/datatables/dataTables.bootstrap4.min.css"
+      href="../vendor/datatables/dataTables.bootstrap4.min.css"
       rel="stylesheet"
     />
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
   </head>
 
@@ -53,14 +53,14 @@
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+          href="index"
         >
           <img src="../img/logo aplikasi billa 1.png" />
         </a>
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="index">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span></a
           >
@@ -68,7 +68,7 @@
 
         <!-- Nav Item - Data Pengguna -->
         <li class="nav-item">
-          <a class="nav-link" href="Data-User.html">
+          <a class="nav-link" href="Data-User">
             <i class="bi bi-people"></i>
             <span>Data Pengguna</span></a
           >
@@ -94,8 +94,8 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="Data-Buku.html">Data Buku</a>
-              <a class="collapse-item" href="Kategori.html">Kategori</a>
+              <a class="collapse-item" href="Data-Buku">Data Buku</a>
+              <a class="collapse-item" href="Kategori">Kategori</a>
             </div>
           </div>
         </li>
@@ -120,8 +120,8 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="Komentar.html">Komentar</a>
-              <a class="collapse-item" href="Aktivitas.html"
+              <a class="collapse-item" href="Komentar">Komentar</a>
+              <a class="collapse-item" href="Aktivitas"
                 >Riwayat Aktivitas</a
               >
             </div>
@@ -148,17 +148,17 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="Data-Peminjaman.html"
+              <a class="collapse-item" href="Data-Peminjaman"
                 >Peminjaman</a
               >
-              <a class="collapse-item" href="Dikembalikan.html">Dikembalikan</a>
+              <a class="collapse-item" href="Dikembalikan">Dikembalikan</a>
             </div>
           </div>
         </li>
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-          <a class="nav-link" href="Denda.html">
+          <a class="nav-link" href="Denda">
             <i class="bi bi-cash"></i>
             <span>Denda</span></a
           >
@@ -269,7 +269,7 @@
                 >
                   <img
                     class="mr-3 img-profile rounded-circle"
-                    src="img/undraw_profile.svg"
+                    src="../img/undraw_profile.svg"
                   />
                   <span class="d-none d-lg-inline text-gray-600 small"
                     >Sabilla Andhini (Petugas)</span
@@ -787,34 +787,34 @@
             >
               Cancel
             </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="login">Logout</a>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="../js/demo/datatables-demo.js"></script>
   </body>
 </html>
