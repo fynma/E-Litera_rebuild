@@ -40,22 +40,18 @@ Route::middleware(['web'])->group(function () {
             return view('admin.index');
         });
 
-    });
-    Route::group(['middleware' => ['roleCheck:user']], function () {
-        Route::get('/user/homepage', function () {
-            return view('user.index');
-        });
-
-    });
-    Route::group(['middleware' => ['roleCheck:administrator']], function () {
         Route::get('/admin/Kategori', function () {
             return view('admin.Kategori');
         });
 
-    });
-    Route::group(['middleware' => ['roleCheck:administrator']], function () {
         Route::get('/admin/Tambah-Buku', function () {
             return view('admin.Tambah-Buku');
+        });
+
+    });
+    Route::group(['middleware' => ['roleCheck:user']], function () {
+        Route::get('/user/homepage', function () {
+            return view('user.index');
         });
 
     });
