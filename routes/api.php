@@ -52,7 +52,7 @@ Route::group([
     Route::post ('confirmBorrow', [borrowController::class, 'confirmBorrow']);
     Route::post ('returnBorrow', [borrowController::class, 'returnBorrow']);
     Route::post ('cancelBorrow', [borrowController::class, 'cancelBorrow']); //opsional wkwkwk belum selesai juga
-    Route::post ('denda', [dendaController::class, 'newDenda']);
+    Route::post ('denda', [dendaController::class, 'newDenda']); //not fix wait ui finish
 
     //googlenya belum dicoba si bisa apa engga ehehe :)
     Route::get('google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
