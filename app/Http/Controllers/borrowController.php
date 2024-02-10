@@ -82,25 +82,27 @@ class borrowController extends Controller
     public function returnBorrow(Request $request)
     {
         $id = $request->input('borrow_id');
-
         $borrow = Borrow::findOrFail($id);
-
         $petugas = User::find($request->user_id);
         $tgl_pinjam = $request->input('tgl_pinjam');
         $tgl_kembali = $request->input('tgl_kembali');
         $jumlah_pinjam = $request->input('jumlah_pinjam');
-
+        $konfirmasi = $request->input('konfirmasi_kembali');
+    
         if ($borrow) {
             $book = Book::find($borrow->book_id);
-
+    
             if ($book) {
                 if (!$borrow->konfirmasi_kembali) {
                     $book->stok += $borrow->jumlah_pinjam;
                     $book->save();
+    
                     if ($borrow->konfirmasi_pinjam == '1') {
+                        $status = ($konfirmasi == 1) ? 'Tersedia' : 'Terlambat';
+    
                         $borrow->update([
-                            'konfirmasi_kembali' => '1',
-                            'status' => 'Tersedia',
+                            'konfirmasi_kembali' => $konfirmasi,
+                            'status' => $status,
                             'petugas_kembali' => $petugas->long_name,
                             'tgl_kembali' => $tgl_kembali,
                             'tgl_pinjam' => $tgl_pinjam,
@@ -120,6 +122,7 @@ class borrowController extends Controller
             return response()->json(['message' => 'Peminjaman tidak ditemukan'], 404);
         }
     }
+    
 
     public function showBorrow()
     {
