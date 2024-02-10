@@ -110,7 +110,7 @@ class AuthController extends Controller
                 ]);
             case 'administrator':
                 // $request->session()->regenerate();
-                return redirect('admin/homepage')->with([
+                return redirect('/admin/dashboard')->with([
                     'status' => 'success',
                     'user' => $user,
                     'auth' => [
