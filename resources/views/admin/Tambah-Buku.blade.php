@@ -309,19 +309,42 @@
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-orange">
-                  List Data Peminjaman
+                  Tambah Buku
                 </h6>
               </div>
               <div class="card-body">
-                <div class="d-flex w-100 h-auto">
-                  <div class="tambah-buku-kiri">
-                    <p>Kategori</p>
-                    <div>
-                      <input type="checkbox" id="kategori" name="kategori" value="">
-                      <label for=""></label>
+                <div class="form-buat-buku">
+                  <form>
+                    @csrf
+                    <div class="tambah-buku-kiri">
+                      <label for="checkboxContainer" class="judul-form-buku">Kategori</label>
+                      <div class="checkbox-kategori" id="checkboxContainer">
+                      </div>
+                      <label for="kode_buku" class="judul-form-buku">Kode Buku</label>
+                      <input type="text" name="kode_buku" id="kode_buku" placeholder="Ketik kode buku disini..">
+                      <label for="judul" class="judul-form-buku">Judul Buku</label>
+                      <input type="text" name="judul" id="judul" placeholder="Ketik judul buku disini..">
+                      <label for="penulis" class="judul-form-buku">Nama Penulis</label>
+                      <input type="text" name="penulis" id="penulis" placeholder="Ketik nama penulis disini..">
+                      <label for="penerbit" class="judul-form-buku">Penerbit</label>
+                      <input type="text" name="penerbit" id="penerbit" placeholder="Ketik penerbit disini..">
+                      <label for="tahun_terbit" class="judul-form-buku">Tahun Rilis</label>
+                      <input type="text" name="tahun_terbit" id="tahun_terbit" placeholder="Ketik tahun rilis disini..">
+                      <label for="total_buku" class="judul-form-buku">Stok Buku</label>
+                      <input type="number" name="total_buku" id="total_buku" placeholder="Tentukan stok buku disini.." pattern="[0-9]*">
                     </div>
-                  </div>
-                  <div class="tambah-buku-kanan"></div>
+                    <div class="tambah-buku-kanan">
+                      <label for="deskripsi" class="judul-form-buku">Deskripsi</label>
+                      <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" placeholder="Tulis deskripsi atau sinopsis buku disini.."></textarea>
+                      <label for="sampul" class="judul-form-buku">Sampul Buku <span>(png, jpg, jpeg)</span></label>
+                      <input type="file" id="gambar" accept=".png, .jpg, .jpeg" onchange="previewImage()" lang="id" title="Pilih Berkas" name="gambar">
+                      <img id="preview" src="#" alt="Preview" style="display: none;">
+                      <div class="btn-kirimbatal">
+                        <button onclick="goBack()" class="btn-kembali">Kembali</button>
+                        <button type="submit" class="btn-kirim ml-3">Kirim</button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -399,17 +422,11 @@
     <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../js/demo/chart-area-demo.js"></script>
-    <script src="../js/demo/chart-pie-demo.js"></script>
-
-    <!-- Page level plugins -->
     <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="../js/demo/datatables-demo.js"></script>
+    <script src="../js/tambah-buku.js"></script>
   </body>
 </html>
