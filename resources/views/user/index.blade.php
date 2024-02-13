@@ -36,136 +36,34 @@
                 <a href="#" class="kategori">Kategori <i class="bi bi-chevron-down"></i></a>
                 <ul>
                     <li>
-                        <a href="#" id="menu">Umum <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li>
-                                <h2></h2>
-                            </li>
-                            <li><a href="#">Publikasi Umum</a></li>
-                            <li><a href="#">Informasi Umum</a></li>
-                            <li><a href="#">Ensiklopedia</a></li>
-                            <li><a href="#">Bibliografi</a></li>
-                            <li><a href="#">Majalah</a></li>
-                        </ul>
+                        <a href="#">Umum</a>
                     </li>
                     <li>
-                        <a href="#" id="menu">Filsafat dan Psikologi <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li>
-                                <h2></h2>
-                            </li>
-                            <li><a href="#">Isu kesehatan Mental</a></li>
-                            <li><a href="#">Psikologi Positif</a></li>
-                            <li><a href="#">Psikologi dalam Filsafat</a></li>
-                            <li><a href="#">Filsafat Mindfulness</a></li>
-                            <li><a href="#">Psikologi Eksperimental</a></li>
-                            <li><a href="#">Filsafat Ontologi</a></li>
-                            <li><a href="#">Filsafat Epistemologi</a></li>
-                            <li><a href="#">Filsafat Aksiologi</a></li>
-                        </ul>
+                        <a href="#">Filsafat dan Psikologi</a>
                     </li>
                     <li>
-                        <a href="#" id="menu">Sosial <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li>
-                                <h2></h2>
-                            </li>
-                            <li><a href="#">Sosiologi</a></li>
-                            <li><a href="#">Kesejahteraan Masyarakat</a></li>
-                            <li><a href="#">Politik dan Ekonomi</a></li>
-                            <li><a href="#">Budaya dan Identitas</a></li>
-                            <li><a href="#">Isu Kontemporer</a></li>
-                        </ul>
+                        <a href="#">Sosial </i></a>
                     </li>
                     <li>
-                        <a href="#">Agama <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li>
-                                <h2></h2>
-                            </li>
-                            <li><a href="#">Islam</a></li>
-                            <li><a href="#">Protestan dan Katolik</a></li>
-                            <li><a href="#">Hindu</a></li>
-                            <li><a href="#">Buddha</a></li>
-                            <li><a href="#">Konghucu</a></li>
-                        </ul>
+                        <a href="#">Agama </i></a>
                     </li>
                     <li>
-                        <a href="#">Bahasa <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li>
-                                <h2></h2>
-                            </li>
-                            <li><a href="#">Tata Bahasa</a></li>
-                            <li><a href="#">Cerpen Indonesia</a></li>
-                            <li><a href="#">Bahasa Indonesia</a></li>
-                            <li><a href="#">Bahasa Asing</a></li>
-                        </ul>
+                        <a href="#">Bahasa </i></a>
                     </li>
                     <li>
-                        <a href="#">Sains dan Matematika <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li>
-                                <h2></h2>
-                            </li>
-                            <li><a href="#">Sains</a></li>
-                            <li><a href="#">Matematika Dasar</a></li>
-                            <li><a href="#">Kimia</a></li>
-                            <li><a href="#">Kalkulus</a></li>
-                            <li><a href="#">Fisika</a></li>
-                        </ul>
+                        <a href="#">Sains dan Matematika </i></a>
                     </li>
                     <li>
-                        <a href="#">Teknologi <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li>
-                                <h2></h2>
-                            </li>
-                            <li><a href="#">Inovasi</a></li>
-                            <li><a href="#">Pemrograman</a></li>
-                            <li><a href="#">Teknologi Medis</a></li>
-                            <li><a href="#">Machine Learning</a></li>
-                            <li><a href="#">Artificial Intelegent</a></li>
-                        </ul>
+                        <a href="#">Teknologi </i></a>
                     </li>
                     <li>
-                        <a href="#">Seni dan Rekreasi <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li>
-                                <h2></h2>
-                            </li>
-                            <li><a href="#">Seni Lukis</a></li>
-                            <li><a href="#">Seni Rupa</a></li>
-                            <li><a href="#">Pariwisata</a></li>
-                            <li><a href="#">Wisata Alam</a></li>
-                            <li><a href="#">Seni Tari</a></li>
-                        </ul>
+                        <a href="#">Seni dan Rekreasi </i></a>
                     </li>
                     <li>
-                        <a href="#">Literatur dan Sastra <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li>
-                                <h2></h2>
-                            </li>
-                            <li><a href="#">Novel</a></li>
-                            <li><a href="#">Sastra Indonesia</a></li>
-                            <li><a href="#">Cerpen</a></li>
-                            <li><a href="#">Komik</a></li>
-                            <li><a href="#">Sastra Dunia</a></li>
-                        </ul>
+                        <a href="#">Literatur dan Sastra </i></a>
                     </li>
                     <li>
-                        <a href="#">Sejarah dan Geografis <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li>
-                                <h2></h2>
-                            </li>
-                            <li><a href="#">Sejarah Dunia</a></li>
-                            <li><a href="#">Sejarah Nasional</a></li>
-                            <li><a href="#">Arkeologi</a></li>
-                            <li><a href="#">Geografis</a></li>
-                            <li><a href="#">Tokoh Bersejarah</a></li>
-                        </ul>
+                        <a href="#">Sejarah dan Geografis </i></a>
                     </li>
                 </ul>
             </li>
@@ -180,9 +78,9 @@
             @if (!session('photo'))
                 <img src="../img/avatar.jpg" />
             @else
-                <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
+                <img id="prev_profile" alt="Nama Alt">
             @endif
-            <a onclick="openModal(this)" style="cursor: pointer">{{ session('username') }}</a>
+            <a onclick="openModal(this)" style="cursor: pointer" id="username"></a>
         </div>
     </div>
 
@@ -200,7 +98,7 @@
                         <label for="nama">Nama</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <p>{{ session('username') }}</p>
+                            <p id="username_pop"></p>
                         </div>
                     </div>
                     <div class="get-pinjam">
@@ -418,7 +316,7 @@
                         <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
                     @endif
                     <div class="username-popup">
-                        <p>{{session('username')}}</p>
+                        <p>{{ session('username') }}</p>
                         <button id="btn-profile">
                             <a href="/user/profile">Lihat Profil</a>
                         </button>
@@ -664,6 +562,34 @@
             <p>Perpustakaan Digital dengan berbagai ffitur</p>
         </div>
     </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            getData();
+        })
+
+        function getData() {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/profile',
+                type: 'GET',
+                success: function(response) {
+                    console.log(response);
+                    if (response.success) {
+                        var data = response.data;
+                        $('#username, #username_pop').text(data.username);
+                        $('#prev_profile, #prev_profile_pop').attr('src', 'data:image/png;base64,' + data.photo)
+                    }
+                },
+            });
+        }
+
+        function getcategory() {
+            $ajax({
+                url: 'http://127.0.0.1:8000/'
+            });
+        }
+    </script>
 
     <script>
         function toggleAnswer(question) {
