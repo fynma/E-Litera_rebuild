@@ -24,6 +24,7 @@ use App\Http\Controllers\Auth\AuthController;
 |
 */
 
+
 Route::group([
 
     'middleware' => 'api',
@@ -53,6 +54,8 @@ Route::group([
     Route::post ('returnBorrow', [borrowController::class, 'returnBorrow']);
     Route::post ('cancelBorrow', [borrowController::class, 'cancelBorrow']); //opsional wkwkwk belum selesai juga
     Route::post ('denda', [dendaController::class, 'newDenda']); //not fix wait ui finish
+    Route::post ('bookDetail', [BookController::class, 'Bookdetail']);
+
 
     //googlenya belum dicoba si bisa apa engga ehehe :)
     Route::get('google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
@@ -64,6 +67,7 @@ Route::group([
     Route::get  ('categoryList', [CategoryController::class, 'displayCategory']);
     Route::get  ('bookList', [BookController::class, 'bookList']);
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
+
     Route::get  ('profile', [ProfileController::class, 'Profile']);
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
     Route::get  ('showRating', [RatingController::class, 'averageRating']); //not checked

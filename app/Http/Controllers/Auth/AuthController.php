@@ -52,7 +52,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['loginMob','login', 'register',]]);
+        $this->middleware('auth:api', ['except' => ['loginMob','login', 'register', 'refresh']]);
     }
 
     public function loginMob(Request $request)
@@ -81,6 +81,7 @@ class AuthController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
             // Authentication successful
             $user = User::where('email', $request->email)->first();
+            // $user = auth()->user();
             $token = auth()->attempt(['email' => $request->email, 'password' => $request->password]);
 
         } else {
@@ -89,13 +90,20 @@ class AuthController extends Controller
         }
 
         // dd($token);
-        session(['user' => $user]);
-        session(['user_id' => $user->user_id]);
-        session(['access' => $user->access]);
-        session(['token' => $token]);
+        session(['user'         => $user]);
+        session(['user_id'      => $user->user_id]);
+        session(['access'       => $user->access]);
+        session(['token'        => $token]);
+        session(['username'     => $user->username]);
+        session(['long_name'    => $user->long_name]);
+        session(['telp'         => $user->telp]);
+        session(['email'        => $user->email]);
+        session(['address'      => $user->address]);
+        session(['photo'        => $user->photo]);
 
-        // dd($user->access);
-
+        $tokenFromSession = session('token');
+    
+        
         // session(['jwt'])
         switch ($user->access) {
             case 'petugas':
@@ -104,7 +112,7 @@ class AuthController extends Controller
                     'status' => 'success',
                     'user' => $user,
                     'auth' => [
-                        'token' => $token,
+                        'token' => $tokenFromSession,
                         'type' => 'Bearer'
                     ]
                 ]);
@@ -114,7 +122,7 @@ class AuthController extends Controller
                     'status' => 'success',
                     'user' => $user,
                     'auth' => [
-                        'token' => $token,
+                        'token' => $tokenFromSession,
                         'type' => 'Bearer'
                     ]
                 ]);
@@ -124,8 +132,9 @@ class AuthController extends Controller
                     'status' => 'success',
                     'user' => $user,
                     'auth' => [
-                        'token' => $token,
+                        'token' => $tokenFromSession,
                         'type' => 'Bearer'
+                        
                     ]
                 ]);
         }
@@ -138,7 +147,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 10080
+            'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
 
