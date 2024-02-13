@@ -36,17 +36,7 @@
                 <a href="#" class="kategori">Kategori <i class="bi bi-chevron-down"></i></a>
                 <ul>
                     <li>
-                        <a href="#" id="menu">Umum <i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li>
-                                <h2></h2>
-                            </li>
-                            <li><a href="#">Publikasi Umum</a></li>
-                            <li><a href="#">Informasi Umum</a></li>
-                            <li><a href="#">Ensiklopedia</a></li>
-                            <li><a href="#">Bibliografi</a></li>
-                            <li><a href="#">Majalah</a></li>
-                        </ul>
+                        <a href="#" id="menu">Umum</a>
                     </li>
                     <li>
                         <a href="#" id="menu">Filsafat dan Psikologi <i class="bi bi-chevron-right"></i></a>
@@ -180,9 +170,9 @@
             @if (!session('photo'))
                 <img src="../img/avatar.jpg" />
             @else
-                <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
+                <img id="prev_profile" alt="Nama Alt">
             @endif
-            <a onclick="openModal(this)" style="cursor: pointer" id="username"></a>
+            <a onclick="openModal(this)" style="cursor: pointer" id="usn_profile"></a>
         </div>
     </div>
 
@@ -193,10 +183,10 @@
                     @if (!session('photo'))
                         <img src="../img/avatar.jpg" />
                     @else
-                        <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
+                        <img id="prev_profile_pop"" alt="Nama Alt">
                     @endif
                     <div class="username-popup">
-                        <p>{{ session('username') }}</p>
+                        <p id="usn_profile_pop"></p>
                         <button id="btn-profile">
                             <a href="Profile.html">Lihat Profil</a>
                         </button>
@@ -234,7 +224,7 @@
                     @if (!session('photo'))
                         <img src="../img/avatar.jpg" />
                     @else
-                        <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
+                        <img id="prev_foto" alt="Nama Alt">
                     @endif
                     <div class="change-picture">
                         <i class="bi bi-camera"></i>
@@ -247,7 +237,7 @@
                         <input type="text" name="username" id="username" placeholder="Nama Pengguna"
                             value="" />
                         <input type="text" name="long_name" id="longname" placeholder="Nama Lengkap"
-                            value="{{ session('long_name') }}" />
+                            value="" />
                     </div>
                     <input type="text" name="email" id="email" placeholder="Email"
                         value="" />
@@ -402,8 +392,6 @@
                     success: function(response) {
                         if (response.success) {
                             alert(response.message);
-                            refreshSessionData();
-                            updateSessionCookieFromServer();
                             window.location.reload();
                         } else {
                             // Tampilkan pesan kesalahan jika validasi gagal
@@ -420,35 +408,30 @@
         });
 
         function getData() {
-            $.ajax({
-                url: 'http://127.0.0.1:8000/profile',
-                type: 'GET',
-                success: function(response) {
-                    console.log(response);
-                    if (response.success) {
-                        var data = response.data;
-                        var username = data.username;
-                        var email = data.email;
-                        var telp = data.telp;
-                        var address = data.address;
-                        var picture = data.picture;
-                        var role = data.role;
-                        var long_name = data.long_name;
+        $.ajax({
+            url: 'http://127.0.0.1:8000/profile',
+            type: 'GET',
+            success: function(response) {
+                console.log(response);
+                if (response.success) {
+                    var data = response.data;
 
-                        // Mengisi inputan dengan data yang diperoleh
-                        $('#email').val(email);
-                        $('#longname').val(long_name);
-                        $('#telp').val(telp);
-                        $('#username').val(username);
-                        $('#address').val(address);
-                        $('#picture').val(picture);
-                        $('#role').val(role);
-
-                        console.log(data);
-                    }
+                    // Directly set values to HTML elements
+                    $('#email').val(data.email);
+                    $('#longname').val(data.long_name);
+                    $('#telp').val(data.telp);
+                    $('#username').val(data.username);
+                    $('#address').val(data.address);
+                    $('#role').val(data.role);
+                    
+                    // Set values to input fields
+                    $('#prev_foto, #prev_profile, #prev_profile_pop').attr('src', 'data:image/png;base64,' + data.photo)
+                    $('#usn_profile, #usn_profile_pop').text(data.username)
+                    console.log($('#username'));
                 }
-            });
-        }
+            }
+        });
+    }
     </script>
 
 </body>
