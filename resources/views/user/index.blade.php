@@ -8,6 +8,34 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../css/user.css" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
+    <style>
+        #categoryList ul {
+            display: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #categoryList li:hover {
+            background-color: #f0f0f0;
+            /* Ganti dengan warna latar yang diinginkan */
+        }
+
+        #categoryList li a {
+            text-decoration: none;
+            color: #333;
+            /* Ganti dengan warna teks yang diinginkan */
+            display: block;
+            padding: 8px 12px;
+        }
+
+        #categoryList li:hover a {
+            color: #fff;
+            /* Ganti dengan warna teks saat dihover yang diinginkan */
+        }
+
+        #categoryList:hover li {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,38 +62,7 @@
         <ul class="navigation">
             <li>
                 <a href="#" class="kategori">Kategori <i class="bi bi-chevron-down"></i></a>
-                <ul>
-                    <li>
-                        <a href="#">Umum</a>
-                    </li>
-                    <li>
-                        <a href="#">Filsafat dan Psikologi</a>
-                    </li>
-                    <li>
-                        <a href="#">Sosial </i></a>
-                    </li>
-                    <li>
-                        <a href="#">Agama </i></a>
-                    </li>
-                    <li>
-                        <a href="#">Bahasa </i></a>
-                    </li>
-                    <li>
-                        <a href="#">Sains dan Matematika </i></a>
-                    </li>
-                    <li>
-                        <a href="#">Teknologi </i></a>
-                    </li>
-                    <li>
-                        <a href="#">Seni dan Rekreasi </i></a>
-                    </li>
-                    <li>
-                        <a href="#">Literatur dan Sastra </i></a>
-                    </li>
-                    <li>
-                        <a href="#">Sejarah dan Geografis </i></a>
-                    </li>
-                </ul>
+                <ul id="categoryList"></ul>
             </li>
             <li><a href="index.html">Beranda</a></li>
             <li><a href="Tentang.html">Tentang</a></li>
@@ -567,6 +564,7 @@
     <script>
         $(document).ready(function() {
             getData();
+            getcategory();
         })
 
         function getData() {
@@ -585,13 +583,59 @@
         }
 
         function getcategory() {
-            $ajax({
-                url: 'http://127.0.0.1:8000/'
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/categoryList',
+                type: 'GET',
+                success: function(response) {
+                    console.log(response);
+                    if (response.data) {
+                        var categories = response.data;
+                        displayCategories(categories);
+                    } else {
+                        console.error('Failed to retrieve categories from the API.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error while fetching categories:', error);
+                }
             });
         }
-    </script>
 
-    <script>
+        function displayCategories(categories) {
+            console.log('categories:', categories);
+            var categoryList = $('#categoryList');
+
+            // Clear existing categories
+            categoryList.empty();
+
+            // Append new categories
+            if (categories && categories.length > 0) {
+                categories.forEach(function(category) {
+                    var listItem = $('<li><a href="category-display/' + category.category_id + '">' + category.name_category + '</a></li>');
+                    // var listItem = $('<li><a href="#">' + category.name_category + '</a></li>');
+                    categoryList.append(listItem);
+                });
+
+                // Show the updated list
+                categoryList.show();
+            } else {
+                console.warn('No categories found or categories array is empty.');
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         function toggleAnswer(question) {
             const answer = question.nextElementSibling;
             const icon = question.querySelector("i");
