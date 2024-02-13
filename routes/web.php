@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,25 +41,28 @@ Route::middleware(['web'])->group(function () {
             return view('admin.index');
         });
 
-    });
-    Route::group(['middleware' => ['roleCheck:user']], function () {
-        Route::get('/user/homepage', function () {
-            return view('user.index');
-        });
-
-    });
-    Route::group(['middleware' => ['roleCheck:administrator']], function () {
         Route::get('/admin/Kategori', function () {
             return view('admin.Kategori');
         });
 
-    });
-    Route::group(['middleware' => ['roleCheck:administrator']], function () {
         Route::get('/admin/Tambah-Buku', function () {
             return view('admin.Tambah-Buku');
         });
 
     });
+
+
+    Route::group(['middleware' => ['roleCheck:user']], function () {
+        Route::get('/user/homepage', function () {
+            return view('user.index');
+        });
+        Route::get  ('profile', [ProfileController::class, 'profileweb']);
+        
+        Route::get('/user/profile', function () {
+            return view('user.profile');
+        });
+    });
+
     Route::get('/', function () {
         return view('index');
     });

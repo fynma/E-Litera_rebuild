@@ -107,33 +107,58 @@ class BookController extends Controller
 
         return response()->json(['data' => $booksWithCategories], 200);
 
-        //     $books = DB::table('book')
-        //     ->select(
-        //         'book.*',
-        //         'category.name_category as category_name'
-        //     )
-        //     ->join('book_category', 'book.book_id', '=', 'book_category.book_id')
-        //     ->join('category', 'book_category.category_id', '=', 'category.category_id')
-        //     ->get();
+    }
 
-        // return response()->json(['data' => $books], 200);
+    public function Bookdetail(Request $request)
+    {
+        $book_id = $request->input('book_id');
 
-        // $book = Book::all();
-        // $category = book_category::all();
-        // return response()->json(['data' => $book, 'category' => $category], 200);
-        // $books = Book::all();
+        $book = DB::table('book')
+            ->select(
+                'book.book_id',
+                'book.judul',
+                'book.gambar',
+                'book.kode_buku',
+                'book.penulis',
+                'book.penerbit',
+                'book.tahun_terbit',
+                'book.total_buku',
+                'book.stok',
+                'book.deskripsi',
+                'book.created_at',
+                'book.updated_at',
+                'category.name_category as category_name'
+            )
+            ->join('book_category', 'book.book_id', '=', 'book_category.book_id')
+            ->join('category', 'book_category.category_id', '=', 'category.category_id')
+            ->where('book.book_id', $book_id)
+            ->get();
 
-        // $booksWithCategory = [];
+        // Transform the result to group books by book_id
+        $groupedBooks = collect($book)->groupBy('book_id');
 
-        // foreach ($books as $book) {
-        //     $category = $book->category; 
-        //     $booksWithCategory[] = [
-        //         'book' => $book,
-        //         'category' => $category,
-        //     ];
-        // }
+        // Create a new array structure with book information and categories
+        $booksWithCategories = $groupedBooks->map(function ($group) {
+            return [
+                'book_id' => $group[0]->book_id,
+                'judul' => $group[0]->judul,
+                'gambar' => $group[0]->gambar,
+                'kode_buku' => $group[0]->kode_buku,
+                'penulis' => $group[0]->penulis,
+                'penerbit' => $group[0]->penerbit,
+                'tahun_terbit' => $group[0]->tahun_terbit,
+                'total_buku' => $group[0]->total_buku,
+                'stok' => $group[0]->stok,
+                'deskripsi' => $group[0]->deskripsi,
+                'created_at' => $group[0]->created_at,
+                'updated_at' => $group[0]->updated_at,
 
-        // return response()->json(['data' => $booksWithCategory], 200);
+
+                'categories' => $group->pluck('category_name')->toArray(),
+            ];
+        })->values();
+
+        dd($booksWithCategories);
     }
 
 
