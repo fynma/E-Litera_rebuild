@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,6 +59,19 @@ Route::middleware(['web'])->group(function () {
         });
 
     });
+
+
+    Route::group(['middleware' => ['roleCheck:user']], function () {
+        Route::get('/user/homepage', function () {
+            return view('user.index');
+        });
+        Route::get  ('profile', [ProfileController::class, 'profileweb']);
+        
+        Route::get('/user/profile', function () {
+            return view('user.profile');
+        });
+    });
+
     Route::get('/', function () {
         return view('index');
     });

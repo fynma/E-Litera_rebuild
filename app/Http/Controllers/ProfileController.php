@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
@@ -17,48 +18,70 @@ class ProfileController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
+
+    public function profileweb()
+    {
+        try{
+            $id = session()->get('user_id');
+
+            $opr = User::where('user_id', $id)->first();
+            return response()->json(['success' => true, 'data' => $opr], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
+    }
     public function editProfile(Request $request)
     {
-        // try {
-            $user = Auth::user();
+        $userId = $request->input('user_id');
+    
+        $validator = Validator::make($request->all(), [
+            'photo' => 'file|mimes:jpeg,png,jpg,gif',
+            'email' => 'string',
+            'username' => 'string',
+            'long_name' => 'string',
+            'telp' => 'string',
+            'address' => 'string',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
+        }
+    
+        // Ambil pengguna berdasarkan user_id
+        $user = User::find($userId);
+    
+        if (!$user) {
+            return response()->json(['success' => false, 'message' => 'Pengguna tidak ditemukan'], 404);
+        }
+    
+        // Upload foto jika ada
+        $photo = $request->file('photo');
+        $encodedphoto = $photo ? base64_encode(file_get_contents($photo)) : null;
+    
+        // Simpan data pengguna
+        $user->email = $request->input('email', $user->email);
+        $user->username = $request->input('username', $user->username);
+        $user->long_name = $request->input('long_name', $user->long_name);
+        $user->telp = $request->input('telp', $user->telp);
+        $user->address = $request->input('address', $user->address);
+        $user->photo = $encodedphoto ?? $user->photo;
+    
+        $user->save();
 
-            $validator = Validator::make($request->all(), [
-                'photo' => 'file|mimes:jpeg,png,jpg,gif',
-                'email' => 'string',
-                'username' => 'string',
-                'long_name' => 'string',
-                'telp' => 'string',
-                'address' => 'string',
-            ]);
+        session(['user' => $user]);
+        session(['username'     => $user->username]);
+        session(['long_name'    => $user->long_name]);
+        session(['telp'         => $user->telp]);
+        session(['email'        => $user->email]);
+        session(['address'      => $user->address]);
+        session(['photo'        => $user->photo]);
 
-            if ($validator->fails()) {
-                return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
-            }
-            $user = Auth::user();
-            $oldEmail       = $user->email;
-            $oldUsername    = $user->username;
-            $oldLongName    = $user->long_name;
-            $oldTelp        = $user->telp;
-            $oldAddress     = $user->address;
-
-            // Upload foto jika ada
-            $photo= $request->file('photo');
-            $encodedphoto = base64_encode(file_get_contents($photo));
-
-            // Simpan data pengguna
-            $user->email = $request->input('email', $oldEmail);
-            $user->username = $request->input('username', $oldUsername);
-            $user->long_name = $request->input('long_name', $oldLongName);
-            $user->telp = $request->input('telp', $oldTelp);
-            $user->address = $request->input('address', $oldAddress);
-            $user->photo = $encodedphoto;
-            
-            // print_r($user);
-            $user->save();
-
-            return response()->json(['success' => true, 'message' => 'Profil berhasil diperbarui'], 200);
-        // } catch (\Exception $e) {
-        //     return response()->json(['success' => false, 'message' => 'Failed to update profile'], 500);
-        // }
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Profil berhasil diperbarui',
+            'user' => $user,
+        ], 200);
     }
+    
 }
