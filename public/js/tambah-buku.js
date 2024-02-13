@@ -23,8 +23,7 @@ function tampilkanKategori() {
             $.each(response.data, function (index, category) {
                 const checkbox = $("<input>").attr({
                     type: "checkbox",
-                    id: "category" + category.category_id,
-                    name: "categories[]",
+                    name: "category[]",
                     value: category.category_id,
                 });
 
