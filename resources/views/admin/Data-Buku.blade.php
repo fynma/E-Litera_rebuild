@@ -30,6 +30,12 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
 
     <!-- Custom styles for this page -->
     <link
@@ -75,7 +81,7 @@
         </li>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item active">
           <a
             class="nav-link collapsed"
             href="#"
@@ -94,7 +100,7 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="Data-Buku">Data Buku</a>
+              <a class="collapse-item active" href="Data-Buku">Data Buku</a>
               <a class="collapse-item" href="Kategori">Kategori</a>
             </div>
           </div>
@@ -166,6 +172,24 @@
       </ul>
       <!-- End of Sidebar -->
 
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Buku</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
@@ -183,8 +207,8 @@
             </button>
 
             <div class="header-navbar">
-              <h2>Dashboard</h2>
-              <p>Dashboard</p>
+              <h2>Data Buku</h2>
+              <p>Data Buku</p>
             </div>
 
             <!-- Topbar Navbar -->
@@ -304,240 +328,13 @@
 
           <!-- Begin Page Content -->
           <div class="container-fluid">
-            <!-- Content Row -->
-            <div class="row">
-              <!-- Earnings (Monthly) Card Example -->
-              <div class="col-xl-2 col-md-2 mb-4">
-                <div class="card shadow h-100 p-2" id="card-total-anggota">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="h6 mb-0 font-weight-semibold text-white text-capitalize mb-3"
-                        >
-                          Total Anggota
-                        </div>
-                        <div
-                          class="mb-0 text-white satuan-summary font-weight-semibold"
-                        >
-                          <span
-                            class="h4 font-weight-semibold"
-                            style="margin-right: 4%"
-                            >120</span
-                          >Orang
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Earnings (Monthly) Card Example -->
-              <div class="col-xl-2 col-md-2 mb-4">
-                <div class="card shadow h-100 p-2" id="card-total-buku">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="h6 mb-0 font-weight-semibold text-white text-capitalize mb-3"
-                        >
-                          Total Buku
-                        </div>
-                        <div
-                          class="mb-0 text-white satuan-summary font-weight-semibold"
-                        >
-                          <span
-                            class="h4 font-weight-semibold"
-                            style="margin-right: 4%"
-                            >89</span
-                          >Buku
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Earnings (Monthly) Card Example -->
-              <div class="col-xl-2 col-md-2 mb-4">
-                <div class="card shadow h-100 p-2" id="card-dipinjamkan">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="h6 mb-0 font-weight-semibold text-white text-capitalize mb-3"
-                        >
-                          Dipinjamkan
-                        </div>
-                        <div
-                          class="mb-0 text-white satuan-summary font-weight-semibold"
-                        >
-                          <span
-                            class="h4 font-weight-semibold"
-                            style="margin-right: 4%"
-                            >40</span
-                          >Buku
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Pending Requests Card Example -->
-              <div class="col-xl-2 col-md-2 mb-4">
-                <div class="card shadow h-100 p-2" id="card-dikembalikan">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="h6 mb-0 font-weight-semibold text-white text-capitalize mb-3"
-                        >
-                          Tersedia
-                        </div>
-                        <div
-                          class="mb-0 text-white satuan-summary font-weight-semibold"
-                        >
-                          <span
-                            class="h4 font-weight-semibold"
-                            style="margin-right: 4%"
-                            >37</span
-                          >Buku
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Pending Requests Card Example -->
-              <div class="col-xl-2 col-md-2 mb-4">
-                <div class="card shadow h-100 p-2" id="card-denda">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="h6 mb-0 font-weight-semibold text-white text-capitalize mb-3"
-                        >
-                          Denda
-                        </div>
-                        <div
-                          class="mb-0 text-white satuan-summary font-weight-semibold"
-                        >
-                          <span
-                            class="h4 font-weight-semibold"
-                            style="margin-right: 4%"
-                            >12</span
-                          >Orang
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Content Row -->
-
-            <div class="row">
-              <!-- Area Chart -->
-              <div class="col-xl-8 col-lg-7">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                  >
-                    <h6 class="m-0 font-weight-bold text-orange">
-                      Rekap Peminjaman Buku
-                    </h6>
-                    <div class="dropdown no-arrow">
-                      <a
-                        class="dropdown-toggle"
-                        href="#"
-                        role="button"
-                        id="dropdownMenuLink"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        <i
-                          class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"
-                        ></i>
-                      </a>
-                      <div
-                        class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                        aria-labelledby="dropdownMenuLink"
-                      >
-                        <div class="dropdown-header">Periode:</div>
-                        <a class="dropdown-item" href="#">1 Minggu</a>
-                        <a class="dropdown-item" href="#">1 Bulan</a>
-                        <a class="dropdown-item" href="#">1 Tahun</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body">
-                    <div class="chart-area">
-                      <canvas id="myAreaChart"></canvas>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Pie Chart -->
-              <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                  >
-                    <h6 class="m-0 font-weight-bold text-orange">
-                      Status Buku
-                    </h6>
-                    <div class="dropdown no-arrow">
-                      <a
-                        class="dropdown-toggle"
-                        href="#"
-                        role="button"
-                        id="dropdownMenuLink"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        <i
-                          class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"
-                        ></i>
-                      </a>
-                      <div
-                        class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                        aria-labelledby="dropdownMenuLink"
-                      >
-                        <div class="dropdown-header">Periode:</div>
-                        <a class="dropdown-item" href="#">1 Minggu</a>
-                        <a class="dropdown-item" href="#">1 Bulan</a>
-                        <a class="dropdown-item" href="#">1 Tahun</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body">
-                    <div class="chart-pie pt-4 pb-2">
-                      <canvas id="myPieChart"></canvas>
-                    </div>
-                    <div class="mt-4 text-center small">
-                      <span class="mr-2">
-                        <i class="fas fa-circle text-tersedia"></i> Tersedia
-                      </span>
-                      <span class="mr-2">
-                        <i class="fas fa-circle text-dipinjam"></i> Dipinjam
-                      </span>
-                      <span class="mr-2">
-                        <i class="fas fa-circle text-terlambat"></i> Terlambat
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <!-- Button Print Laporan -->
+            <div
+              class="d-sm-flex align-items-center justify-content-between mb-4"
+            >
+              <button class="btn-tambah">
+              <i class="bi bi-plus-lg"></i>Tambah Buku
+              </button>
             </div>
 
             <!-- Content Row -->
@@ -545,12 +342,12 @@
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-orange">
-                  List Data Peminjaman
+                  List Data Buku
                 </h6>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table
+                <table
                     class="table table-bordered"
                     id="dataTable"
                     width="100%"
@@ -558,173 +355,16 @@
                   >
                     <thead>
                       <tr>
-                        <th>Tanggal Peminjaman</th>
-                        <th>Nama Peminjam</th>
-                        <th>Judul Buku</th>
-                        <th>Status Peminjaman</th>
+                        <th style="width: 30px;">No</th>
+                        <th>Kode</th>
+                        <th>Judul</th>
+                        <th>Kategori</th>
+                        <th>Penulis</th>
+                        <th>Penerbit</th>
+                        <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-dipinjam">Dipinjam</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-dipinjam">Dipinjam</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-terlambat">Terlambat</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-dipinjam">Dipinjam</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-dipinjam">Dipinjam</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-terlambat">Terlambat</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-dipinjam">Dipinjam</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-terlambat">Terlambat</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-dipinjam">Dipinjam</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-dipinjam">Dipinjam</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-dipinjam">Dipinjam</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-dipinjam">Dipinjam</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-dipinjam">Dipinjam</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-dipinjam">Dipinjam</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-dipinjam">Dipinjam</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-terlambat">Terlambat</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-terlambat">Terlambat</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-terlambat">Terlambat</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-terlambat">Terlambat</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2023/12/29</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td id="status-peminjaman">
-                          <p class="status-terlambat">Terlambat</p>
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -802,19 +442,24 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../js/demo/chart-area-demo.js"></script>
-    <script src="../js/demo/chart-pie-demo.js"></script>
-
     <!-- Page level plugins -->
     <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="../js/demo/datatables-demo.js"></script>
+    <script src="../js/data-buku.js"></script>
+
+    <!-- bootstrap cdn -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

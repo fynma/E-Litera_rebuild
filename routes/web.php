@@ -48,6 +48,15 @@ Route::middleware(['web'])->group(function () {
         Route::get('/admin/Tambah-Buku', function () {
             return view('admin.Tambah-Buku');
         });
+        Route::get('/admin/Data-Buku', function () {
+            return view('admin.Data-Buku');
+        });
+
+    });
+    Route::group(['middleware' => ['roleCheck:user']], function () {
+        Route::get('/user/homepage', function () {
+            return view('user.index');
+        });
 
     });
 
