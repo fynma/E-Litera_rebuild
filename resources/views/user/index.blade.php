@@ -551,40 +551,7 @@
             });
         }
 
-        // function displayBooks(books) {
-        //     var gridContainer = $(
-        //     '#grid-item');
-        //     gridContainer.empty(); 
-
-        //     $.each(books, function(index, book) {
-        //         var gridItem = $('<div class="grid-item" data-rating="' + book.rating + '"></div>');
-        //         var img = $('<img>').attr('src', 'data:image/png;base64,' + book.gambar).attr('alt', book.judul);
-        //         var details = $('<div class="details"></div>');
-
-        //         var categories = $('<div id="kategori-buku"></div>');
-        //         $.each(book.categories, function(i, category) {
-        //             categories.append('<a href="#">' + category.name_category + '</a>, ');
-        //         });
-
-        //         var title = $('<h3 id="judul-buku"><a href="#">' + book.judul + '</a></h3>');
-        //         var author = $('<a href="#" id="penulis-buku">By: ' + book.penulis + '</a>');
-
-        //         var rating = $('<div class="rating"></div>');
-        //         for (var i = 1; i <= book.rating; i++) {
-        //             rating.append('<i class="bi bi-star-fill" value="' + i + '"></i>');
-        //         }
-
-        //         var linkPinjam = $('<div class="link-pinjam" id="disabledLink"></div>');
-        //         var buttonPinjam = $(
-        //             '<button style="cursor: pointer" onclick="openPinjam(this)"><a>Pinjam</a></button>');
-
-        //         details.append(categories, title, author, rating, linkPinjam.append(buttonPinjam));
-        //         gridItem.append(img, details);
-        //         gridContainer.append(gridItem);
-
-        //     });
-        // }
-
+        
 
 
 
