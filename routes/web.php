@@ -53,6 +53,9 @@ Route::middleware(['web'])->group(function () {
         Route::get('/admin/Data-Buku', function () {
             return view('admin.Data-Buku');
         });
+        Route::get('/admin/Data-Pengguna', function () {
+            return view('admin.Data-Pengguna');
+        });
 
     });
     Route::group(['middleware' => ['roleCheck:user']], function () {

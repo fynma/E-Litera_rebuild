@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>E-Litera | Petugas - Kategori</title>
+    <title>E-Litera | Petugas - Data Pengguna</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -29,6 +29,12 @@
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
     />
 
     <!-- Custom styles for this page -->
@@ -58,7 +64,7 @@
           <img src="../img/logo aplikasi billa 1.png" />
         </a>
 
-        <!-- Nav Item - Data Peminjaman Buku -->
+        <!-- Nav Item - Dashboard -->
         <li class="nav-item">
           <a class="nav-link" href="/admin/dashboard">
             <i class="bi bi-grid"></i>
@@ -67,15 +73,15 @@
         </li>
 
         <!-- Nav Item - Data Pengguna -->
-        <li class="nav-item">
-          <a class="nav-link" href="Data-Pengguna">
+        <li class="nav-item active">
+          <a class="nav-link" href="Data-User">
             <i class="bi bi-people"></i>
             <span>Data Pengguna</span></a
           >
         </li>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
+        <li class="nav-item">
           <a
             class="nav-link collapsed"
             href="#"
@@ -95,7 +101,7 @@
           >
             <div class="bg-white py-2 collapse-inner rounded">
               <a class="collapse-item" href="Data-Buku">Data Buku</a>
-              <a class="collapse-item active" href="Kategori">Kategori</a>
+              <a class="collapse-item" href="Kategori">Kategori</a>
             </div>
           </div>
         </li>
@@ -166,6 +172,24 @@
       </ul>
       <!-- End of Sidebar -->
 
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Buku</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
@@ -183,8 +207,8 @@
             </button>
 
             <div class="header-navbar">
-              <h2>Data Kategori Buku</h2>
-              <p>Data Kategori Buku</p>
+              <h2>Data Pengguna</h2>
+              <p>Data Pengguna</p>
             </div>
 
             <!-- Topbar Navbar -->
@@ -304,58 +328,17 @@
 
           <!-- Begin Page Content -->
           <div class="container-fluid">
-            <!-- Tambah Kategori -->
-            <div
-              class="d-sm-flex align-items-center justify-content-between mb-4"
-            >
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                >
-                  <h3 class="m-0 font-weight-semibold text-orange">
-                    Tambah Kategori
-                  </h3>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="konten-tambah-kategori">
-                    <form id="form-tambah-kategori">
-                      @csrf
-                      <label for="nama-kategori">Nama Kategori</label>
-                      <input type="text" name="nama-kategori" id="nama-kategori">
-                      <button type="submit"><i class="bi bi-plus-lg"></i> Tambah Kategori</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- desain popup alert -->
-            <div class="popup" id="popup">
-              <div class="isi-popup">
-                <div class="content-popup">
-                  <img src="../img/alert-icon1.png" />
-                  <h2>Apakah Anda yakin ingin mengkonfirmasi peminjaman?</h2>
-                  <div class="button-container">
-                    <button class="batal" id="tutup-konfirmasi">Batal</button>
-                    <button class="oke">Oke</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <!-- Content Row -->
             <!-- Project Card Example -->
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-orange">
-                  List Data Kategori
+                  List Pengguna
                 </h6>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table
+                <table
                     class="table table-bordered"
                     id="dataTable"
                     width="100%"
@@ -364,11 +347,83 @@
                     <thead>
                       <tr>
                         <th style="width: 30px;">No</th>
-                        <th>Kategori</th>
-                        <th style="width: 70px;">Aksi</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Level</th>
+                        <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Sheila</td>
+                        <td>Sheila12@gmail.com</td>
+                        <td>User</td>
+                        <td>
+                          <button class="btn-view" onclick="openView(this)">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn-delete" onclick="openDelete(this)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rifki</td>
+                        <td>Rifki@gmail.com</td>
+                        <td>Petugas</td>
+                        <td>
+                          <button class="btn-view" onclick="openView(this)">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn-delete" onclick="openDelete(this)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Angga</td>
+                        <td>Angga@gmail.com</td>
+                        <td>Administrator</td>
+                        <td>
+                          <button class="btn-view" onclick="openView(this)">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn-delete" onclick="openDelete(this)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Sabila</td>
+                        <td>Sabila@gmail.com</td>
+                        <td>User</td>
+                        <td>
+                          <button class="btn-view" onclick="openView(this)">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn-delete" onclick="openDelete(this)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Lidia</td>
+                        <td>Lidia@gmail.com</td>
+                        <td>User</td>
+                        <td>
+                          <button class="btn-view" onclick="openView(this)">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn-delete" onclick="openDelete(this)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -446,7 +501,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin-2.min.js"></script>
-
     <!-- Page level plugins -->
     <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
@@ -454,48 +508,16 @@
     <!-- Page level custom scripts -->
     <script src="../js/demo/datatables-demo.js"></script>
 
-    <!-- javascript kategori admin -->
-    <script src="../js/kategori-admin.js"></script>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Ambil semua button yang digunakan untuk memunculkan popup
-        var buttons = document.querySelectorAll(".button-confirm");
-        var popup = document.getElementById("popup");
-        var tutupKonfirm = document.getElementById("tutup-konfirmasi");
-
-        // Tambahkan event listener untuk setiap button
-        buttons.forEach(function (button) {
-          button.addEventListener("click", function () {
-            // Panggil fungsi untuk menampilkan popup
-            popup.classList.add("open-popup");
-            // Panggil fungsi untuk mengkonfirmasi peminjaman hanya untuk tombol ini
-            var btnOke = popup.querySelector(".oke");
-            btnOke.addEventListener("click", function () {
-              konfirmasiPeminjaman(button);
-            });
-          });
-        });
-
-        function konfirmasiPeminjaman(button) {
-          button.innerText = "Dikonfirmasi";
-          button.classList.remove("confirm");
-          button.classList.add("terconfirm");
-          button.disabled = true;
-
-          // Tutup popup setelah dikonfirmasi
-          closeKonfirmasi();
-        }
-
-        tutupKonfirm.addEventListener("click", function () {
-          // Panggil fungsi untuk menampilkan popup
-          popup.classList.remove("open-popup");
-        });
-
-        function closeKonfirmasi() {
-          popup.classList.remove("open-popup");
-        }
-      });
-    </script>
+    <!-- bootstrap cdn -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

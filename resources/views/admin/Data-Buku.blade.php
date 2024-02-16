@@ -65,7 +65,7 @@
         </a>
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="/admin/dashboard">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span></a
@@ -74,7 +74,7 @@
 
         <!-- Nav Item - Data Pengguna -->
         <li class="nav-item">
-          <a class="nav-link" href="Data-User">
+          <a class="nav-link" href="Data-Pengguna">
             <i class="bi bi-people"></i>
             <span>Data Pengguna</span></a
           >
