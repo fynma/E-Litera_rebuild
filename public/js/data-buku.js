@@ -42,7 +42,7 @@ $(document).ready(function () {
 
 $("#dataTable").on("click", ".btn-view", function () {
     $.ajax({
-        url: "http://localhost:8000/api/bookList",
+        url: "http://localhost:8000/api/bookDetail",
         dataType: "json",
         type: "get",
         data: {
@@ -68,7 +68,7 @@ $("#dataTable").on("click", ".btn-view", function () {
                             </div>
                         </div>
                     </div>
-                `
+                    `
                 );
             }
         },

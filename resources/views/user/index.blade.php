@@ -8,34 +8,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../css/user.css" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
-    <style>
-        #categoryList ul {
-            display: none;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        #categoryList li:hover {
-            background-color: #f0f0f0;
-            /* Ganti dengan warna latar yang diinginkan */
-        }
-
-        #categoryList li a {
-            text-decoration: none;
-            color: #333;
-            /* Ganti dengan warna teks yang diinginkan */
-            display: block;
-            padding: 8px 12px;
-        }
-
-        #categoryList li:hover a {
-            color: #fff;
-            /* Ganti dengan warna teks saat dihover yang diinginkan */
-        }
-
-        #categoryList:hover li {
-            display: block;
-        }
-    </style>
 </head>
 
 <body>
@@ -564,7 +536,7 @@
     <script>
         $(document).ready(function() {
             getData();
-            getcategory();
+            getCategories();
         })
 
         function getData() {
@@ -582,46 +554,34 @@
             });
         }
 
-        function getcategory() {
-            $.ajax({
-                url: 'http://127.0.0.1:8000/api/categoryList',
-                type: 'GET',
-                success: function(response) {
-                    console.log(response);
-                    if (response.data) {
-                        var categories = response.data;
-                        displayCategories(categories);
-                    } else {
-                        console.error('Failed to retrieve categories from the API.');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error while fetching categories:', error);
-                }
-            });
-        }
-
-        function displayCategories(categories) {
-            console.log('categories:', categories);
-            var categoryList = $('#categoryList');
-
-            // Clear existing categories
-            categoryList.empty();
-
-            // Append new categories
-            if (categories && categories.length > 0) {
-                categories.forEach(function(category) {
-                    var listItem = $('<li><a href="category-display/' + category.category_id + '">' + category.name_category + '</a></li>');
-                    // var listItem = $('<li><a href="#">' + category.name_category + '</a></li>');
-                    categoryList.append(listItem);
-                });
-
-                // Show the updated list
-                categoryList.show();
-            } else {
-                console.warn('No categories found or categories array is empty.');
+        // Fungsi untuk mengambil data kategori dari API
+    function getCategories() {
+        $.ajax({
+            url: 'http://localhost:8000/api/categoryList',
+            type: 'GET',
+            success: function(response) {
+                // Panggil fungsi untuk menampilkan kategori ke dalam daftar
+                displayCategories(response.data);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
             }
-        }
+        });
+    }
+
+    // Fungsi untuk menampilkan kategori ke dalam daftar
+    function displayCategories(categories) {
+        const categoryList = $('#categoryList');
+        // Kosongkan daftar sebelum menambahkan kategori baru
+        categoryList.empty();
+        // Tambahkan setiap kategori ke dalam daftar
+        categories.forEach(category => {
+            const li = $('<li>');
+            const link = $('<a>').attr('href', '/categories/' + category.category_id).text(category.name_category);
+            li.append(link);
+            categoryList.append(li);
+        });
+    }
 
 
 
