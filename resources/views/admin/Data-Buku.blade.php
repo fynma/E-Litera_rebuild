@@ -332,9 +332,9 @@
             <div
               class="d-sm-flex align-items-center justify-content-between mb-4"
             >
-              <button class="btn-tambah">
+              <a href="/admin/Tambah-Buku"><button class="btn-tambah">
               <i class="bi bi-plus-lg"></i>Tambah Buku
-              </button>
+              </button></a>
             </div>
 
             <!-- Content Row -->

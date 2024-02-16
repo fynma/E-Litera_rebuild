@@ -83,5 +83,15 @@ class ProfileController extends Controller
             'user' => $user,
         ], 200);
     }
+
+    public function totalUser()
+    {
+        try{
+            $data = User::count();
+            return response()->json(['success' => true, 'data' => $data], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
+    }
     
 }

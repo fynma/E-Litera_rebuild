@@ -469,7 +469,6 @@
                 categories.forEach(function(category) {
                     var listItem = $('<li><a href="category-display/' + category.name_category + '">' + category
                         .name_category + '</a></li>');
-                    // var listItem = $('<li><a href="#">' + category.name_category + '</a></li>');
                     categoryList.append(listItem);
                 });
 
@@ -541,14 +540,6 @@
                         rating.append('<i class="bi bi-star" value="' + i + '"></i>');
                     }
                 }
-                // var rating = $('<div class="rating"></div>');
-                // for (var i = 1; i <= 5; i++) {
-                //     if (i <= book.rating) {
-                //         rating.append('<i class="bi bi-star-fill" value="' + i + '"></i>');
-                //     } else {
-                //         rating.append('<i class="bi bi-star" value="' + i + '"></i>');
-                //     }
-                // }
 
                 var linkPinjam = $('<div class="link-pinjam" id="disabledLink"></div>');
                 var buttonPinjam = $(
