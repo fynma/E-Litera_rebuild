@@ -65,12 +65,12 @@ Route::group([
     Route::get  ('borrowList', [borrowController::class, 'showBorrow']);
     Route::get  ('comment', [CommentController::class, 'getComment']);
     Route::get  ('categoryList', [CategoryController::class, 'displayCategory']);
-    Route::get  ('bookList', [BookController::class, 'bookList']);
+    Route::get  ('bookCover', [BookController::class, 'BookCoverView']);
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
 
     Route::get  ('profile', [ProfileController::class, 'Profile']);
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
-    Route::get  ('showRating', [RatingController::class, 'averageRating']); //not checked
+    Route::get  ('showRating', [RatingController::class, 'averageRating']);
 
 
 

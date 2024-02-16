@@ -37,7 +37,7 @@ class ProfileController extends Controller
         $validator = Validator::make($request->all(), [
             'photo' => 'file|mimes:jpeg,png,jpg,gif',
             'email' => 'string',
-            'username' => 'string',
+            'username' => 'string|max:10',
             'long_name' => 'string',
             'telp' => 'integer',
             'address' => 'string',
