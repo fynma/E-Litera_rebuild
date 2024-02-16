@@ -127,152 +127,7 @@
                 <a href="#">Baca Selengkapnya</a>
             </div>
         </div>
-        <div class="books-grid">
-            <div class="grid-item" data-rating="5">
-                <img src="../img/books1.png" alt="Book 1" />
-                <div class="details">
-                    <div id="kategori-buku">
-                        <a href="#">Adventure</a>, <a href="#">Fun</a>
-                    </div>
-                    <h3 id="judul-buku">
-                        <a href="Books-Page.html">Help Me Find My Stomach</a>
-                    </h3>
-                    <a href="#" id="penulis-buku">By: Angela Gunning</a>
-                    <div class="rating">
-                        <i class="bi bi-star-fill" value="1"></i>
-                        <i class="bi bi-star-fill" value="2"></i>
-                        <i class="bi bi-star-fill" value="3"></i>
-                        <i class="bi bi-star-fill" value="4"></i>
-                        <i class="bi bi-star-fill" value="5"></i>
-                    </div>
-                    <div class="link-pinjam" id="disabledLink">
-                        <button style="cursor: pointer" onclick="openPinjam(this)">
-                            <a>Pinjam</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item" data-rating="5">
-                <img src="../img/books2.png" alt="Book 1" />
-                <div class="details">
-                    <div id="kategori-buku">
-                        <a href="#">Adventure</a>, <a href="#">Fun</a>
-                    </div>
-                    <h3 id="judul-buku">
-                        <a href="Books-Page.html">Help Me Find My Stomach</a>
-                    </h3>
-                    <a href="#" id="penulis-buku">By: Angela Gunning</a>
-                    <div class="rating">
-                        <i class="bi bi-star-fill" value="1"></i>
-                        <i class="bi bi-star-fill" value="2"></i>
-                        <i class="bi bi-star-fill" value="3"></i>
-                        <i class="bi bi-star-fill" value="4"></i>
-                        <i class="bi bi-star-fill" value="5"></i>
-                    </div>
-                    <div class="link-pinjam" id="disabledLink">
-                        <button style="cursor: pointer" onclick="openPinjam(this)">
-                            <a>Pinjam</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item" data-rating="5">
-                <img src="../img/books3.png" alt="Book 1" />
-                <div class="details">
-                    <div id="kategori-buku">
-                        <a href="#">Adventure</a>, <a href="#">Fun</a>
-                    </div>
-                    <h3 id="judul-buku">
-                        <a href="Books-Page.html">Help Me Find My Stomach</a>
-                    </h3>
-                    <a href="#" id="penulis-buku">By: Angela Gunning</a>
-                    <div class="rating">
-                        <i class="bi bi-star-fill" value="1"></i>
-                        <i class="bi bi-star-fill" value="2"></i>
-                        <i class="bi bi-star-fill" value="3"></i>
-                        <i class="bi bi-star-fill" value="4"></i>
-                        <i class="bi bi-star-fill" value="5"></i>
-                    </div>
-                    <div class="link-pinjam" id="disabledLink">
-                        <button style="cursor: pointer" onclick="openPinjam(this)">
-                            <a>Pinjam</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item" data-rating="5">
-                <img src="../img/books4.png" alt="Book 1" />
-                <div class="details">
-                    <div id="kategori-buku">
-                        <a href="#">Adventure</a>, <a href="#">Fun</a>
-                    </div>
-                    <h3 id="judul-buku">
-                        <a href="Books-Page.html">Help Me Find My Stomach</a>
-                    </h3>
-                    <a href="#" id="penulis-buku">By: Angela Gunning</a>
-                    <div class="rating">
-                        <i class="bi bi-star-fill" value="1"></i>
-                        <i class="bi bi-star-fill" value="2"></i>
-                        <i class="bi bi-star-fill" value="3"></i>
-                        <i class="bi bi-star-fill" value="4"></i>
-                        <i class="bi bi-star-fill" value="5"></i>
-                    </div>
-                    <div class="link-pinjam" id="disabledLink">
-                        <button style="cursor: pointer" onclick="openPinjam(this)">
-                            <a>Pinjam</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item" data-rating="5">
-                <img src="../img/books5.png" alt="Book 1" />
-                <div class="details">
-                    <div id="kategori-buku">
-                        <a href="#">Adventure</a>, <a href="#">Fun</a>
-                    </div>
-                    <h3 id="judul-buku">
-                        <a href="Books-Page.html">Help Me Find My Stomach</a>
-                    </h3>
-                    <a href="#" id="penulis-buku">By: Angela Gunning</a>
-                    <div class="rating">
-                        <i class="bi bi-star-fill" value="1"></i>
-                        <i class="bi bi-star-fill" value="2"></i>
-                        <i class="bi bi-star-fill" value="3"></i>
-                        <i class="bi bi-star-fill" value="4"></i>
-                        <i class="bi bi-star-fill" value="5"></i>
-                    </div>
-                    <div class="link-pinjam" id="disabledLink">
-                        <button style="cursor: pointer" onclick="openPinjam(this)">
-                            <a>Pinjam</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item" data-rating="5">
-                <img src="../img/books6.png" alt="Book 1" />
-                <div class="details">
-                    <div id="kategori-buku">
-                        <a href="#">Adventure</a>, <a href="#">Fun</a>
-                    </div>
-                    <h3 id="judul-buku">
-                        <a href="Books-Page.html">Help Me Find My Stomach</a>
-                    </h3>
-                    <a href="#" id="penulis-buku">By: Angela Gunning</a>
-                    <div class="rating">
-                        <i class="bi bi-star-fill" value="1"></i>
-                        <i class="bi bi-star-fill" value="2"></i>
-                        <i class="bi bi-star-fill" value="3"></i>
-                        <i class="bi bi-star-fill" value="4"></i>
-                        <i class="bi bi-star-fill" value="5"></i>
-                    </div>
-                    <div class="link-pinjam" id="disabledLink">
-                        <button style="cursor: pointer" onclick="openPinjam(this)">
-                            <a>Pinjam</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="books-grid" id="grid-item">
     </section>
 
     <div class="popup" id="popup">
@@ -537,7 +392,6 @@
         $(document).ready(function() {
             getData();
             getCategories();
-        })
 
         function getData() {
             $.ajax({
@@ -582,6 +436,133 @@
             categoryList.append(li);
         });
     }
+
+        function getListBook() {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/bookCover',
+                type: 'GET',
+                success: function(response) {
+                    console.log(response);
+                    if (response.data) {
+                        var books = response.data;
+                        displayBooks(books);
+                    } else {
+                        console.error('Failed to retrieve categories from the API.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error while fetching book:', error);
+                }
+            })
+        }
+
+
+        function displayBooks(books) {
+            var gridContainer = $('#grid-item');
+            gridContainer.empty();
+
+            // Memotong array buku agar hanya 4 data yang ditampilkan
+            books = books.slice(0, 4);
+            // Membalik urutan array sehingga data terbaru muncul pertama
+            books = books.reverse();
+
+            $.each(books, function(index, book) {
+                var gridItem = $('<div class="grid-item" data-rating="' + book.rating + '"></div>');
+                var img = $('<img>').attr('src', 'data:image/png;base64,' + book.gambar).attr('alt', book.judul);
+
+                // var img = $('<img>').attr('src', '../img/' + book.gambar).attr('alt', book.judul);
+                var details = $('<div class="details"></div>');
+
+                var categories = $('<div id="kategori-buku"></div>');
+                $.each(book.kategori, function(i, category) {
+                    categories.append('<a href="#">' + category + '</a>, ');
+                });
+
+                var title = $('<h3 id="judul-buku"><a href="#">' + book.judul + '</a></h3>');
+                var author = $('<a href="#" id="penulis-buku">By: ' + book.penulis + '</a>');
+
+                var rating = $('<div class="rating"></div>');
+                var fullStars = Math.floor(book.rating); // Bintang penuh
+                var decimalPart = book.rating - fullStars; // Bagian desimal
+                var halfStar = decimalPart >= 0.25 && decimalPart < 0.75; // Setengah bintang
+                var fullStarAfterHalf = decimalPart >= 0.75; // Bintang penuh setelah setengah bintang
+
+                for (var i = 1; i <= 5; i++) {
+                    if (i <= fullStars) {
+                        rating.append('<i class="bi bi-star-fill" value="' + i + '"></i>');
+                    } else if (i === fullStars + 1 && halfStar) {
+                        rating.append('<i class="bi bi-star-half" value="' + i + '"></i>');
+                    } else if (i === fullStars + 1 && fullStarAfterHalf) {
+                        rating.append('<i class="bi bi-star-fill" value="' + i + '"></i>');
+                    } else {
+                        rating.append('<i class="bi bi-star" value="' + i + '"></i>');
+                    }
+                }
+                // var rating = $('<div class="rating"></div>');
+                // for (var i = 1; i <= 5; i++) {
+                //     if (i <= book.rating) {
+                //         rating.append('<i class="bi bi-star-fill" value="' + i + '"></i>');
+                //     } else {
+                //         rating.append('<i class="bi bi-star" value="' + i + '"></i>');
+                //     }
+                // }
+
+                var linkPinjam = $('<div class="link-pinjam" id="disabledLink"></div>');
+                var buttonPinjam = $(
+                    '<button style="cursor: pointer" onclick="openPinjam(this)"><a>Pinjam</a></button>');
+
+                details.append(categories, title, author, rating, linkPinjam.append(buttonPinjam));
+                gridItem.append(img, details);
+                gridContainer.append(gridItem);
+            });
+        }
+
+        // function displayBooks(books) {
+        //     var gridContainer = $(
+        //     '#grid-item');
+        //     gridContainer.empty(); 
+
+        //     $.each(books, function(index, book) {
+        //         var gridItem = $('<div class="grid-item" data-rating="' + book.rating + '"></div>');
+        //         var img = $('<img>').attr('src', 'data:image/png;base64,' + book.gambar).attr('alt', book.judul);
+        //         var details = $('<div class="details"></div>');
+
+        //         var categories = $('<div id="kategori-buku"></div>');
+        //         $.each(book.categories, function(i, category) {
+        //             categories.append('<a href="#">' + category.name_category + '</a>, ');
+        //         });
+
+        //         var title = $('<h3 id="judul-buku"><a href="#">' + book.judul + '</a></h3>');
+        //         var author = $('<a href="#" id="penulis-buku">By: ' + book.penulis + '</a>');
+
+        //         var rating = $('<div class="rating"></div>');
+        //         for (var i = 1; i <= book.rating; i++) {
+        //             rating.append('<i class="bi bi-star-fill" value="' + i + '"></i>');
+        //         }
+
+        //         var linkPinjam = $('<div class="link-pinjam" id="disabledLink"></div>');
+        //         var buttonPinjam = $(
+        //             '<button style="cursor: pointer" onclick="openPinjam(this)"><a>Pinjam</a></button>');
+
+        //         details.append(categories, title, author, rating, linkPinjam.append(buttonPinjam));
+        //         gridItem.append(img, details);
+        //         gridContainer.append(gridItem);
+
+        //     });
+        // }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
