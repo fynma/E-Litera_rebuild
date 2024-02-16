@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>E-Litera | Petugas - Dashboard</title>
+    <title>E-Litera | Petugas - Data Pengguna</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -73,15 +73,15 @@
         </li>
 
         <!-- Nav Item - Data Pengguna -->
-        <li class="nav-item">
-          <a class="nav-link" href="Data-Pengguna">
+        <li class="nav-item active">
+          <a class="nav-link" href="Data-User">
             <i class="bi bi-people"></i>
             <span>Data Pengguna</span></a
           >
         </li>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
+        <li class="nav-item">
           <a
             class="nav-link collapsed"
             href="#"
@@ -100,7 +100,7 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item active" href="Data-Buku">Data Buku</a>
+              <a class="collapse-item" href="Data-Buku">Data Buku</a>
               <a class="collapse-item" href="Kategori">Kategori</a>
             </div>
           </div>
@@ -207,8 +207,8 @@
             </button>
 
             <div class="header-navbar">
-              <h2>Data Buku</h2>
-              <p>Data Buku</p>
+              <h2>Data Pengguna</h2>
+              <p>Data Pengguna</p>
             </div>
 
             <!-- Topbar Navbar -->
@@ -328,21 +328,12 @@
 
           <!-- Begin Page Content -->
           <div class="container-fluid">
-            <!-- Button Print Laporan -->
-            <div
-              class="d-sm-flex align-items-center justify-content-between mb-4"
-            >
-              <button class="btn-tambah">
-              <i class="bi bi-plus-lg"></i>Tambah Buku
-              </button>
-            </div>
-
             <!-- Content Row -->
             <!-- Project Card Example -->
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-orange">
-                  List Data Buku
+                  List Pengguna
                 </h6>
               </div>
               <div class="card-body">
@@ -356,15 +347,83 @@
                     <thead>
                       <tr>
                         <th style="width: 30px;">No</th>
-                        <th>Kode</th>
-                        <th>Judul</th>
-                        <th>Kategori</th>
-                        <th>Penulis</th>
-                        <th>Penerbit</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Level</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Sheila</td>
+                        <td>Sheila12@gmail.com</td>
+                        <td>User</td>
+                        <td>
+                          <button class="btn-view" onclick="openView(this)">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn-delete" onclick="openDelete(this)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rifki</td>
+                        <td>Rifki@gmail.com</td>
+                        <td>Petugas</td>
+                        <td>
+                          <button class="btn-view" onclick="openView(this)">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn-delete" onclick="openDelete(this)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Angga</td>
+                        <td>Angga@gmail.com</td>
+                        <td>Administrator</td>
+                        <td>
+                          <button class="btn-view" onclick="openView(this)">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn-delete" onclick="openDelete(this)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Sabila</td>
+                        <td>Sabila@gmail.com</td>
+                        <td>User</td>
+                        <td>
+                          <button class="btn-view" onclick="openView(this)">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn-delete" onclick="openDelete(this)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Lidia</td>
+                        <td>Lidia@gmail.com</td>
+                        <td>User</td>
+                        <td>
+                          <button class="btn-view" onclick="openView(this)">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <button class="btn-delete" onclick="openDelete(this)">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -448,7 +507,6 @@
 
     <!-- Page level custom scripts -->
     <script src="../js/demo/datatables-demo.js"></script>
-    <script src="../js/data-buku.js"></script>
 
     <!-- bootstrap cdn -->
     <script
