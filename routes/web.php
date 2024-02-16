@@ -40,6 +40,8 @@ Route::middleware(['web'])->group(function () {
         Route::get('/admin/dashboard', function () {
             return view('admin.index');
         });
+        Route::get  ('totalUser', [ProfileController::class, 'totalUser']);
+
 
         Route::get('/admin/Kategori', function () {
             return view('admin.Kategori');
@@ -68,7 +70,6 @@ Route::middleware(['web'])->group(function () {
         Route::get('/user/homepage', function () {
             return view('user.index');
         });
-        Route::get  ('profile', [ProfileController::class, 'profileweb']);
         
         Route::get('/user/profile', function () {
             return view('user.profile');
@@ -79,3 +80,4 @@ Route::middleware(['web'])->group(function () {
         return view('index');
     });
 });
+Route::get  ('profile', [ProfileController::class, 'profileweb']);

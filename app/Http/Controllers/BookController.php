@@ -12,7 +12,7 @@ class BookController extends Controller
 {
     public function makeBook(Request $request)
     {
-
+        
         $validation = $request->validate([
             'gambar' => 'file|mimes:jpeg,png,jpg,gif',
             'judul' => 'required|string|max:255',
@@ -46,7 +46,8 @@ class BookController extends Controller
 
         $check = $request->post();
         $kategori = $check['category'];
-        foreach ($kategori as $key => $value) {
+        $kategoriArray = explode(',', $kategori);
+        foreach ($kategoriArray as $key => $value) {
             $data['book_id'] = $id;
             $data['category_id'] = $value;
             DB::table('book_category')->insert($data);
@@ -59,6 +60,8 @@ class BookController extends Controller
             return response()->json(['message' => 'buku gagal ditambahkan'], 500);
         }
     }
+
+
 
     public function BookCoverView()
     {

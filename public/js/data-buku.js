@@ -1,30 +1,45 @@
+// Panggil fungsi tampilkanBuku saat halaman dimuat
+$(document).ready(function () {
+    tampilkanBuku();
+});
+
+
 function tampilkanBuku() {
     $.ajax({
-        url: "http://localhost:8000/api/bookList", // Sesuaikan dengan endpoint API Anda
+        url: "http://localhost:8000/api/bookCover", // Sesuaikan dengan endpoint API Anda
         method: "GET",
         success: function (response) {
+            console.log(response);
             // Hapus semua baris yang ada di tabel
             $("#dataTable tbody").empty();
 
             // Tambahkan data buku ke tabel
-            $.each(response.data, function (index, book) {
+            $.each(response.data, function (index, data) {
                 var newRow =
                     "<tr><td>" +
                     (index + 1) +
                     "</td><td>" +
-                    book.kode_buku +
+                    data.kode_buku +
                     "</td><td>" +
-                    book.judul +
+                    data.judul +
                     "</td><td>" +
-                    book.categories.join(", ") + // Menampilkan kategori sebagai satu string dipisahkan koma
+                    (data.kategori ? data.kategori.join(", ") : "") + // Memastikan bahwa 'categories' tidak undefined sebelum melakukan join
                     "</td><td>" +
-                    book.penulis +
+                    data.penulis +
                     "</td><td>" +
-                    book.penerbit +
+                    data.penerbit +
                     "</td><td><button class='btn-view' data-bs-toggle='modal' data-bs-target='#exampleModal' data-id=" +
-                    book.book_id +
-                    "><i class='bi bi-eye'></i></button><button class='btn-delete'><i class='bi bi-trash'></i></button></td></tr>";
+                    data.book_id +
+                    "><i class='bi bi-eye'></i></button><button class='btn-delete' data-id=" +
+                    data.book_id +
+                    "><i class='bi bi-trash'></i></button></td></tr>";
                 $("#dataTable tbody").append(newRow);
+            });
+
+            // Menambahkan event listener untuk tombol delete
+            $(".btn-delete").click(function () {
+                var bookId = $(this).data("id");
+                deleteBook(bookId);
             });
         },
         error: function (xhr, status, error) {
@@ -35,42 +50,22 @@ function tampilkanBuku() {
     });
 }
 
-// Panggil fungsi tampilkanBuku saat halaman dimuat
-$(document).ready(function () {
-    tampilkanBuku();
-});
 
-$("#dataTable").on("click", ".btn-view", function () {
+
+function deleteBook(bookId) {
     $.ajax({
-        url: "http://localhost:8000/api/bookDetail",
-        dataType: "json",
-        type: "get",
-        data: {
-            book_id: $(this).data("id"),
+        url: "http://localhost:8000/api/deleteBook",
+        method: "POST",
+        data: { book_id: bookId },
+        success: function (response) {
+            // Tampilkan pesan sukses atau gagal
+            alert(response.message);
+            // Panggil kembali fungsi tampilkanBuku untuk memperbarui tampilan setelah penghapusan
+            tampilkanBuku();
         },
-        success: function (buku) {
-            if (buku.Response === "True") {
-                $(".modal-body").html(
-                    `
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="` +
-                        buku.gambar +
-                        `" class="img-fluid">
-                            </div>
-                            <div class="col-md-8">
-                                <ul class="list-group">
-                                    <li class="list-group-item"><h3>` +
-                        buku.judul +
-                        `</h3></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    `
-                );
-            }
+        error: function (xhr, status, error) {
+            // Tampilkan pesan kesalahan jika penghapusan gagal
+            alert("Gagal menghapus buku. Silakan coba lagi.");
         },
     });
-});
+}

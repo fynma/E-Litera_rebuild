@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    tampilkanKategori(); // Panggil fungsi tampilkanKategori() setelah halaman dimuat
+    tampilkanKategori(); 
 });
 
 function tampilkanKategori() {
@@ -95,9 +95,10 @@ $(document).ready(function () {
         const deskripsi = $("#deskripsi").val();
         const gambar = $("#gambar")[0].files[0];
         const kategori = []; // Menyimpan kategori yang dipilih
-        $.each($("input[name='categories[]']:checked"), function () {
+        $.each($("input[name='category[]']:checked"), function () {
             kategori.push($(this).val());
         });
+
 
         // Membuat objek FormData untuk mengirim data formulir
         const formData = new FormData();

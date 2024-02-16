@@ -67,8 +67,8 @@ Route::group([
     Route::get  ('categoryList', [CategoryController::class, 'displayCategory']);
     Route::get  ('bookCover', [BookController::class, 'BookCoverView']);
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
-
     Route::get  ('profile', [ProfileController::class, 'Profile']);
+
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
     Route::get  ('showRating', [RatingController::class, 'averageRating']);
 
