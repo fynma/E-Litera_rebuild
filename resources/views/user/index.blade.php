@@ -29,7 +29,7 @@
             <li>
                 <a href="#" class="kategori">Kategori <i class="bi bi-chevron-down"></i></a>
                 <ul id="categoryList"></ul>
-            </li>
+            </li>                            
             <li><a href="index.html">Beranda</a></li>
             <li><a href="Tentang.html">Tentang</a></li>
             <li>
@@ -116,16 +116,161 @@
         </div>
     </section>
     <section class="rekomendasi">
-        <div class="title">
-            <div class="judul">
-                <p>Rekomendasi</p>
-                <h1>Pilihan buku terbaik untuk anda</h1>
-            </div>
-            <div class="btn-rekomendasi">
-                <a href="#">Baca Selengkapnya</a>
-            </div>
+      <div class="title">
+        <div class="judul">
+          <p>Rekomendasi</p>
+          <h1>Pilihan buku terbaik untuk anda</h1>
         </div>
-        <div class="books-grid" id="grid-item">
+        <div class="btn-rekomendasi">
+          <a href="#">Baca Selengkapnya</a>
+        </div>
+      </div>
+      <div class="books-grid">
+        <div class="grid-item" data-rating="5">
+          <img src="../img/books1.png" alt="Book 1" />
+          <div class="details">
+            <div id="kategori-buku">
+              <a href="#">Adventure</a>, <a href="#">Fun</a>
+            </div>
+            <h3 id="judul-buku">
+              <a href="Books-Page.html">Help Me Find My Stomach</a>
+            </h3>
+            <a href="#" id="penulis-buku">By: Angela Gunning</a>
+            <div class="rating">
+              <i class="bi bi-star-fill" value="1"></i>
+              <i class="bi bi-star-fill" value="2"></i>
+              <i class="bi bi-star-fill" value="3"></i>
+              <i class="bi bi-star-fill" value="4"></i>
+              <i class="bi bi-star-fill" value="5"></i>
+            </div>
+            <div class="link-pinjam" id="disabledLink">
+              <button style="cursor: pointer" onclick="openPinjam(this)">
+                <a>Pinjam</a>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item" data-rating="5">
+          <img src="../img/books2.png" alt="Book 1" />
+          <div class="details">
+            <div id="kategori-buku">
+              <a href="#">Adventure</a>, <a href="#">Fun</a>
+            </div>
+            <h3 id="judul-buku">
+              <a href="Books-Page.html">Help Me Find My Stomach</a>
+            </h3>
+            <a href="#" id="penulis-buku">By: Angela Gunning</a>
+            <div class="rating">
+              <i class="bi bi-star-fill" value="1"></i>
+              <i class="bi bi-star-fill" value="2"></i>
+              <i class="bi bi-star-fill" value="3"></i>
+              <i class="bi bi-star-fill" value="4"></i>
+              <i class="bi bi-star-fill" value="5"></i>
+            </div>
+            <div class="link-pinjam" id="disabledLink">
+              <button style="cursor: pointer" onclick="openPinjam(this)">
+                <a>Pinjam</a>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item" data-rating="5">
+          <img src="../img/books3.png" alt="Book 1" />
+          <div class="details">
+            <div id="kategori-buku">
+              <a href="#">Adventure</a>, <a href="#">Fun</a>
+            </div>
+            <h3 id="judul-buku">
+              <a href="Books-Page.html">Help Me Find My Stomach</a>
+            </h3>
+            <a href="#" id="penulis-buku">By: Angela Gunning</a>
+            <div class="rating">
+              <i class="bi bi-star-fill" value="1"></i>
+              <i class="bi bi-star-fill" value="2"></i>
+              <i class="bi bi-star-fill" value="3"></i>
+              <i class="bi bi-star-fill" value="4"></i>
+              <i class="bi bi-star-fill" value="5"></i>
+            </div>
+            <div class="link-pinjam" id="disabledLink">
+              <button style="cursor: pointer" onclick="openPinjam(this)">
+                <a>Pinjam</a>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item" data-rating="5">
+          <img src="../img/books4.png" alt="Book 1" />
+          <div class="details">
+            <div id="kategori-buku">
+              <a href="#">Adventure</a>, <a href="#">Fun</a>
+            </div>
+            <h3 id="judul-buku">
+              <a href="Books-Page.html">Help Me Find My Stomach</a>
+            </h3>
+            <a href="#" id="penulis-buku">By: Angela Gunning</a>
+            <div class="rating">
+              <i class="bi bi-star-fill" value="1"></i>
+              <i class="bi bi-star-fill" value="2"></i>
+              <i class="bi bi-star-fill" value="3"></i>
+              <i class="bi bi-star-fill" value="4"></i>
+              <i class="bi bi-star-fill" value="5"></i>
+            </div>
+            <div class="link-pinjam" id="disabledLink">
+              <button style="cursor: pointer" onclick="openPinjam(this)">
+                <a>Pinjam</a>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item" data-rating="5">
+          <img src="../img/books5.png" alt="Book 1" />
+          <div class="details">
+            <div id="kategori-buku">
+              <a href="#">Adventure</a>, <a href="#">Fun</a>
+            </div>
+            <h3 id="judul-buku">
+              <a href="Books-Page.html">Help Me Find My Stomach</a>
+            </h3>
+            <a href="#" id="penulis-buku">By: Angela Gunning</a>
+            <div class="rating">
+              <i class="bi bi-star-fill" value="1"></i>
+              <i class="bi bi-star-fill" value="2"></i>
+              <i class="bi bi-star-fill" value="3"></i>
+              <i class="bi bi-star-fill" value="4"></i>
+              <i class="bi bi-star-fill" value="5"></i>
+            </div>
+            <div class="link-pinjam" id="disabledLink">
+              <button style="cursor: pointer" onclick="openPinjam(this)">
+                <a>Pinjam</a>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item" data-rating="5">
+          <img src="../img/books6.png" alt="Book 1" />
+          <div class="details">
+            <div id="kategori-buku">
+              <a href="#">Adventure</a>, <a href="#">Fun</a>
+            </div>
+            <h3 id="judul-buku">
+              <a href="Books-Page.html">Help Me Find My Stomach</a>
+            </h3>
+            <a href="#" id="penulis-buku">By: Angela Gunning</a>
+            <div class="rating">
+              <i class="bi bi-star-fill" value="1"></i>
+              <i class="bi bi-star-fill" value="2"></i>
+              <i class="bi bi-star-fill" value="3"></i>
+              <i class="bi bi-star-fill" value="4"></i>
+              <i class="bi bi-star-fill" value="5"></i>
+            </div>
+            <div class="link-pinjam" id="disabledLink">
+              <button style="cursor: pointer" onclick="openPinjam(this)">
+                <a>Pinjam</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <div class="popup" id="popup">
@@ -465,6 +610,9 @@
 
 
 
+
+            });
+        }
 
         function toggleAnswer(question) {
             const answer = question.nextElementSibling;

@@ -13,6 +13,8 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -71,6 +73,9 @@ Route::group([
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
     Route::get  ('profile', [ProfileController::class, 'Profile']);
     Route::get  ('ListUser', [ProfileController::class, 'ListUser']);
+    Route::get  ('total-user', [ProfileController::class, 'totalUser']);
+    Route::get  ('ambil-user', [UserController::class, 'ambilUser']);
+    Route::get  ('detail-user/{user_id}', [UserController::class, 'userSatuan']);
 
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
     Route::get  ('showRating', [RatingController::class, 'averageRating']);
