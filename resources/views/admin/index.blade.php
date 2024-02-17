@@ -48,7 +48,7 @@
 
             <!-- Nav Item - Data Pengguna -->
             <li class="nav-item">
-                <a class="nav-link" href="Data-User">
+                <a class="nav-link" href="Data-Pengguna">
                     <i class="bi bi-people"></i>
                     <span>Data Pengguna</span></a>
             </li>
@@ -648,7 +648,7 @@
         // Menggunakan AJAX untuk memanggil fungsi backend
         function getTotalUser() {
             $.ajax({
-                url: 'http://127.0.0.1:8000/totalUser', // Ganti dengan URL yang sesuai
+                url: 'http://127.0.0.1:8000/api/total-user', // Ganti dengan URL yang sesuai
                 type: 'GET',
                 success: function(response) {
                     if (response.success) {

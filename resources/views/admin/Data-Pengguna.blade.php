@@ -177,11 +177,19 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Buku</h1>
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pengguna</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ...
+              <div class="profil-pengguna" style="width: 100%; margin-bottom: 20px; display:flex; align-items:center; justify-content:center;">
+                <img src="../img/avatar.jpg" style="width:100px; height:100px; border: 1px solid #484848; border-radius: 100px;">
+              </div>
+              <p style="width: 100%; margin-bottom:20px; color:black;"><strong>Username:</strong></p>
+              <input type="text" id="modalUsername" readonly style="width: 100%; padding: 12px 20px; color:#484848; font-size: 1em; border:1px solid #484848; border-radius: 4px;">
+              <p style="width: 100%; margin-bottom:20px; margin-top: 20px; color:black;"><strong>Email:</strong></p>
+              <input type="text" id="modalEmail" readonly style="width: 100%; padding: 12px 20px; color:#484848; font-size: 1em; border:1px solid #484848; border-radius: 4px;">
+              <p style="width: 100%; margin-bottom:20px; margin-top: 20px; color:black;"><strong>Level:</strong></p>
+              <input type="text" id="modalLevel" readonly style="width: 100%; padding: 12px 20px; color:#484848; font-size: 1em; border:1px solid #484848; border-radius: 4px;">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -354,76 +362,6 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Sheila</td>
-                        <td>Sheila12@gmail.com</td>
-                        <td>User</td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Rifki</td>
-                        <td>Rifki@gmail.com</td>
-                        <td>Petugas</td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Angga</td>
-                        <td>Angga@gmail.com</td>
-                        <td>Administrator</td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Sabila</td>
-                        <td>Sabila@gmail.com</td>
-                        <td>User</td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Lidia</td>
-                        <td>Lidia@gmail.com</td>
-                        <td>User</td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -507,17 +445,18 @@
 
     <!-- Page level custom scripts -->
     <script src="../js/demo/datatables-demo.js"></script>
-
+    
     <!-- bootstrap cdn -->
     <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"
     ></script>
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-      crossorigin="anonymous"
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"
     ></script>
+    <script src="../js/data-user.js"></script>
   </body>
 </html>
