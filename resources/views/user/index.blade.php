@@ -13,12 +13,6 @@
 <body>
     <header>
         <a href="index.html"><img src="../img/logo aplikasi billa 1.png" /></a>
-        <!-- <div class="toggle">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </div>
-      <div class="bg-sidebar"></div> -->
         <div class="kotak-search">
             <input type="search" name="cari" id="cari" placeholder="Cari" />
             <i class="bi bi-search"></i>
@@ -53,15 +47,20 @@
         </div>
     </div>
 
-    <div class="bg-peminjaman" id="bg-peminjaman">
+    <div class="bg-peminjaman" id="bg-peminjaman"> 
         <div class="peminjaman">
             <div class="header-peminjaman">
                 <i class="bi bi-chevron-left" onclick="closePinjam(this)" style="cursor: pointer"></i>
                 <img src="../img/logo aplikasi billa 1.png" />
             </div>
             <div class="content-peminjaman">
-                <img src="../img/vektor-login.png" />
-                <form>
+                <img id="gambar_pop" alt="gambar buku"/>
+                <form action="" method="post" >
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{ session('user_id') }}">
+                    <input type="hidden" name="tgl_kembali">
+                    <input type="hidden" name="tgl_pinjam">
+                    <input type="hidden" name="book_id" id="book_id_pop">
                     <h3>Formulir Peminjaman</h3>
                     <div class="get-pinjam">
                         <label for="nama">Nama</label>
@@ -74,21 +73,21 @@
                         <label for="judul-buku">Judul buku</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <p>Help Me Find My Stomach</p>
+                            <p id="judul_book"></p>
                         </div>
                     </div>
                     <div class="get-pinjam">
                         <label for="stok">Sisa buku tersedia</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <p>3</p>
+                            <p id="stok_pop"></p>
                         </div>
                     </div>
                     <div class="get-pinjam">
                         <label for="tgl-kembali">Tanggal kembali</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <p>29/01/2024</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class="get-pinjam">
@@ -96,7 +95,6 @@
                         <p>:</p>
                         <div class="data-get-pinjam">
                             <input type="text" name="jumlah" id="jumlah"
-                                onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                                 placeholder="isilah jumlah buku.." />
                         </div>
                     </div>
@@ -533,6 +531,7 @@
     </section>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../js/pinjam-buku.js"></script>
     <script>
         $(document).ready(function() {
             getData();
@@ -580,6 +579,38 @@
                 const link = $('<a>').attr('href', '/categories/' + category.category_id).text(category.name_category);
                 li.append(link);
                 categoryList.append(li);
+            });
+        }
+
+
+// kode view list buku sudah dipindah ke js yaa, minusnya gabisa nampilkan data di popup ehe :D
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             });
         }
 

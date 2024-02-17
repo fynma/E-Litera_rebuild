@@ -93,5 +93,29 @@ class ProfileController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
+
+    public function ListUser()
+    {
+        try{
+            $data = User::all();
+            return response()->json(['success' => true, 'data' => $data], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function deleteUser(Request $request)
+    {
+        try{
+            $id = $request->input('user_id');
+
+            $user = User::find($id);
+            
+            $user->delete();
+            return response()->json(['success' => true, 'message' => 'User deleted successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
+    }
     
 }
