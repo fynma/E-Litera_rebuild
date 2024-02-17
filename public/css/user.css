@@ -218,6 +218,8 @@ input[type="search"]::-webkit-search-clear-button {
   padding: 10px 0;
   border: 1px solid #ddd;
   border-radius: 5px;
+  max-height: 200px;
+  overflow-y: scroll ;
 }
 
 .navbar ul li:hover > ul {

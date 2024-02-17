@@ -58,6 +58,9 @@ Route::middleware(['web'])->group(function () {
         });
 
     });
+
+
+    
     Route::group(['middleware' => ['roleCheck:user']], function () {
         Route::get('/user/homepage', function () {
             return view('user.index');

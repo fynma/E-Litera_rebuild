@@ -8,45 +8,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../css/user.css" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
-    <style>
-        #categoryList ul {
-            display: none;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        #categoryList li:hover {
-            background-color: #f0f0f0;
-            /* Ganti dengan warna latar yang diinginkan */
-        }
-
-        #categoryList li a {
-            text-decoration: none;
-            color: #333;
-            /* Ganti dengan warna teks yang diinginkan */
-            display: block;
-            padding: 8px 12px;
-        }
-
-        #categoryList li:hover a {
-            color: #fff;
-            /* Ganti dengan warna teks saat dihover yang diinginkan */
-        }
-
-        #categoryList:hover li {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
     <header>
         <a href="index.html"><img src="../img/logo aplikasi billa 1.png" /></a>
-        <!-- <div class="toggle">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </div>
-      <div class="bg-sidebar"></div> -->
         <div class="kotak-search">
             <input type="search" name="cari" id="cari" placeholder="Cari" />
             <i class="bi bi-search"></i>
@@ -81,15 +47,20 @@
         </div>
     </div>
 
-    <div class="bg-peminjaman" id="bg-peminjaman">
+    <div class="bg-peminjaman" id="bg-peminjaman"> 
         <div class="peminjaman">
             <div class="header-peminjaman">
                 <i class="bi bi-chevron-left" onclick="closePinjam(this)" style="cursor: pointer"></i>
                 <img src="../img/logo aplikasi billa 1.png" />
             </div>
             <div class="content-peminjaman">
-                <img src="../img/vektor-login.png" />
-                <form>
+                <img id="gambar_pop" alt="gambar buku"/>
+                <form action="" method="post" >
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{ session('user_id') }}">
+                    <input type="hidden" name="tgl_kembali">
+                    <input type="hidden" name="tgl_pinjam">
+                    <input type="hidden" name="book_id" id="book_id_pop">
                     <h3>Formulir Peminjaman</h3>
                     <div class="get-pinjam">
                         <label for="nama">Nama</label>
@@ -102,21 +73,21 @@
                         <label for="judul-buku">Judul buku</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <p>Help Me Find My Stomach</p>
+                            <p id="judul_book"></p>
                         </div>
                     </div>
                     <div class="get-pinjam">
                         <label for="stok">Sisa buku tersedia</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <p>3</p>
+                            <p id="stok_pop"></p>
                         </div>
                     </div>
                     <div class="get-pinjam">
                         <label for="tgl-kembali">Tanggal kembali</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <p>29/01/2024</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class="get-pinjam">
@@ -124,7 +95,6 @@
                         <p>:</p>
                         <div class="data-get-pinjam">
                             <input type="text" name="jumlah" id="jumlah"
-                                onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                                 placeholder="isilah jumlah buku.." />
                         </div>
                     </div>
@@ -416,11 +386,11 @@
     </section>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../js/pinjam-buku.js"></script>
     <script>
         $(document).ready(function() {
             getData();
-            getcategory();
-            getListBook();
+            getCategories();
         });
 
         function getData() {
@@ -438,119 +408,37 @@
             });
         }
 
-        function getcategory() {
+        // Fungsi untuk mengambil data kategori dari API
+        function getCategories() {
             $.ajax({
-                url: 'http://127.0.0.1:8000/api/categoryList',
+                url: 'http://localhost:8000/api/categoryList',
                 type: 'GET',
                 success: function(response) {
-                    console.log(response);
-                    if (response.data) {
-                        var categories = response.data;
-                        displayCategories(categories);
-                    } else {
-                        console.error('Failed to retrieve categories from the API.');
-                    }
+                    // Panggil fungsi untuk menampilkan kategori ke dalam daftar
+                    displayCategories(response.data);
                 },
                 error: function(xhr, status, error) {
-                    console.error('Error while fetching categories:', error);
+                    console.error('Error:', error);
                 }
             });
         }
 
+        // Fungsi untuk menampilkan kategori ke dalam daftar
         function displayCategories(categories) {
-            console.log('categories:', categories);
-            var categoryList = $('#categoryList');
-
-            // Clear existing categories
+            const categoryList = $('#categoryList');
+            // Kosongkan daftar sebelum menambahkan kategori baru
             categoryList.empty();
-
-            // Append new categories
-            if (categories && categories.length > 0) {
-                categories.forEach(function(category) {
-                    var listItem = $('<li><a href="category-display/' + category.name_category + '">' + category
-                        .name_category + '</a></li>');
-                    categoryList.append(listItem);
-                });
-
-                // Show the updated list
-                categoryList.show();
-            } else {
-                console.warn('No categories found or categories array is empty.');
-            }
-        }
-
-        function getListBook() {
-            $.ajax({
-                url: 'http://127.0.0.1:8000/api/bookCover',
-                type: 'GET',
-                success: function(response) {
-                    console.log(response);
-                    if (response.data) {
-                        var books = response.data;
-                        displayBooks(books);
-                    } else {
-                        console.error('Failed to retrieve categories from the API.');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error while fetching book:', error);
-                }
-            })
-        }
+            // Tambahkan setiap kategori ke dalam daftar
+            categories.forEach(category => {
+                const li = $('<li>');
+                const link = $('<a>').attr('href', '/categories/' + category.category_id).text(category.name_category);
+                li.append(link);
+                categoryList.append(li);
+            });
+        }
 
 
-        function displayBooks(books) {
-            var gridContainer = $('#grid-item');
-            gridContainer.empty();
-
-            // Memotong array buku agar hanya 4 data yang ditampilkan
-            books = books.slice(0, 4);
-            // Membalik urutan array sehingga data terbaru muncul pertama
-            books = books.reverse();
-
-            $.each(books, function(index, book) {
-                var gridItem = $('<div class="grid-item" data-rating="' + book.rating + '"></div>');
-                var img = $('<img>').attr('src', 'data:image/png;base64,' + book.gambar).attr('alt', book.judul);
-
-                // var img = $('<img>').attr('src', '../img/' + book.gambar).attr('alt', book.judul);
-                var details = $('<div class="details"></div>');
-
-                var categories = $('<div id="kategori-buku"></div>');
-                $.each(book.kategori, function(i, category) {
-                    categories.append('<a href="#">' + category + '</a>, ');
-                });
-
-                var title = $('<h3 id="judul-buku"><a href="#">' + book.judul + '</a></h3>');
-                var author = $('<a href="#" id="penulis-buku">By: ' + book.penulis + '</a>');
-
-                var rating = $('<div class="rating"></div>');
-                var fullStars = Math.floor(book.rating); // Bintang penuh
-                var decimalPart = book.rating - fullStars; // Bagian desimal
-                var halfStar = decimalPart >= 0.25 && decimalPart < 0.75; // Setengah bintang
-                var fullStarAfterHalf = decimalPart >= 0.75; // Bintang penuh setelah setengah bintang
-
-                for (var i = 1; i <= 5; i++) {
-                    if (i <= fullStars) {
-                        rating.append('<i class="bi bi-star-fill" value="' + i + '"></i>');
-                    } else if (i === fullStars + 1 && halfStar) {
-                        rating.append('<i class="bi bi-star-half" value="' + i + '"></i>');
-                    } else if (i === fullStars + 1 && fullStarAfterHalf) {
-                        rating.append('<i class="bi bi-star-fill" value="' + i + '"></i>');
-                    } else {
-                        rating.append('<i class="bi bi-star" value="' + i + '"></i>');
-                    }
-                }
-
-                var linkPinjam = $('<div class="link-pinjam" id="disabledLink"></div>');
-                var buttonPinjam = $(
-                    '<button style="cursor: pointer" onclick="openPinjam(this)"><a>Pinjam</a></button>');
-
-                details.append(categories, title, author, rating, linkPinjam.append(buttonPinjam));
-                gridItem.append(img, details);
-                gridContainer.append(gridItem);
-            });
-        }
-
+// kode view list buku sudah dipindah ke js yaa, minusnya gabisa nampilkan data di popup ehe :D
         
 
 

@@ -55,6 +55,7 @@ Route::group([
     Route::post ('cancelBorrow', [borrowController::class, 'cancelBorrow']); //opsional wkwkwk belum selesai juga
     Route::post ('denda', [dendaController::class, 'newDenda']); //not fix wait ui finish
     Route::post ('bookDetail', [BookController::class, 'Bookdetail']);
+    Route::post ('deleteUser', [ProfileController::class, 'deleteUser']);
 
 
     //googlenya belum dicoba si bisa apa engga ehehe :)
@@ -66,8 +67,10 @@ Route::group([
     Route::get  ('comment', [CommentController::class, 'getComment']);
     Route::get  ('categoryList', [CategoryController::class, 'displayCategory']);
     Route::get  ('bookCover', [BookController::class, 'BookCoverView']);
+    Route::post ('bookDetailCover', [BookController::class, 'BookopenID']);
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
     Route::get  ('profile', [ProfileController::class, 'Profile']);
+    Route::get  ('ListUser', [ProfileController::class, 'ListUser']);
 
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
     Route::get  ('showRating', [RatingController::class, 'averageRating']);

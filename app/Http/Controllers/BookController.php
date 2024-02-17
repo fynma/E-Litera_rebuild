@@ -119,6 +119,75 @@ class BookController extends Controller
         return response()->json(['data' => $groupedBooks], 200);
     }
 
+    public function BookopenID(Request $request)
+    {
+        // Ambil book_id dari request POST
+        $book_id = $request->input('book_id');
+    
+        // Ambil data buku berdasarkan book_id
+        $bookDetails = BookList::where('book_id', $book_id)->first();
+    
+        if (!$bookDetails) {
+            // Jika data buku tidak ditemukan, kembalikan respons yang sesuai
+            return response()->json(['error' => 'Data buku tidak ditemukan'], 404);
+        }
+    
+        // Inisialisasi array untuk menampung hasil pengelompokan
+        $groupedBooks = [];
+    
+        // Inisialisasi array sementara untuk menyimpan total rating dan jumlah rating
+        $tempRating = [];
+    
+        // Lakukan iterasi pada setiap detail buku
+        foreach ($bookDetails as $bookDetail) {
+            // Jika buku belum ada dalam hasil pengelompokan, tambahkan
+            if (!array_key_exists($bookDetail->book_id, $groupedBooks)) {
+                // Inisialisasi data buku
+                $groupedBooks[$bookDetail->book_id] = [
+                    'book_id' => $bookDetail->book_id,
+                    'judul' => $bookDetail->judul,
+                    'gambar' => $bookDetail->gambar,
+                    'kode_buku' => $bookDetail->kode_buku,
+                    'penulis' => $bookDetail->penulis,
+                    'penerbit' => $bookDetail->penerbit,
+                    'tahun_terbit' => $bookDetail->tahun_terbit,
+                    'deskripsi' => $bookDetail->deskripsi,
+                    'total_buku' => $bookDetail->total_buku,
+                    'stok' => $bookDetail->stok,
+                    // Inisialisasi kategori sebagai array kosong
+                    'kategori' => [],
+                    // Inisialisasi total rating dan jumlah rating
+                    'totalRating' => 0,
+                    'numRatings' => 0,
+                ];
+            }
+    
+            // Tambahkan kategori ke buku yang sesuai
+            $groupedBooks[$bookDetail->book_id]['kategori'][] = $bookDetail->kategori;
+    
+            // Tambahkan rating ke total rating dan jumlah rating
+            $groupedBooks[$bookDetail->book_id]['totalRating'] += $bookDetail->rating;
+            $groupedBooks[$bookDetail->book_id]['numRatings']++;
+        }
+    
+        // Hitung rata-rata rating dan tambahkan ke hasil pengelompokan
+        foreach ($groupedBooks as &$book) {
+            $avgRating = $book['numRatings'] > 0 ? $book['totalRating'] / $book['numRatings'] : 0;
+            $book['rating'] = $avgRating;
+            // Hapus totalRating dan numRatings karena sudah tidak diperlukan lagi
+            unset($book['totalRating']);
+            unset($book['numRatings']);
+        }
+    
+        // Ubah hasil pengelompokan menjadi array numerik
+        $groupedBooks = array_values($groupedBooks);
+    
+        // Kembalikan respons dengan data buku yang ditemukan
+        return response()->json(['displaydata' => $groupedBooks], 200);
+    }
+    
+
+
     // public function BookCoverView()
     // {
     //     // Ambil data dari view SQL
