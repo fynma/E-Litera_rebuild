@@ -544,7 +544,7 @@
                 type: 'GET',
                 success: function(response) {
                     console.log(response);
-                    if (response.success) {
+                    if (response.data) {
                         var data = response.data;
                         $('#username, #username_pop').text(data.username);
                         $('#prev_profile, #prev_profile_pop').attr('src', 'data:image/png;base64,' + data.photo)
@@ -579,8 +579,8 @@
                 const link = $('<a>').attr('href', '/categories/' + category.category_id).text(category.name_category);
                 li.append(link);
                 categoryList.append(li);
-            });
-        }
+            });
+        }
 
 
 // kode view list buku sudah dipindah ke js yaa, minusnya gabisa nampilkan data di popup ehe :D
@@ -610,9 +610,6 @@
 
 
 
-
-            });
-        }
 
         function toggleAnswer(question) {
             const answer = question.nextElementSibling;
