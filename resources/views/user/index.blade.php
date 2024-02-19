@@ -544,7 +544,7 @@
                 type: 'GET',
                 success: function(response) {
                     console.log(response);
-                    if (response.success) {
+                    if (response.data) {
                         var data = response.data;
                         $('#username, #username_pop').text(data.username);
                         $('#prev_profile, #prev_profile_pop').attr('src', 'data:image/png;base64,' + data.photo)
@@ -610,9 +610,6 @@
 
 
 
-
-            });
-        }
 
         function toggleAnswer(question) {
             const answer = question.nextElementSibling;

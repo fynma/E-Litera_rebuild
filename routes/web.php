@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,18 +18,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web'])->group(function () {
 
+    Route::get  ('profile', [ProfileController::class, 'profileweb']);
+
+
     Route::middleware(['guest'])->group(function () {
         Route::get('/Login', function () {
             return view('Login');
         });
 
+        Route::get  ('/auth/google', [GoogleAuthController::class, 'redirectGoogle']);
+        Route::get  ('google/callback', [GoogleAuthController::class, 'GoogleCallback']);
+
         Route::post('/postlogin', [AuthController::class, 'login'])->name('login.store');
 
-        Route::get('/register', function(){
+        Route::get('/register', function () {
             return view('Daftar');
         });
 
-        Route::post ('register', [AuthController::class, 'register'])->name('register');
+        Route::post('register', [AuthController::class, 'register'])->name('register');
     });
     Route::group(['middleware' => ['roleCheck:petugas']], function () {
         Route::get('/admin/home', function () {
@@ -40,7 +47,7 @@ Route::middleware(['web'])->group(function () {
         Route::get('/admin/dashboard', function () {
             return view('admin.index');
         });
-        Route::get  ('totalUser', [ProfileController::class, 'totalUser']);
+        Route::get('totalUser', [ProfileController::class, 'totalUser']);
 
 
         Route::get('/admin/Kategori', function () {
@@ -60,7 +67,7 @@ Route::middleware(['web'])->group(function () {
     });
 
 
-    
+
     Route::group(['middleware' => ['roleCheck:user']], function () {
         Route::get('/user/homepage', function () {
             return view('user.index');
@@ -73,7 +80,7 @@ Route::middleware(['web'])->group(function () {
         Route::get('/user/homepage', function () {
             return view('user.index');
         });
-        
+
         Route::get('/user/profile', function () {
             return view('user.profile');
         });
@@ -83,4 +90,5 @@ Route::middleware(['web'])->group(function () {
         return view('index');
     });
 });
-Route::get  ('profile', [ProfileController::class, 'profileweb']);
+
+
