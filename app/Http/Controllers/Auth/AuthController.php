@@ -94,12 +94,12 @@ class AuthController extends Controller
         session(['user_id'      => $user->user_id]);
         session(['access'       => $user->access]);
         session(['token'        => $token]);
-        session(['username'     => $user->username]);
-        session(['long_name'    => $user->long_name]);
-        session(['telp'         => $user->telp]);
-        session(['email'        => $user->email]);
-        session(['address'      => $user->address]);
-        session(['photo'        => $user->photo]);
+        // session(['username'     => $user->username]);
+        // session(['long_name'    => $user->long_name]);
+        // session(['telp'         => $user->telp]);
+        // session(['email'        => $user->email]);
+        // session(['address'      => $user->address]);
+        // session(['photo'        => $user->photo]);
 
         $tokenFromSession = session('token');
     
@@ -107,7 +107,6 @@ class AuthController extends Controller
         // session(['jwt'])
         switch ($user->access) {
             case 'petugas':
-                // $request->session()->regenerate();
                 return redirect('admin/home')->with([
                     'status' => 'success',
                     'user' => $user,
@@ -117,7 +116,6 @@ class AuthController extends Controller
                     ]
                 ]);
             case 'administrator':
-                // $request->session()->regenerate();
                 return redirect('/admin/dashboard')->with([
                     'status' => 'success',
                     'user' => $user,
@@ -127,7 +125,6 @@ class AuthController extends Controller
                     ]
                 ]);
             case 'user':
-                // $request->session()->regenerate();
                 return redirect('user/homepage')->with([
                     'status' => 'success',
                     'user' => $user,

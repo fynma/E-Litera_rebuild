@@ -60,9 +60,6 @@ Route::group([
     Route::post ('deleteUser', [ProfileController::class, 'deleteUser']);
 
 
-    //googlenya belum dicoba si bisa apa engga ehehe :)
-    Route::get('google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
-    Route::get('google-mobile/callback', [GoogleAuthController::class, 'handleGoogleCallbackMobile']);
 
 
     Route::get  ('borrowList', [borrowController::class, 'showBorrow']);

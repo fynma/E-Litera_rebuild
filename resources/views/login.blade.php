@@ -111,7 +111,7 @@
           </div>
           <button class="login-google font-bold rounded-md text-base w-full">
             <img src="img/google.png" />
-            <p><a href="/google">MASUK DENGAN GOOGLE</a></p>
+            <p><a href="/auth/google">MASUK DENGAN GOOGLE</a></p>
           </button>
           <div class="links text-base">
             <p>Belum mempunyai akun?</p>
