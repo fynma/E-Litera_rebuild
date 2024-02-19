@@ -174,14 +174,37 @@
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Buku</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ...
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-4">
+                    <img src="" class="img-fluid" id="gambar-buku">
+                  </div>
+                  <div class="col-md-8">
+                    <ul class="list-group">
+                      <li class="list-group-item mb-4"><h3 id="judul-buku"></h3></li>
+                      <label for="kategori-buku">Kategori :</label>
+                      <li class="list-group-item mb-4" id="kategori-buku"></li>
+                      <label for="kategori-buku">Penulis :</label>
+                      <li class="list-group-item mb-4" id="penulis-buku"></li>
+                      <label for="kategori-buku">Penerbit :</label>
+                      <li class="list-group-item mb-4" id="penerbit-buku"></li>
+                      <label for="kategori-buku">Tahun Terbit :</label>
+                      <li class="list-group-item mb-4" id="terbit-buku"></li>
+                      <label for="kategori-buku">Stok :</label>
+                      <li class="list-group-item mb-4" id="stok-buku"></li>
+                      <label for="kategori-buku">Deskripsi :</label>
+                      <li class="list-group-item mb-4" id="deskripsi-buku"></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -69,13 +69,13 @@ Route::group([
     Route::get  ('comment', [CommentController::class, 'getComment']);
     Route::get  ('categoryList', [CategoryController::class, 'displayCategory']);
     Route::get  ('bookCover', [BookController::class, 'BookCoverView']);
-    Route::post ('bookDetailCover', [BookController::class, 'BookopenID']);
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
     Route::get  ('profile', [ProfileController::class, 'Profile']);
     Route::get  ('ListUser', [ProfileController::class, 'ListUser']);
     Route::get  ('total-user', [ProfileController::class, 'totalUser']);
     Route::get  ('ambil-user', [UserController::class, 'ambilUser']);
     Route::get  ('detail-user/{user_id}', [UserController::class, 'userSatuan']);
+    Route::get  ('detail-buku/{book_id}', [BookController::class, 'BookopenID']);
 
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
     Route::get  ('showRating', [RatingController::class, 'averageRating']);

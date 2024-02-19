@@ -119,18 +119,17 @@ class BookController extends Controller
         return response()->json(['data' => $groupedBooks], 200);
     }
 
-    public function BookopenID(Request $request)
+    public function BookopenID($book_id = null)
     {
-        // Ambil book_id dari request POST
-        $book_id = $request->input('book_id');
+        if ($book_id === null) {
+            return response()->json([
+                'success' => false,
+                'message' => 'ID buku tidak terambil.'
+            ], 400);
+        }
     
         // Ambil data buku berdasarkan book_id
-        $bookDetails = BookList::where('book_id', $book_id)->first();
-    
-        if (!$bookDetails) {
-            // Jika data buku tidak ditemukan, kembalikan respons yang sesuai
-            return response()->json(['error' => 'Data buku tidak ditemukan'], 404);
-        }
+        $bookDetails = BookList::where('book_id', $book_id)->get();
     
         // Inisialisasi array untuk menampung hasil pengelompokan
         $groupedBooks = [];
@@ -140,34 +139,37 @@ class BookController extends Controller
     
         // Lakukan iterasi pada setiap detail buku
         foreach ($bookDetails as $bookDetail) {
-            // Jika buku belum ada dalam hasil pengelompokan, tambahkan
-            if (!array_key_exists($bookDetail->book_id, $groupedBooks)) {
-                // Inisialisasi data buku
-                $groupedBooks[$bookDetail->book_id] = [
-                    'book_id' => $bookDetail->book_id,
-                    'judul' => $bookDetail->judul,
-                    'gambar' => $bookDetail->gambar,
-                    'kode_buku' => $bookDetail->kode_buku,
-                    'penulis' => $bookDetail->penulis,
-                    'penerbit' => $bookDetail->penerbit,
-                    'tahun_terbit' => $bookDetail->tahun_terbit,
-                    'deskripsi' => $bookDetail->deskripsi,
-                    'total_buku' => $bookDetail->total_buku,
-                    'stok' => $bookDetail->stok,
-                    // Inisialisasi kategori sebagai array kosong
-                    'kategori' => [],
-                    // Inisialisasi total rating dan jumlah rating
-                    'totalRating' => 0,
-                    'numRatings' => 0,
-                ];
+            // Memeriksa apakah $bookDetail adalah objek yang valid
+            if ($bookDetail !== null) {
+                // Jika buku belum ada dalam hasil pengelompokan, tambahkan
+                if (!array_key_exists($bookDetail->book_id, $groupedBooks)) {
+                    // Inisialisasi data buku
+                    $groupedBooks[$bookDetail->book_id] = [
+                        'book_id' => $bookDetail->book_id,
+                        'judul' => $bookDetail->judul,
+                        'gambar' => $bookDetail->gambar,
+                        'kode_buku' => $bookDetail->kode_buku,
+                        'penulis' => $bookDetail->penulis,
+                        'penerbit' => $bookDetail->penerbit,
+                        'tahun_terbit' => $bookDetail->tahun_terbit,
+                        'deskripsi' => $bookDetail->deskripsi,
+                        'total_buku' => $bookDetail->total_buku,
+                        'stok' => $bookDetail->stok,
+                        // Inisialisasi kategori sebagai array kosong
+                        'kategori' => [],
+                        // Inisialisasi total rating dan jumlah rating
+                        'totalRating' => 0,
+                        'numRatings' => 0,
+                    ];
+                }
+        
+                // Tambahkan kategori ke buku yang sesuai
+                $groupedBooks[$bookDetail->book_id]['kategori'][] = $bookDetail->kategori;
+        
+                // Tambahkan rating ke total rating dan jumlah rating
+                $groupedBooks[$bookDetail->book_id]['totalRating'] += $bookDetail->rating;
+                $groupedBooks[$bookDetail->book_id]['numRatings']++;
             }
-    
-            // Tambahkan kategori ke buku yang sesuai
-            $groupedBooks[$bookDetail->book_id]['kategori'][] = $bookDetail->kategori;
-    
-            // Tambahkan rating ke total rating dan jumlah rating
-            $groupedBooks[$bookDetail->book_id]['totalRating'] += $bookDetail->rating;
-            $groupedBooks[$bookDetail->book_id]['numRatings']++;
         }
     
         // Hitung rata-rata rating dan tambahkan ke hasil pengelompokan

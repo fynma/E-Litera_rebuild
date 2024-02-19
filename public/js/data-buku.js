@@ -3,7 +3,6 @@ $(document).ready(function () {
     tampilkanBuku();
 });
 
-
 function tampilkanBuku() {
     $.ajax({
         url: "http://localhost:8000/api/bookCover", // Sesuaikan dengan endpoint API Anda
@@ -50,7 +49,42 @@ function tampilkanBuku() {
     });
 }
 
+$("#dataTable tbody").on("click", ".btn-view", function () {
+    console.log($(this).data("id"));
+    // Dapatkan ID pengguna dari atribut data
+    var bookId = $(this).data("id");
 
+    // Lakukan panggilan AJAX untuk mendapatkan data pengguna berdasarkan ID
+    $.ajax({
+        url: "http://localhost:8000/api/detail-buku/" + bookId, // Sesuaikan dengan endpoint API Anda
+        method: "GET",
+        success: function (response) {
+            console.log(response);
+            // Tampilkan informasi pengguna dalam modal
+            var bookData = response.displaydata[0];
+            // Ubah teks gambar menjadi URL gambar
+            var imageUrl = "data:image/jpeg;base64," + bookData.gambar;
+            // Atur nilai src untuk elemen gambar
+            $("#gambar-buku").attr("src", imageUrl);
+            $("#judul-buku").text(bookData.judul);
+            $("#kategori-buku").text(
+                bookData.kategori ? bookData.kategori.join(", ") : ""
+            );
+            $("#penulis-buku").text(bookData.penulis);
+            $("#penerbit-buku").text(bookData.penerbit);
+            $("#terbit-buku").text(bookData.tahun_terbit);
+            $("#stok-buku").text(bookData.stok);
+            $("#deskripsi-buku").text(bookData.deskripsi);
+            // Tampilkan modal
+            $("#exampleModal").modal("show");
+        },
+        error: function (xhr, status, error) {
+            // Jika terjadi kesalahan, tampilkan pesan kesalahan
+            console.error(xhr.responseText);
+            alert("Gagal mengambil data pengguna. Silakan coba lagi.");
+        },
+    });
+});
 
 function deleteBook(bookId) {
     $.ajax({
