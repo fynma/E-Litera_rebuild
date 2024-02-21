@@ -84,6 +84,10 @@ class AuthController extends Controller
             // $user = auth()->user();
             $token = auth()->attempt(['email' => $request->email, 'password' => $request->password]);
 
+            // dd($user->user_id);
+            // Simpan ID pengguna ke dalam sesi
+            // dd(session()->all());
+
         } else {
             // Authentication failed
             dd('Authentication failed');
@@ -103,6 +107,7 @@ class AuthController extends Controller
 
         $tokenFromSession = session('token');
     
+       
         
         // session(['jwt'])
         switch ($user->access) {

@@ -14,7 +14,7 @@
 
     <!-- Custom fonts for this template-->
     <link
-      href="vendor/fontawesome-free/css/all.min.css"
+      href="../vendor/fontawesome-free/css/all.min.css"
       rel="stylesheet"
       type="text/css"
     />
@@ -33,12 +33,12 @@
 
     <!-- Custom styles for this page -->
     <link
-      href="vendor/datatables/dataTables.bootstrap4.min.css"
+      href="../vendor/datatables/dataTables.bootstrap4.min.css"
       rel="stylesheet"
     />
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
   </head>
 
@@ -151,7 +151,7 @@
               <a class="collapse-item active" href="Data-Peminjaman.html"
                 >Peminjaman</a
               >
-              <a class="collapse-item" href="Dikembalikan.html">Dikembalikan</a>
+              <a class="collapse-item" href="Pengembalian">Pengembalian</a>
             </div>
           </div>
         </li>
@@ -269,10 +269,10 @@
                 >
                   <img
                     class="mr-3 img-profile rounded-circle"
-                    src="img/undraw_profile.svg"
+                    src="../img/undraw_profile.svg"
                   />
-                  <span class="d-none d-lg-inline text-gray-600 small"
-                    >Sabilla Andhini (Petugas)</span
+                  <span class="d-none d-lg-inline text-gray-600 small" id="user"
+                    > (Petugas)</span
                   >
                 </a>
                 <!-- Dropdown - User Information -->
@@ -317,7 +317,7 @@
             <div class="popup" id="popup">
               <div class="isi-popup">
                 <div class="content-popup">
-                  <img src="img/alert-icon1.png" />
+                  <img src="../img/alert-icon1.png" />
                   <h2>Apakah Anda yakin ingin mengkonfirmasi peminjaman?</h2>
                   <div class="button-container">
                     <button class="batal" id="tutup-konfirmasi">Batal</button>
@@ -337,6 +337,16 @@
               </div>
               <div class="card-body">
                 <div class="table-responsive">
+                  <form action="" method="post" id="updateBorrow">
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{ session('user_id')
+                    }}">
+                    <input type="hidden" name="borrow_id" id="borrow-id">
+                    <input type="hidden" name="konfirmasi_pinjam" value="1">
+                    <input type="hidden" name="tgl_pinjam" id="tgl-pinjam">
+                    <input type="hidden" name="tgl_kembali" id="tgl-kembali">
+                    <input type="hidden" name="jumlah_pinjam" id="jumlah-pinjam">
+                  </form>
                   <table
                     class="table table-bordered"
                     id="dataTable"
@@ -357,358 +367,6 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Jaya</td>
-                        <td>Jaya Yang Tersakiti</td>
-                        <td>Pratama Angga</td>
-                        <td>2024/01/15</td>
-                        <td>2024/01/22</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>6</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>7</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>8</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>9</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>10</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>11</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>12</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>13</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>14</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>15</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>16</td>
-                        <td>Sheila</td>
-                        <td>Yang Telah Lama Pergi</td>
-                        <td>Sabilla Andini</td>
-                        <td>2024/01/05</td>
-                        <td>2024/01/12</td>
-                        <td>4</td>
-                        <td id="confirm-pinjam">
-                          <button class="button-confirm" id="btn-confirm">
-                            Konfirmasi
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn-view" onclick="openView(this)">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn-delete" onclick="openDelete(this)">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -778,22 +436,23 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
-
+    <script src="../js/peminjaman.js"></script>
+    <script src="../js/demo/datatables-demo.js"></script>
+<!-- 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Ambil semua button yang digunakan untuk memunculkan popup
@@ -833,6 +492,6 @@
           popup.classList.remove("open-popup");
         }
       });
-    </script>
+    </script> -->
   </body>
 </html>

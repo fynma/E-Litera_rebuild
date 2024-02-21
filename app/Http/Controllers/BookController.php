@@ -67,13 +67,13 @@ class BookController extends Controller
     {
         // Ambil data dari view SQL
         $bookDetails = BookList::all();
-
+    
         // Buat array kosong untuk menampung hasil pengelompokan
         $groupedBooks = [];
-
+    
         // Buat array sementara untuk menyimpan total rating dan jumlah rating
         $tempRating = [];
-
+    
         // Lakukan iterasi pada setiap detail buku
         foreach ($bookDetails as $bookDetail) {
             // Cek apakah buku sudah ada dalam hasil pengelompokan
@@ -92,30 +92,35 @@ class BookController extends Controller
                     'stok' => $bookDetail->stok,
                     // Inisialisasi kategori sebagai array kosong
                     'kategori' => [],
+                    // Inisialisasi total rating dan jumlah rating
+                    'totalRating' => 0,
+                    'numRatings' => 0,
                 ];
-                // Inisialisasi total rating dan jumlah rating
-                $tempRating[$bookDetail->book_id] = ['totalRating' => 0, 'numRatings' => 0];
             }
-
-            // Tambahkan kategori ke buku yang sesuai
-            $groupedBooks[$bookDetail->book_id]['kategori'][] = $bookDetail->kategori;
-
+    
+            // Cek apakah kategori sudah ada dalam array kategori buku
+            if (!in_array($bookDetail->kategori, $groupedBooks[$bookDetail->book_id]['kategori'])) {
+                // Jika belum, tambahkan kategori
+                $groupedBooks[$bookDetail->book_id]['kategori'][] = $bookDetail->kategori;
+            }
+    
             // Tambahkan rating ke total rating
-            $tempRating[$bookDetail->book_id]['totalRating'] += $bookDetail->rating;
+            $groupedBooks[$bookDetail->book_id]['totalRating'] += $bookDetail->rating;
             // Tambahkan jumlah rating
-            $tempRating[$bookDetail->book_id]['numRatings']++;
+            $groupedBooks[$bookDetail->book_id]['numRatings']++;
         }
-
+    
         // Hitung rata-rata rating dan tambahkan ke hasil pengelompokan
-        foreach ($groupedBooks as $key => $book) {
-            $avgRating = $tempRating[$book['book_id']]['numRatings'] > 0 ?
-                $tempRating[$book['book_id']]['totalRating'] / $tempRating[$book['book_id']]['numRatings'] : 0;
-            $groupedBooks[$key]['rating'] = $avgRating;
+        foreach ($groupedBooks as &$book) {
+            $avgRating = $book['numRatings'] > 0 ? $book['totalRating'] / $book['numRatings'] : 0;
+            $book['rating'] = $avgRating;
+            unset($book['totalRating']); // Hapus totalRating dari output
+            unset($book['numRatings']); // Hapus numRatings dari output
         }
-
+    
         // Ubah hasil pengelompokan menjadi array numerik
         $groupedBooks = array_values($groupedBooks);
-
+    
         return response()->json(['data' => $groupedBooks], 200);
     }
 

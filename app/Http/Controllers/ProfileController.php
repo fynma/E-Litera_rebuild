@@ -22,8 +22,7 @@ class ProfileController extends Controller
     public function profileweb()
     {
         try{
-            $id = session()->get('user_id');
-
+            $id = session('user_id');
             $opr = User::where('user_id', $id)->first();
             return response()->json(['success' => true, 'data' => $opr], 200);
         } catch (\Exception $e) {

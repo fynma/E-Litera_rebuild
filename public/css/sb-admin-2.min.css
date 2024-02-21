@@ -10578,6 +10578,7 @@ tr td:last-child {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 15px;
     background-color: #dd4b39;
     border-radius: 12px;
     border: none;
@@ -10951,4 +10952,37 @@ tr td:last-child {
     color: #484848;
     margin-bottom: 20px;
     width: 100%;
+}
+
+tbody .btn-confirm {
+    background-color: var(--warning);
+    padding: 8px 12px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1em;
+}
+
+tbody .btn-telat {
+    background-color: var(--danger);
+    padding: 8px 12px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1em;
+    margin-left: 15px;
+}
+
+tbody .btn-confirmed {
+    background-color: var(--success);
+    pointer-events: none;
+    padding: 8px 12px;
+    min-width: 88px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1em;
 }

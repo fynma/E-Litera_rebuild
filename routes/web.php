@@ -63,17 +63,16 @@ Route::middleware(['web'])->group(function () {
         Route::get('/admin/Data-Pengguna', function () {
             return view('admin.Data-Pengguna');
         });
-
-    });
-
-
-
-    Route::group(['middleware' => ['roleCheck:user']], function () {
-        Route::get('/user/homepage', function () {
-            return view('user.index');
+        Route::get('/admin/Data-Peminjaman', function () {
+            return view('admin.Data-Peminjaman');
+        });
+        Route::get('/admin/Pengembalian', function () {
+            return view('admin.Pengembalian');
         });
 
     });
+
+
 
 
     Route::group(['middleware' => ['roleCheck:user']], function () {
@@ -83,6 +82,10 @@ Route::middleware(['web'])->group(function () {
 
         Route::get('/user/profile', function () {
             return view('user.profile');
+        });
+
+        Route::get('/user/Denda', function () {
+            return view('user.Denda');
         });
     });
 

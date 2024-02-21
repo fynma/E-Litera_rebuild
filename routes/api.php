@@ -63,6 +63,8 @@ Route::group([
 
 
     Route::get  ('borrowList', [borrowController::class, 'showBorrow']);
+    Route::get  ('returnList', [borrowController::class, 'showReturn']);
+    Route::get  ('listDendaUser', [borrowController::class, 'showTelat']);
     Route::get  ('comment', [CommentController::class, 'getComment']);
     Route::get  ('categoryList', [CategoryController::class, 'displayCategory']);
     Route::get  ('bookCover', [BookController::class, 'BookCoverView']);
@@ -70,9 +72,12 @@ Route::group([
     Route::get  ('profile', [ProfileController::class, 'Profile']);
     Route::get  ('ListUser', [ProfileController::class, 'ListUser']);
     Route::get  ('total-user', [ProfileController::class, 'totalUser']);
+    Route::get  ('total-pinjam', [borrowController::class, 'totalBorrow']);
     Route::get  ('ambil-user', [UserController::class, 'ambilUser']);
+    Route::get  ('ambil-username', [UserController::class, 'getUsername']);
     Route::get  ('detail-user/{user_id}', [UserController::class, 'userSatuan']);
     Route::get  ('detail-buku/{book_id}', [BookController::class, 'BookopenID']);
+    Route::get  ('list_denda', [borrowController::class, 'listdenda']);
 
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
     Route::get  ('showRating', [RatingController::class, 'averageRating']);
