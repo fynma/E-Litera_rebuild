@@ -94,7 +94,7 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="Data-Peminjaman">Peminjaman</a>
-                        <a class="collapse-item" href="Dikembalikan">Dikembalikan</a>
+                        <a class="collapse-item" href="Pengembalian">Pengembalian</a>
                     </div>
                 </div>
             </li>
@@ -259,7 +259,7 @@
                                             </div>
                                             <div class="mb-0 text-white satuan-summary font-weight-semibold">
                                                 <span class="h4 font-weight-semibold"
-                                                    style="margin-right: 4%">40</span>Buku
+                                                    style="margin-right: 4%" id="getTotalBorrow"></span>Buku
                                             </div>
                                         </div>
                                     </div>
@@ -627,6 +627,7 @@
             getData();
             getTotalBook();
             getTotalUser();
+            getTotalPinjam();
         });
 
 
@@ -656,6 +657,24 @@
                         $('#total-user').text(response.data);
                     } else {
                         console.error('Gagal mendapatkan total user: ' + response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Terjadi kesalahan: ' + error);
+                }
+            });
+        }
+        function getTotalPinjam() {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/total-pinjam', // Ganti dengan URL yang sesuai
+                type: 'GET',
+                success: function(response) {
+                    console.log(response);
+                    if (response.data) {
+                        // Mengupdate elemen HTML dengan data dari backend
+                        $('#getTotalBorrow').text(response.data);
+                    } else {
+                        console.error('Gagal mendapatkan total buku yang dipinjam: ' + response.message);
                     }
                 },
                 error: function(xhr, status, error) {

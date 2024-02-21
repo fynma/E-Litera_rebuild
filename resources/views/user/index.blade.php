@@ -12,15 +12,15 @@
 
 <body>
     <header>
-        <a href="index.html"><img src="../img/logo aplikasi billa 1.png" /></a>
+        <a href="homepage"><img src="../img/logo aplikasi billa 1.png" /></a>
         <div class="kotak-search">
             <input type="search" name="cari" id="cari" placeholder="Cari" />
             <i class="bi bi-search"></i>
         </div>
         <div class="fav-notif">
-            <a href="Favorit.html"><i class="bi bi-heart"></i> Favorit</a>
+            <a href="Favorit"><i class="bi bi-heart"></i> Favorit</a>
             <div class="garis-vertikal"></div>
-            <a href="Notifikasi.html"><i class="bi bi-bell"></i> Notifikasi</a>
+            <a href="Notifikasi"><i class="bi bi-bell"></i> Notifikasi</a>
         </div>
     </header>
     <div class="navbar">
@@ -30,12 +30,12 @@
                 <a href="#" class="kategori">Kategori <i class="bi bi-chevron-down"></i></a>
                 <ul id="categoryList"></ul>
             </li>                            
-            <li><a href="index.html">Beranda</a></li>
-            <li><a href="Tentang.html">Tentang</a></li>
+            <li><a href="homepage">Beranda</a></li>
+            <li><a href="Tentang">Tentang</a></li>
             <li>
-                <a href="Riwayat.html">Riwayat</a>
+                <a href="Riwayat">Riwayat</a>
             </li>
-            <li><a href="Kontak.html">Kontak</a></li>
+            <li><a href="Kontak">Kontak</a></li>
         </ul>
         <div class="username">
             @if (!session('photo'))
@@ -50,55 +50,56 @@
     <div class="bg-peminjaman" id="bg-peminjaman"> 
         <div class="peminjaman">
             <div class="header-peminjaman">
-                <i class="bi bi-chevron-left" onclick="closePinjam(this)" style="cursor: pointer"></i>
                 <img src="../img/logo aplikasi billa 1.png" />
+                <i class="bi bi-x-lg" onclick="closePinjam(this)" style="cursor: pointer"></i>
             </div>
-            <div class="content-peminjaman">
-                <img id="gambar_pop" alt="gambar buku"/>
+            <div class="content-peminjaman" id="content-peminjaman">
+                <div class="gambar-buku-dipopup">
+                    <img id="gambar-buku-pop" alt="gambar buku"/>
+                </div>
                 <form action="" method="post" >
                     @csrf
-                    <input type="hidden" name="user_id" value="{{ session('user_id') }}">
-                    <input type="hidden" name="tgl_kembali">
-                    <input type="hidden" name="tgl_pinjam">
-                    <input type="hidden" name="book_id" id="book_id_pop">
+                    <input type="hidden" name="user_id" id="user_id_val">
+                    <!-- <input type="hidden" name="tgl_pinjam" id="tanggal-pinjam"> -->
+                    <input type="hidden" name="book_id" id="book-id-popup">
                     <h3>Formulir Peminjaman</h3>
                     <div class="get-pinjam">
                         <label for="nama">Nama</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <p id="username_pop"></p>
+                            <input type="text" name="nama" id="username_pop" style="pointer-events: none;" readonly/>
                         </div>
                     </div>
                     <div class="get-pinjam">
                         <label for="judul-buku">Judul buku</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <p id="judul_book"></p>
+                            <input type="text" name="judul-buku" id="judul-buku-pop" style="pointer-events: none;" readonly/>
                         </div>
                     </div>
                     <div class="get-pinjam">
-                        <label for="stok">Sisa buku tersedia</label>
+                        <label for="tanggal-pinjam">Tanggal Pinjam</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <p id="stok_pop"></p>
+                            <input type="text" name="tanggal-pinjam" id="tanggal-pinjam" style="pointer-events: none;" readonly/>
                         </div>
                     </div>
                     <div class="get-pinjam">
                         <label for="tgl-kembali">Tanggal kembali</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <p></p>
+                            <input type="text" name="tgl-kembali" id="tgl-kembali" style="pointer-events: none;" readonly/>
                         </div>
                     </div>
                     <div class="get-pinjam">
-                        <label for="nama">Jumlah</label>
+                        <label for="jumlah">Jumlah</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
                             <input type="text" name="jumlah" id="jumlah"
                                 placeholder="isilah jumlah buku.." />
                         </div>
                     </div>
-                    <button type="submit">kirim</button>
+                    <button type="submit" style="cursor: pointer;">Pinjam</button>
                 </form>
             </div>
         </div>
@@ -112,7 +113,7 @@
                 Jelajahi dunia literasi dengan koleksi digital kami. Baca, pelajari,
                 dan temukan pengetahuan baru di perpustakaan digital kami.
             </p>
-            <a href="Tentang.html" class="btn-banner">Baca Selengkapnya</a>
+            <a href="Tentang" class="btn-banner">Baca Selengkapnya</a>
         </div>
     </section>
     <section class="rekomendasi">
@@ -125,151 +126,7 @@
           <a href="#">Baca Selengkapnya</a>
         </div>
       </div>
-      <div class="books-grid">
-        <div class="grid-item" data-rating="5">
-          <img src="../img/books1.png" alt="Book 1" />
-          <div class="details">
-            <div id="kategori-buku">
-              <a href="#">Adventure</a>, <a href="#">Fun</a>
-            </div>
-            <h3 id="judul-buku">
-              <a href="Books-Page.html">Help Me Find My Stomach</a>
-            </h3>
-            <a href="#" id="penulis-buku">By: Angela Gunning</a>
-            <div class="rating">
-              <i class="bi bi-star-fill" value="1"></i>
-              <i class="bi bi-star-fill" value="2"></i>
-              <i class="bi bi-star-fill" value="3"></i>
-              <i class="bi bi-star-fill" value="4"></i>
-              <i class="bi bi-star-fill" value="5"></i>
-            </div>
-            <div class="link-pinjam" id="disabledLink">
-              <button style="cursor: pointer" onclick="openPinjam(this)">
-                <a>Pinjam</a>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="grid-item" data-rating="5">
-          <img src="../img/books2.png" alt="Book 1" />
-          <div class="details">
-            <div id="kategori-buku">
-              <a href="#">Adventure</a>, <a href="#">Fun</a>
-            </div>
-            <h3 id="judul-buku">
-              <a href="Books-Page.html">Help Me Find My Stomach</a>
-            </h3>
-            <a href="#" id="penulis-buku">By: Angela Gunning</a>
-            <div class="rating">
-              <i class="bi bi-star-fill" value="1"></i>
-              <i class="bi bi-star-fill" value="2"></i>
-              <i class="bi bi-star-fill" value="3"></i>
-              <i class="bi bi-star-fill" value="4"></i>
-              <i class="bi bi-star-fill" value="5"></i>
-            </div>
-            <div class="link-pinjam" id="disabledLink">
-              <button style="cursor: pointer" onclick="openPinjam(this)">
-                <a>Pinjam</a>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="grid-item" data-rating="5">
-          <img src="../img/books3.png" alt="Book 1" />
-          <div class="details">
-            <div id="kategori-buku">
-              <a href="#">Adventure</a>, <a href="#">Fun</a>
-            </div>
-            <h3 id="judul-buku">
-              <a href="Books-Page.html">Help Me Find My Stomach</a>
-            </h3>
-            <a href="#" id="penulis-buku">By: Angela Gunning</a>
-            <div class="rating">
-              <i class="bi bi-star-fill" value="1"></i>
-              <i class="bi bi-star-fill" value="2"></i>
-              <i class="bi bi-star-fill" value="3"></i>
-              <i class="bi bi-star-fill" value="4"></i>
-              <i class="bi bi-star-fill" value="5"></i>
-            </div>
-            <div class="link-pinjam" id="disabledLink">
-              <button style="cursor: pointer" onclick="openPinjam(this)">
-                <a>Pinjam</a>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="grid-item" data-rating="5">
-          <img src="../img/books4.png" alt="Book 1" />
-          <div class="details">
-            <div id="kategori-buku">
-              <a href="#">Adventure</a>, <a href="#">Fun</a>
-            </div>
-            <h3 id="judul-buku">
-              <a href="Books-Page.html">Help Me Find My Stomach</a>
-            </h3>
-            <a href="#" id="penulis-buku">By: Angela Gunning</a>
-            <div class="rating">
-              <i class="bi bi-star-fill" value="1"></i>
-              <i class="bi bi-star-fill" value="2"></i>
-              <i class="bi bi-star-fill" value="3"></i>
-              <i class="bi bi-star-fill" value="4"></i>
-              <i class="bi bi-star-fill" value="5"></i>
-            </div>
-            <div class="link-pinjam" id="disabledLink">
-              <button style="cursor: pointer" onclick="openPinjam(this)">
-                <a>Pinjam</a>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="grid-item" data-rating="5">
-          <img src="../img/books5.png" alt="Book 1" />
-          <div class="details">
-            <div id="kategori-buku">
-              <a href="#">Adventure</a>, <a href="#">Fun</a>
-            </div>
-            <h3 id="judul-buku">
-              <a href="Books-Page.html">Help Me Find My Stomach</a>
-            </h3>
-            <a href="#" id="penulis-buku">By: Angela Gunning</a>
-            <div class="rating">
-              <i class="bi bi-star-fill" value="1"></i>
-              <i class="bi bi-star-fill" value="2"></i>
-              <i class="bi bi-star-fill" value="3"></i>
-              <i class="bi bi-star-fill" value="4"></i>
-              <i class="bi bi-star-fill" value="5"></i>
-            </div>
-            <div class="link-pinjam" id="disabledLink">
-              <button style="cursor: pointer" onclick="openPinjam(this)">
-                <a>Pinjam</a>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="grid-item" data-rating="5">
-          <img src="../img/books6.png" alt="Book 1" />
-          <div class="details">
-            <div id="kategori-buku">
-              <a href="#">Adventure</a>, <a href="#">Fun</a>
-            </div>
-            <h3 id="judul-buku">
-              <a href="Books-Page.html">Help Me Find My Stomach</a>
-            </h3>
-            <a href="#" id="penulis-buku">By: Angela Gunning</a>
-            <div class="rating">
-              <i class="bi bi-star-fill" value="1"></i>
-              <i class="bi bi-star-fill" value="2"></i>
-              <i class="bi bi-star-fill" value="3"></i>
-              <i class="bi bi-star-fill" value="4"></i>
-              <i class="bi bi-star-fill" value="5"></i>
-            </div>
-            <div class="link-pinjam" id="disabledLink">
-              <button style="cursor: pointer" onclick="openPinjam(this)">
-                <a>Pinjam</a>
-              </button>
-            </div>
-          </div>
-        </div>
+      <div class="books-grid" id="grid-item">
       </div>
     </section>
 
@@ -283,7 +140,7 @@
                         <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
                     @endif
                     <div class="username-popup">
-                        <p>{{ session('username') }}</p>
+                        <p id="username_pop"></p>
                         <button id="btn-profile">
                             <a href="/user/profile">Lihat Profil</a>
                         </button>
@@ -292,11 +149,11 @@
                 <div class="widget">
                     <button id="btn-denda">
                         <img src="../img/icon-denda.png" />
-                        <a href="Denda.html">Denda</a>
+                        <a href="/user/Denda">Denda</a>
                     </button>
                     <button id="btn-bantuan">
                         <i class="bi bi-question-circle"></i>
-                        <a href="Kontak.html">Bantuan</a>
+                        <a href="Kontak">Bantuan</a>
                     </button>
                 </div>
                 <button class="btn-logout">
@@ -481,7 +338,7 @@
                 </p>
             </div>
             <button class="btn-kontak">
-                <a href="Kontak.html">Kontak Kami</a><i class="bi bi-arrow-right"></i>
+                <a href="Kontak">Kontak Kami</a><i class="bi bi-arrow-right"></i>
             </button>
         </div>
     </section>
@@ -511,10 +368,10 @@
             <div class="informasi">
                 <h2>Informasi</h2>
                 <li>
-                    <a href="Tentang.html">Tentang Kami</a>
+                    <a href="Tentang">Tentang Kami</a>
                 </li>
                 <li>
-                    <a href="Kontak.html">Hubungi Kami</a>
+                    <a href="Kontak">Hubungi Kami</a>
                 </li>
                 <div class="sosmed">
                     <a href="#"><i class="bi bi-facebook"></i></a>
@@ -546,7 +403,9 @@
                     console.log(response);
                     if (response.data) {
                         var data = response.data;
-                        $('#username, #username_pop').text(data.username);
+                        $('#user_id_val').val(data.user_id);
+                        $('#username').text(data.username);
+                        $('#username_pop').val(data.username);
                         $('#prev_profile, #prev_profile_pop').attr('src', 'data:image/png;base64,' + data.photo)
                     }
                 },
@@ -581,35 +440,6 @@
                 categoryList.append(li);
             });
         }
-
-
-// kode view list buku sudah dipindah ke js yaa, minusnya gabisa nampilkan data di popup ehe :D
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         function toggleAnswer(question) {
             const answer = question.nextElementSibling;

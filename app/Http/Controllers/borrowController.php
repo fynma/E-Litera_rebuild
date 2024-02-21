@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\borrow;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,9 +17,9 @@ class borrowController extends Controller
 
         $book_id = $request->input('book_id');  
         $user_id = $request->input('user_id');  
-        $jumlah_dipinjam = $request->input('jumlah_pinjam');
-        $tgl_pinjam = now();
-        $tgl_kembali = Carbon::parse($tgl_pinjam)->addDays(7);
+        $jumlah_dipinjam = $request->input('jumlah');
+        $tgl_pinjam = $request->input('tanggal-pinjam');
+        $tgl_kembali = $request->input('tgl-kembali');
 
         $book = Book::find($book_id);
 
@@ -35,8 +36,8 @@ class borrowController extends Controller
                 'status' => 'Sedang diproses',
                 'petugas_pinjam' => 'belum dikonfirmasi',
                 'petugas_kembali' => 'belum dikonfirmasi',
-                'konfirmasi_peminjaman' => '0',
-                'konfirmasi_pengembalian' => '0',
+                'konfirmasi_pinjam' => '0',
+                'konfirmasi_kembali' => '0',
             ]);
 
 
@@ -98,7 +99,7 @@ class borrowController extends Controller
                     $book->save();
     
                     if ($borrow->konfirmasi_pinjam == '1') {
-                        $status = ($konfirmasi == 1) ? 'Tersedia' : 'Terlambat';
+                        $status = ($konfirmasi == 1) ? 'Dikembalikan' : 'Terlambat';
     
                         $borrow->update([
                             'konfirmasi_kembali' => $konfirmasi,
@@ -127,8 +128,79 @@ class borrowController extends Controller
     public function showBorrow()
     {
 
+        // Mengambil semua data user dari tabel users
         $borrow = Borrow::all();
-        return response()->json($borrow, 200);
+        
+        // Mengembalikan data dalam format JSON
+        return response()->json([
+            'success' => true,
+            'message' => 'Data pinjam berhasil diambil',
+            'data' => $borrow
+        ]);
+    }
+
+    public function showReturn()
+    {
+        // Mengambil semua data pinjaman dengan status "Dipinjam" dari tabel borrow
+        $borrowedBooks = Borrow::where('status', 'Dipinjam')->get();
+        
+        // Mengecek apakah ada data yang ditemukan
+        if ($borrowedBooks->isEmpty()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tidak ada data pinjaman dengan status "Dipinjam"'
+            ], 404);
+        }
+        
+        // Mengembalikan data dalam format JSON
+        return response()->json([
+            'success' => true,
+            'message' => 'Data pinjaman dengan status "Dipinjam" berhasil diambil',
+            'data' => $borrowedBooks
+        ]);
+    }
+
+    public function showTelat()
+    {
+        // Mengambil semua data pinjaman dengan status "Dipinjam" dari tabel borrow
+        $borrowedBooks = Borrow::where('status', 'Terlambat')->get();
+        
+        // Mengecek apakah ada data yang ditemukan
+        if ($borrowedBooks->isEmpty()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tidak ada data pinjaman dengan status "Dipinjam"'
+            ], 404);
+        }
+        
+        // Mengembalikan data dalam format JSON
+        return response()->json([
+            'success' => true,
+            'message' => 'Data pinjaman dengan status "Dipinjam" berhasil diambil',
+            'data' => $borrowedBooks
+        ]);
+    }
+
+    public function listdenda()
+    {
+        // Mengambil data dari view menggunakan query builder
+        $borrows = DB::table('borrow_view')
+                    ->where('status', 'Terlambat')
+                    ->get();
+    
+        // Mengirim data ke view untuk ditampilkan
+        return response()->json(['borrows' => $borrows]);
+    }
+    
+
+    public function totalBorrow()
+    {
+        try{
+            $data = Borrow::count();
+            return response()->json(['success' => true, 'data' => $data], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
     }
 
 

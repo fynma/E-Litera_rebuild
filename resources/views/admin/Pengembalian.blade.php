@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>E-Litera | Petugas - Dashboard</title>
+    <title>E-Litera | Petugas - Pengembalian Buku</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -29,12 +29,6 @@
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
     />
 
     <!-- Custom styles for this page -->
@@ -59,14 +53,14 @@
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="/admin/dashboard"
+          href="index.html"
         >
           <img src="../img/logo aplikasi billa 1.png" />
         </a>
 
-        <!-- Nav Item - Dashboard -->
+        <!-- Nav Item - Pengembalian Buku -->
         <li class="nav-item">
-          <a class="nav-link" href="/admin/dashboard">
+          <a class="nav-link" href="index.html">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span></a
           >
@@ -81,7 +75,7 @@
         </li>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
+        <li class="nav-item">
           <a
             class="nav-link collapsed"
             href="#"
@@ -100,8 +94,8 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item active" href="Data-Buku">Data Buku</a>
-              <a class="collapse-item" href="Kategori">Kategori</a>
+              <a class="collapse-item" href="Data-Buku.html">Data Buku</a>
+              <a class="collapse-item" href="Kategori.html">Kategori</a>
             </div>
           </div>
         </li>
@@ -126,8 +120,8 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="Komentar">Komentar</a>
-              <a class="collapse-item" href="Aktivitas"
+              <a class="collapse-item" href="Komentar.html">Komentar</a>
+              <a class="collapse-item" href="Aktivitas.html"
                 >Riwayat Aktivitas</a
               >
             </div>
@@ -135,7 +129,7 @@
         </li>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item active">
           <a
             class="nav-link collapsed"
             href="#"
@@ -157,61 +151,20 @@
               <a class="collapse-item" href="Data-Peminjaman"
                 >Peminjaman</a
               >
-              <a class="collapse-item" href="Pengembalian">Pengembalian</a>
+              <a class="collapse-item active" href="Pengembalian">Pengembalian</a>
             </div>
           </div>
         </li>
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-          <a class="nav-link" href="Denda">
+          <a class="nav-link" href="Denda.html">
             <i class="bi bi-cash"></i>
             <span>Denda</span></a
           >
         </li>
       </ul>
       <!-- End of Sidebar -->
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Buku</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-4">
-                    <img src="" class="img-fluid" id="gambar-buku">
-                  </div>
-                  <div class="col-md-8">
-                    <ul class="list-group">
-                      <li class="list-group-item mb-4"><h3 id="judul-buku"></h3></li>
-                      <label for="kategori-buku">Kategori :</label>
-                      <li class="list-group-item mb-4" id="kategori-buku"></li>
-                      <label for="kategori-buku">Penulis :</label>
-                      <li class="list-group-item mb-4" id="penulis-buku"></li>
-                      <label for="kategori-buku">Penerbit :</label>
-                      <li class="list-group-item mb-4" id="penerbit-buku"></li>
-                      <label for="kategori-buku">Tahun Terbit :</label>
-                      <li class="list-group-item mb-4" id="terbit-buku"></li>
-                      <label for="kategori-buku">Stok :</label>
-                      <li class="list-group-item mb-4" id="stok-buku"></li>
-                      <label for="kategori-buku">Deskripsi :</label>
-                      <li class="list-group-item mb-4" id="deskripsi-buku"></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
@@ -230,8 +183,8 @@
             </button>
 
             <div class="header-navbar">
-              <h2>Data Buku</h2>
-              <p>Data Buku</p>
+              <h2>Pengembalian Buku</h2>
+              <p>Pengembalian Buku</p>
             </div>
 
             <!-- Topbar Navbar -->
@@ -318,8 +271,8 @@
                     class="mr-3 img-profile rounded-circle"
                     src="../img/undraw_profile.svg"
                   />
-                  <span class="d-none d-lg-inline text-gray-600 small"
-                    >Sabilla Andhini (Petugas)</span
+                  <span class="d-none d-lg-inline text-gray-600 small" id="user"
+                    > (Petugas)</span
                   >
                 </a>
                 <!-- Dropdown - User Information -->
@@ -355,9 +308,23 @@
             <div
               class="d-sm-flex align-items-center justify-content-between mb-4"
             >
-              <a href="/admin/Tambah-Buku"><button class="btn-tambah">
-              <i class="bi bi-plus-lg"></i>Tambah Buku
-              </button></a>
+              <button class="btn-print">
+                <i class="bi bi-printer"></i>Print
+              </button>
+            </div>
+
+            <!-- desain popup alert -->
+            <div class="popup" id="popup">
+              <div class="isi-popup">
+                <div class="content-popup">
+                  <img src="../img/alert-icon1.png" />
+                  <h2>Apakah Anda yakin ingin mengkonfirmasi pengembalian?</h2>
+                  <div class="button-container">
+                    <button class="batal" id="tutup-konfirmasi">Batal</button>
+                    <button class="oke">Oke</button>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- Content Row -->
@@ -365,12 +332,22 @@
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-orange">
-                  List Data Buku
+                  List Pengembalian Buku
                 </h6>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                <table
+                  <form action="" method="post" id="updateBorrow">
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{ session('user_id')
+                    }}">
+                    <input type="hidden" name="borrow_id" id="borrow-id">
+                    <input type="hidden" name="konfirmasi_kembali" id="konfirmasi-kembali">
+                    <input type="hidden" name="tgl_pinjam" id="tgl-pinjam">
+                    <input type="hidden" name="tgl_kembali" id="tgl-kembali">
+                    <input type="hidden" name="jumlah_pinjam" id="jumlah-pinjam">
+                  </form>
+                  <table
                     class="table table-bordered"
                     id="dataTable"
                     width="100%"
@@ -378,12 +355,14 @@
                   >
                     <thead>
                       <tr>
-                        <th style="width: 30px;">No</th>
-                        <th>Kode</th>
-                        <th>Judul</th>
-                        <th>Kategori</th>
-                        <th>Penulis</th>
-                        <th>Penerbit</th>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Buku</th>
+                        <th>Petugas</th>
+                        <th>Pinjam</th>
+                        <th>Kembali</th>
+                        <th>Jumlah</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -450,7 +429,7 @@
             >
               Cancel
             </button>
-            <a class="btn btn-primary" href="login">Logout</a>
+            <a class="btn btn-primary" href="login.html">Logout</a>
           </div>
         </div>
       </div>
@@ -465,24 +444,54 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin-2.min.js"></script>
+
     <!-- Page level plugins -->
     <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
+    <script src="../js/pengembalian.js"></script>
     <script src="../js/demo/datatables-demo.js"></script>
-    <script src="../js/data-buku.js"></script>
+<!-- 
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Ambil semua button yang digunakan untuk memunculkan popup
+        var buttons = document.querySelectorAll(".button-confirm");
+        var popup = document.getElementById("popup");
+        var tutupKonfirm = document.getElementById("tutup-konfirmasi");
 
-    <!-- bootstrap cdn -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-      crossorigin="anonymous"
-    ></script>
+        // Tambahkan event listener untuk setiap button
+        buttons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            // Panggil fungsi untuk menampilkan popup
+            popup.classList.add("open-popup");
+            // Panggil fungsi untuk mengkonfirmasi peminjaman hanya untuk tombol ini
+            var btnOke = popup.querySelector(".oke");
+            btnOke.addEventListener("click", function () {
+              konfirmasiPeminjaman(button);
+            });
+          });
+        });
+
+        function konfirmasiPeminjaman(button) {
+          button.innerText = "Dikonfirmasi";
+          button.classList.remove("confirm");
+          button.classList.add("terconfirm");
+          button.disabled = true;
+
+          // Tutup popup setelah dikonfirmasi
+          closeKonfirmasi();
+        }
+
+        tutupKonfirm.addEventListener("click", function () {
+          // Panggil fungsi untuk menampilkan popup
+          popup.classList.remove("open-popup");
+        });
+
+        function closeKonfirmasi() {
+          popup.classList.remove("open-popup");
+        }
+      });
+    </script> -->
   </body>
 </html>

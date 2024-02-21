@@ -151,7 +151,7 @@
               <a class="collapse-item" href="Data-Peminjaman"
                 >Peminjaman</a
               >
-              <a class="collapse-item" href="Dikembalikan">Dikembalikan</a>
+              <a class="collapse-item" href="Pengembalian">Pengembalian</a>
             </div>
           </div>
         </li>
