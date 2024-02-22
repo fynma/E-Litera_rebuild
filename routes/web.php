@@ -37,6 +37,8 @@ Route::middleware(['web'])->group(function () {
 
         Route::post('register', [AuthController::class, 'register'])->name('register');
     });
+
+
     Route::group(['middleware' => ['roleCheck:petugas']], function () {
         Route::get('/admin/home', function () {
             return view('admin.index');

@@ -62,8 +62,6 @@ Route::group([
     Route::post ('transaction', [transactionController::class, 'transaction_midtrans']);
 
 
-
-
     Route::get  ('borrowList', [borrowController::class, 'showBorrow']);
     Route::get  ('returnList', [borrowController::class, 'showReturn']);
     Route::get  ('listDendaUser', [borrowController::class, 'showTelat']);

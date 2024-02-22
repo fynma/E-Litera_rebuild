@@ -14,12 +14,6 @@
   <body>
     <header>
       <a href="index.html"><img src="../img/logo aplikasi billa 1.png" /></a>
-      <!-- <div class="toggle">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </div>
-      <div class="bg-sidebar"></div> -->
       <div class="kotak-search">
         <input type="search" name="cari" id="cari" placeholder="Cari" />
         <i class="bi bi-search"></i>
