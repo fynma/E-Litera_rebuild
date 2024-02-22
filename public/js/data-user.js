@@ -1,7 +1,26 @@
 // Panggil fungsi tampilkanUsers saat halaman dimuat
 $(document).ready(function () {
     tampilkanUsers();
+    getData();
 });
+
+function getData() {
+    $.ajax({
+        url: "http://127.0.0.1:8000/profile",
+        type: "GET",
+        success: function (response) {
+            console.log(response);
+            if (response.success) {
+                var data = response.data;
+                $("#user").text(data.username);
+                $("#prev-prof").attr(
+                    "src",
+                    "data:image/png;base64," + data.photo
+                );
+            }
+        },
+    });
+}
 
 function tampilkanUsers() {
     $.ajax({

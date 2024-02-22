@@ -80,6 +80,7 @@ Route::group([
     Route::get  ('detail-user/{user_id}', [UserController::class, 'userSatuan']);
     Route::get  ('detail-buku/{book_id}', [BookController::class, 'BookopenID']);
     Route::get  ('list_denda', [borrowController::class, 'listdenda']);
+    Route::get  ('listPinjam', [borrowController::class, 'listPinjam']);
     Route::get  ('dendaSatuan/{borrow_id}', [borrowController::class, 'dendaSatuan']);
 
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);

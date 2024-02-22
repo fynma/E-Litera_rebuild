@@ -1,3 +1,25 @@
+$(document).ready(function () {
+    getData();
+});
+
+function getData() {
+    $.ajax({
+        url: "http://127.0.0.1:8000/profile",
+        type: "GET",
+        success: function (response) {
+            console.log(response);
+            if (response.success) {
+                var data = response.data;
+                $("#user").text(data.username);
+                $("#prev-prof").attr(
+                    "src",
+                    "data:image/png;base64," + data.photo
+                );
+            }
+        },
+    });
+}
+
 // Mendapatkan CSRF token dari meta tag
 var csrfToken = $('meta[name="csrf-token"]').attr("content");
 

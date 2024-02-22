@@ -3,6 +3,7 @@ $(document).ready(function () {
     tampilkanDenda();
     getCategories();
     closeDetail();
+    handleConfirm();
 });
 
 function getData() {
@@ -62,6 +63,12 @@ function tampilkanDenda() {
                     borrows.jumlah_pinjam +
                     "</td><td><button class='btn-view' data-bs-toggle='modal' data-bs-target='#exampleModal' data-id=" +
                     borrows.borrow_id +
+                    " data-user-id=" +
+                    borrows.user_id +
+                    " data-book-id=" +
+                    borrows.book_id +
+                    " data-tgl-kembali=" +
+                    borrows.tgl_kembali +
                     ">Detail</button></td></tr>";
                 $("#tabel-data tbody").append(newRow);
             });
@@ -114,10 +121,33 @@ detail = document.getElementById("popupDenda");
 
 $("#tabel-data tbody").on("click", ".btn-view", function () {
     console.log($(this).data("id"));
-    detail.classList.add("openPopupDenda");
+    console.log($(this).data("user-id"));
+    console.log($(this).data("book-id"));
+    console.log($(this).data("tgl-kembali"));
     var borrowID = $(this).data("id");
+    var userID = $(this).data("user-id");
+    var bookID = $(this).data("book-id");
+    var tglKembali = $(this).data("tgl-kembali");
     // Tanggal saat ini
     var currentDate = new Date();
+    // Tanggal kembali dari respons API
+    var returnDate = new Date(tglKembali);
+    // Hitung durasi telat dalam milidetik
+    var lateDuration = currentDate.getTime() - returnDate.getTime();
+    // Konversi durasi telat ke hari
+    var lateDays = Math.max(
+        Math.ceil(lateDuration / (1000 * 60 * 60 * 24)) - 1,
+        0
+    );
+    var totalHarga = lateDays * 1000;
+
+    $("#user_id").val(userID);
+    $("#book_id").val(bookID);
+    $("#keterlambatan").val(lateDays);
+    $("#tarif_denda").val(totalHarga);
+    $("#bayarDenda").submit();
+
+    detail.classList.add("openPopupDenda");
 
     $.ajax({
         url: "http://127.0.0.1:8000/api/dendaSatuan/" + borrowID, // Sesuaikan dengan endpoint API Anda
@@ -126,16 +156,6 @@ $("#tabel-data tbody").on("click", ".btn-view", function () {
             console.log(response);
             // Tampilkan informasi keterlambatan dalam modal
             var borrowData = response.borrows[0];
-            // Tanggal kembali dari respons API
-            var returnDate = new Date(borrowData.tgl_kembali);
-            // Hitung durasi telat dalam milidetik
-            var lateDuration = currentDate.getTime() - returnDate.getTime();
-            // Konversi durasi telat ke hari
-            var lateDays = Math.max(
-                Math.ceil(lateDuration / (1000 * 60 * 60 * 24)) - 1,
-                0
-            );
-            var totalHarga = lateDays * 1000;
             // Tampilkan informasi pengguna dalam modal
             $("#titleBook").val(borrowData.judul);
             $("#tglPinjam").val(borrowData.tgl_pinjam);
@@ -155,6 +175,35 @@ $("#tabel-data tbody").on("click", ".btn-view", function () {
     });
 });
 
+function handleConfirm() {
+    $("#bayarDenda").on("submit", function (event) {
+        event.preventDefault(); // Menghentikan perilaku default pengiriman formulir
+
+        // Mengambil data dari formulir
+        var formData = $(this).serialize();
+
+        // Kirim data ke controller API
+        $.ajax({
+            url: "http://127.0.0.1:8000/api/denda",
+            method: "POST",
+            data: formData,
+            success: function (response) {
+                // Handle response jika sukses
+                console.log(response);
+            },
+            error: function (xhr, status, error) {
+                // Handle error jika permintaan gagal
+                console.error(xhr.responseText);
+            },
+        });
+    });
+}
+
 function closeDetail() {
     detail.classList.remove("openPopupDenda");
 }
+
+var payButton = document.getElementById("pay-button");
+payButton.addEventListener("click", function () {
+    snap.pay("<SNAP_TOKEN>");
+});

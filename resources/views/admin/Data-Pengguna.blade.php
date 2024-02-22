@@ -303,9 +303,7 @@
                     class="mr-3 img-profile rounded-circle"
                     src="../img/undraw_profile.svg"
                   />
-                  <span class="d-none d-lg-inline text-gray-600 small"
-                    >Sabilla Andhini (Petugas)</span
-                  >
+                  <span class="d-none d-lg-inline text-gray-600 small" id="user"> (Petugas)</span>
                 </a>
                 <!-- Dropdown - User Information -->
                 <div

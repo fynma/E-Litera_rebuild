@@ -271,9 +271,7 @@
                     class="mr-3 img-profile rounded-circle"
                     src="../img/undraw_profile.svg"
                   />
-                  <span class="d-none d-lg-inline text-gray-600 small"
-                    >Sabilla Andhini (Petugas)</span
-                  >
+                  <span class="d-none d-lg-inline text-gray-600 small" id="user"> (Petugas)</span>
                 </a>
                 <!-- Dropdown - User Information -->
                 <div
@@ -308,7 +306,7 @@
             <div
               class="d-sm-flex align-items-center justify-content-between mb-4"
             >
-              <div class="card shadow mb-4">
+              <div class="card shadow mb-4" style="width: 100%;">
                 <!-- Card Header - Dropdown -->
                 <div
                   class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
