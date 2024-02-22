@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\transactionController;
 use App\Http\Controllers\borrowController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
@@ -58,6 +59,7 @@ Route::group([
     Route::post ('denda', [dendaController::class, 'newDenda']); //not fix wait ui finish
     Route::post ('bookDetail', [BookController::class, 'Bookdetail']);
     Route::post ('deleteUser', [ProfileController::class, 'deleteUser']);
+    Route::post ('transaction', [transactionController::class, 'transaction_midtrans']);
 
 
 
