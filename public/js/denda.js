@@ -2,6 +2,7 @@ $(document).ready(function () {
     getData();
     tampilkanDenda();
     getCategories();
+    closeDetail();
 });
 
 function getData() {
@@ -14,7 +15,7 @@ function getData() {
                 var data = response.data;
                 $("#user_id_val").val(data.user_id);
                 $("#username").text(data.username);
-                $("#username_pop").val(data.username);
+                $("#username_pop").text(data.username);
                 $("#prev_profile, #prev_profile_pop").attr(
                     "src",
                     "data:image/png;base64," + data.photo
@@ -60,8 +61,8 @@ function tampilkanDenda() {
                     "</td><td>" +
                     borrows.jumlah_pinjam +
                     "</td><td><button class='btn-view' data-bs-toggle='modal' data-bs-target='#exampleModal' data-id=" +
-                    borrows.book_id +
-                    "><i class='bi bi-eye'></i></button></td></tr>";
+                    borrows.borrow_id +
+                    ">Detail</button></td></tr>";
                 $("#tabel-data tbody").append(newRow);
             });
 
@@ -107,4 +108,53 @@ function displayCategories(categories) {
         li.append(link);
         categoryList.append(li);
     });
+}
+
+detail = document.getElementById("popupDenda");
+
+$("#tabel-data tbody").on("click", ".btn-view", function () {
+    console.log($(this).data("id"));
+    detail.classList.add("openPopupDenda");
+    var borrowID = $(this).data("id");
+    // Tanggal saat ini
+    var currentDate = new Date();
+
+    $.ajax({
+        url: "http://127.0.0.1:8000/api/dendaSatuan/" + borrowID, // Sesuaikan dengan endpoint API Anda
+        method: "GET",
+        success: function (response) {
+            console.log(response);
+            // Tampilkan informasi keterlambatan dalam modal
+            var borrowData = response.borrows[0];
+            // Tanggal kembali dari respons API
+            var returnDate = new Date(borrowData.tgl_kembali);
+            // Hitung durasi telat dalam milidetik
+            var lateDuration = currentDate.getTime() - returnDate.getTime();
+            // Konversi durasi telat ke hari
+            var lateDays = Math.max(
+                Math.ceil(lateDuration / (1000 * 60 * 60 * 24)) - 1,
+                0
+            );
+            var totalHarga = lateDays * 1000;
+            // Tampilkan informasi pengguna dalam modal
+            $("#titleBook").val(borrowData.judul);
+            $("#tglPinjam").val(borrowData.tgl_pinjam);
+            $("#tglKembali").val(borrowData.tgl_kembali);
+            $("#petugasPinjam").val(borrowData.petugas_pinjam);
+            $("#petugasKembali").val(borrowData.petugas_kembali);
+            $("#jumlahPinjam").val(borrowData.jumlah_pinjam);
+            // Tetapkan nilai durasi telat ke input durasiTelat
+            $("#durasiTelat").val(lateDays);
+            $("#totalHarga").val(totalHarga);
+        },
+        error: function (xhr, status, error) {
+            // Jika terjadi kesalahan, tampilkan pesan kesalahan
+            console.error(xhr.responseText);
+            alert("Gagal mengambil data keterlambatan. Silakan coba lagi.");
+        },
+    });
+});
+
+function closeDetail() {
+    detail.classList.remove("openPopupDenda");
 }

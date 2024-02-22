@@ -2270,21 +2270,133 @@ tr td:last-child {
 }
 
 tbody .btn-view {
-    width: 42px;
-    height: 42px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 15px;
+    padding: 12px 16px;
     background-color: #3c8dbc;
     border-radius: 12px;
     border: none;
     outline: none;
     cursor: pointer;
+    font-size: 1em;
+    color: #fff;
 }
 
-tbody .btn-view i {
+.popupDenda {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: scale(0.1);
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000000;
+}
+
+.openPopupDenda {
+    visibility: visible;
+    transform: scale(1);
+}
+
+.popupDenda .containerDenda {
+    min-width: 500px;
+    min-height: 100px;
+    padding: 20px 24px;
+    background-color: #fff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.popupDenda .containerDenda .headerDenda {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.popupDenda .containerDenda .headerDenda img {
+    width: 160px;
+    height: 40px;
+}
+
+.popupDenda .containerDenda .headerDenda i {
     font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
     color: #fff;
-    -webkit-text-stroke: 0.2px;
+    background: #c25b4a;
+    border-radius: 30px;
+}
+
+.popupDenda .containerDenda .contentDenda {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.popupDenda .containerDenda .contentDenda .labelDenda {
+    min-width: 100px;
+    max-width: 240px;
+}
+
+.popupDenda .containerDenda .contentDenda .labelDenda label {
+    font-size: 1em;
+    color: #484848;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.popupDenda .containerDenda .contentDenda .titikDua {
+    font-size: 1em;
+    color: #484848;
+    font-size: 500;
+    margin-right: 20px;
+}
+
+.popupDenda .containerDenda .contentDenda .titikDua p {
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.popupDenda .containerDenda .contentDenda .inputanDenda {
+    min-width: 100px;
+    max-width: 240px;
+}
+
+.popupDenda .containerDenda .contentDenda .inputanDenda input {
+    padding: 8px 12px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    font-size: 1em;
+    color: #484848;
+    margin-bottom: 12px;
+}
+
+.popupDenda .containerDenda .bayarDenda {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.popupDenda .containerDenda .bayarDenda button {
+    padding: 12px 24px;
+    background-color: #c25b4a;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    color: #fff;
+    font-size: 1em;
 }

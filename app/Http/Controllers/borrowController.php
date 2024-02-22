@@ -191,6 +191,29 @@ class borrowController extends Controller
         // Mengirim data ke view untuk ditampilkan
         return response()->json(['borrows' => $borrows]);
     }
+
+    public function dendaSatuan($borrow_id = null)
+    {
+        if ($borrow_id === null) {
+            return response()->json([
+                'success' => false,
+                'message' => 'ID pengguna tidak diberikan.'
+            ], 400);
+        }
+
+        $borrow = DB::table('borrow_view')
+                    ->where('borrow_id', $borrow_id)
+                    ->get();
+
+        // $borrow = User::where('user_id', $borrow_id)->firstOrFail();
+        
+        // return response()->json([
+        //     'success' => true,
+        //     'data' => $borrow
+        // ]);
+
+        return response()->json(['borrows' => $borrow]);
+    }
     
 
     public function totalBorrow()
