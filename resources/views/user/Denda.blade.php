@@ -76,7 +76,7 @@
           <div class="username-content-popup">
             <img src="../img/avatar.jpg" />
             <div class="username-popup">
-              <p>Natalia Dita</p>
+              <p id="username_pop"></p>
               <button id="btn-profile">
                 <a href="Profile">Lihat Profil</a>
               </button>
@@ -100,6 +100,79 @@
           </button>
           <br />
           <a onclick="closeModal()">Tutup</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="popupDenda" id="popupDenda">
+      <div class="containerDenda">
+        <div class="headerDenda">
+          <img src="../img/logo aplikasi billa 1.png" />
+          <i class="bi bi-x-lg" onclick="closeDetail(this)" style="cursor: pointer"></i>
+        </div>
+        <div class="contentDenda">
+          <div class="labelDenda">
+            <label>Judu Buku</label>
+            <label>Tanggal Pinjam</label>
+            <label>Tanggal Kembali</label>
+            <label>Pengonfirmasi Peminjaman</label>
+            <label>Pengonfirmasi Pengembalian</label>
+            <label>Jumlah Pinjam</label>
+            <label>Lama Keterlambatan (hari)</label>
+            <label>Total Harga (Rp)</label>
+          </div>
+          <div class="titikDua">
+            <p>:</p>
+            <p>:</p>
+            <p>:</p>
+            <p>:</p>
+            <p>:</p>
+            <p>:</p>
+            <p>:</p>
+            <p>:</p>
+          </div>
+          <div class="inputanDenda">
+            <input type="text" name="titleBook" id="titleBook" readonly>
+            <input type="text" name="tglPinjam" id="tglPinjam" readonly>
+            <input type="text" name="tglKembali" id="tglKembali" readonly>
+            <input type="text" name="petugasPinjam" id="petugasPinjam" readonly>
+            <input type="text" name="petugasKembali" id="petugasKembali" readonly>
+            <input type="text" name="jumlahPinjam" id="jumlahPinjam" readonly>
+            <input type="text" name="durasiTelat" id="durasiTelat" readonly>
+            <input type="text" name="totalHarga" id="totalHarga" readonly>
+          </div>
+
+          <!-- <div class="dendaItem">
+            <label for="titleBook">Judu Buku</label>
+            <p>:</p>
+            <input type="text" name="titleBook" id="titleBook" readonly>
+          </div>
+          <div class="dendaItem">
+            <label for="tglPinjam">Tanggal Pinjam</label>
+            <p>:</p>
+            <input type="text" name="tglPinjam" id="tglPinjam" readonly>
+          </div>
+          <div class="dendaItem">
+            <label for="tglKembali">Tanggal Kembali</label>
+            <p>:</p>
+            <input type="text" name="tglKembali" id="tglKembali" readonly>
+          </div>
+          <div class="dendaItem">
+            <label for="petugasPinjam">Pengonfirmasi Peminjaman</label>
+            <p>:</p>
+            <input type="text" name="petugasPinjam" id="petugasPinjam" readonly>
+          </div>
+          <div class="dendaItem">
+            <label for="petugasKembali">Pengonfirmasi Pengembalian</label>
+            <p>:</p>
+            <input type="text" name="petugasKembali" id="petugasKembali" readonly>
+          </div>
+          <div class="dendaItem"></div>
+          <div class="dendaItem"></div>
+          <div class="dendaItem"></div> -->
+        </div>
+        <div class="bayarDenda">
+          <button id="btnBayar">Bayar</button>
         </div>
       </div>
     </div>

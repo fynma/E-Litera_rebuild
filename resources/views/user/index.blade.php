@@ -140,7 +140,7 @@
                         <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
                     @endif
                     <div class="username-popup">
-                        <p id="username_pop"></p>
+                        <p id="username-popup"></p>
                         <button id="btn-profile">
                             <a href="/user/profile">Lihat Profil</a>
                         </button>
@@ -406,6 +406,7 @@
                         $('#user_id_val').val(data.user_id);
                         $('#username').text(data.username);
                         $('#username_pop').val(data.username);
+                        $('#username-popup').text(data.username);
                         $('#prev_profile, #prev_profile_pop').attr('src', 'data:image/png;base64,' + data.photo)
                     }
                 },
