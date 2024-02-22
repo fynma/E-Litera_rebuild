@@ -192,6 +192,16 @@ class borrowController extends Controller
         return response()->json(['borrows' => $borrows]);
     }
 
+    public function listPinjam()
+    {
+        // Mengambil data dari view menggunakan query builder
+        $borrows = DB::table('borrow_view')
+                    ->get();
+    
+        // Mengirim data ke view untuk ditampilkan
+        return response()->json(['borrows' => $borrows]);
+    }
+
     public function dendaSatuan($borrow_id = null)
     {
         if ($borrow_id === null) {

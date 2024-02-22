@@ -21,7 +21,8 @@ class transactionController extends Controller
         ]);
 
         // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = config('midtrans.serverKey');
+        // config('midtrans.serverKey')
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-kd6Lw9Rq1cXQBv9xwrigYGFL';
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         \Midtrans\Config::$isProduction = false;
         // Set sanitization on (default)
@@ -32,12 +33,11 @@ class transactionController extends Controller
         $params = array(
             'transaction_details' => array(
                 'order_id' => rand(),
-                'gross_amount' => $data['total_denda'],
+                'gross_amount' => $data['totalHarga'],
             ),
 
             'customer_details' => array (
                 'first_name' => $data['username'],
-                'email' => $data['email'],
             ),
         );
         

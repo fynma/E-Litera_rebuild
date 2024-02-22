@@ -1,6 +1,25 @@
 $(document).ready(function () {
-    tampilkanKategori(); 
+    tampilkanKategori();
+    getData();
 });
+
+function getData() {
+    $.ajax({
+        url: "http://127.0.0.1:8000/profile",
+        type: "GET",
+        success: function (response) {
+            console.log(response);
+            if (response.success) {
+                var data = response.data;
+                $("#user").text(data.username);
+                $("#prev-prof").attr(
+                    "src",
+                    "data:image/png;base64," + data.photo
+                );
+            }
+        },
+    });
+}
 
 function tampilkanKategori() {
     // Mendapatkan token CSRF dari meta tag
@@ -98,7 +117,6 @@ $(document).ready(function () {
         $.each($("input[name='category[]']:checked"), function () {
             kategori.push($(this).val());
         });
-
 
         // Membuat objek FormData untuk mengirim data formulir
         const formData = new FormData();

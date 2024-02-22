@@ -80,8 +80,8 @@ Route::middleware(['web'])->group(function () {
             return view('user.index');
         });
 
-        Route::get('/user/profile', function () {
-            return view('user.profile');
+        Route::get('/user/Profile', function () {
+            return view('user.Profile');
         });
 
         Route::get('/user/Denda', function () {

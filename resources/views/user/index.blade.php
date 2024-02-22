@@ -39,7 +39,7 @@
         </ul>
         <div class="username">
             @if (!session('photo'))
-                <img src="../img/avatar.jpg" />
+                <img src="" id="prev_profile" />
             @else
                 <img id="prev_profile" alt="Nama Alt">
             @endif
@@ -95,8 +95,8 @@
                         <label for="jumlah">Jumlah</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <input type="text" name="jumlah" id="jumlah"
-                                placeholder="isilah jumlah buku.." />
+                            <input type="number" name="jumlah" id="jumlah"
+                                placeholder="isilah jumlah buku.." min="0" pattern="[0-9]+"/>
                         </div>
                     </div>
                     <button type="submit" style="cursor: pointer;">Pinjam</button>
@@ -135,14 +135,14 @@
             <div class="content-popup">
                 <div class="username-content-popup">
                     @if (!session('photo'))
-                        <img src="../img/avatar.jpg" />
+                        <img src="" id="prev_profile_pop" />
                     @else
                         <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
                     @endif
                     <div class="username-popup">
                         <p id="username-popup"></p>
                         <button id="btn-profile">
-                            <a href="/user/profile">Lihat Profil</a>
+                            <a href="Profile">Lihat Profil</a>
                         </button>
                     </div>
                 </div>

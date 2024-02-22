@@ -59,7 +59,7 @@
         </a>
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="/admin/dashboard">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span></a
@@ -75,7 +75,7 @@
         </li>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item active">
           <a
             class="nav-link collapsed"
             href="#"
@@ -94,7 +94,7 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="Data-Buku">Data Buku</a>
+              <a class="collapse-item" href="Data-Buku active">Data Buku</a>
               <a class="collapse-item" href="Kategori">Kategori</a>
             </div>
           </div>
@@ -271,9 +271,7 @@
                     class="mr-3 img-profile rounded-circle"
                     src="../img/undraw_profile.svg"
                   />
-                  <span class="d-none d-lg-inline text-gray-600 small"
-                    >Sabilla Andhini (Petugas)</span
-                  >
+                  <span class="d-none d-lg-inline text-gray-600 small" id="user"> (Petugas)</span>
                 </a>
                 <!-- Dropdown - User Information -->
                 <div

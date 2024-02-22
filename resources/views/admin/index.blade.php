@@ -184,7 +184,10 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="mr-3 img-profile rounded-circle" id="prev-prof" />
+                                <img
+                                    class="mr-3 img-profile rounded-circle"
+                                    src="../img/undraw_profile.svg"
+                                />
                                 <span class="d-none d-lg-inline text-gray-600 small" id="user"> (Petugas)</span>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -400,173 +403,17 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Tanggal Peminjaman</th>
-                                            <th>Nama Peminjam</th>
-                                            <th>Judul Buku</th>
-                                            <th>Status Peminjaman</th>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Buku</th>
+                                            <th>Pinjam</th>
+                                            <th>Kembali</th>
+                                            <th>Petugas</th>
+                                            <th>Jumlah</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-dipinjam">Dipinjam</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-dipinjam">Dipinjam</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-terlambat">Terlambat</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-dipinjam">Dipinjam</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-dipinjam">Dipinjam</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-terlambat">Terlambat</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-dipinjam">Dipinjam</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-terlambat">Terlambat</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-dipinjam">Dipinjam</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-dipinjam">Dipinjam</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-dipinjam">Dipinjam</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-dipinjam">Dipinjam</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-dipinjam">Dipinjam</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-dipinjam">Dipinjam</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-dipinjam">Dipinjam</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-terlambat">Terlambat</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-terlambat">Terlambat</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-terlambat">Terlambat</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-terlambat">Terlambat</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023/12/29</td>
-                                            <td>Sheila</td>
-                                            <td>Yang Telah Lama Pergi</td>
-                                            <td id="status-peminjaman">
-                                                <p class="status-terlambat">Terlambat</p>
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -741,6 +588,7 @@
 
     <!-- Page level custom scripts -->
     <script src="../js/demo/datatables-demo.js"></script>
+    <script src="../js/dashboardAdmin.js"></script>
 </body>
 
 </html>

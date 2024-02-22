@@ -26,6 +26,10 @@
     <!-- js tabel -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="<CLIENT-KEY>">
+    </script>
   </head>
   <body>
     <header>
@@ -62,7 +66,7 @@
       </ul>
       <div class="username">
             @if (!session('photo'))
-                <img src="../img/avatar.jpg" />
+                <img src="" id="prev_profile"/>
             @else
                 <img id="prev_profile" alt="Nama Alt">
             @endif
@@ -74,7 +78,7 @@
       <div class="isi-popup">
         <div class="content-popup">
           <div class="username-content-popup">
-            <img src="../img/avatar.jpg" />
+            <img src="" id="prev_profile_pop"/>
             <div class="username-popup">
               <p id="username_pop"></p>
               <button id="btn-profile">
@@ -104,6 +108,14 @@
       </div>
     </div>
 
+    <form method="post" id="bayarDenda">
+      @csrf
+      <input type="hidden" name="user_id" id="user_id" readonly>
+      <input type="hidden" name="book_id" id="book_id" readonly>
+      <input type="hidden" name="keterlambatan" id="keterlambatan" readonly>
+      <input type="hidden" name="tarif_denda" id="tarif_denda" readonly>
+    </form>
+
     <div class="popupDenda" id="popupDenda">
       <div class="containerDenda">
         <div class="headerDenda">
@@ -132,14 +144,17 @@
             <p>:</p>
           </div>
           <div class="inputanDenda">
-            <input type="text" name="titleBook" id="titleBook" readonly>
-            <input type="text" name="tglPinjam" id="tglPinjam" readonly>
-            <input type="text" name="tglKembali" id="tglKembali" readonly>
-            <input type="text" name="petugasPinjam" id="petugasPinjam" readonly>
-            <input type="text" name="petugasKembali" id="petugasKembali" readonly>
-            <input type="text" name="jumlahPinjam" id="jumlahPinjam" readonly>
-            <input type="text" name="durasiTelat" id="durasiTelat" readonly>
-            <input type="text" name="totalHarga" id="totalHarga" readonly>
+            <form method="post" id="detailDenda">
+              @csrf
+              <input type="text" name="titleBook" id="titleBook" readonly>
+              <input type="text" name="tglPinjam" id="tglPinjam" readonly>
+              <input type="text" name="tglKembali" id="tglKembali" readonly>
+              <input type="text" name="petugasPinjam" id="petugasPinjam" readonly>
+              <input type="text" name="petugasKembali" id="petugasKembali" readonly>
+              <input type="text" name="jumlahPinjam" id="jumlahPinjam" readonly>
+              <input type="text" name="durasiTelat" id="durasiTelat" readonly>
+              <input type="text" name="totalHarga" id="totalHarga" readonly>
+            </form>
           </div>
 
           <!-- <div class="dendaItem">
@@ -172,7 +187,7 @@
           <div class="dendaItem"></div> -->
         </div>
         <div class="bayarDenda">
-          <button id="btnBayar">Bayar</button>
+          <button id="pay-button">Bayar</button>
         </div>
       </div>
     </div>
