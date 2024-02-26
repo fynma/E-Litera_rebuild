@@ -53,14 +53,14 @@
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+          href="/admin/dashboard"
         >
           <img src="../img/logo aplikasi billa 1.png" />
         </a>
 
         <!-- Nav Item - Pengembalian Buku -->
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="/admin/dashboard">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span></a
           >
@@ -94,8 +94,8 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="Data-Buku.html">Data Buku</a>
-              <a class="collapse-item" href="Kategori.html">Kategori</a>
+              <a class="collapse-item" href="Data-Buku">Data Buku</a>
+              <a class="collapse-item" href="Kategori">Kategori</a>
             </div>
           </div>
         </li>
@@ -120,8 +120,8 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="Komentar.html">Komentar</a>
-              <a class="collapse-item" href="Aktivitas.html"
+              <a class="collapse-item" href="Komentar">Komentar</a>
+              <a class="collapse-item" href="Aktivitas"
                 >Riwayat Aktivitas</a
               >
             </div>
@@ -158,7 +158,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-          <a class="nav-link" href="Denda.html">
+          <a class="nav-link" href="Denda">
             <i class="bi bi-cash"></i>
             <span>Denda</span></a
           >
@@ -429,7 +429,7 @@
             >
               Cancel
             </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="login">Logout</a>
           </div>
         </div>
       </div>

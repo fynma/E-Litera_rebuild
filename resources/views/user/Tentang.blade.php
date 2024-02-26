@@ -10,10 +10,11 @@
     />
     <link rel="stylesheet" href="../css/user.css" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   </head>
   <body>
     <header>
-      <a href="index.html"><img src="../img/logo aplikasi billa 1.png" /></a>
+      <a href="homepage"><img src="../img/logo aplikasi billa 1.png" /></a>
       <!-- <div class="toggle">
         <div class="bar1"></div>
         <div class="bar2"></div>
@@ -25,9 +26,9 @@
         <i class="bi bi-search"></i>
       </div>
       <div class="fav-notif">
-        <a href="Favorit.html"><i class="bi bi-heart"></i> Favorit</a>
+        <a href="Favorit"><i class="bi bi-heart"></i> Favorit</a>
         <div class="garis-vertikal"></div>
-        <a href="Notifikasi.html"><i class="bi bi-bell"></i> Notifikasi</a>
+        <a href="Notifikasi"><i class="bi bi-bell"></i> Notifikasi</a>
       </div>
     </header>
     <div class="navbar">
@@ -164,16 +165,20 @@
             </li>
           </ul>
         </li>
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="Tentang.html">Tentang</a></li>
+        <li><a href="homepage">Beranda</a></li>
+        <li><a href="Tentang">Tentang</a></li>
         <li>
-          <a href="Riwayat.html">Riwayat</a>
+          <a href="Riwayat">Riwayat</a>
         </li>
-        <li><a href="Kontak.html">Kontak</a></li>
+        <li><a href="Kontak">Kontak</a></li>
       </ul>
       <div class="username">
-        <img src="../img/avatar.jpg" />
-        <a onclick="openModal(this)" style="cursor: pointer">Natalia Dita</a>
+        @if (!session('photo'))
+            <img src="" id="prev_profile" />
+        @else
+            <img id="prev_profile" alt="Nama Alt">
+        @endif
+        <a onclick="openModal(this)" style="cursor: pointer" id="username"></a>
       </div>
     </div>
 
@@ -181,22 +186,26 @@
       <div class="isi-popup">
         <div class="content-popup">
           <div class="username-content-popup">
-            <img src="../img/avatar.jpg" />
+                    @if (!session('photo'))
+                        <img src="" id="prev_profile_pop" />
+                    @else
+                        <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
+                    @endif
             <div class="username-popup">
               <p>Natalia Dita</p>
               <button id="btn-profile">
-                <a href="Profile.html">Lihat Profil</a>
+                <a href="Profile">Lihat Profil</a>
               </button>
             </div>
           </div>
           <div class="widget">
             <button id="btn-denda">
               <img src="../img/icon-denda.png" />
-              <a href="Denda.html">Denda</a>
+              <a href="Denda">Denda</a>
             </button>
             <button id="btn-bantuan">
               <i class="bi bi-question-circle"></i>
-              <a href="Kontak.html">Bantuan</a>
+              <a href="Kontak">Bantuan</a>
             </button>
           </div>
           <button class="btn-logout">
@@ -231,7 +240,7 @@
             melalui koleksi kami yang kaya. Selamat bergabung dengan kami dalam
             perjalanan mencari ilmu yang tak pernah berakhir di E-Litera.
           </p>
-          <a href="../Daftar.html">Daftar</a>
+          <a href="../Daftar">Daftar</a>
         </div>
         <img src="../img/vektor-tentang.png" />
       </div>
@@ -285,10 +294,10 @@
         <div class="informasi">
           <h2>Informasi</h2>
           <li>
-            <a href="Tentang.html">Tentang Kami</a>
+            <a href="Tentang">Tentang Kami</a>
           </li>
           <li>
-            <a href="Kontak.html">Hubungi Kami</a>
+            <a href="Kontak">Hubungi Kami</a>
           </li>
           <div class="sosmed">
             <a href="#"><i class="bi bi-facebook"></i></a>
@@ -305,6 +314,63 @@
     </section>
 
     <script>
+      $(document).ready(function () {
+          getData();
+          getCategories();
+      });
+
+      function getData() {
+          $.ajax({
+              url: "http://127.0.0.1:8000/profile",
+              type: "GET",
+              success: function (response) {
+                  console.log(response);
+                  if (response.data) {
+                      var data = response.data;
+                      $("#user_id_val").val(data.user_id);
+                      $("#username").text(data.username);
+                      $("#username_pop").val(data.username);
+                      $("#username-popup").text(data.username);
+                      $("#prev_profile, #prev_profile_pop").attr(
+                          "src",
+                          "data:image/png;base64," + data.photo
+                      );
+                  }
+              },
+          });
+      }
+
+      // Fungsi untuk mengambil data kategori dari API
+      function getCategories() {
+          $.ajax({
+              url: "http://localhost:8000/api/categoryList",
+              type: "GET",
+              success: function (response) {
+                  // Panggil fungsi untuk menampilkan kategori ke dalam daftar
+                  displayCategories(response.data);
+              },
+              error: function (xhr, status, error) {
+                  console.error("Error:", error);
+              },
+          });
+      }
+
+      // Fungsi untuk menampilkan kategori ke dalam daftar
+      function displayCategories(categories) {
+          const categoryList = $("#categoryList");
+          // Kosongkan daftar sebelum menambahkan kategori baru
+          categoryList.empty();
+          // Tambahkan setiap kategori ke dalam daftar
+          categories.forEach((category) => {
+              const li = $("<li>");
+              const link = $("<a>")
+                  .attr("href", "/categories/" + category.category_id)
+                  .text(category.name_category);
+              li.append(link);
+              categoryList.append(li);
+          });
+      }
+
       // validasi button pinjam
       window.addEventListener("load", function () {
         closeModal();

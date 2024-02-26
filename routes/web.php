@@ -87,6 +87,24 @@ Route::middleware(['web'])->group(function () {
         Route::get('/user/Denda', function () {
             return view('user.Denda');
         });
+        Route::get('/user/Book', function () {
+            return view('user.Books-Page');
+        });
+        Route::get('/user/Kontak', function () {
+            return view('user.Kontak');
+        });
+        Route::get('/user/Favorit', function () {
+            return view('user.Favorit');
+        });
+        Route::get('/user/Riwayat', function () {
+            return view('user.Riwayat');
+        });
+        Route::get('/user/Tentang', function () {
+            return view('user.Tentang');
+        });
+        Route::get('/user/Notifikasi', function () {
+            return view('user.Notifikasi');
+        });
     });
 
     Route::get('/', function () {
