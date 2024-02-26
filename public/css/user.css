@@ -511,7 +511,6 @@ input[type="search"]::-webkit-search-clear-button {
 }
 
 .popup .isi-popup {
-    width: 520px;
     background: none;
     position: relative;
     top: 171px;
@@ -523,7 +522,6 @@ input[type="search"]::-webkit-search-clear-button {
 }
 
 .popup .content-popup {
-    min-width: 520px;
     background: #fff;
     border-radius: 35px;
     display: block;
@@ -961,7 +959,7 @@ input[type="search"]::-webkit-search-clear-button {
 .penutup .konten-penutup .layanan h2 {
     text-transform: capitalize;
     color: #eac170;
-    font-weight: 700px;
+    font-weight: 700;
     margin-bottom: 40px;
 }
 
@@ -2013,6 +2011,8 @@ input[type="search"]::-webkit-search-clear-button {
     background: #f9fafb;
     border: 1px solid #ddd;
     border-radius: 3px;
+    display: flex;
+    align-items: center;
 }
 
 .bg-peminjaman .peminjaman .content-peminjaman .get-pinjam .data-get-pinjam p {
@@ -2412,4 +2412,312 @@ tbody .btn-view {
     outline: none;
     color: #fff;
     font-size: 1em;
+}
+
+@media (max-width: 1366px) {
+    header {
+        padding: 20px 80px;
+    }
+
+    header img {
+        width: 150px;
+        height: 37px;
+    }
+
+    header .kotak-search {
+        width: 400px;
+        height: 42px;
+        padding: 8px 16px;
+    }
+
+    header .kotak-search input {
+        font-size: 14px;
+    }
+
+    header .fav-notif {
+        width: 190px;
+    }
+
+    header .fav-notif a {
+        font-size: 14px;
+    }
+
+    .navbar {
+        height: 42px;
+    }
+
+    .navbar ul li a {
+        font-size: 14px;
+    }
+
+    .navbar ul li .kategori {
+        width: 80px;
+    }
+
+    .navbar ul li ul {
+        width: 200px;
+    }
+
+    .navbar ul li ul li {
+        line-height: 40px;
+    }
+
+    .navbar ul li ul li a {
+        font-size: 14px;
+    }
+
+    .navbar .username img {
+        width: 25px;
+        height: 25px;
+    }
+
+    #username {
+        font-size: 14px;
+    }
+
+    .banner {
+        min-height: calc(100vh - 126px);
+        margin-top: 42px;
+    }
+
+    .banner .content h1 {
+        font-size: 2em;
+    }
+
+    .banner .content h1 a {
+        font-size: 40px;
+    }
+
+    .banner .content p {
+        font-size: 14px;
+        margin-top: 40px;
+    }
+
+    .banner .content .btn-banner {
+        font-size: 12px;
+        padding: 8px 12px;
+        margin-top: 40px;
+    }
+
+    .title .judul p {
+        font-size: 14px;
+    }
+
+    .title .judul h1 {
+        font-size: 24px;
+    }
+
+    .title .btn-rekomendasi a {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-gap: 30px;
+    }
+
+    .grid-item {
+        padding: 12px;
+    }
+
+    .grid-item img {
+        height: 200px;
+    }
+
+    .details {
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+
+    #kategori-buku a {
+        font-size: 12px;
+    }
+
+    #judul-buku,
+    #judul-buku a {
+        font-size: 14px;
+    }
+
+    #penulis-buku,
+    .faq .konten-faq .faq-item .faq-answer p,
+    .penutup .konten-penutup .books-footer .alamat,
+    .penutup .konten-penutup .books-footer .whatsapp,
+    .penutup .konten-penutup .books-footer .email {
+        font-size: 12px;
+    }
+
+    .rating {
+        font-size: 14px;
+    }
+
+    .link-pinjam button {
+        width: 140px;
+    }
+
+    .link-pinjam button a,
+    .link-kontak .konten-link-kontak .btn-kontak a,
+    .widget button a,
+    .content-popup a {
+        font-size: 14px;
+    }
+
+    .new-rilis .rilis-konten p,
+    .faq .konten-faq .faq-item .faq-question,
+    .link-kontak .konten-link-kontak .title-link-kontak p,
+    .penutup .konten-penutup .books-footer .deskripsi-perpus,
+    .penutup .konten-penutup .layanan a,
+    .penutup .konten-penutup .informasi li a,
+    .penutup .footer p,
+    .bg-peminjaman .peminjaman .content-peminjaman .get-pinjam label,
+    .bg-peminjaman .peminjaman .content-peminjaman .get-pinjam p,
+    .bg-peminjaman
+        .peminjaman
+        .content-peminjaman
+        .get-pinjam
+        .data-get-pinjam
+        input {
+        font-size: 14px;
+    }
+
+    .new-rilis .rilis-konten h1,
+    .faq .title-faq h1,
+    .username-content-popup .username-popup {
+        font-size: 24px;
+    }
+
+    .new-rilis .rilis-konten .quote-penulis,
+    .new-rilis .rilis-konten .salam-penulis,
+    .faq .title-faq .deskripsi-faq,
+    .faq .konten-faq .faq-item .faq-question i,
+    .bg-peminjaman .peminjaman .content-peminjaman form h3,
+    .content-popup .btn-logout p {
+        font-size: 16px;
+    }
+
+    .new-rilis .rilis-konten {
+        width: 600px;
+    }
+
+    .new-rilis .gambar-penulis {
+        width: 500px;
+    }
+
+    .new-rilis .gambar-penulis .circle {
+        width: 462px;
+        height: 462px;
+    }
+
+    .new-rilis .gambar-penulis img {
+        margin-top: 110px;
+        width: 562px;
+    }
+
+    .faq .title-faq {
+        width: 500px;
+    }
+
+    .faq .konten-faq {
+        width: 600px;
+    }
+
+    .faq .title-faq p {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .faq .konten-faq .faq-item .faq-question {
+        padding: 16px 0;
+    }
+
+    .link-kontak .konten-link-kontak .btn-kontak {
+        padding: 10px 14px;
+    }
+
+    .penutup .konten-penutup .layanan h2,
+    .penutup .konten-penutup .informasi h2,
+    .penutup .konten-penutup .books-footer .deskripsi-perpus {
+        margin-bottom: 30px;
+    }
+
+    .penutup .konten-penutup .informasi li,
+    .bg-peminjaman .peminjaman .header-peminjaman {
+        margin-bottom: 20px;
+    }
+
+    .penutup {
+        padding-bottom: 40px;
+    }
+
+    .bg-peminjaman .peminjaman {
+        width: 1000px;
+        padding: 40px;
+    }
+
+    .bg-peminjaman .peminjaman .header-peminjaman img {
+        width: 107px;
+        height: 27px;
+    }
+
+    .bg-peminjaman .peminjaman .header-peminjaman i {
+        font-size: 1em;
+        width: 24px;
+        height: 24px;
+    }
+
+    .bg-peminjaman .peminjaman .content-peminjaman img {
+        width: 180px;
+        height: 234px;
+    }
+
+    .bg-peminjaman .peminjaman .content-peminjaman .get-pinjam {
+        height: 42px;
+        margin-bottom: 10px;
+    }
+
+    .bg-peminjaman
+        .peminjaman
+        .content-peminjaman
+        .get-pinjam
+        .data-get-pinjam {
+        padding: 12px 16px;
+    }
+
+    .bg-peminjaman .peminjaman .content-peminjaman form button[type="submit"] {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .popup .isi-popup {
+        top: 126px;
+        left: 866px;
+    }
+
+    .username-content-popup {
+        width: 420px;
+        margin-bottom: 30px;
+        min-height: 10px;
+        padding: 20px;
+    }
+
+    .username-content-popup img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .widget {
+        margin-bottom: 20px;
+    }
+
+    .content-popup .btn-logout {
+        margin: 0 70px;
+    }
+
+    .username-content-popup .username-popup button {
+        padding: 12px 16px;
+    }
+
+    .widget button {
+        width: 90px;
+    }
 }
