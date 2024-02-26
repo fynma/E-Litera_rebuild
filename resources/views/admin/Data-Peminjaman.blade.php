@@ -53,14 +53,14 @@
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+          href="/admin/dashboard"
         >
           <img src="../img/logo aplikasi billa 1.png" />
         </a>
 
         <!-- Nav Item - Data Peminjaman Buku -->
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="/admin/dashboard">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span></a
           >

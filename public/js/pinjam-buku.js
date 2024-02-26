@@ -75,7 +75,9 @@ function displayBooks(books) {
         });
 
         var title = $(
-            '<h3 id="judul-buku"><a href="#">' + book.judul + "</a></h3>"
+            '<h3 id="judul-buku" onclick="navigateToBooks()"><a style="cursor:pointer;">' +
+                book.judul +
+                "</a></h3>"
         );
         var author = $(
             '<a href="#" id="penulis-buku">By: ' + book.penulis + "</a>"
@@ -187,6 +189,10 @@ function setTglPinjam() {
     var yyyy = today.getFullYear();
     var formattedDate = yyyy + "-" + mm + "-" + dd;
     $("#tanggal-pinjam").val(formattedDate); // Set nilai input tgl-kembali
+}
+
+function navigateToBooks() {
+    window.location.href = "Book"; // Ganti dengan URL halaman Books JavaScript Anda
 }
 
 // function openPinjam(book_id) {

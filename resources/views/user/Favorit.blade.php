@@ -10,10 +10,11 @@
     />
     <link rel="stylesheet" href="../css/user.css" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   </head>
   <body>
     <header>
-      <a href="index.html"><img src="../img/logo aplikasi billa 1.png" /></a>
+      <a href="homepage"><img src="../img/logo aplikasi billa 1.png" /></a>
       <!-- <div class="toggle">
         <div class="bar1"></div>
         <div class="bar2"></div>
@@ -25,155 +26,32 @@
         <i class="bi bi-search"></i>
       </div>
       <div class="fav-notif">
-        <a href="Favorit.html"><i class="bi bi-heart"></i> Favorit</a>
+        <a href="Favorit"><i class="bi bi-heart"></i> Favorit</a>
         <div class="garis-vertikal"></div>
-        <a href="Notifikasi.html"><i class="bi bi-bell"></i> Notifikasi</a>
+        <a href="Notifikasi"><i class="bi bi-bell"></i> Notifikasi</a>
       </div>
     </header>
     <div class="navbar">
       <div class="kosongan-navbar"></div>
       <ul class="navigation">
         <li>
-          <a href="#" class="kategori"
-            >Kategori <i class="bi bi-chevron-down"></i
-          ></a>
-          <ul>
-            <li>
-              <a href="#" id="menu">Umum <i class="bi bi-chevron-right"></i></a>
-              <ul>
-                <li><h2></h2></li>
-                <li><a href="#">Publikasi Umum</a></li>
-                <li><a href="#">Informasi Umum</a></li>
-                <li><a href="#">Ensiklopedia</a></li>
-                <li><a href="#">Bibliografi</a></li>
-                <li><a href="#">Majalah</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" id="menu"
-                >Filsafat dan Psikologi <i class="bi bi-chevron-right"></i
-              ></a>
-              <ul>
-                <li><h2></h2></li>
-                <li><a href="#">Isu kesehatan Mental</a></li>
-                <li><a href="#">Psikologi Positif</a></li>
-                <li><a href="#">Psikologi dalam Filsafat</a></li>
-                <li><a href="#">Filsafat Mindfulness</a></li>
-                <li><a href="#">Psikologi Eksperimental</a></li>
-                <li><a href="#">Filsafat Ontologi</a></li>
-                <li><a href="#">Filsafat Epistemologi</a></li>
-                <li><a href="#">Filsafat Aksiologi</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" id="menu"
-                >Sosial <i class="bi bi-chevron-right"></i
-              ></a>
-              <ul>
-                <li><h2></h2></li>
-                <li><a href="#">Sosiologi</a></li>
-                <li><a href="#">Kesejahteraan Masyarakat</a></li>
-                <li><a href="#">Politik dan Ekonomi</a></li>
-                <li><a href="#">Budaya dan Identitas</a></li>
-                <li><a href="#">Isu Kontemporer</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">Agama <i class="bi bi-chevron-right"></i></a>
-              <ul>
-                <li><h2></h2></li>
-                <li><a href="#">Islam</a></li>
-                <li><a href="#">Protestan dan Katolik</a></li>
-                <li><a href="#">Hindu</a></li>
-                <li><a href="#">Buddha</a></li>
-                <li><a href="#">Konghucu</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">Bahasa <i class="bi bi-chevron-right"></i></a>
-              <ul>
-                <li><h2></h2></li>
-                <li><a href="#">Tata Bahasa</a></li>
-                <li><a href="#">Cerpen Indonesia</a></li>
-                <li><a href="#">Bahasa Indonesia</a></li>
-                <li><a href="#">Bahasa Asing</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#"
-                >Sains dan Matematika <i class="bi bi-chevron-right"></i
-              ></a>
-              <ul>
-                <li><h2></h2></li>
-                <li><a href="#">Sains</a></li>
-                <li><a href="#">Matematika Dasar</a></li>
-                <li><a href="#">Kimia</a></li>
-                <li><a href="#">Kalkulus</a></li>
-                <li><a href="#">Fisika</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">Teknologi <i class="bi bi-chevron-right"></i></a>
-              <ul>
-                <li><h2></h2></li>
-                <li><a href="#">Inovasi</a></li>
-                <li><a href="#">Pemrograman</a></li>
-                <li><a href="#">Teknologi Medis</a></li>
-                <li><a href="#">Machine Learning</a></li>
-                <li><a href="#">Artificial Intelegent</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#"
-                >Seni dan Rekreasi <i class="bi bi-chevron-right"></i
-              ></a>
-              <ul>
-                <li><h2></h2></li>
-                <li><a href="#">Seni Lukis</a></li>
-                <li><a href="#">Seni Rupa</a></li>
-                <li><a href="#">Pariwisata</a></li>
-                <li><a href="#">Wisata Alam</a></li>
-                <li><a href="#">Seni Tari</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#"
-                >Literatur dan Sastra <i class="bi bi-chevron-right"></i
-              ></a>
-              <ul>
-                <li><h2></h2></li>
-                <li><a href="#">Novel</a></li>
-                <li><a href="#">Sastra Indonesia</a></li>
-                <li><a href="#">Cerpen</a></li>
-                <li><a href="#">Komik</a></li>
-                <li><a href="#">Sastra Dunia</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#"
-                >Sejarah dan Geografis <i class="bi bi-chevron-right"></i
-              ></a>
-              <ul>
-                <li><h2></h2></li>
-                <li><a href="#">Sejarah Dunia</a></li>
-                <li><a href="#">Sejarah Nasional</a></li>
-                <li><a href="#">Arkeologi</a></li>
-                <li><a href="#">Geografis</a></li>
-                <li><a href="#">Tokoh Bersejarah</a></li>
-              </ul>
-            </li>
-          </ul>
+          <a href="#" class="kategori">Kategori <i class="bi bi-chevron-down"></i></a>
+          <ul id="categoryList"></ul>
         </li>
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="Tentang.html">Tentang</a></li>
+        <li><a href="homepage">Beranda</a></li>
+        <li><a href="Tentang">Tentang</a></li>
         <li>
-          <a href="Riwayat.html">Riwayat</a>
+          <a href="Riwayat">Riwayat</a>
         </li>
-        <li><a href="Kontak.html">Kontak</a></li>
+        <li><a href="Kontak">Kontak</a></li>
       </ul>
       <div class="username">
-        <img src="../img/avatar.jpg" />
-        <a onclick="openModal(this)" style="cursor: pointer">Natalia Dita</a>
+        @if (!session('photo'))
+            <img src="" id="prev_profile" />
+        @else
+            <img id="prev_profile" alt="Nama Alt">
+        @endif
+        <a onclick="openModal(this)" style="cursor: pointer" id="username"></a>
       </div>
     </div>
 
@@ -181,22 +59,26 @@
       <div class="isi-popup">
         <div class="content-popup">
           <div class="username-content-popup">
-            <img src="../img/avatar.jpg" />
+                    @if (!session('photo'))
+                        <img src="" id="prev_profile_pop" />
+                    @else
+                        <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
+                    @endif
             <div class="username-popup">
               <p>Natalia Dita</p>
               <button id="btn-profile">
-                <a href="Profile.html">Lihat Profil</a>
+                <a href="Profile">Lihat Profil</a>
               </button>
             </div>
           </div>
           <div class="widget">
             <button id="btn-denda">
               <img src="../img/icon-denda.png" />
-              <a href="Denda.html">Denda</a>
+              <a href="Denda">Denda</a>
             </button>
             <button id="btn-bantuan">
               <i class="bi bi-question-circle"></i>
-              <a href="Kontak.html">Bantuan</a>
+              <a href="Kontak">Bantuan</a>
             </button>
           </div>
           <button class="btn-logout">
@@ -283,7 +165,7 @@
                 <a href="#">Adventure</a>, <a href="#">Fun</a>
               </div>
               <h3 id="judul-buku">
-                <a href="Books-Page.html">Help Me Find My Stomach</a>
+                <a href="Books-Page">Help Me Find My Stomach</a>
               </h3>
               <a href="#" id="penulis-buku">By: Angela Gunning</a>
               <div class="rating">
@@ -307,7 +189,7 @@
                 <a href="#">Adventure</a>, <a href="#">Fun</a>
               </div>
               <h3 id="judul-buku">
-                <a href="Books-Page.html">Help Me Find My Stomach</a>
+                <a href="Books-Page">Help Me Find My Stomach</a>
               </h3>
               <a href="#" id="penulis-buku">By: Angela Gunning</a>
               <div class="rating">
@@ -331,7 +213,7 @@
                 <a href="#">Adventure</a>, <a href="#">Fun</a>
               </div>
               <h3 id="judul-buku">
-                <a href="Books-Page.html">Help Me Find My Stomach</a>
+                <a href="Books-Page">Help Me Find My Stomach</a>
               </h3>
               <a href="#" id="penulis-buku">By: Angela Gunning</a>
               <div class="rating">
@@ -355,7 +237,7 @@
                 <a href="#">Adventure</a>, <a href="#">Fun</a>
               </div>
               <h3 id="judul-buku">
-                <a href="Books-Page.html">Help Me Find My Stomach</a>
+                <a href="Books-Page">Help Me Find My Stomach</a>
               </h3>
               <a href="#" id="penulis-buku">By: Angela Gunning</a>
               <div class="rating">
@@ -379,7 +261,7 @@
                 <a href="#">Adventure</a>, <a href="#">Fun</a>
               </div>
               <h3 id="judul-buku">
-                <a href="Books-Page.html">Help Me Find My Stomach</a>
+                <a href="Books-Page">Help Me Find My Stomach</a>
               </h3>
               <a href="#" id="penulis-buku">By: Angela Gunning</a>
               <div class="rating">
@@ -403,7 +285,7 @@
                 <a href="#">Adventure</a>, <a href="#">Fun</a>
               </div>
               <h3 id="judul-buku">
-                <a href="Books-Page.html">Help Me Find My Stomach</a>
+                <a href="Books-Page">Help Me Find My Stomach</a>
               </h3>
               <a href="#" id="penulis-buku">By: Angela Gunning</a>
               <div class="rating">
@@ -429,7 +311,7 @@
                 <a href="#">Adventure</a>, <a href="#">Fun</a>
               </div>
               <h3 id="judul-buku">
-                <a href="Books-Page.html">Help Me Find My Stomach</a>
+                <a href="Books-Page">Help Me Find My Stomach</a>
               </h3>
               <a href="#" id="penulis-buku">By: Angela Gunning</a>
               <div class="rating">
@@ -453,7 +335,7 @@
                 <a href="#">Adventure</a>, <a href="#">Fun</a>
               </div>
               <h3 id="judul-buku">
-                <a href="Books-Page.html">Help Me Find My Stomach</a>
+                <a href="Books-Page">Help Me Find My Stomach</a>
               </h3>
               <a href="#" id="penulis-buku">By: Angela Gunning</a>
               <div class="rating">
@@ -477,7 +359,7 @@
                 <a href="#">Adventure</a>, <a href="#">Fun</a>
               </div>
               <h3 id="judul-buku">
-                <a href="Books-Page.html">Help Me Find My Stomach</a>
+                <a href="Books-Page">Help Me Find My Stomach</a>
               </h3>
               <a href="#" id="penulis-buku">By: Angela Gunning</a>
               <div class="rating">
@@ -501,7 +383,7 @@
                 <a href="#">Adventure</a>, <a href="#">Fun</a>
               </div>
               <h3 id="judul-buku">
-                <a href="Books-Page.html">Help Me Find My Stomach</a>
+                <a href="Books-Page">Help Me Find My Stomach</a>
               </h3>
               <a href="#" id="penulis-buku">By: Angela Gunning</a>
               <div class="rating">
@@ -525,7 +407,7 @@
                 <a href="#">Adventure</a>, <a href="#">Fun</a>
               </div>
               <h3 id="judul-buku">
-                <a href="Books-Page.html">Help Me Find My Stomach</a>
+                <a href="Books-Page">Help Me Find My Stomach</a>
               </h3>
               <a href="#" id="penulis-buku">By: Angela Gunning</a>
               <div class="rating">
@@ -549,7 +431,7 @@
                 <a href="#">Adventure</a>, <a href="#">Fun</a>
               </div>
               <h3 id="judul-buku">
-                <a href="Books-Page.html">Help Me Find My Stomach</a>
+                <a href="Books-Page">Help Me Find My Stomach</a>
               </h3>
               <a href="#" id="penulis-buku">By: Angela Gunning</a>
               <div class="rating">
@@ -595,10 +477,10 @@
         <div class="informasi">
           <h2>Informasi</h2>
           <li>
-            <a href="Tentang.html">Tentang Kami</a>
+            <a href="Tentang">Tentang Kami</a>
           </li>
           <li>
-            <a href="Kontak.html">Hubungi Kami</a>
+            <a href="Kontak">Hubungi Kami</a>
           </li>
           <div class="sosmed">
             <a href="#"><i class="bi bi-facebook"></i></a>
@@ -615,6 +497,57 @@
     </section>
 
     <script>
+        $(document).ready(function() {
+            getData();
+            getCategories();
+        });
+
+        function getData() {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/profile',
+                type: 'GET',
+                success: function(response) {
+                    console.log(response);
+                    if (response.data) {
+                        var data = response.data;
+                        $('#user_id_val').val(data.user_id);
+                        $('#username').text(data.username);
+                        $('#username_pop').val(data.username);
+                        $('#username-popup').text(data.username);
+                        $('#prev_profile, #prev_profile_pop').attr('src', 'data:image/png;base64,' + data.photo)
+                    }
+                },
+            });
+        }
+
+        // Fungsi untuk mengambil data kategori dari API
+        function getCategories() {
+            $.ajax({
+                url: 'http://localhost:8000/api/categoryList',
+                type: 'GET',
+                success: function(response) {
+                    // Panggil fungsi untuk menampilkan kategori ke dalam daftar
+                    displayCategories(response.data);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        // Fungsi untuk menampilkan kategori ke dalam daftar
+        function displayCategories(categories) {
+            const categoryList = $('#categoryList');
+            // Kosongkan daftar sebelum menambahkan kategori baru
+            categoryList.empty();
+            // Tambahkan setiap kategori ke dalam daftar
+            categories.forEach(category => {
+                const li = $('<li>');
+                const link = $('<a>').attr('href', '/categories/' + category.category_id).text(category.name_category);
+                li.append(link);
+                categoryList.append(li);
+            });
+        }
       // validasi Profil
       window.addEventListener("load", function () {
         closeModal();
