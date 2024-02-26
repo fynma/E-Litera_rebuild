@@ -28,18 +28,12 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript"
             src="https://app.sandbox.midtrans.com/snap/snap.js"
-            data-client-key="<CLIENT-KEY>">
+            data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}">
     </script>
   </head>
   <body>
     <header>
       <a href="homepage"><img src="../img/logo aplikasi billa 1.png" /></a>
-      <!-- <div class="toggle">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </div>
-      <div class="bg-sidebar"></div> -->
       <div class="kotak-search">
         <input type="search" name="cari" id="cari" placeholder="Cari" />
         <i class="bi bi-search"></i>
@@ -156,35 +150,6 @@
               <input type="text" name="totalHarga" id="totalHarga" readonly>
             </form>
           </div>
-
-          <!-- <div class="dendaItem">
-            <label for="titleBook">Judu Buku</label>
-            <p>:</p>
-            <input type="text" name="titleBook" id="titleBook" readonly>
-          </div>
-          <div class="dendaItem">
-            <label for="tglPinjam">Tanggal Pinjam</label>
-            <p>:</p>
-            <input type="text" name="tglPinjam" id="tglPinjam" readonly>
-          </div>
-          <div class="dendaItem">
-            <label for="tglKembali">Tanggal Kembali</label>
-            <p>:</p>
-            <input type="text" name="tglKembali" id="tglKembali" readonly>
-          </div>
-          <div class="dendaItem">
-            <label for="petugasPinjam">Pengonfirmasi Peminjaman</label>
-            <p>:</p>
-            <input type="text" name="petugasPinjam" id="petugasPinjam" readonly>
-          </div>
-          <div class="dendaItem">
-            <label for="petugasKembali">Pengonfirmasi Pengembalian</label>
-            <p>:</p>
-            <input type="text" name="petugasKembali" id="petugasKembali" readonly>
-          </div>
-          <div class="dendaItem"></div>
-          <div class="dendaItem"></div>
-          <div class="dendaItem"></div> -->
         </div>
         <div class="bayarDenda">
           <button id="pay-button">Bayar</button>

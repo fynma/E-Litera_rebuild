@@ -20,9 +20,8 @@ class transactionController extends Controller
             'total_denda' => $data['total_denda'],
         ]);
 
-        // Set your Merchant Server Key
         // config('midtrans.serverKey')
-        \Midtrans\Config::$serverKey = 'SB-Mid-server-kd6Lw9Rq1cXQBv9xwrigYGFL';
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-RriNo9Xmt9LiSgIMj7tdvhLt';
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         \Midtrans\Config::$isProduction = false;
         // Set sanitization on (default)
@@ -44,6 +43,7 @@ class transactionController extends Controller
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
         $transaction -> snap_token = $snapToken;
+        
 
         $transaction->save();
 

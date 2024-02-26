@@ -22,16 +22,11 @@
       crossorigin=""
     ></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
   </head>
   <body>
     <header>
       <a href="homepage"><img src="../img/logo aplikasi billa 1.png" /></a>
-      <!-- <div class="toggle">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </div>
-      <div class="bg-sidebar"></div> -->
       <div class="kotak-search">
         <input type="search" name="cari" id="cari" placeholder="Cari" />
         <i class="bi bi-search"></i>
@@ -76,7 +71,7 @@
                         <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
                     @endif
             <div class="username-popup">
-              <p>Natalia Dita</p>
+              <p id="username-popup"></p>
               <button id="btn-profile">
                 <a href="Profile">Lihat Profil</a>
               </button>
@@ -108,35 +103,34 @@
       <div class="content-kontak">
         <div class="form-kontak">
           <h2>Hubungi Kami</h2>
-          <form>
+          <form  method="post" id="form-contact">
+            @csrf
             <input
               type="text"
-              name="nama"
-              id="nama"
+              name="username"
               placeholder="Nama"
               required
             />
             <input
               type="text"
               name="email"
-              id="email"
               placeholder="Email"
               required
             />
             <textarea
-              name="pesan"
-              id="pesan"
+              name="contact"
               cols="30"
               rows="10"
               placeholder="Pesan"
             ></textarea>
             <input
               type="submit"
-              name="kirim"
               id="kirim"
               value="Kirim"
-              required
             />
+            <input type="hidden" name="user_id" value="{{ session('user_id') }}">
+            <input type="hidden" name="tgl_report">
+
           </form>
         </div>
         <div id="map"></div>
@@ -186,6 +180,9 @@
         <p>Perpustakaan Digital dengan berbagai ffitur</p>
       </div>
     </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../js/contact.js"></script>
 
     <script>
         $(document).ready(function() {

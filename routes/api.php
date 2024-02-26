@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\contactController;
 use App\Http\Controllers\transactionController;
 use App\Http\Controllers\borrowController;
 use App\Http\Controllers\CommentController;
@@ -60,6 +61,7 @@ Route::group([
     Route::post ('bookDetail', [BookController::class, 'Bookdetail']);
     Route::post ('deleteUser', [ProfileController::class, 'deleteUser']);
     Route::post ('transaction', [transactionController::class, 'transaction_midtrans']);
+    Route::post ('contact-admin', [contactController::class, 'sendReport']);
 
 
 

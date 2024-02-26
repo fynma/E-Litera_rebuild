@@ -139,7 +139,7 @@ $("#tabel-data tbody").on("click", ".btn-view", function () {
         Math.ceil(lateDuration / (1000 * 60 * 60 * 24)) - 1,
         0
     );
-    var totalHarga = lateDays * 1000;
+    totalHarga = lateDays * 1000;
 
     $("#user_id").val(userID);
     $("#book_id").val(bookID);
@@ -203,7 +203,24 @@ function closeDetail() {
     detail.classList.remove("openPopupDenda");
 }
 
+$("#popupDenda").on("click", ".#pay-button  ", function () {
+    var formData = $("#detailDenda").serialize();
+    $.ajax({
+        url: "http://127.0.0.1:8000/api/transaction",
+        method: "POST",
+        data: formData,
+        success: function (response) {
+            // Handle response jika sukses
+            console.log(response);
+        },
+        error: function (xhr, status, error) {
+            // Handle error jika permintaan gagal
+            console.error(xhr.responseText);
+        },
+    })
+});
+
 var payButton = document.getElementById("pay-button");
 payButton.addEventListener("click", function () {
-    snap.pay("<SNAP_TOKEN>");
+    snap.pay(response.snaptoken);
 });
