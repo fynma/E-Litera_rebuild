@@ -38,7 +38,7 @@ class ProfileController extends Controller
             'email' => 'string',
             'username' => 'string|max:10',
             'long_name' => 'string',
-            'telp' => 'integer',
+            'telp' => 'string|max:20',
             'address' => 'string',
         ]);
     
