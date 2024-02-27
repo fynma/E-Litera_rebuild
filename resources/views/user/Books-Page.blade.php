@@ -12,16 +12,12 @@
     <link rel="icon" href="../../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <meta name="user-id" content="{{ session('user_id') }}">
   </head>
   <body>
     <header>
       <a href="../homepage"><img src="../../img/logo aplikasi billa 1.png" /></a>
-      <!-- <div class="toggle">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </div>
-      <div class="bg-sidebar"></div> -->
+
       <div class="kotak-search">
         <input type="search" name="cari" id="cari" placeholder="Cari" />
         <i class="bi bi-search"></i>
@@ -140,11 +136,6 @@
             <h2 id="judul_buku"></h2>
             <a style="font-size: 14px; color: #666666;">By: <span id="penulis_buku"></span></a>
             <div class="rating" id="bookRating">
-              <!-- <i class="bi bi-star-fill" value="1"></i>
-              <i class="bi bi-star-fill" value="2"></i>
-              <i class="bi bi-star-fill" value="3"></i>
-              <i class="bi bi-star-fill" value="4"></i>
-              <i class="bi bi-star-fill" value="5"></i> -->
             </div>
             <div class="pinjam-buku">
               <button style="cursor: pointer" onclick="bukaNilai()">
@@ -412,25 +403,6 @@
       function closeModal() {
         popup.classList.remove("open-popup");
       }
-
-      // validasi icon favorit
-      document.addEventListener("DOMContentLoaded", function () {
-        var favorit = document.getElementById("heartIcon");
-
-        favorit.addEventListener("click", function (event) {
-          event.preventDefault();
-
-          // Ambil warna saat ini
-          var currentColor = favorit.style.color;
-
-          // Toggle antara warna default dan merah muda
-          if (currentColor === "rgb(204, 204, 204)") {
-            favorit.style.color = "#ff69b4"; // Ubah ke merah muda
-          } else {
-            favorit.style.color = "#ccc"; // Kembali ke warna default
-          }
-        });
-      });
 
       // validasi Pinjam
       window.addEventListener("load", function () {

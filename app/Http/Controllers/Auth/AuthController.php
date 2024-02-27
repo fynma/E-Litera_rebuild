@@ -79,37 +79,20 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         if (Auth::attempt($request->only('email', 'password'))) {
-            // Authentication successful
             $user = User::where('email', $request->email)->first();
-            // $user = auth()->user();
             $token = auth()->attempt(['email' => $request->email, 'password' => $request->password]);
 
-            // dd($user->user_id);
-            // Simpan ID pengguna ke dalam sesi
-            // dd(session()->all());
-
         } else {
-            // Authentication failed
             dd('Authentication failed');
         }
 
-        // dd($token);
         session(['user'         => $user]);
         session(['user_id'      => $user->user_id]);
         session(['access'       => $user->access]);
         session(['token'        => $token]);
-        // session(['username'     => $user->username]);
-        // session(['long_name'    => $user->long_name]);
-        // session(['telp'         => $user->telp]);
-        // session(['email'        => $user->email]);
-        // session(['address'      => $user->address]);
-        // session(['photo'        => $user->photo]);
 
         $tokenFromSession = session('token');
-    
-       
-        
-        // session(['jwt'])
+        $response = null;
         switch ($user->access) {
             case 'petugas':
                 return redirect('admin/home')->with([
@@ -136,10 +119,14 @@ class AuthController extends Controller
                     'auth' => [
                         'token' => $tokenFromSession,
                         'type' => 'Bearer'
-                        
                     ]
                 ]);
+            default: break;
         }
+        return $response->withHeaders([
+            'user_id' => $user->user_id,
+        ]);
+
     }
 
 

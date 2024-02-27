@@ -53,10 +53,8 @@ function displayBooks(books) {
     var gridContainer = $("#grid-item");
     gridContainer.empty();
 
-    // Memotong array buku agar hanya 4 data yang ditampilkan
-    books = books.slice(0, 6);
-    // Membalik urutan array sehingga data terbaru muncul pertama
-    books = books.reverse();
+    books = books.slice(0, 6).reverse();
+
 
     $.each(books, function (index, book) {
         var gridItem = $(

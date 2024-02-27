@@ -62,10 +62,11 @@ Route::group([
     Route::post ('deleteUser', [ProfileController::class, 'deleteUser']);
     Route::post ('transaction', [transactionController::class, 'transaction_midtrans']);
     Route::post ('contact-admin', [contactController::class, 'sendReport']);
+    Route::post ('favorite', [BookController::class, 'favorite']);
 
 
 
-
+    Route::get  ('showFavorite', [BookController::class, 'showFavorite']);
     Route::get  ('borrowList', [borrowController::class, 'showBorrow']);
     Route::get  ('returnList', [borrowController::class, 'showReturn']);
     Route::get  ('listDendaUser', [borrowController::class, 'showTelat']);
