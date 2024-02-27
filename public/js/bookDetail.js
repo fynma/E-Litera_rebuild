@@ -5,7 +5,10 @@ $(document).ready(function () {
     setTanggalKembali();
     setTglPinjam();
     handlePinjam();
+    getfavorite();
+    favorite();
 });
+
 
 function handlePinjam() {
     // Function to handle form submission
@@ -84,11 +87,7 @@ function displayCategories(categories) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Get the book ID from the URL
-    // const urlParams = new URLSearchParams(window.location.search);
-    // const bookId = urlParams.get("id");
-    // console.log(bookId);
-    // Mendapatkan URL saat ini dari window.location
+
     var url = window.location.href;
 
     // Mem-parse URL untuk mendapatkan pathnya
@@ -188,9 +187,9 @@ function displayBooks(books) {
     gridContainer.empty();
 
     // Memotong array buku agar hanya 4 data yang ditampilkan
-    books = books.slice(0, 6);
-    // Membalik urutan array sehingga data terbaru muncul pertama
-    books = books.reverse();
+    // books = books.slice(0, 6);
+    // // Membalik urutan array sehingga data terbaru muncul pertama
+    // books = books.reverse();
 
     $.each(books, function (index, book) {
         var gridItem = $(
@@ -210,10 +209,10 @@ function displayBooks(books) {
 
         var title = $(
             '<h3 id="judul-buku"><a style="cursor:pointer;" id="book_judul" data-id="' +
-                book.book_id +
-                '">' +
-                book.judul +
-                "</a></h3>"
+            book.book_id +
+            '">' +
+            book.judul +
+            "</a></h3>"
         );
         var author = $(
             '<a href="#" id="penulis-buku">By: ' + book.penulis + "</a>"
@@ -246,8 +245,8 @@ function displayBooks(books) {
         var linkPinjam = $('<div class="link-pinjam" id="disabledLink"></div>');
         var buttonPinjam = $(
             '<button style="cursor: pointer" id="btn-pinjam" onclick="openPinjam()" data-id=' +
-                book.book_id +
-                "><a>Pinjam</a></button>"
+            book.book_id +
+            "><a>Pinjam</a></button>"
         );
 
         details.append(
@@ -332,3 +331,121 @@ $("#grid-item").on("click", "#book_judul", function () {
     var bookId = $(this).data("id");
     window.location.href = "/user/Book/" + bookId;
 });
+
+function getfavorite() {
+    $.ajax({
+        url: "http://127.0.0.1:8000/api/showFavorite",
+        type: "GET",
+        success: function (response) {
+            console.log(response);
+            if (response.data) {
+                var books = response.data;
+                favorite(books);
+            } else {
+                console.error("Failed to retrieve favorites from the API.");
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error while fetching favorites:", error);
+        },
+    });
+}
+
+function favorite(books) {
+    var heartIcon = $("#heartIcon");
+    var url = window.location.href;
+    var urlParts = url.split("/");
+    var bookId = urlParts[urlParts.length - 1];
+    var userId = document.querySelector('meta[name="user-id"]').content;
+
+    console.log("favorite user id :" + userId);
+    console.log("favorite book id: " + bookId);
+
+    // Check if the bookId exists in the favorites
+    var isFavorited = books.some(function (book) {
+        return book.book_id.toString() === bookId;
+    });
+
+    // Set the initial color based on the favorite status
+    if (isFavorited) {
+        heartIcon.css("color", "#ff69b4");
+    } else {
+        heartIcon.css("color", "#ccc");
+    }
+
+    heartIcon.on("click", function (event) {
+        event.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8000/api/favorite",
+            data: {
+                book_id: bookId,
+                user_id: userId,
+            },
+            success: function (response) {
+                if (response.message === "buku di tambahkan ke favorit") {
+                    heartIcon.css("color", "#ff69b4");
+                } else if (response.message === "buku di hapus dari favorit") {
+                    heartIcon.css("color", "#ccc");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("Error occurred: " + textStatus + ", " + errorThrown);
+            },
+        });
+    });
+};
+// function getfavorite() {
+//     $.ajax({
+//         url: "http://127.0.0.1:8000/api/showFavorite",
+//         type: "GET",
+//         success: function (response) {
+//             console.log(response);
+//             if (response.data) {
+//                 var books = response.data;
+//                 favorite(books);
+//             } else {
+//                 console.error("Failed to retrieve categories from the API.");
+//             }
+//         },
+//         error: function (xhr, status, error) {
+//             console.error("Error while fetching book:", error);
+//         },
+//     });
+// }
+
+
+// function favorite(books) {
+//     var heartIcon = $("#heartIcon");
+//     var url = window.location.href;
+//     var urlParts = url.split("/");
+//     var bookId = urlParts[urlParts.length - 1];
+//     var userId = document.querySelector('meta[name="user-id"]').content;
+
+//     console.log("favorite user id :" + userId);
+//     console.log("favorite book id: " + bookId);
+
+//     heartIcon.on("click", function (event) {
+//         event.preventDefault();
+
+//         $.ajax({
+//             type: "POST",
+//             url: "http://127.0.0.1:8000/api/favorite",
+//             data: {
+//                 book_id: bookId,
+//                 user_id: userId,
+//             },
+//             success: function (response) {
+//                 if (response.message === "buku di tambahkan ke favorit") {
+//                     heartIcon.css("color", "#ff69b4");
+//                 } else if (response.message === "buku di hapus dari favorit") {
+//                     heartIcon.css("color", "#ccc");
+//                 }
+//             },
+//             error: function (jqXHR, textStatus, errorThrown) {
+//                 console.log("Error occurred: " + textStatus + ", " + errorThrown);
+//             },
+//         });
+//     });
+// };
