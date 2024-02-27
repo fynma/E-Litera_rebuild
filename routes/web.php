@@ -87,7 +87,7 @@ Route::middleware(['web'])->group(function () {
         Route::get('/user/Denda', function () {
             return view('user.Denda');
         });
-        Route::get('/user/Book', function () {
+        Route::get('/user/Book/{book_id}', function () {
             return view('user.Books-Page');
         });
         Route::get('/user/Kontak', function () {
