@@ -51,7 +51,7 @@ Route::group([
     Route::post ('editBook', [BookController::class, 'updateBook']);
     Route::post ('deleteBook', [BookController::class, 'deleteBook']);
     Route::post ('uploadComment', [CommentController::class, 'uploadComment']);
-    Route::post ('deleteComment', [CommentController::class, 'deleteComment']); // not clear session problem in session delete
+    Route::post ('deleteComment', [CommentController::class, 'deleteComment']); 
     Route::post ('rating', [RatingController::class, 'newRating']);
     Route::post ('borrow', [borrowController::class, 'borrowBook']);
     Route::post ('confirmBorrow', [borrowController::class, 'confirmBorrow']);
@@ -84,12 +84,10 @@ Route::group([
     Route::get  ('list_denda', [borrowController::class, 'listdenda']);
     Route::get  ('listPinjam', [borrowController::class, 'listPinjam']);
     Route::get  ('dendaSatuan/{borrow_id}', [borrowController::class, 'dendaSatuan']);
-
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
     Route::get  ('showRating', [RatingController::class, 'averageRating']);
-
-
-
+    Route::get  ('showStok', [BookController::class, 'TotalBook']);
+    Route::get  ('group_monthly', [borrowController::class, 'groupByMonth']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

@@ -280,7 +280,7 @@
                                             </div>
                                             <div class="mb-0 text-white satuan-summary font-weight-semibold">
                                                 <span class="h4 font-weight-semibold"
-                                                    style="margin-right: 4%">37</span>Buku
+                                                    style="margin-right: 4%" id="totalStok"> </span>Buku
                                             </div>
                                         </div>
                                     </div>
@@ -299,7 +299,7 @@
                                             </div>
                                             <div class="mb-0 text-white satuan-summary font-weight-semibold">
                                                 <span class="h4 font-weight-semibold"
-                                                    style="margin-right: 4%">12</span>Orang
+                                                    style="margin-right: 4%" id="TotalDenda"></span>Orang
                                             </div>
                                         </div>
                                     </div>
@@ -467,102 +467,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            getData();
-            getTotalBook();
-            getTotalUser();
-            getTotalPinjam();
-        });
-
-
-
-        function getData() {
-            $.ajax({
-                url: 'http://127.0.0.1:8000/profile',
-                type: 'GET',
-                success: function(response) {
-                    console.log(response);
-                    if (response.success) {
-                        var data = response.data;
-                        $('#user').text(data.username);
-                        $('#prev-prof').attr('src', 'data:image/png;base64,' + data.photo)
-                    }
-                },
-            });
-        }
-        // Menggunakan AJAX untuk memanggil fungsi backend
-        function getTotalUser() {
-            $.ajax({
-                url: 'http://127.0.0.1:8000/api/total-user', // Ganti dengan URL yang sesuai
-                type: 'GET',
-                success: function(response) {
-                    if (response.success) {
-                        // Mengupdate elemen HTML dengan data dari backend
-                        $('#total-user').text(response.data);
-                    } else {
-                        console.error('Gagal mendapatkan total user: ' + response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Terjadi kesalahan: ' + error);
-                }
-            });
-        }
-        function getTotalPinjam() {
-            $.ajax({
-                url: 'http://127.0.0.1:8000/api/total-pinjam', // Ganti dengan URL yang sesuai
-                type: 'GET',
-                success: function(response) {
-                    console.log(response);
-                    if (response.data) {
-                        // Mengupdate elemen HTML dengan data dari backend
-                        $('#getTotalBorrow').text(response.data);
-                    } else {
-                        console.error('Gagal mendapatkan total buku yang dipinjam: ' + response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Terjadi kesalahan: ' + error);
-                }
-            });
-        }
-
-
-
-        function getTotalBook() {
-            $.ajax({
-                url: 'http://127.0.0.1:8000/api/bookCover',
-                type: 'GET',
-                success: function(response) {
-                    console.log(response);
-                    if (response.data) {
-                        var books = response.data;
-                        var uniqueBookIds = []; // Array untuk menyimpan ID buku unik
-
-                        // Loop melalui setiap buku dan tambahkan ID buku ke dalam array jika belum ada
-                        books.forEach(function(book) {
-                            var bookId = book.book_id;
-                            if (!uniqueBookIds.includes(bookId)) {
-                                uniqueBookIds.push(bookId);
-                            }
-                        });
-
-                        // Hitung jumlah ID buku unik
-                        var totalUniqueBooks = uniqueBookIds.length;
-                        $('#getTotalBook').text(totalUniqueBooks);
-
-                    } else {
-                        console.error('Gagal mengambil data buku dari API.');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error saat mengambil data buku:', error);
-                }
-            });
-        }
-    </script>
+    <script src="../js/index-admin.js"></script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>

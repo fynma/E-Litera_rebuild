@@ -80,7 +80,7 @@
           <div class="widget">
             <button id="btn-denda">
               <img src="../img/icon-denda.png" />
-              <a href="Denda">Denda</a>
+              <a href="/user/Denda">Denda</a>
             </button>
             <button id="btn-bantuan">
               <i class="bi bi-question-circle"></i>
