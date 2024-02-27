@@ -215,12 +215,6 @@ class borrowController extends Controller
                     ->where('borrow_id', $borrow_id)
                     ->get();
 
-        // $borrow = User::where('user_id', $borrow_id)->firstOrFail();
-        
-        // return response()->json([
-        //     'success' => true,
-        //     'data' => $borrow
-        // ]);
 
         return response()->json(['borrows' => $borrow]);
     }
@@ -262,6 +256,16 @@ class borrowController extends Controller
             return response()->json(['message' => 'peminjaman sudah dikonfirmasi '], 400);
         }
 
+    }
+
+    public function groupByMonth()
+    {
+        $result = Borrow::select(DB::raw('DATE_FORMAT(tgl_pinjam, "%M %Y") as month_year'), DB::raw('COUNT(*) as count'))
+                ->groupBy('month_year')
+                ->orderBy('tgl_pinjam')
+                ->get();
+    
+            return response()->json(['result' => $result]);
     }
 
 }
