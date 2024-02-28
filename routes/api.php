@@ -36,7 +36,6 @@ Route::group([
 
 ], function ($router) {
 
-    Route::post ('logout', [AuthController::class, 'logout']);
     Route::post ('refresh', [AuthController::class, 'refresh']);
     Route::post ('me', [AuthController::class, 'me']);
     Route::post ('register', [AuthController::class, 'register']);
@@ -63,9 +62,10 @@ Route::group([
     Route::post ('transaction', [transactionController::class, 'transaction_midtrans']);
     Route::post ('contact-admin', [contactController::class, 'sendReport']);
     Route::post ('favorite', [BookController::class, 'favorite']);
+    Route::post ('logout', [ProfileController::class, 'logout']);
 
 
-
+    Route::get  ('HistoryBorrow', [borrowController::class, 'showHistory']);
     Route::get  ('showFavorite', [BookController::class, 'showFavorite']);
     Route::get  ('borrowList', [borrowController::class, 'showBorrow']);
     Route::get  ('returnList', [borrowController::class, 'showReturn']);

@@ -17,7 +17,7 @@ function getData() {
             console.log(response);
             if (response.success) {
                 var data = response.data;
-                $('#user').text(data.username);
+                $('#user').text(data.username, data.access) ;
                 $('#prev-prof').attr('src', 'data:image/png;base64,' + data.photo)
             }
         },
