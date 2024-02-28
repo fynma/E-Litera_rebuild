@@ -28,7 +28,6 @@
     <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
 </head>
-
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -187,7 +186,7 @@
                                     class="mr-3 img-profile rounded-circle"
                                     src="../img/undraw_profile.svg"
                                 />
-                                <span class="d-none d-lg-inline text-gray-600 small" id="user"> (Petugas)</span>
+                                <span class="d-none d-lg-inline text-gray-600 small" id="user">  </span>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

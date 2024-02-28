@@ -66,20 +66,13 @@ class BookController extends Controller
 
     public function BookCoverView()
     {
-        // Ambil data dari view SQL
         $bookDetails = BookList::all();
 
-        // Buat array kosong untuk menampung hasil pengelompokan
         $groupedBooks = [];
 
-        // Buat array sementara untuk menyimpan total rating dan jumlah rating
         $tempRating = [];
-
-        // Lakukan iterasi pada setiap detail buku
         foreach ($bookDetails as $bookDetail) {
-            // Cek apakah buku sudah ada dalam hasil pengelompokan
             if (!array_key_exists($bookDetail->book_id, $groupedBooks)) {
-                // Jika belum ada, tambahkan buku ke hasil pengelompokan
                 $groupedBooks[$bookDetail->book_id] = [
                     'book_id' => $bookDetail->book_id,
                     'judul' => $bookDetail->judul,
@@ -91,35 +84,27 @@ class BookController extends Controller
                     'deskripsi' => $bookDetail->deskripsi,
                     'total_buku' => $bookDetail->total_buku,
                     'stok' => $bookDetail->stok,
-                    // Inisialisasi kategori sebagai array kosong
                     'kategori' => [],
-                    // Inisialisasi total rating dan jumlah rating
                     'totalRating' => 0,
                     'numRatings' => 0,
                 ];
             }
 
-            // Cek apakah kategori sudah ada dalam array kategori buku
             if (!in_array($bookDetail->kategori, $groupedBooks[$bookDetail->book_id]['kategori'])) {
-                // Jika belum, tambahkan kategori
                 $groupedBooks[$bookDetail->book_id]['kategori'][] = $bookDetail->kategori;
             }
 
-            // Tambahkan rating ke total rating
             $groupedBooks[$bookDetail->book_id]['totalRating'] += $bookDetail->rating;
-            // Tambahkan jumlah rating
             $groupedBooks[$bookDetail->book_id]['numRatings']++;
         }
 
-        // Hitung rata-rata rating dan tambahkan ke hasil pengelompokan
         foreach ($groupedBooks as &$book) {
             $avgRating = $book['numRatings'] > 0 ? $book['totalRating'] / $book['numRatings'] : 0;
             $book['rating'] = $avgRating;
-            unset($book['totalRating']); // Hapus totalRating dari output
-            unset($book['numRatings']); // Hapus numRatings dari output
+            unset($book['totalRating']); 
+            unset($book['numRatings']); 
         }
 
-        // Ubah hasil pengelompokan menjadi array numerik
         $groupedBooks = array_values($groupedBooks);
 
         return response()->json(['data' => $groupedBooks], 200);
@@ -137,10 +122,8 @@ class BookController extends Controller
         // Ambil data buku berdasarkan book_id
         $bookDetails = BookList::where('book_id', $book_id)->get();
 
-        // Inisialisasi array untuk menampung hasil pengelompokan
         $groupedBooks = [];
 
-        // Inisialisasi array sementara untuk menyimpan total rating dan jumlah rating
         $tempRating = [];
 
         // Lakukan iterasi pada setiap detail buku

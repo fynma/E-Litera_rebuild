@@ -156,7 +156,7 @@
                         <a href="Kontak">Bantuan</a>
                     </button>
                 </div>
-                <button class="btn-logout">
+                <button class="btn-logout" onclick="logout()">
                     <div class="icon-logout">
                         <i class="bi bi-box-arrow-left"></i>
                     </div>
@@ -389,6 +389,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../js/pinjam-buku.js"></script>
+    <script src="../js/logout.js"></script>
     <script>
         $(document).ready(function() {
             getData();

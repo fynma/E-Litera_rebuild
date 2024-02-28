@@ -116,5 +116,16 @@ class ProfileController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
+
+    public function logout(Request $request)
+    {
+
+        session()->forget('user');
+        session()->forget('user_id');
+        session()->forget('access');
+        session()->forget('token');
+
+        return response()->json(['success' => true, 'message' => 'User logged out successfully'], 200);
+    }
     
 }
