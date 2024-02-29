@@ -92,7 +92,6 @@ class AuthController extends Controller
         session(['token'        => $token]);
 
         $tokenFromSession = session('token');
-        $response = null;
         switch ($user->access) {
             case 'petugas':
                 return redirect('admin/home')->with([
@@ -121,12 +120,7 @@ class AuthController extends Controller
                         'type' => 'Bearer'
                     ]
                 ]);
-            default: break;
         }
-        return $response->withHeaders([
-            'user_id' => $user->user_id,
-        ]);
-
     }
 
 

@@ -18,7 +18,7 @@ function handlePinjam() {
 
         // Kirim data form menggunakan AJAX
         $.ajax({
-            url: "http://127.0.0.1:8000/api/borrow", // Ganti dengan URL endpoint API Anda
+            url: appUrl + "/api/borrow", // Ganti dengan URL endpoint API Anda
             type: "POST",
             data: formData, // Menggunakan data yang telah di-serialize
             success: function (response) {
@@ -36,7 +36,7 @@ function handlePinjam() {
 
 function getData() {
     $.ajax({
-        url: "http://127.0.0.1:8000/profile",
+        url: appUrl + "/profile",
         type: "GET",
         success: function (response) {
             console.log(response);
@@ -58,7 +58,7 @@ function getData() {
 // Fungsi untuk mengambil data kategori dari API
 function getCategories() {
     $.ajax({
-        url: "http://localhost:8000/api/categoryList",
+        url: appUrl + "/api/categoryList",
         type: "GET",
         success: function (response) {
             // Panggil fungsi untuk menampilkan kategori ke dalam daftar
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fetch the book details from the database using the book ID
     $.ajax({
-        url: "http://localhost:8000/api/detail-buku/" + bookId,
+        url: appUrl + "/api/detail-buku/" + bookId,
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function getListBook() {
     $.ajax({
-        url: "http://127.0.0.1:8000/api/bookCover",
+        url: appUrl + "/api/bookCover",
         type: "GET",
         success: function (response) {
             console.log(response);
@@ -266,7 +266,7 @@ $("#grid-item").on("click", "#btn-pinjam", function () {
     var bookId = $(this).data("id");
 
     $.ajax({
-        url: "http://localhost:8000/api/detail-buku/" + bookId, // Sesuaikan dengan endpoint API Anda
+        url: appUrl + "/api/detail-buku/" + bookId, // Sesuaikan dengan endpoint API Anda
         method: "GET",
         success: function (response) {
             console.log(response);
@@ -334,7 +334,7 @@ $("#grid-item").on("click", "#book_judul", function () {
 
 function getfavorite() {
     $.ajax({
-        url: "http://127.0.0.1:8000/api/showFavorite",
+        url: appUrl + "/api/showFavorite",
         type: "GET",
         success: function (response) {
             console.log(response);
@@ -378,7 +378,7 @@ function favorite(books) {
 
         $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:8000/api/favorite",
+            url: appUrl + "/api/favorite",
             data: {
                 book_id: bookId,
                 user_id: userId,

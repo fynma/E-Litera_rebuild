@@ -119,13 +119,25 @@ class ProfileController extends Controller
 
     public function logout(Request $request)
     {
+        // Clear session data
+        session(['user' => null]);
+        session(['user_id' => null]);
+        session(['email' => null]);
+        session(['username' => null]);
+        session(['photo' => null]);
+        session(['long_name' => null]);
+        session(['telp' => null]);
+        session(['address' => null]);
+        session(['access' => null]);
+        session(['token' => null]);
+        session()->flush();
+        
+        // Forget cookies
+        $response = response()->json(['success' => true, 'message' => 'Logout successfully'], 200);
 
-        session()->forget('user');
-        session()->forget('user_id');
-        session()->forget('access');
-        session()->forget('token');
-
-        return response()->json(['success' => true, 'message' => 'User logged out successfully'], 200);
+    
+        return $response;
     }
+    
     
 }

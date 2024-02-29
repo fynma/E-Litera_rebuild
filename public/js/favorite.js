@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 function getfavorite() {
     $.ajax({
-        url: "http://127.0.0.1:8000/api/showFavorite",
+        url: appUrl + "/api/showFavorite",
         type: "GET",
         success: function (response) {
             console.log(response);

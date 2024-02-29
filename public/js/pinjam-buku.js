@@ -14,7 +14,7 @@ function handlePinjam() {
 
         // Kirim data form menggunakan AJAX
         $.ajax({
-            url: "http://127.0.0.1:8000/api/borrow", // Ganti dengan URL endpoint API Anda
+            url: appUrl + "/api/borrow", // Ganti dengan URL endpoint API Anda
             type: "POST",
             data: formData, // Menggunakan data yang telah di-serialize
             success: function (response) {
@@ -32,7 +32,7 @@ function handlePinjam() {
 
 function getListBook() {
     $.ajax({
-        url: "http://127.0.0.1:8000/api/bookCover",
+        url: appUrl + "/api/bookCover",
         type: "GET",
         success: function (response) {
             console.log(response);
@@ -131,7 +131,7 @@ $("#grid-item").on("click", "#btn-pinjam", function () {
     var bookId = $(this).data("id");
 
     $.ajax({
-        url: "http://localhost:8000/api/detail-buku/" + bookId, // Sesuaikan dengan endpoint API Anda
+        url: appUrl + "/api/detail-buku/" + bookId, // Sesuaikan dengan endpoint API Anda
         method: "GET",
         success: function (response) {
             console.log(response);

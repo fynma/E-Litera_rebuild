@@ -5,7 +5,7 @@ $(document).ready(function () {
 
 function getData() {
     $.ajax({
-        url: "http://127.0.0.1:8000/profile",
+        url: appUrl + "/profile",
         type: "GET",
         success: function (response) {
             console.log(response);
@@ -26,7 +26,7 @@ function tampilkanKategori() {
     const csrfToken = $('meta[name="csrf-token"]').attr("content");
 
     $.ajax({
-        url: "http://localhost:8000/api/categoryList", // Sesuaikan dengan endpoint API Anda
+        url: appUrl + "/api/categoryList", // Sesuaikan dengan endpoint API Anda
         method: "GET",
         headers: {
             "X-CSRF-Token": csrfToken, // Menambahkan token CSRF dalam header
@@ -132,7 +132,7 @@ $(document).ready(function () {
 
         // Mengirim data ke endpoint API
         $.ajax({
-            url: "http://localhost:8000/api/newBook", // Sesuaikan dengan endpoint API Anda
+            url: appUrl + "/api/newBook", // Sesuaikan dengan endpoint API Anda
             method: "POST",
             data: formData,
             processData: false, // Memastikan tidak memproses data secara otomatis

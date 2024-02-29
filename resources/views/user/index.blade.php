@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../css/user.css" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
+    <script>
+        var appUrl = "{{ config('APP_URL') }}";
+    </script>
 </head>
 
 <body>
@@ -29,7 +32,7 @@
             <li>
                 <a href="#" class="kategori">Kategori <i class="bi bi-chevron-down"></i></a>
                 <ul id="categoryList"></ul>
-            </li>                            
+            </li>
             <li><a href="homepage">Beranda</a></li>
             <li><a href="Tentang">Tentang</a></li>
             <li>
@@ -47,7 +50,7 @@
         </div>
     </div>
 
-    <div class="bg-peminjaman" id="bg-peminjaman"> 
+    <div class="bg-peminjaman" id="bg-peminjaman">
         <div class="peminjaman">
             <div class="header-peminjaman">
                 <img src="../img/logo aplikasi billa 1.png" />
@@ -55,9 +58,9 @@
             </div>
             <div class="content-peminjaman" id="content-peminjaman">
                 <div class="gambar-buku-dipopup">
-                    <img id="gambar-buku-pop" alt="gambar buku"/>
+                    <img id="gambar-buku-pop" alt="gambar buku" />
                 </div>
-                <form action="" method="post" >
+                <form action="" method="post">
                     @csrf
                     <input type="hidden" name="user_id" id="user_id_val">
                     <!-- <input type="hidden" name="tgl_pinjam" id="tanggal-pinjam"> -->
@@ -67,36 +70,40 @@
                         <label for="nama">Nama</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <input type="text" name="nama" id="username_pop" style="pointer-events: none;" readonly/>
+                            <input type="text" name="nama" id="username_pop" style="pointer-events: none;"
+                                readonly />
                         </div>
                     </div>
                     <div class="get-pinjam">
                         <label for="judul-buku">Judul buku</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <input type="text" name="judul-buku" id="judul-buku-pop" style="pointer-events: none;" readonly/>
+                            <input type="text" name="judul-buku" id="judul-buku-pop" style="pointer-events: none;"
+                                readonly />
                         </div>
                     </div>
                     <div class="get-pinjam">
                         <label for="tanggal-pinjam">Tanggal Pinjam</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <input type="text" name="tanggal-pinjam" id="tanggal-pinjam" style="pointer-events: none;" readonly/>
+                            <input type="text" name="tanggal-pinjam" id="tanggal-pinjam"
+                                style="pointer-events: none;" readonly />
                         </div>
                     </div>
                     <div class="get-pinjam">
                         <label for="tgl-kembali">Tanggal kembali</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <input type="text" name="tgl-kembali" id="tgl-kembali" style="pointer-events: none;" readonly/>
+                            <input type="text" name="tgl-kembali" id="tgl-kembali" style="pointer-events: none;"
+                                readonly />
                         </div>
                     </div>
                     <div class="get-pinjam">
                         <label for="jumlah">Jumlah</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <input type="number" name="jumlah" id="jumlah"
-                                placeholder="isilah jumlah buku.." min="0" pattern="[0-9]+"/>
+                            <input type="number" name="jumlah" id="jumlah" placeholder="isilah jumlah buku.."
+                                min="0" pattern="[0-9]+" />
                         </div>
                     </div>
                     <button type="submit" style="cursor: pointer;">Pinjam</button>
@@ -117,17 +124,17 @@
         </div>
     </section>
     <section class="rekomendasi">
-      <div class="title">
-        <div class="judul">
-          <p>Rekomendasi</p>
-          <h1>Pilihan buku terbaik untuk anda</h1>
+        <div class="title">
+            <div class="judul">
+                <p>Rekomendasi</p>
+                <h1>Pilihan buku terbaik untuk anda</h1>
+            </div>
+            <div class="btn-rekomendasi">
+                <a href="#">Baca Selengkapnya</a>
+            </div>
         </div>
-        <div class="btn-rekomendasi">
-          <a href="#">Baca Selengkapnya</a>
+        <div class="books-grid" id="grid-item">
         </div>
-      </div>
-      <div class="books-grid" id="grid-item">
-      </div>
     </section>
 
     <div class="popup" id="popup">
@@ -398,7 +405,7 @@
 
         function getData() {
             $.ajax({
-                url: 'http://127.0.0.1:8000/profile',
+                url: appUrl + '/profile',
                 type: 'GET',
                 success: function(response) {
                     console.log(response);
@@ -417,7 +424,7 @@
         // Fungsi untuk mengambil data kategori dari API
         function getCategories() {
             $.ajax({
-                url: 'http://localhost:8000/api/categoryList',
+                url: appUrl + '/api/categoryList',
                 type: 'GET',
                 success: function(response) {
                     // Panggil fungsi untuk menampilkan kategori ke dalam daftar
@@ -437,7 +444,8 @@
             // Tambahkan setiap kategori ke dalam daftar
             categories.forEach(category => {
                 const li = $('<li>');
-                const link = $('<a>').attr('href', '/categories/' + category.category_id).text(category.name_category);
+                const link = $('<a>').attr('href', '/categories/' + category.category_id).text(category
+                    .name_category);
                 li.append(link);
                 categoryList.append(li);
             });

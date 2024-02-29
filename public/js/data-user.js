@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 function getData() {
     $.ajax({
-        url: "http://127.0.0.1:8000/profile",
+        url: appUrl + "/profile",
         type: "GET",
         success: function (response) {
             console.log(response);
@@ -24,7 +24,7 @@ function getData() {
 
 function tampilkanUsers() {
     $.ajax({
-        url: "http://127.0.0.1:8000/api/ambil-user", // Sesuaikan dengan endpoint API Anda
+        url: appUrl + "/api/ambil-user", // Sesuaikan dengan endpoint API Anda
         method: "GET",
         success: function (response) {
             console.log(response);
@@ -71,7 +71,7 @@ $("#dataTable tbody").on("click", ".btn-view", function () {
 
     // Lakukan panggilan AJAX untuk mendapatkan data pengguna berdasarkan ID
     $.ajax({
-        url: "http://127.0.0.1:8000/api/detail-user/" + userId, // Sesuaikan dengan endpoint API Anda
+        url: appUrl + "/api/detail-user/" + userId, // Sesuaikan dengan endpoint API Anda
         method: "GET",
         success: function (response) {
             console.log(response);

@@ -64,7 +64,6 @@ Route::group([
     Route::post ('favorite', [BookController::class, 'favorite']);
     Route::post ('logout', [ProfileController::class, 'logout']);
 
-
     Route::get  ('HistoryBorrow', [borrowController::class, 'showHistory']);
     Route::get  ('showFavorite', [BookController::class, 'showFavorite']);
     Route::get  ('borrowList', [borrowController::class, 'showBorrow']);

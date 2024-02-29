@@ -4,7 +4,7 @@ $(document).ready(function () {
   
   function tampilkanDenda() {
     $.ajax({
-      url: "http://127.0.0.1:8000/api/listPinjam",
+      url: appUrl+"/api/listPinjam",
       method: "GET",
       success: function (response) {
         console.log(response);
