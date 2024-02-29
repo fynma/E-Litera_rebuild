@@ -272,44 +272,22 @@ class borrowController extends Controller
     {
         // Fetch data from the user_book_view
         $userBookDetails = DB::table('user_book_view')->get();
-
-        // Create an array to store grouped books
-        $groupedBooks = [];
-
-        // Iterate through each book detail
-        foreach ($userBookDetails as $bookDetail) {
-            $bookId = $bookDetail->book_id;
-
-            // Check if the book is already in the groupedBooks array
-            if (!array_key_exists($bookId, $groupedBooks)) {
-                // If not, add the book to the groupedBooks array
-                $groupedBooks[$bookId] = [
-                    'book_id' => $bookDetail->book_id,
-                    'judul' => $bookDetail->judul,
-                    'gambar' => $bookDetail->gambar,
-                    'kode_buku' => $bookDetail->kode_buku,
-                    'penulis' => $bookDetail->penulis,
-                    'penerbit' => $bookDetail->penerbit,
-                    'tahun_terbit' => $bookDetail->tahun_terbit,
-                    'deskripsi' => $bookDetail->deskripsi,
-                    'total_buku' => $bookDetail->total_buku,
-                    'stok' => $bookDetail->stok,
-                    'categories' => [], // Initialize categories array
-                ];
-            }
-
-            // Check if the category is not already in the categories array
-            if (!in_array($bookDetail->name_category, $groupedBooks[$bookId]['categories'])) {
-                // If not, add the category to the categories array
-                $groupedBooks[$bookId]['categories'][] = $bookDetail->name_category;
-            }
-        }
-
-        // Convert the groupedBooks array to numeric array
-        $groupedBooks = array_values($groupedBooks);
-
         // Return the response as JSON
-        return response()->json(['data' => $groupedBooks], 200);
+        return response()->json(['data' => $userBookDetails], 200);
+    }
+
+    public function showHistoryById($user_id = null)
+    {
+        if ($user_id === null) {
+            return response()->json([
+                'success' => false,
+                'message' => 'ID buku tidak terambil.'
+            ], 400);
+        }
+        // Fetch data from the user_book_view
+        $detailBukuDipinjam = DB::table('user_book_view')->where('user_id', $user_id)->get();
+        // Return the response as JSON
+        return response()->json(['data' => $detailBukuDipinjam], 200);
     }
 }
 

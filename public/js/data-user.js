@@ -1,7 +1,52 @@
 // Panggil fungsi tampilkanUsers saat halaman dimuat
 $(document).ready(function () {
-    tampilkanUsers();
     getData();
+    $("#dataTable").dataTable({
+        Destroy: true,
+        processing: true,
+        ajax: {
+            url: appUrl + "/api/ambil-user",
+            dataSrc: "data",
+        },
+        columns: [
+            {
+                data: null,
+                render: function (data, type, row, meta) {
+                    return meta.row + 1;
+                },
+            },
+            { data: "username" },
+            { data: "email" },
+            { data: "access" },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return (
+                        '<div><button class="btn-view" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="' +
+                        data.user_id +
+                        '"><i class="bi bi-eye"></i></button><button class="btn-delete" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="' +
+                        data.user_id +
+                        '"><i class="bi bi-eye"></i></button></div>'
+                    );
+                },
+            },
+        ],
+        language: {
+            lengthMenu: "Tampilkan _MENU_ hasil",
+            zeroRecords: "Data tidak ditemukan",
+            info: "Menampilkan halaman _PAGE_ dari _PAGES_",
+            infoEmpty: "Tidak ada data",
+            infoFiltered: "(filtered from _MAX_ total records)",
+            emptyTable: "Tidak ada data",
+            search: "Cari data :",
+            paginate: {
+                first: "Awal",
+                last: "Terakhir",
+                next: "Selanjutnya",
+                previous: "Sebelumnya",
+            },
+        },
+    });
 });
 
 function getData() {
@@ -18,48 +63,6 @@ function getData() {
                     "data:image/png;base64," + data.photo
                 );
             }
-        },
-    });
-}
-
-function tampilkanUsers() {
-    $.ajax({
-        url: appUrl + "/api/ambil-user", // Sesuaikan dengan endpoint API Anda
-        method: "GET",
-        success: function (response) {
-            console.log(response);
-            // Hapus semua baris yang ada di tabel
-            $("#dataTable tbody").empty();
-
-            // Tambahkan data user ke tabel
-            $.each(response.data, function (index, data) {
-                var newRow =
-                    "<tr><td>" +
-                    (index + 1) +
-                    "</td><td>" +
-                    data.username +
-                    "</td><td>" +
-                    data.email +
-                    "</td><td>" +
-                    data.access +
-                    "</td><td><button class='btn-view' data-bs-toggle='modal' data-bs-target='#exampleModal' data-id=" +
-                    data.user_id +
-                    "><i class='bi bi-eye'></i></button><button class='btn-delete' data-id=" +
-                    data.user_id +
-                    "><i class='bi bi-trash'></i></button></td></tr>";
-                $("#dataTable tbody").append(newRow);
-            });
-
-            // Menambahkan event listener untuk tombol delete
-            $(".btn-delete").click(function () {
-                var userId = $(this).data("id");
-                deleteUser(userId);
-            });
-        },
-        error: function (xhr, status, error) {
-            // Jika terjadi kesalahan, tampilkan pesan kesalahan
-            console.error(xhr.responseText);
-            alert("Gagal mengambil data users. Silakan coba lagi.");
         },
     });
 }

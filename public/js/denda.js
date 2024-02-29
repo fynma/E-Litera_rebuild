@@ -3,7 +3,7 @@ $(document).ready(function () {
     tampilkanDenda();
     getCategories();
     closeDetail();
-    handleConfirm();
+    // handleConfirm();
 });
 
 function getData() {
@@ -145,7 +145,7 @@ $("#tabel-data tbody").on("click", ".btn-view", function () {
     $("#book_id").val(bookID);
     $("#keterlambatan").val(lateDays);
     $("#tarif_denda").val(totalHarga);
-    $("#bayarDenda").submit();
+    // $("#bayarDenda").submit();
 
     detail.classList.add("openPopupDenda");
 
@@ -175,29 +175,29 @@ $("#tabel-data tbody").on("click", ".btn-view", function () {
     });
 });
 
-function handleConfirm() {
-    $("#bayarDenda").on("submit", function (event) {
-        event.preventDefault(); // Menghentikan perilaku default pengiriman formulir
+// function handleConfirm() {
+//     $("#bayarDenda").on("submit", function (event) {
+//         event.preventDefault(); // Menghentikan perilaku default pengiriman formulir
 
-        // Mengambil data dari formulir
-        var formData = $(this).serialize();
+//         // Mengambil data dari formulir
+//         var formData = $(this).serialize();
 
         // Kirim data ke controller API
-        $.ajax({
-            url: appUrl + "/api/denda",
-            method: "POST",
-            data: formData,
-            success: function (response) {
-                // Handle response jika sukses
-                console.log(response);
-            },
-            error: function (xhr, status, error) {
-                // Handle error jika permintaan gagal
-                console.error(xhr.responseText);
-            },
-        });
-    });
-}
+//         $.ajax({
+//             url: "http://127.0.0.1:8000/api/denda",
+//             method: "POST",
+//             data: formData,
+//             success: function (response) {
+//                 // Handle response jika sukses
+//                 console.log(response);
+//             },
+//             error: function (xhr, status, error) {
+//                 // Handle error jika permintaan gagal
+//                 console.error(xhr.responseText);
+//             },
+//         });
+//     });
+// }
 
 function closeDetail() {
     detail.classList.remove("openPopupDenda");
@@ -217,7 +217,7 @@ $("#popupDenda").on("click", ".#pay-button  ", function () {
             // Handle error jika permintaan gagal
             console.error(xhr.responseText);
         },
-    })
+    });
 });
 
 var payButton = document.getElementById("pay-button");

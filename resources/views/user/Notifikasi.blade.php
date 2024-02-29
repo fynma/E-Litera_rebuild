@@ -66,33 +66,33 @@
                     @else
                         <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
                     @endif
-                    <div class="username-popup">
-                        <p>Natalia Dita</p>
-                        <button id="btn-profile">
-                            <a href="Profile">Lihat Profil</a>
-                        </button>
-                    </div>
-                </div>
-                <div class="widget">
-                    <button id="btn-denda">
-                        <img src="../img/icon-denda.png" />
-                        <a href="Denda">Denda</a>
-                    </button>
-                    <button id="btn-bantuan">
-                        <i class="bi bi-question-circle"></i>
-                        <a href="Kontak">Bantuan</a>
-                    </button>
-                </div>
-                <button class="btn-logout">
-                    <div class="icon-logout">
-                        <i class="bi bi-box-arrow-left"></i>
-                    </div>
-                    <p>Keluar Dari Aplikasi</p>
-                </button>
-                <br />
-                <a onclick="closeModal()">Tutup</a>
+            <div class="username-popup">
+              <p id="username-popup"></p>
+              <button id="btn-profile">
+                <a href="Profile">Lihat Profil</a>
+              </button>
             </div>
+          </div>
+          <div class="widget">
+            <button id="btn-denda">
+              <img src="../img/icon-denda.png" />
+              <a href="Denda">Denda</a>
+            </button>
+            <button id="btn-bantuan">
+              <i class="bi bi-question-circle"></i>
+              <a href="Kontak">Bantuan</a>
+            </button>
+          </div>
+          <button class="btn-logout">
+            <div class="icon-logout">
+              <i class="bi bi-box-arrow-left"></i>
+            </div>
+            <p>Keluar Dari Aplikasi</p>
+          </button>
+          <br />
+          <a onclick="closeModal()">Tutup</a>
         </div>
+      </div>
     </div>
 
     <section class="notifikasi">

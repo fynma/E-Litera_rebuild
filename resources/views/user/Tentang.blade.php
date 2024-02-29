@@ -199,82 +199,82 @@
                     @else
                         <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
                     @endif
-                    <div class="username-popup">
-                        <p>Natalia Dita</p>
-                        <button id="btn-profile">
-                            <a href="Profile">Lihat Profil</a>
-                        </button>
-                    </div>
-                </div>
-                <div class="widget">
-                    <button id="btn-denda">
-                        <img src="../img/icon-denda.png" />
-                        <a href="Denda">Denda</a>
-                    </button>
-                    <button id="btn-bantuan">
-                        <i class="bi bi-question-circle"></i>
-                        <a href="Kontak">Bantuan</a>
-                    </button>
-                </div>
-                <button class="btn-logout">
-                    <div class="icon-logout">
-                        <i class="bi bi-box-arrow-left"></i>
-                    </div>
-                    <p>Keluar Dari Aplikasi</p>
-                </button>
-                <br />
-                <a onclick="closeModal()">Tutup</a>
+            <div class="username-popup">
+              <p id="username-popup"></p>
+              <button id="btn-profile">
+                <a href="Profile">Lihat Profil</a>
+              </button>
             </div>
+          </div>
+          <div class="widget">
+            <button id="btn-denda">
+              <img src="../img/icon-denda.png" />
+              <a href="Denda">Denda</a>
+            </button>
+            <button id="btn-bantuan">
+              <i class="bi bi-question-circle"></i>
+              <a href="Kontak">Bantuan</a>
+            </button>
+          </div>
+          <button class="btn-logout">
+            <div class="icon-logout">
+              <i class="bi bi-box-arrow-left"></i>
+            </div>
+            <p>Keluar Dari Aplikasi</p>
+          </button>
+          <br />
+          <a onclick="closeModal()">Tutup</a>
         </div>
+      </div>
     </div>
 
     <section class="tentang">
-        <div class="content-tentang">
-            <div class="main-tentang">
-                <h3>Tentang</h3>
-                <h1>E-Litera</h1>
-                <hr />
-                <p>
-                    Selamat datang di Perpustakaan E-Litera - Sebuah dunia pengetahuan
-                    yang tak terbatas di ujung jari Anda. Kami hadir untuk memenuhi
-                    kebutuhan literasi dan memperkenalkan kemudahan akses ke dunia
-                    literatur. Dengan fokus utama pada layanan peminjaman buku dan
-                    kemudahan pembayaran denda secara online, E-Litera memadukan tradisi
-                    perpustakaan dengan inovasi teknologi. Tim kami, yang bersemangat
-                    dan berkomitmen, bertujuan untuk memberikan pengalaman yang efisien
-                    dan memuaskan bagi pengguna kami. Kami percaya bahwa setiap halaman
-                    yang terbuka di buku adalah pintu menuju petualangan baru, dan kami
-                    berkomitmen untuk membantu Anda menemukan kunci ke dunia pengetahuan
-                    melalui koleksi kami yang kaya. Selamat bergabung dengan kami dalam
-                    perjalanan mencari ilmu yang tak pernah berakhir di E-Litera.
-                </p>
-                <a href="../Daftar">Daftar</a>
-            </div>
-            <img src="../img/vektor-tentang.png" />
+      <div class="content-tentang">
+        <div class="main-tentang">
+          <h3>Tentang</h3>
+          <h1>E-Litera</h1>
+          <hr />
+          <p>
+            Selamat datang di Perpustakaan E-Litera - Sebuah dunia pengetahuan
+            yang tak terbatas di ujung jari Anda. Kami hadir untuk memenuhi
+            kebutuhan literasi dan memperkenalkan kemudahan akses ke dunia
+            literatur. Dengan fokus utama pada layanan peminjaman buku dan
+            kemudahan pembayaran denda secara online, E-Litera memadukan tradisi
+            perpustakaan dengan inovasi teknologi. Tim kami, yang bersemangat
+            dan berkomitmen, bertujuan untuk memberikan pengalaman yang efisien
+            dan memuaskan bagi pengguna kami. Kami percaya bahwa setiap halaman
+            yang terbuka di buku adalah pintu menuju petualangan baru, dan kami
+            berkomitmen untuk membantu Anda menemukan kunci ke dunia pengetahuan
+            melalui koleksi kami yang kaya. Selamat bergabung dengan kami dalam
+            perjalanan mencari ilmu yang tak pernah berakhir di E-Litera.
+          </p>
+          <a href="../register">Daftar</a>
         </div>
-        <div class="content-mission">
-            <img src="../img/vektor-mission.png" />
-            <div class="main-mission">
-                <h1>Mission</h1>
-                <hr />
-                <p>
-                    Misi kami di E-Litera adalah merangkul dan memperkaya masyarakat
-                    melalui literasi. Kami percaya bahwa akses mudah terhadap buku
-                    adalah kunci untuk pengembangan pribadi dan kemajuan kolektif.
-                    Dengan tekad kuat, kami berkomitmen untuk memberikan layanan
-                    peminjaman buku yang efisien dan pembayaran denda yang nyaman secara
-                    online, sehingga setiap individu dapat mengeksplorasi dunia
-                    pengetahuan tanpa hambatan. Kami memandang literasi sebagai sarana
-                    untuk membuka pintu peluang, dan itulah mengapa kami terus berusaha
-                    meningkatkan dan memperluas koleksi kami. Melalui inovasi teknologi
-                    dan semangat pelayanan, misi kami adalah menjadi katalisator
-                    perubahan positif di komunitas, memupuk cinta akan membaca, dan
-                    menginspirasi pertumbuhan intelektual. Bergabunglah dengan kami
-                    dalam membangun masyarakat yang terdidik, berdaya, dan penuh
-                    inspirasi di E-Litera.
-                </p>
-            </div>
+        <img src="../img/vektor-tentang.png" />
+      </div>
+      <div class="content-mission">
+        <img src="../img/vektor-mission.png" />
+        <div class="main-mission">
+          <h1>Mission</h1>
+          <hr />
+          <p>
+            Misi kami di E-Litera adalah merangkul dan memperkaya masyarakat
+            melalui literasi. Kami percaya bahwa akses mudah terhadap buku
+            adalah kunci untuk pengembangan pribadi dan kemajuan kolektif.
+            Dengan tekad kuat, kami berkomitmen untuk memberikan layanan
+            peminjaman buku yang efisien dan pembayaran denda yang nyaman secara
+            online, sehingga setiap individu dapat mengeksplorasi dunia
+            pengetahuan tanpa hambatan. Kami memandang literasi sebagai sarana
+            untuk membuka pintu peluang, dan itulah mengapa kami terus berusaha
+            meningkatkan dan memperluas koleksi kami. Melalui inovasi teknologi
+            dan semangat pelayanan, misi kami adalah menjadi katalisator
+            perubahan positif di komunitas, memupuk cinta akan membaca, dan
+            menginspirasi pertumbuhan intelektual. Bergabunglah dengan kami
+            dalam membangun masyarakat yang terdidik, berdaya, dan penuh
+            inspirasi di E-Litera.
+          </p>
         </div>
+      </div>
     </section>
 
     <section class="penutup">

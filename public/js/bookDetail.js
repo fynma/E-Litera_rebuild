@@ -9,7 +9,6 @@ $(document).ready(function () {
     favorite();
 });
 
-
 function handlePinjam() {
     // Function to handle form submission
     $("form").submit(function (event) {
@@ -87,7 +86,6 @@ function displayCategories(categories) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-
     var url = window.location.href;
 
     // Mem-parse URL untuk mendapatkan pathnya
@@ -190,6 +188,7 @@ function displayBooks(books) {
     // books = books.slice(0, 6);
     // // Membalik urutan array sehingga data terbaru muncul pertama
     // books = books.reverse();
+    books = books.slice(0, 6).reverse();
 
     $.each(books, function (index, book) {
         var gridItem = $(
@@ -209,10 +208,10 @@ function displayBooks(books) {
 
         var title = $(
             '<h3 id="judul-buku"><a style="cursor:pointer;" id="book_judul" data-id="' +
-            book.book_id +
-            '">' +
-            book.judul +
-            "</a></h3>"
+                book.book_id +
+                '">' +
+                book.judul +
+                "</a></h3>"
         );
         var author = $(
             '<a href="#" id="penulis-buku">By: ' + book.penulis + "</a>"
@@ -245,8 +244,8 @@ function displayBooks(books) {
         var linkPinjam = $('<div class="link-pinjam" id="disabledLink"></div>');
         var buttonPinjam = $(
             '<button style="cursor: pointer" id="btn-pinjam" onclick="openPinjam()" data-id=' +
-            book.book_id +
-            "><a>Pinjam</a></button>"
+                book.book_id +
+                "><a>Pinjam</a></button>"
         );
 
         details.append(
@@ -391,11 +390,13 @@ function favorite(books) {
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.log("Error occurred: " + textStatus + ", " + errorThrown);
+                console.log(
+                    "Error occurred: " + textStatus + ", " + errorThrown
+                );
             },
         });
     });
-};
+}
 // function getfavorite() {
 //     $.ajax({
 //         url: "http://127.0.0.1:8000/api/showFavorite",
@@ -414,7 +415,6 @@ function favorite(books) {
 //         },
 //     });
 // }
-
 
 // function favorite(books) {
 //     var heartIcon = $("#heartIcon");

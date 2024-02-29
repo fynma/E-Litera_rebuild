@@ -4,8 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>E-Litera | Riwayat detail</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <title>E-Litera | Riwayat Pinjam</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
     <link rel="stylesheet" href="../css/user.css" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -66,33 +69,33 @@
                     @else
                         <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
                     @endif
-                    <div class="username-popup">
-                        <p>Natalia Dita</p>
-                        <button id="btn-profile">
-                            <a href="Profile">Lihat Profil</a>
-                        </button>
-                    </div>
-                </div>
-                <div class="widget">
-                    <button id="btn-denda">
-                        <img src="../img/icon-denda.png" />
-                        <a href="Denda">Denda</a>
-                    </button>
-                    <button id="btn-bantuan">
-                        <i class="bi bi-question-circle"></i>
-                        <a href="Kontak">Bantuan</a>
-                    </button>
-                </div>
-                <button class="btn-logout">
-                    <div class="icon-logout">
-                        <i class="bi bi-box-arrow-left"></i>
-                    </div>
-                    <p>Keluar Dari Aplikasi</p>
-                </button>
-                <br />
-                <a onclick="closeModal()">Tutup</a>
+            <div class="username-popup">
+              <p id="username-popup"></p>
+              <button id="btn-profile">
+                <a href="Profile">Lihat Profil</a>
+              </button>
             </div>
+          </div>
+          <div class="widget">
+            <button id="btn-denda">
+              <img src="../img/icon-denda.png" />
+              <a href="Denda">Denda</a>
+            </button>
+            <button id="btn-bantuan">
+              <i class="bi bi-question-circle"></i>
+              <a href="Kontak">Bantuan</a>
+            </button>
+          </div>
+          <button class="btn-logout">
+            <div class="icon-logout">
+              <i class="bi bi-box-arrow-left"></i>
+            </div>
+            <p>Keluar Dari Aplikasi</p>
+          </button>
+          <br />
+          <a onclick="closeModal()">Tutup</a>
         </div>
+      </div>
     </div>
 
     <div class="bg-detail" id="bg-detail">
@@ -141,77 +144,11 @@
     </div>
 
     <section class="favorit">
-        <h1>Riwayat detail</h1>
-        <div class="content-favorit">
-            <div class="books-grid" style="height: auto">
-                <div class="grid-item" style="cursor: pointer" onclick="bukaDetail(this)">
-                    <img src="../img/books1.png" alt="Book 1" />
-                    <div class="details">
-                        <h3 id="judul-buku">
-                            <a href="Books-Page">Help Me Find My Stomach</a>
-                        </h3>
-                        <div id="status">
-                            <p>Dipinjam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-item" style="cursor: pointer" onclick="bukaDetail(this)">
-                    <img src="../img/books2.png" alt="Book 1" />
-                    <div class="details">
-                        <h3 id="judul-buku">
-                            <a href="Books-Page">Help Me Find My Stomach</a>
-                        </h3>
-                        <div id="status">
-                            <p>Dipinjam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-item" style="cursor: pointer" onclick="bukaDetail(this)">
-                    <img src="../img/books3.png" alt="Book 1" />
-                    <div class="details">
-                        <h3 id="judul-buku">
-                            <a href="Books-Page">Help Me Find My Stomach</a>
-                        </h3>
-                        <div id="status">
-                            <p>Dipinjam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-item" style="cursor: pointer" onclick="bukaDetail(this)">
-                    <img src="../img/books4.png" alt="Book 1" />
-                    <div class="details">
-                        <h3 id="judul-buku">
-                            <a href="Books-Page">Help Me Find My Stomach</a>
-                        </h3>
-                        <div id="status">
-                            <p>Dikembalikan</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-item" style="cursor: pointer" onclick="bukaDetail(this)">
-                    <img src="../img/books5.png" alt="Book 1" />
-                    <div class="details">
-                        <h3 id="judul-buku">
-                            <a href="Books-Page">Help Me Find My Stomach</a>
-                        </h3>
-                        <div id="status">
-                            <p>Dipinjam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-item" style="cursor: pointer" onclick="bukaDetail(this)">
-                    <img src="../img/books6.png" alt="Book 1" />
-                    <div class="details">
-                        <h3 id="judul-buku">
-                            <a href="Books-Page">Help Me Find My Stomach</a>
-                        </h3>
-                        <div id="status">
-                            <p>Terlambat</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <h1>Riwayat detail</h1>
+      <div class="content-favorit">
+        <div class="books-grid" style="height: auto" id="grid-item">
         </div>
+      </div>
     </section>
 
     <section class="penutup">
@@ -258,63 +195,12 @@
         </div>
     </section>
 
+    <script src="../js/riwayatPinjam.js"></script>
     <script>
-        $(document).ready(function() {
-            getData();
-            getCategories();
-        });
-
-        function getData() {
-            $.ajax({
-                url: appUrl + '/profile',
-                type: 'GET',
-                success: function(response) {
-                    console.log(response);
-                    if (response.data) {
-                        var data = response.data;
-                        $('#user_id_val').val(data.user_id);
-                        $('#username').text(data.username);
-                        $('#username_pop').val(data.username);
-                        $('#username-popup').text(data.username);
-                        $('#prev_profile, #prev_profile_pop').attr('src', 'data:image/png;base64,' + data.photo)
-                    }
-                },
-            });
-        }
-
-        // Fungsi untuk mengambil data kategori dari API
-        function getCategories() {
-            $.ajax({
-                url: appUrl + '/api/categoryList',
-                type: 'GET',
-                success: function(response) {
-                    // Panggil fungsi untuk menampilkan kategori ke dalam daftar
-                    displayCategories(response.data);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error:', error);
-                }
-            });
-        }
-
-        // Fungsi untuk menampilkan kategori ke dalam daftar
-        function displayCategories(categories) {
-            const categoryList = $('#categoryList');
-            // Kosongkan daftar sebelum menambahkan kategori baru
-            categoryList.empty();
-            // Tambahkan setiap kategori ke dalam daftar
-            categories.forEach(category => {
-                const li = $('<li>');
-                const link = $('<a>').attr('href', '/categories/' + category.category_id).text(category
-                    .name_category);
-                li.append(link);
-                categoryList.append(li);
-            });
-        }
-        // validasi Profil
-        window.addEventListener("load", function() {
-            closeModal();
-        });
+      // validasi Profil
+      window.addEventListener("load", function () {
+        closeModal();
+      });
 
         let popup = document.getElementById("popup");
 
@@ -378,6 +264,5 @@
             detail.classList.remove("open-detail");
         }
     </script>
-</body>
-
+  </body>
 </html>

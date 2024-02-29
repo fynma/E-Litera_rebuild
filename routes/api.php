@@ -81,6 +81,7 @@ Route::group([
     Route::get  ('ambil-username', [UserController::class, 'getUsername']);
     Route::get  ('detail-user/{user_id}', [UserController::class, 'userSatuan']);
     Route::get  ('detail-buku/{book_id}', [BookController::class, 'BookopenID']);
+    Route::get  ('detail-pinjam/{user_id}', [borrowController::class, 'showHistoryById']);
     Route::get  ('list_denda', [borrowController::class, 'listdenda']);
     Route::get  ('listPinjam', [borrowController::class, 'listPinjam']);
     Route::get  ('dendaSatuan/{borrow_id}', [borrowController::class, 'dendaSatuan']);

@@ -8,10 +8,11 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("User ID:", idUser);
     console.log("Access:", idUserRole);
 
-    var datapenggunaLink = document.querySelector('a[href="/admin/Data-Pengguna"]');
+    var datapenggunaLink = document.querySelector(
+        'a[href="/admin/Data-Pengguna"]'
+    );
     var databukuLink = document.querySelector('a[href="/admin/Data-Buku"]');
-    var kategoriLink = document.querySelector('a[href="/admin/Kategori"]');v
-
+    var kategoriLink = document.querySelector('a[href="/admin/Kategori"]');
 
     if (idUser && idUserRole) {
         if (kategoriLink) {
@@ -36,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-
 // document.addEventListener("DOMContentLoaded", function () {
 //     var userId = document.querySelector('meta[name="user-id"]').content;
 //     var access = document.querySelector('meta[name="access"]').content;
@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //     var datapeminjamLink = document.querySelector('a[href="/admin/Data-Peminjaman"]');
 //     var datakembaliLink = document.querySelector('a[href="/admin/Pengembalian"]');
 //     var kategoriLink = document.querySelector('a[href="Kategori"]');
-
 
 //     if (idUser) {
 //         if (kategoriLink) {

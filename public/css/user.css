@@ -391,19 +391,22 @@ input[type="search"]::-webkit-search-clear-button {
 }
 
 .books-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 40px;
-    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: start;
     width: 100%;
     position: relative;
     min-height: 100px;
+    grid-auto-rows: auto; /* Menentukan tinggi baris secara otomatis */
 }
 
 .grid-item {
     overflow: hidden;
     position: relative;
     width: 100%;
+    max-width: 257.16px;
+    min-width: 257.16px;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 18px 20px;
