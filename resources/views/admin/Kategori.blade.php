@@ -337,7 +337,6 @@
     <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../js/demo/datatables-demo.js"></script>
 
     <!-- javascript kategori admin -->
     <script src="../js/kategori-admin.js"></script>
