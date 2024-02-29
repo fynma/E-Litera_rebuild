@@ -13,7 +13,6 @@ class transactionController extends Controller
         $data = $request->all();
 
         $transaction = transaction::create([
-            'email' => $data['email'],
             'username' => $data['username'],
             'denda_id' => $data['denda_id'],
             'user_id' => $data['user_id'],
@@ -36,7 +35,7 @@ class transactionController extends Controller
             ),
 
             'customer_details' => array (
-                'first_name' => $data['username'],
+                'username' => $data['username'],
             ),
         );
         
