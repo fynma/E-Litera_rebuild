@@ -26,7 +26,7 @@ $(document).ready(function () {
                         data.user_id +
                         '"><i class="bi bi-eye"></i></button><button class="btn-delete" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="' +
                         data.user_id +
-                        '"><i class="bi bi-eye"></i></button></div>'
+                        '"><i class="bi bi-trash"></i></button></div>'
                     );
                 },
             },
@@ -57,7 +57,7 @@ function getData() {
             console.log(response);
             if (response.success) {
                 var data = response.data;
-                $("#user").text(data.username);
+                $("#user").text(data.username + " | " + data.access);
                 $("#prev-prof").attr(
                     "src",
                     "data:image/png;base64," + data.photo

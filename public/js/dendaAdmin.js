@@ -24,7 +24,7 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, row) {
-                    return '<button class="btn-confirm">Konfirmasi</button>';
+                    return '<div><button class="btn-confirm">Konfirmasi</button></div>';
                 },
             },
         ],

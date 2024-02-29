@@ -9,6 +9,7 @@ $(document).ready(function () {
 function getData() {
     $.ajax({
         url: appUrl+"profile",
+
         type: "GET",
         success: function (response) {
             console.log(response);
@@ -34,6 +35,7 @@ function getData() {
 function tampilkanDenda() {
     $.ajax({
         url: appUrl+"/api/list_denda",
+
         method: "GET",
         success: function (response) {
             console.log(response);
@@ -89,7 +91,7 @@ function tampilkanDenda() {
 // Fungsi untuk mengambil data kategori dari API
 function getCategories() {
     $.ajax({
-        url: "http://localhost:8000/api/categoryList",
+        url: appUrl + "/api/categoryList",
         type: "GET",
         success: function (response) {
             // Panggil fungsi untuk menampilkan kategori ke dalam daftar
@@ -150,7 +152,7 @@ $("#tabel-data tbody").on("click", ".btn-view", function () {
     detail.classList.add("openPopupDenda");
 
     $.ajax({
-        url: "http://127.0.0.1:8000/api/dendaSatuan/" + borrowID, // Sesuaikan dengan endpoint API Anda
+        url: appUrl + "/api/dendaSatuan/" + borrowID, // Sesuaikan dengan endpoint API Anda
         method: "GET",
         success: function (response) {
             console.log(response);
@@ -182,7 +184,7 @@ $("#tabel-data tbody").on("click", ".btn-view", function () {
 //         // Mengambil data dari formulir
 //         var formData = $(this).serialize();
 
-        // Kirim data ke controller API
+// Kirim data ke controller API
 //         $.ajax({
 //             url: "http://127.0.0.1:8000/api/denda",
 //             method: "POST",
@@ -203,14 +205,15 @@ function closeDetail() {
     detail.classList.remove("openPopupDenda");
 }
 
-$("#popupDenda").on("click", ".#pay-button  ", function () {
+$("#popupDenda").on("click", "#pay-button", function () {
     var formData = $("#detailDenda").serialize();
+    var userName = userID;
+    console.log(userName);
     $.ajax({
         url: appUrl + "/api/transaction",
         method: "POST",
         data: formData,
         success: function (response) {
-            // Handle response jika sukses
             console.log(response);
         },
         error: function (xhr, status, error) {
@@ -220,7 +223,7 @@ $("#popupDenda").on("click", ".#pay-button  ", function () {
     });
 });
 
-var payButton = document.getElementById("pay-button");
-payButton.addEventListener("click", function () {
-    snap.pay(response.snaptoken);
-});
+// var payButton = document.getElementById("pay-button");
+// payButton.addEventListener("click", function () {
+//     snap.pay(response.snaptoken);
+// });

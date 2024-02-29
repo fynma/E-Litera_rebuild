@@ -12,7 +12,7 @@ function getData() {
             console.log(response);
             if (response.success) {
                 var data = response.data;
-                $("#user").text(data.username);
+                $("#user").text(data.username + " | " + data.access);
                 $("#prev-prof").attr(
                     "src",
                     "data:image/png;base64," + data.photo
@@ -23,47 +23,61 @@ function getData() {
 }
 
 function tampilkanBuku() {
-    $.ajax({
-        url: appUrl + "/api/bookCover", // Sesuaikan dengan endpoint API Anda
-        method: "GET",
-        success: function (response) {
-            console.log(response);
-            // Hapus semua baris yang ada di tabel
-            $("#dataTable tbody").empty();
-
-            // Tambahkan data buku ke tabel
-            $.each(response.data, function (index, data) {
-                var newRow =
-                    "<tr><td>" +
-                    (index + 1) +
-                    "</td><td>" +
-                    data.kode_buku +
-                    "</td><td>" +
-                    data.judul +
-                    "</td><td>" +
-                    (data.kategori ? data.kategori.join(", ") : "") + // Memastikan bahwa 'categories' tidak undefined sebelum melakukan join
-                    "</td><td>" +
-                    data.penulis +
-                    "</td><td>" +
-                    data.penerbit +
-                    "</td><td><button class='btn-view' data-bs-toggle='modal' data-bs-target='#exampleModal' data-id=" +
-                    data.book_id +
-                    "><i class='bi bi-eye'></i></button><button class='btn-delete' data-id=" +
-                    data.book_id +
-                    "><i class='bi bi-trash'></i></button></td></tr>";
-                $("#dataTable tbody").append(newRow);
-            });
-
-            // Menambahkan event listener untuk tombol delete
-            $(".btn-delete").click(function () {
-                var bookId = $(this).data("id");
-                deleteBook(bookId);
-            });
+    $("#dataTable").dataTable({
+        Destroy: true,
+        processing: true,
+        ajax: {
+            url: appUrl + "/api/bookCover",
+            dataSrc: "data",
         },
-        error: function (xhr, status, error) {
-            // Jika terjadi kesalahan, tampilkan pesan kesalahan
-            console.error(xhr.responseText);
-            alert("Gagal mengambil data buku. Silakan coba lagi.");
+        columns: [
+            {
+                data: null,
+                render: function (data, type, row, meta) {
+                    return meta.row + 1;
+                },
+            },
+            { data: "kode_buku" },
+            { data: "judul" },
+            {
+                data: "kategori",
+                render: function (data, type, row) {
+                    // Remove duplicates and join categories with a comma
+                    const uniqueCategories = [...new Set(data)];
+                    const categoriesList = uniqueCategories.join(", ");
+
+                    return categoriesList;
+                },
+            },
+            { data: "penulis" },
+            { data: "penerbit" },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return (
+                        '<div><button class="btn-view" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="' +
+                        data.book_id +
+                        '"><i class="bi bi-eye"></i></button><button class="btn-delete" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="' +
+                        data.book_id +
+                        '"><i class="bi bi-trash"></i></button></div>'
+                    );
+                },
+            },
+        ],
+        language: {
+            lengthMenu: "Tampilkan _MENU_ hasil",
+            zeroRecords: "Data tidak ditemukan",
+            info: "Menampilkan halaman _PAGE_ dari _PAGES_",
+            infoEmpty: "Tidak ada data",
+            infoFiltered: "(filtered from _MAX_ total records)",
+            emptyTable: "Tidak ada data",
+            search: "Cari data :",
+            paginate: {
+                first: "Awal",
+                last: "Terakhir",
+                next: "Selanjutnya",
+                previous: "Sebelumnya",
+            },
         },
     });
 }
