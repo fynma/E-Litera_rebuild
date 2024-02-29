@@ -4,7 +4,7 @@ $(document).ready(function () {
 
 function getData() {
     $.ajax({
-        url: "http://127.0.0.1:8000/profile",
+        url: appUrl + "/profile",
         type: "GET",
         success: function (response) {
             console.log(response);
@@ -31,7 +31,7 @@ function tambahKategori() {
 
     // Kirim data ke server menggunakan AJAX
     $.ajax({
-        url: "http://localhost:8000/api/newCategory", // Sesuaikan dengan endpoint API Anda
+        url: appUrl + "/api/newCategory", // Sesuaikan dengan endpoint API Anda
         method: "POST",
         headers: {
             "X-CSRF-TOKEN": csrfToken, // Menambahkan CSRF token ke header
@@ -67,7 +67,7 @@ $(document).ready(function () {
 // Fungsi untuk menampilkan data kategori dari server
 function tampilkanKategori() {
     $.ajax({
-        url: "http://localhost:8000/api/categoryList", // Sesuaikan dengan endpoint API Anda
+        url: appUrl + "/api/categoryList", // Sesuaikan dengan endpoint API Anda
         method: "GET",
         success: function (response) {
             // Hapus semua baris yang ada di tabel

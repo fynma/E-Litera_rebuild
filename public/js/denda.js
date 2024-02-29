@@ -184,7 +184,7 @@ function handleConfirm() {
 
         // Kirim data ke controller API
         $.ajax({
-            url: "http://127.0.0.1:8000/api/denda",
+            url: appUrl + "/api/denda",
             method: "POST",
             data: formData,
             success: function (response) {
@@ -206,7 +206,7 @@ function closeDetail() {
 $("#popupDenda").on("click", ".#pay-button  ", function () {
     var formData = $("#detailDenda").serialize();
     $.ajax({
-        url: "http://127.0.0.1:8000/api/transaction",
+        url: appUrl + "/api/transaction",
         method: "POST",
         data: formData,
         success: function (response) {

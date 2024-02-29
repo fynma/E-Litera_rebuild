@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 function getData() {
     $.ajax({
-        url: "http://127.0.0.1:8000/profile",
+        url: appUrl + "/profile",
         type: "GET",
         success: function (response) {
             console.log(response);
@@ -24,7 +24,7 @@ function getData() {
 
 function tampilkanBuku() {
     $.ajax({
-        url: "http://localhost:8000/api/bookCover", // Sesuaikan dengan endpoint API Anda
+        url: appUrl + "/api/bookCover", // Sesuaikan dengan endpoint API Anda
         method: "GET",
         success: function (response) {
             console.log(response);
@@ -75,7 +75,7 @@ $("#dataTable tbody").on("click", ".btn-view", function () {
 
     // Lakukan panggilan AJAX untuk mendapatkan data pengguna berdasarkan ID
     $.ajax({
-        url: "http://localhost:8000/api/detail-buku/" + bookId, // Sesuaikan dengan endpoint API Anda
+        url: appUrl + "/api/detail-buku/" + bookId, // Sesuaikan dengan endpoint API Anda
         method: "GET",
         success: function (response) {
             console.log(response);
@@ -107,7 +107,7 @@ $("#dataTable tbody").on("click", ".btn-view", function () {
 
 function deleteBook(bookId) {
     $.ajax({
-        url: "http://localhost:8000/api/deleteBook",
+        url: appUrl + "/api/deleteBook",
         method: "POST",
         data: { book_id: bookId },
         success: function (response) {

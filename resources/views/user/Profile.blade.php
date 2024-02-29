@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../css/user.css" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
+    <script>
+        var appUrl = "{{ config('APP_URL') }}";
+    </script>
 </head>
 
 <body>
@@ -45,7 +48,7 @@
         </ul>
         <div class="username">
             @if (!session('photo'))
-                <img src="" id="profil_menu"/>
+                <img src="" id="profil_menu" />
             @else
                 <img id="prev_profile" alt="Nama Alt">
             @endif
@@ -58,7 +61,7 @@
             <div class="content-popup">
                 <div class="username-content-popup">
                     @if (!session('photo'))
-                        <img src="" id="prev_profile_pop"/>
+                        <img src="" id="prev_profile_pop" />
                     @else
                         <img id="prev_profile_pop"" alt="Nama Alt">
                     @endif
@@ -99,7 +102,7 @@
             <div class="content-profil">
                 <div class="image-profile">
                     @if (!session('photo'))
-                        <img src="" id="foto_profil"/>
+                        <img src="" id="foto_profil" />
                     @else
                         <img id="prev_foto" alt="Nama Alt">
                     @endif
@@ -116,19 +119,18 @@
                     </div>
                     <div class="nama-user">
                         <input type="text" name="username" id="username" placeholder="Nama Pengguna"
-                            value=""  />
+                            value="" />
                         <input type="text" name="long_name" id="longname" placeholder="Nama Lengkap"
-                            value=""  />
+                            value="" />
                     </div>
                     <label for="email" style="line-height: 60px;">Email Pengguna :</label>
-                    <input type="text" name="email" id="email" placeholder="Email"
-                    value="" readonly />
+                    <input type="text" name="email" id="email" placeholder="Email" value=""
+                        readonly />
                     <label for="telp" style="line-height: 60px;">Nomor Telepon :</label>
                     <input type="text" name="telp" id="telp" placeholder="Nomor Telepon"
-                    value=""  />
-                    <label for="address" style="line-height: 60px;">Alamat Pengguna :</label>
-                    <input type="text" name="address" id="address" placeholder="Alamat"
                         value="" />
+                    <label for="address" style="line-height: 60px;">Alamat Pengguna :</label>
+                    <input type="text" name="address" id="address" placeholder="Alamat" value="" />
                     <button id="editButton">
                         <a>Ubah Profil</a>
                     </button>
@@ -269,7 +271,7 @@
                 var formData = new FormData(this);
 
                 $.ajax({
-                    url: 'http://127.0.0.1:8000/api/profile-edit',
+                    url: appUrl + 'h/api/profile-edit',
                     type: 'POST',
                     data: formData,
                     contentType: false,
@@ -294,7 +296,7 @@
 
         function getData() {
             $.ajax({
-                url: 'http://127.0.0.1:8000/profile',
+                url: appUrl + '/profile',
                 type: 'GET',
                 success: function(response) {
                     console.log(response);
@@ -308,9 +310,10 @@
                         $('#username').val(data.username);
                         $('#address').val(data.address);
                         $('#role').val(data.role);
-                        
+
                         // Set values to input fields
-                        $('#foto_profil, #profil_menu, #prev_foto, #prev_profile, #prev_profile_pop').attr('src', 'data:image/png;base64,' + data.photo)
+                        $('#foto_profil, #profil_menu, #prev_foto, #prev_profile, #prev_profile_pop').attr(
+                            'src', 'data:image/png;base64,' + data.photo)
                         $('#usn_profile, #usn_profile_pop').text(data.username)
                         console.log($('#username'));
                     }
@@ -321,7 +324,7 @@
         // Fungsi untuk mengambil data kategori dari API
         function getCategories() {
             $.ajax({
-                url: 'http://localhost:8000/api/categoryList',
+                url: appUrl + '/api/categoryList',
                 type: 'GET',
                 success: function(response) {
                     // Panggil fungsi untuk menampilkan kategori ke dalam daftar
@@ -341,7 +344,8 @@
             // Tambahkan setiap kategori ke dalam daftar
             categories.forEach(category => {
                 const li = $('<li>');
-                const link = $('<a>').attr('href', '/categories/' + category.category_id).text(category.name_category);
+                const link = $('<a>').attr('href', '/categories/' + category.category_id).text(category
+                    .name_category);
                 li.append(link);
                 categoryList.append(li);
             });

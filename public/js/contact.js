@@ -7,7 +7,7 @@ $(document).ready(function () {
 
         // Make AJAX request
         $.ajax({
-            url: 'http://127.0.0.1:8000/api/contact-admin', // Replace with the actual route of your controller
+            url: appUrl + '/api/contact-admin', // Replace with the actual route of your controller
             type: 'POST',
             data: formData,
             dataType: 'json',

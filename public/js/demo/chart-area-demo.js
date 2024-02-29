@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
   $.ajax({
-      url: 'http://127.0.0.1:8000/api/group_monthly',
+      url: appUrl + '/api/group_monthly',
       type: 'GET',
       dataType: 'json',
       success: function (apiData) {

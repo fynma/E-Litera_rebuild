@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 function getData() {
     $.ajax({
-        url: "http://127.0.0.1:8000/profile",
+        url: appUrl + "/profile",
         type: "GET",
         success: function (response) {
             console.log(response);
@@ -24,7 +24,7 @@ function getData() {
 
 function tampilkanPinjam() {
     $.ajax({
-        url: "http://127.0.0.1:8000/api/borrowList",
+        url: appUrl + "/api/borrowList",
         method: "GET",
         success: function (response) {
             console.log(response);
@@ -39,7 +39,7 @@ function tampilkanPinjam() {
                 // Tambahkan permintaan AJAX untuk mendapatkan nama pengguna
                 var userRequest = $.ajax({
                     url:
-                        "http://127.0.0.1:8000/api/detail-user/" + data.user_id,
+                    appUrl + "/api/detail-user/" + data.user_id,
                     method: "GET",
                     success: function (userResponse) {
                         console.log("User Response:", userResponse); // Debugging
@@ -52,7 +52,7 @@ function tampilkanPinjam() {
                 // Tambahkan permintaan AJAX untuk mendapatkan judul buku
                 var bookRequest = $.ajax({
                     url:
-                        "http://localhost:8000/api/detail-buku/" + data.book_id,
+                    appUrl + "/api/detail-buku/" + data.book_id,
                     method: "GET",
                     success: function (bookResponse) {
                         console.log("Book Response:", bookResponse); // Debugging
@@ -158,7 +158,7 @@ function handleConfirm() {
 
         // Kirim data ke controller API
         $.ajax({
-            url: "http://127.0.0.1:8000/api/confirmBorrow",
+            url: appUrl + "/api/confirmBorrow",
             method: "POST",
             data: formData,
             success: function (response) {

@@ -11,13 +11,13 @@ $(document).ready(function () {
 
 function getData() {
     $.ajax({
-        url: 'http://127.0.0.1:8000/profile',
+        url: appUrl + '/profile',
         type: 'GET',
         success: function (response) {
             console.log(response);
             if (response.success) {
                 var data = response.data;
-                $('#user').text(data.username, data.access) ;
+                $('#user').text(data.username + ' | ' + data.access);
                 $('#prev-prof').attr('src', 'data:image/png;base64,' + data.photo)
             }
         },
@@ -26,7 +26,7 @@ function getData() {
 // Menggunakan AJAX untuk memanggil fungsi backend
 function getTotalUser() {
     $.ajax({
-        url: 'http://127.0.0.1:8000/api/total-user',
+        url: appUrl + '/api/total-user',
         type: 'GET',
         success: function (response) {
             if (response.success) {
@@ -42,7 +42,7 @@ function getTotalUser() {
 }
 function getTotalPinjam() {
     $.ajax({
-        url: 'http://127.0.0.1:8000/api/total-pinjam', // Ganti dengan URL yang sesuai
+        url: appUrl + '/api/total-pinjam', // Ganti dengan URL yang sesuai
         type: 'GET',
         success: function (response) {
             console.log(response);
@@ -63,7 +63,7 @@ function getTotalPinjam() {
 
 function getTotalBook() {
     $.ajax({
-        url: 'http://127.0.0.1:8000/api/bookCover',
+        url: appUrl + '/api/bookCover',
         type: 'GET',
         success: function (response) {
             console.log(response);
@@ -96,7 +96,7 @@ function getTotalBook() {
 function getTotalStok() {
     // AJAX request to your Laravel endpoint
     $.ajax({
-        url: 'http://127.0.0.1:8000/api/showStok', // Change this URL to match your Laravel route
+        url: appUrl + '/api/showStok', // Change this URL to match your Laravel route
         type: 'GET',
         dataType: 'json',
         success: function (response) {
@@ -112,7 +112,7 @@ function getTotalStok() {
 
 function getTotalDenda() {
     $.ajax({
-        url: 'http://127.0.0.1:8000/api/list_denda',
+        url: appUrl+'/api/list_denda',
         type: 'GET',
         success: function (response) {
             console.log(response);

@@ -27,7 +27,13 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
+    <meta name="user-id" content="{{ session('user_id') }}">
+    <meta name="access" content="{{ session('access') }}">
+    <script>
+        var appUrl = "{{ config('API_URL') }}";
+    </script>
 </head>
+
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -46,7 +52,7 @@
             </li>
 
             <li class="nav-item">
-            <a class="nav-link" href="/admin/Data-Pengguna">
+                <a class="nav-link" href="/admin/Data-Pengguna">
                     <i class="bi bi-people"></i>
                     <span>Data Pengguna</span></a>
             </li>
@@ -182,11 +188,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img
-                                    class="mr-3 img-profile rounded-circle"
-                                    src="../img/undraw_profile.svg"
-                                />
-                                <span class="d-none d-lg-inline text-gray-600 small" id="user">  </span>
+                                <img class="mr-3 img-profile rounded-circle" src="../img/undraw_profile.svg" />
+                                <span class="d-none d-lg-inline text-gray-600 small" id="user"> </span>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -221,8 +224,8 @@
                                                 Total Anggota
                                             </div>
                                             <div class="mb-0 text-white satuan-summary font-weight-semibold">
-                                                <span class="h4 font-weight-semibold"
-                                                    style="margin-right: 4%" id="total-user"></span>Orang
+                                                <span class="h4 font-weight-semibold" style="margin-right: 4%"
+                                                    id="total-user"></span>Orang
                                             </div>
                                         </div>
                                     </div>
@@ -259,8 +262,8 @@
                                                 Dipinjamkan
                                             </div>
                                             <div class="mb-0 text-white satuan-summary font-weight-semibold">
-                                                <span class="h4 font-weight-semibold"
-                                                    style="margin-right: 4%" id="getTotalBorrow"></span>Buku
+                                                <span class="h4 font-weight-semibold" style="margin-right: 4%"
+                                                    id="getTotalBorrow"></span>Buku
                                             </div>
                                         </div>
                                     </div>
@@ -278,8 +281,8 @@
                                                 Tersedia
                                             </div>
                                             <div class="mb-0 text-white satuan-summary font-weight-semibold">
-                                                <span class="h4 font-weight-semibold"
-                                                    style="margin-right: 4%" id="totalStok"> </span>Buku
+                                                <span class="h4 font-weight-semibold" style="margin-right: 4%"
+                                                    id="totalStok"> </span>Buku
                                             </div>
                                         </div>
                                     </div>
@@ -297,8 +300,8 @@
                                                 Denda
                                             </div>
                                             <div class="mb-0 text-white satuan-summary font-weight-semibold">
-                                                <span class="h4 font-weight-semibold"
-                                                    style="margin-right: 4%" id="TotalDenda"></span>Orang
+                                                <span class="h4 font-weight-semibold" style="margin-right: 4%"
+                                                    id="TotalDenda"></span>Orang
                                             </div>
                                         </div>
                                     </div>
@@ -467,6 +470,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../js/index-admin.js"></script>
+    <script src="../js/rolecheck.js"></script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>

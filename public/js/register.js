@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
 
         const formData = new FormData(registerForm);
-        const url = "http://localhost:8000/api/auth/register";
+        const url = appUrl + "/api/auth/register";
 
         try {
             const response = await fetch(url, {
