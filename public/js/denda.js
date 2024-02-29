@@ -8,7 +8,7 @@ $(document).ready(function () {
 
 function getData() {
     $.ajax({
-        url: appUrl+"profile",
+        url: appUrl + "/profile",
 
         type: "GET",
         success: function (response) {
@@ -33,57 +33,57 @@ function getData() {
 }
 
 function tampilkanDenda() {
-    $.ajax({
-        url: appUrl+"/api/list_denda",
-
-        method: "GET",
-        success: function (response) {
-            console.log(response);
-            $("#tabel-data tbody").empty(); // Hapus semua baris yang ada di tabel
-
-            // Filter data berdasarkan userID
-            var borrowsFiltered = response.borrows.filter(function (borrows) {
-                return borrows.user_id === userID;
-            });
-
-            // Tambahkan data buku ke tabel
-            $.each(borrowsFiltered, function (index, borrows) {
-                var newRow =
-                    "<tr><td>" +
-                    (index + 1) +
-                    "</td><td>" +
-                    borrows.judul +
-                    "</td><td>" +
-                    borrows.tgl_pinjam +
-                    "</td><td>" +
-                    borrows.tgl_kembali +
-                    "</td><td>" +
-                    borrows.petugas_pinjam +
-                    "</td><td>" +
-                    borrows.petugas_kembali +
-                    "</td><td>" +
-                    borrows.jumlah_pinjam +
-                    "</td><td><button class='btn-view' data-bs-toggle='modal' data-bs-target='#exampleModal' data-id=" +
-                    borrows.borrow_id +
-                    " data-user-id=" +
-                    borrows.user_id +
-                    " data-book-id=" +
-                    borrows.book_id +
-                    " data-tgl-kembali=" +
-                    borrows.tgl_kembali +
-                    ">Detail</button></td></tr>";
-                $("#tabel-data tbody").append(newRow);
-            });
-
-            // Menambahkan event listener untuk tombol delete
-            $(".btn-delete").click(function () {
-                var bookId = $(this).data("id");
-                deleteBook(bookId);
-            });
+    $("#tabel-data").dataTable({
+        Destroy: true,
+        processing: true,
+        ajax: {
+            url: appUrl + "/api/list_denda",
+            dataSrc: "borrows",
         },
-        error: function (xhr, status, error) {
-            console.error(xhr.responseText);
-            alert("Gagal mengambil data buku. Silakan coba lagi.");
+        columns: [
+            {
+                data: null,
+                render: function (data, type, row, meta) {
+                    return meta.row + 1;
+                },
+            },
+            { data: "judul" },
+            { data: "tgl_pinjam" },
+            { data: "tgl_kembali" },
+            { data: "petugas_pinjam" },
+            { data: "petugas_kembali" },
+            { data: "jumlah_pinjam" },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return (
+                        '<div><button class="btn-view" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="' +
+                        data.borrow_id +
+                        '" data-user-id="' +
+                        data.user_id +
+                        '" data-book-id="' +
+                        data.book_id +
+                        '" data-tgl-kembali="' +
+                        data.tgl_kembali +
+                        '">Detail</button></div>'
+                    );
+                },
+            },
+        ],
+        language: {
+            lengthMenu: "Tampilkan MENU hasil",
+            zeroRecords: "Data tidak ditemukan",
+            info: "Menampilkan halaman PAGE dari PAGES",
+            infoEmpty: "Tidak ada data",
+            infoFiltered: "(filtered from MAX total records)",
+            emptyTable: "Tidak ada data",
+            search: "Cari data :",
+            paginate: {
+                first: "Awal",
+                last: "Terakhir",
+                next: "Selanjutnya",
+                previous: "Sebelumnya",
+            },
         },
     });
 }
@@ -177,29 +177,6 @@ $("#tabel-data tbody").on("click", ".btn-view", function () {
     });
 });
 
-// function handleConfirm() {
-//     $("#bayarDenda").on("submit", function (event) {
-//         event.preventDefault(); // Menghentikan perilaku default pengiriman formulir
-
-//         // Mengambil data dari formulir
-//         var formData = $(this).serialize();
-
-// Kirim data ke controller API
-//         $.ajax({
-//             url: "http://127.0.0.1:8000/api/denda",
-//             method: "POST",
-//             data: formData,
-//             success: function (response) {
-//                 // Handle response jika sukses
-//                 console.log(response);
-//             },
-//             error: function (xhr, status, error) {
-//                 // Handle error jika permintaan gagal
-//                 console.error(xhr.responseText);
-//             },
-//         });
-//     });
-// }
 
 function closeDetail() {
     detail.classList.remove("openPopupDenda");
@@ -217,13 +194,12 @@ $("#popupDenda").on("click", "#pay-button", function () {
             console.log(response);
         },
         error: function (xhr, status, error) {
-            // Handle error jika permintaan gagal
             console.error(xhr.responseText);
         },
     });
 });
 
-// var payButton = document.getElementById("pay-button");
-// payButton.addEventListener("click", function () {
-//     snap.pay(response.snaptoken);
-// });
+var payButton = document.getElementById("pay-button");
+payButton.addEventListener("click", function () {
+    snap.pay(response.snaptoken);
+});

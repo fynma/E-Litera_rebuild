@@ -13,9 +13,9 @@ class transaction extends Model
     protected $primaryKey = 'transaction_id';
 
     protected $fillable = ([
-        'user_id'  ,
+        'username',
+        'user_id',
         'denda_id',
         'total_denda',
-        'snap_token'
     ]);
 }

@@ -50,7 +50,6 @@ Route::middleware(['web'])->group(function () {
         });
         Route::get('totalUser', [ProfileController::class, 'totalUser']);
 
-
         Route::get('/admin/Kategori', function () {
             return view('admin.Kategori');
         });
@@ -109,6 +108,13 @@ Route::middleware(['web'])->group(function () {
         Route::get('/user/Notifikasi', function () {
             return view('user.Notifikasi');
         });
+        Route::get('/user/category/{name_category}', function () {
+            return view('user.category');
+        });
+        Route::get('/user/search/{keyword}', function ($keyword) {
+            return view('user.search', ['keyword' => $keyword]);
+        });
+        
     });
 
     Route::get('/', function () {
