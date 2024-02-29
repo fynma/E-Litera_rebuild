@@ -1,20 +1,5 @@
 $(document).ready(function () {
-    // handleConfirm();
-    // $.ajax({
-    //     'url': "http://127.0.0.1:8000/api/list_denda",
-    //     'method': "GET",
-    //     'contentType': 'application/json'
-    // }).done( function(borrows) {
-    //     $('#dataTable').dataTable( {
-    //         "aaData": borrows,
-    //         "columns": [
-    //             { borrows: "id" },
-    //             { borrows: "name" },
-    //             { borrows: "detail_alias" },
-    //             { borrows: "points" }
-    //         ]
-    //     })
-    // })
+
     $("#dataTable").dataTable({
         Destroy: true,
         processing: true,

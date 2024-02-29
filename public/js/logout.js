@@ -1,17 +1,20 @@
 
-
 function logout() {
+    // Ambil token CSRF dari meta tag
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    // Kirim permintaan logout dengan menyertakan token CSRF
     $.ajax({
-        url: appUrl + '/api/logout',
+        url: appUrl + '/hapussession',
         type: 'POST',
-        success: function(response) {
-            console.log(response);
-            location.reload(true);
-            sessionStorage.removeItem('user');
-            sessionStorage.removeItem('user_id');
-            sessionStorage.removeItem('email');
+        data: {
+            _token: csrfToken // Sertakan token CSRF dalam data permintaan
         },
-        error: function(error) {
+        success: function (response) {
+            console.log(response);
+            // Lakukan tindakan setelah berhasil logout
+        },
+        error: function (error) {
             console.error('Logout failed:', error);
         }
     });
