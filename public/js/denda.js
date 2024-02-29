@@ -183,21 +183,21 @@ $("#tabel-data tbody").on("click", ".btn-view", function () {
 //         var formData = $(this).serialize();
 
         // Kirim data ke controller API
-        $.ajax({
-            url: "http://127.0.0.1:8000/api/denda",
-            method: "POST",
-            data: formData,
-            success: function (response) {
-                // Handle response jika sukses
-                console.log(response);
-            },
-            error: function (xhr, status, error) {
-                // Handle error jika permintaan gagal
-                console.error(xhr.responseText);
-            },
-        });
-    });
-}
+//         $.ajax({
+//             url: "http://127.0.0.1:8000/api/denda",
+//             method: "POST",
+//             data: formData,
+//             success: function (response) {
+//                 // Handle response jika sukses
+//                 console.log(response);
+//             },
+//             error: function (xhr, status, error) {
+//                 // Handle error jika permintaan gagal
+//                 console.error(xhr.responseText);
+//             },
+//         });
+//     });
+// }
 
 function closeDetail() {
     detail.classList.remove("openPopupDenda");

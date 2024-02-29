@@ -61,7 +61,7 @@
                         <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
                     @endif
             <div class="username-popup">
-              <p>Natalia Dita</p>
+              <p id="username-popup"></p>
               <button id="btn-profile">
                 <a href="Profile">Lihat Profil</a>
               </button>

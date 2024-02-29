@@ -10546,7 +10546,7 @@ div.dataTables_wrapper div.dataTables_filter input {
     pointer-events: none;
 }
 
-tr td:last-child {
+tr td:last-child div {
     display: flex;
     justify-content: center;
     align-items: center;

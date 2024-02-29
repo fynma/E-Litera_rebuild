@@ -200,7 +200,7 @@
                         <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
                     @endif
             <div class="username-popup">
-              <p>Natalia Dita</p>
+              <p id="username-popup"></p>
               <button id="btn-profile">
                 <a href="Profile">Lihat Profil</a>
               </button>
@@ -248,7 +248,7 @@
             melalui koleksi kami yang kaya. Selamat bergabung dengan kami dalam
             perjalanan mencari ilmu yang tak pernah berakhir di E-Litera.
           </p>
-          <a href="../Daftar">Daftar</a>
+          <a href="../register">Daftar</a>
         </div>
         <img src="../img/vektor-tentang.png" />
       </div>

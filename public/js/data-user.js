@@ -22,12 +22,11 @@ $(document).ready(function () {
                 data: null,
                 render: function (data, type, row) {
                     return (
-                        '<button class="btn-view" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="' +
-                            data.user_id +
-                            '"><i class="bi bi-eye"></i></button>' &&
-                        '<button class="btn-view" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="' +
-                            data.user_id +
-                            '"><i class="bi bi-eye"></i></button>'
+                        '<div><button class="btn-view" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="' +
+                        data.user_id +
+                        '"><i class="bi bi-eye"></i></button><button class="btn-delete" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="' +
+                        data.user_id +
+                        '"><i class="bi bi-eye"></i></button></div>'
                     );
                 },
             },
