@@ -117,9 +117,14 @@ class ProfileController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public function hapussession(Request $request)
     {
         // Clear session data
+        // dd(session('user_id'));
+        
+        session(['token' => null]);
+        session(['access' => null]);
+
         session(['user' => null]);
         session(['user_id' => null]);
         session(['email' => null]);
@@ -128,15 +133,13 @@ class ProfileController extends Controller
         session(['long_name' => null]);
         session(['telp' => null]);
         session(['address' => null]);
-        session(['access' => null]);
-        session(['token' => null]);
-        session()->flush();
+        // session()->flush();
         
         // Forget cookies
-        $response = response()->json(['success' => true, 'message' => 'Logout successfully'], 200);
+        return response()->json(['success' => true, 'message' => 'Logout successfully'], 200);
 
     
-        return $response;
+        // return $response;
     }
     
     

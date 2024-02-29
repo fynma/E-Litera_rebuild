@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['web'])->group(function () {
+    Route::post('/hapussession', [ProfileController::class, 'hapussession'])->name('hapussession');
 
     Route::get  ('profile', [ProfileController::class, 'profileweb']);
 

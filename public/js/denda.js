@@ -8,7 +8,8 @@ $(document).ready(function () {
 
 function getData() {
     $.ajax({
-        url: appUrl + "/profile",
+        url: appUrl+"profile",
+
         type: "GET",
         success: function (response) {
             console.log(response);
@@ -33,7 +34,8 @@ function getData() {
 
 function tampilkanDenda() {
     $.ajax({
-        url: appUrl + "/api/list_denda",
+        url: appUrl+"/api/list_denda",
+
         method: "GET",
         success: function (response) {
             console.log(response);
