@@ -119,18 +119,19 @@
                     </div>
                     <div class="nama-user">
                         <input type="text" name="username" id="username" placeholder="Nama Pengguna"
-                            value="" />
+                            value=""  />
                         <input type="text" name="long_name" id="longname" placeholder="Nama Lengkap"
-                            value="" />
+                            value=""  />
                     </div>
                     <label for="email" style="line-height: 60px;">Email Pengguna :</label>
-                    <input type="text" name="email" id="email" placeholder="Email" value=""
-                        readonly />
+                    <input type="text" name="email" id="email" placeholder="Email"
+                    value="" readonly />
                     <label for="telp" style="line-height: 60px;">Nomor Telepon :</label>
                     <input type="text" name="telp" id="telp" placeholder="Nomor Telepon"
-                        value="" />
+                    value=""  />
                     <label for="address" style="line-height: 60px;">Alamat Pengguna :</label>
-                    <input type="text" name="address" id="address" placeholder="Alamat" value="" />
+                    <input type="text" name="address" id="address" placeholder="Alamat"
+                        value="" />
                     <button id="editButton">
                         <a>Ubah Profil</a>
                     </button>

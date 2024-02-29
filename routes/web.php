@@ -69,6 +69,9 @@ Route::middleware(['web'])->group(function () {
         Route::get('/admin/Pengembalian', function () {
             return view('admin.Pengembalian');
         });
+        Route::get('/admin/Denda', function () {
+            return view('admin.DendaAdmin');
+        });
 
     });
 
