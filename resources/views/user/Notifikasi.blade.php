@@ -181,6 +181,8 @@
         </div>
     </section>
 
+    <script src="../js/search-category.js"></script>
+
     <script>
         $(document).ready(function() {
             getData();

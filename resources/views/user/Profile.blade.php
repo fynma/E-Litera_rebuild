@@ -260,6 +260,8 @@
 
     {{-- SCRIPT API  --}}
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../js/search-category.js"></script>
+
 
     <script>
         $(document).ready(function() {
@@ -345,7 +347,7 @@
             // Tambahkan setiap kategori ke dalam daftar
             categories.forEach(category => {
                 const li = $('<li>');
-                const link = $('<a>').attr('href', '/categories/' + category.category_id).text(category
+                const link = $('<a>').attr('href', '/user/category/' + category.name_category).text(category
                     .name_category);
                 li.append(link);
                 categoryList.append(li);

@@ -262,6 +262,8 @@
        
     </script>
     <script src="../js/denda.js"></script>
+    <script src="../js/search-category.js"></script>
+
 </body>
 
 </html>

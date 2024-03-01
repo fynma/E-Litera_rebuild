@@ -114,7 +114,6 @@ Route::middleware(['web'])->group(function () {
         Route::get('/user/search/{keyword}', function ($keyword) {
             return view('user.search', ['keyword' => $keyword]);
         });
-        
     });
 
     Route::get('/', function () {

@@ -196,6 +196,8 @@
     </section>
 
     <script src="../js/riwayatPinjam.js"></script>
+    <script src="../js/search-category.js"></script>
+
     <script>
       // validasi Profil
       window.addEventListener("load", function () {

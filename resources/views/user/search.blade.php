@@ -38,12 +38,12 @@
                 <a href="#" class="kategori">Kategori <i class="bi bi-chevron-down"></i></a>
                 <ul id="categoryList"></ul>
             </li>
-            <li><a href="homepage">Beranda</a></li>
-            <li><a href="Tentang">Tentang</a></li>
+            <li><a href="../homepage">Beranda</a></li>
+            <li><a href="../Tentang">Tentang</a></li>
             <li>
                 <a href="Riwayat">Riwayat</a>
             </li>
-            <li><a href="Kontak">Kontak</a></li>
+            <li><a href="../Kontak">Kontak</a></li>
         </ul>
         <div class="username">
             @if (!session('photo'))
@@ -67,7 +67,7 @@
             <div class="username-popup">
               <p id="username-popup"></p>
               <button id="btn-profile">
-                <a href="Profile">Lihat Profil</a>
+                <a href="../Profile">Lihat Profil</a>
               </button>
             </div>
           </div>
@@ -78,7 +78,7 @@
             </button>
             <button id="btn-bantuan">
               <i class="bi bi-question-circle"></i>
-              <a href="Kontak">Bantuan</a>
+              <a href="../Kontak">Bantuan</a>
             </button>
           </div>
           <button class="btn-logout">
@@ -146,8 +146,39 @@
         </div>
     </section>
 
-    <script src="../../js/search.js"></script>
+    <script src="../../js/search-category.js"></script>
     <script>
+        $(document).ready(function() {
+            getCategories();
+        });
+
+        function getCategories() {
+            $.ajax({
+                url: appUrl + '/api/categoryList',
+                type: 'GET',
+                success: function(response) {
+                    displayCategories(response.data);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        // Fungsi untuk menampilkan kategori ke dalam daftar
+        function displayCategories(categories) {
+            const categoryList = $('#categoryList');
+            // Kosongkan daftar sebelum menambahkan kategori baru
+            categoryList.empty();
+            // Tambahkan setiap kategori ke dalam daftar
+            categories.forEach(category => {
+                const li = $('<li>');
+                const link = $('<a>').attr('href', '/user/category/' + category.name_category).text(category
+                    .name_category);
+                li.append(link);
+                categoryList.append(li);
+            });
+        }
       // validasi Profil
       window.addEventListener("load", function () {
         closeModal();

@@ -60,8 +60,7 @@ function displayBooks(books) {
         var gridItem = $(
             '<div class="grid-item" data-rating="' + book.rating + '"></div>'
         );
-        var img = $("<img>")
-            .attr("src", "data:image/png;base64," + book.gambar)
+        var img = $("<img>").attr("src", "data:image/png;base64," + book.gambar)
             .attr("alt", book.judul);
 
         // var img = $('<img>').attr('src', '../img/' + book.gambar).attr('alt', book.judul);

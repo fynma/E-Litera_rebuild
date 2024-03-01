@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <meta name="user-id" content="{{ session('user_id') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
@@ -99,8 +100,8 @@
                         <label for="judul-buku">Judul buku</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <input type="text" name="judul-buku" id="judul-buku-pop" style="pointer-events: none;"
-                                readonly />
+                            <input type="text" name="judul-buku" id="judul-buku-pop"
+                                style="pointer-events: none;" readonly />
                         </div>
                     </div>
                     <div class="get-pinjam">
@@ -187,33 +188,8 @@
                 </div>
 
                 <div id="content-comments" class="content">
+                    {{-- pemanggilan id="komentar" pada div konten komen --}}
                     <div class="konten-komen">
-                        <div class="komentar">
-                            <img src="../../img/avatar.jpg" />
-                            <div class="isi-komen">
-                                <h2 class="username-komen" id="username-komen">Dika</h2>
-                                <p class="tanggal-komen" id="tanggal-komen">
-                                    9 Januari 2020 - 20.23 WIB
-                                </p>
-                                <p class="isi" id="isi">
-                                    Bukunya membuat saya mendapatkan banyak pengalaman
-                                </p>
-                                <a href="#">Balas</a>
-                            </div>
-                        </div>
-                        <div class="komentar">
-                            <img src="../../img/avatar.jpg" />
-                            <div class="isi-komen">
-                                <h2 class="username-komen" id="username-komen">Dika</h2>
-                                <p class="tanggal-komen" id="tanggal-komen">
-                                    9 Januari 2020 - 20.23 WIB
-                                </p>
-                                <p class="isi" id="isi">
-                                    Bukunya membuat saya mendapatkan banyak pengalaman
-                                </p>
-                                <a href="#">Balas</a>
-                            </div>
-                        </div>
                         <div class="komentar">
                             <img src="../../img/avatar.jpg" />
                             <div class="isi-komen">
@@ -235,10 +211,13 @@
                             @else
                                 <img id="prev_profile" alt="Nama Alt">
                             @endif
-                            <input type="text" name="tambah-komen" id="tambah-komen"
-                                placeholder="Tambahkan Komentar..." />
+                            <form id="komen" mhod="post">
+                                @csrf
+                                <input type="text" name="tambah-komen" id="tambah-komen"
+                                    placeholder="Tambahkan Komentar..." />
                         </div>
-                        <button><i class="bi bi-send"></i></button>
+                        <button type="button" id="btn-komen"><i class="bi bi-send"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -256,41 +235,41 @@
     </section>
 
     <div class="popup" id="popup">
-      <div class="isi-popup">
-        <div class="content-popup">
-          <div class="username-content-popup">
-              @if (!session('photo'))
-                <img src="" id="prev_profile_pop" />
-              @else
-                <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
-              @endif
-            <div class="username-popup">
-              <p id="username-popup"></p>
-              <button id="btn-profile">
-                <a href="../Profile">Lihat Profil</a>
-              </button>
+        <div class="isi-popup">
+            <div class="content-popup">
+                <div class="username-content-popup">
+                    @if (!session('photo'))
+                        <img src="" id="prev_profile_pop" />
+                    @else
+                        <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
+                    @endif
+                    <div class="username-popup">
+                        <p id="username-popup"></p>
+                        <button id="btn-profile">
+                            <a href="../Profile">Lihat Profil</a>
+                        </button>
+                    </div>
+                </div>
+                <div class="widget">
+                    <button id="btn-denda">
+                        <img src="../../img/icon-denda.png" />
+                        <a href="../Denda">Denda</a>
+                    </button>
+                    <button id="btn-bantuan">
+                        <i class="bi bi-question-circle"></i>
+                        <a href="../Kontak">Bantuan</a>
+                    </button>
+                </div>
+                <button class="btn-logout">
+                    <div class="icon-logout">
+                        <i class="bi bi-box-arrow-left"></i>
+                    </div>
+                    <p>Keluar Dari Aplikasi</p>
+                </button>
+                <br />
+                <a onclick="closeModal()">Tutup</a>
             </div>
-          </div>
-          <div class="widget">
-            <button id="btn-denda">
-              <img src="../../img/icon-denda.png" />
-              <a href="../Denda">Denda</a>
-            </button>
-            <button id="btn-bantuan">
-              <i class="bi bi-question-circle"></i>
-              <a href="../Kontak">Bantuan</a>
-            </button>
-          </div>
-          <button class="btn-logout">
-            <div class="icon-logout">
-              <i class="bi bi-box-arrow-left"></i>
-            </div>
-            <p>Keluar Dari Aplikasi</p>
-          </button>
-          <br />
-          <a onclick="closeModal()">Tutup</a>
         </div>
-      </div>
     </div>
 
     <section class="penutup">
@@ -464,6 +443,8 @@
             });
     </script>
     <script src="../../js/bookDetail.js"></script>
+    <script src="../../js/search-category.js"></script>
+
 </body>
 
 </html>

@@ -62,7 +62,6 @@ Route::group([
     Route::post ('transaction', [transactionController::class, 'transaction_midtrans']);
     Route::post ('contact-admin', [contactController::class, 'sendReport']);
     Route::post ('favorite', [BookController::class, 'favorite']);
-    // Route::post ('logout', [ProfileController::class, 'logout']);
 
     Route::get  ('HistoryBorrow', [borrowController::class, 'showHistory']);
     Route::get  ('showFavorite', [BookController::class, 'showFavorite']);
@@ -89,7 +88,6 @@ Route::group([
     Route::get  ('showRating', [RatingController::class, 'averageRating']);
     Route::get  ('showStok', [BookController::class, 'TotalBook']);
     Route::get  ('group_monthly', [borrowController::class, 'groupByMonth']);
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

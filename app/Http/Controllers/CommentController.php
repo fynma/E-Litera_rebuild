@@ -15,7 +15,7 @@ class CommentController extends Controller
     {
         $userid = $request->input('user_id');
         $bookid = $request->input('book_id');
-        $validation = $request->validate([
+            $validation = $request->validate([
             'komentar' => 'required|max:255',
         ]);
 

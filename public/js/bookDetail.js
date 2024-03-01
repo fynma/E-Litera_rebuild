@@ -208,10 +208,10 @@ function displayBooks(books) {
 
         var title = $(
             '<h3 id="judul-buku"><a style="cursor:pointer;" id="book_judul" data-id="' +
-                book.book_id +
-                '">' +
-                book.judul +
-                "</a></h3>"
+            book.book_id +
+            '">' +
+            book.judul +
+            "</a></h3>"
         );
         var author = $(
             '<a href="#" id="penulis-buku">By: ' + book.penulis + "</a>"
@@ -244,8 +244,8 @@ function displayBooks(books) {
         var linkPinjam = $('<div class="link-pinjam" id="disabledLink"></div>');
         var buttonPinjam = $(
             '<button style="cursor: pointer" id="btn-pinjam" onclick="openPinjam()" data-id=' +
-                book.book_id +
-                "><a>Pinjam</a></button>"
+            book.book_id +
+            "><a>Pinjam</a></button>"
         );
 
         details.append(
@@ -357,8 +357,8 @@ function favorite(books) {
     var bookId = urlParts[urlParts.length - 1];
     var userId = document.querySelector('meta[name="user-id"]').content;
 
-    console.log("favorite user id :" + userId);
-    console.log("favorite book id: " + bookId);
+    // console.log("favorite user id :" + userId);
+    // console.log("favorite book id: " + bookId);
 
     // Check if the bookId exists in the favorites
     var isFavorited = books.some(function (book) {
@@ -397,6 +397,8 @@ function favorite(books) {
         });
     });
 }
+
+
 // function getfavorite() {
 //     $.ajax({
 //         url: "http://127.0.0.1:8000/api/showFavorite",

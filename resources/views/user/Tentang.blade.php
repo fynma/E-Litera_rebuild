@@ -320,6 +320,7 @@
             <p>Perpustakaan Digital dengan berbagai ffitur</p>
         </div>
     </section>
+    <script src="../js/search-category.js"></script>
 
     <script>
         $(document).ready(function() {

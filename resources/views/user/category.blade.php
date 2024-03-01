@@ -4,16 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>E-Litera | Kontak</title>
+    <title>E-Litera | Category</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <link rel="stylesheet" href="../css/user.css" />
-    <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="../../css/user.css" />
+    <link rel="icon" href="../../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
@@ -21,7 +16,8 @@
 
 <body>
     <header>
-        <a href="homepage"><img src="../img/logo aplikasi billa 1.png" /></a>
+        <a href="../homepage"><img src="../../img/logo aplikasi billa 1.png" /></a>
+
         <div class="kotak-search">
             <input type="search" name="cari" id="cari" placeholder="Cari" />
             <i class="bi bi-search"></i>
@@ -39,12 +35,12 @@
                 <a href="#" class="kategori">Kategori <i class="bi bi-chevron-down"></i></a>
                 <ul id="categoryList"></ul>
             </li>
-            <li><a href="homepage">Beranda</a></li>
-            <li><a href="Tentang">Tentang</a></li>
+            <li><a href="../homepage">Beranda</a></li>
+            <li><a href="../Tentang">Tentang</a></li>
             <li>
-                <a href="Riwayat">Riwayat</a>
+                <a href="../Riwayat">Riwayat</a>
             </li>
-            <li><a href="Kontak">Kontak</a></li>
+            <li><a href="../Kontak">Kontak</a></li>
         </ul>
         <div class="username">
             @if (!session('photo'))
@@ -68,18 +64,18 @@
                     <div class="username-popup">
                         <p id="username-popup"></p>
                         <button id="btn-profile">
-                            <a href="Profile">Lihat Profil</a>
+                            <a href="../Profile">Lihat Profil</a>
                         </button>
                     </div>
                 </div>
                 <div class="widget">
                     <button id="btn-denda">
-                        <img src="../img/icon-denda.png" />
-                        <a href="/user/Denda">Denda</a>
+                        <img src="../../img/icon-denda.png" />
+                        <a href="../Denda">Denda</a>
                     </button>
                     <button id="btn-bantuan">
                         <i class="bi bi-question-circle"></i>
-                        <a href="Kontak">Bantuan</a>
+                        <a href="../Kontak">Bantuan</a>
                     </button>
                 </div>
                 <button class="btn-logout">
@@ -94,22 +90,12 @@
         </div>
     </div>
 
-    <section class="kontak">
-        <div class="content-kontak">
-            <div class="form-kontak">
-                <h2>Hubungi Kami</h2>
-                <form method="post" id="form-contact">
-                    @csrf
-                    <input type="text" name="username" placeholder="Nama" required />
-                    <input type="text" name="email" placeholder="Email" required />
-                    <textarea name="contact" cols="30" rows="10" placeholder="Pesan"></textarea>
-                    <input type="submit" id="kirim" value="Kirim" />
-                    <input type="hidden" name="user_id" value="{{ session('user_id') }}">
-                    <input type="hidden" name="tgl_report">
 
-                </form>
+    <section class="favorit">
+        <h1> <span id="category-key"> </span></h1>
+        <div class="content-favorit">
+            <div class="books-grid" style="height: auto" id="grid-item">
             </div>
-            <div id="map"></div>
         </div>
     </section>
 
@@ -117,10 +103,10 @@
         <div class="konten-penutup">
             <div class="books-footer">
                 <div class="buku">
-                    <img src="../img/books1.png" alt="Book 1" />
-                    <img src="../img/books2.png" alt="Book 1" />
-                    <img src="../img/books3.png" alt="Book 1" />
-                    <img src="../img/books4.png" alt="Book 1" />
+                    <img src="../../img/books1.png" alt="Book 1" />
+                    <img src="../../img/books2.png" alt="Book 1" />
+                    <img src="../../img/books3.png" alt="Book 1" />
+                    <img src="../../img/books4.png" alt="Book 1" />
                 </div>
                 <h2>E-LITERA</h2>
                 <p class="deskripsi-perpus">
@@ -147,7 +133,7 @@
                     <a href="#"><i class="bi bi-facebook"></i></a>
                     <a href="#"><i class="bi bi-instagram"></i></a>
                     <a href="#"><i class="bi bi-twitter"></i></a>
-                    <a href="#"><img src="../img/yt-icon.png" /></a>
+                    <a href="#"><img src="../../img/yt-icon.png" /></a>
                 </div>
             </div>
         </div>
@@ -157,42 +143,17 @@
         </div>
     </section>
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="../js/contact.js"></script>
-    <script src="../js/search-category.js"></script>
-
-
+    <script src="../../js/search-category.js"></script>
     <script>
         $(document).ready(function() {
-            getData();
             getCategories();
         });
 
-        function getData() {
-            $.ajax({
-                url: appUrl + '/profile',
-                type: 'GET',
-                success: function(response) {
-                    console.log(response);
-                    if (response.data) {
-                        var data = response.data;
-                        $('#user_id_val').val(data.user_id);
-                        $('#username').text(data.username);
-                        $('#username_pop').val(data.username);
-                        $('#username-popup').text(data.username);
-                        $('#prev_profile, #prev_profile_pop').attr('src', 'data:image/png;base64,' + data.photo)
-                    }
-                },
-            });
-        }
-
-        // Fungsi untuk mengambil data kategori dari API
         function getCategories() {
             $.ajax({
                 url: appUrl + '/api/categoryList',
                 type: 'GET',
                 success: function(response) {
-                    // Panggil fungsi untuk menampilkan kategori ke dalam daftar
                     displayCategories(response.data);
                 },
                 error: function(xhr, status, error) {
@@ -209,25 +170,13 @@
             // Tambahkan setiap kategori ke dalam daftar
             categories.forEach(category => {
                 const li = $('<li>');
-                const link = $('<a>').attr('href', '/categories/' + category.category_id).text(category
+                const link = $('<a>').attr('href', '/user/category/' + category.name_category).text(category
                     .name_category);
                 li.append(link);
                 categoryList.append(li);
             });
         }
-        var map = L.map("map").setView(
-            [-7.9720852125090795, 112.6222269966015],
-            16
-        );
-        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        }).addTo(map);
-        var marker = L.marker([-7.9720852125090795, 112.6222269966015]).addTo(
-            map
-        );
-
-        // validasi button pinjam
+        // validasi Profil
         window.addEventListener("load", function() {
             closeModal();
         });

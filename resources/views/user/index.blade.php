@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/user.css" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
     <script>
-        var appUrl = "{{ config('APP_URL') }}";
+        var appUrl = "{{ config('API_URL') }}";
     </script>
 </head>
 
@@ -32,7 +32,7 @@
         <ul class="navigation">
             <li>
                 <a href="#" class="kategori">Kategori <i class="bi bi-chevron-down"></i></a>
-                <ul id="categoryList"></ul>
+                <ul id="categoryList"></ul> 
             </li>
             <li><a href="homepage">Beranda</a></li>
             <li><a href="Tentang">Tentang</a></li>
@@ -397,8 +397,8 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../js/pinjam-buku.js"></script>
-    {{-- <script src="../js/logout.js"></script> --}}
-    <script src="../js/search.js"></script>
+    <script src="../js/logout.js"></script>
+    <script src="../js/search-category.js"></script>
     <script>
         $(document).ready(function() {
             getData();
@@ -429,7 +429,6 @@
                 url: appUrl + '/api/categoryList',
                 type: 'GET',
                 success: function(response) {
-                    // Panggil fungsi untuk menampilkan kategori ke dalam daftar
                     displayCategories(response.data);
                 },
                 error: function(xhr, status, error) {
@@ -446,7 +445,7 @@
             // Tambahkan setiap kategori ke dalam daftar
             categories.forEach(category => {
                 const li = $('<li>');
-                const link = $('<a>').attr('href', '/categories/' + category.category_id).text(category
+                const link = $('<a>').attr('href', '/user/category/' + category.name_category).text(category
                     .name_category);
                 li.append(link);
                 categoryList.append(li);
@@ -529,26 +528,7 @@
                 }
             });
 
-        function logout() {
-            // Ambil token CSRF dari meta tag
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-
-            // Kirim permintaan logout dengan menyertakan token CSRF
-            $.ajax({
-                url: appUrl + '/hapussession',
-                type: 'POST',
-                data: {
-                    _token: csrfToken // Sertakan token CSRF dalam data permintaan
-                },
-                success: function(response) {
-                    console.log(response);
-                    location.reload()
-                },
-                error: function(error) {
-                    console.error('Logout failed:', error);
-                }
-            });
-        }
+        
     </script>
 </body>
 

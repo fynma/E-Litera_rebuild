@@ -220,6 +220,8 @@
     </section>
 
     <script src="../js/favorite.js"></script>
+    <script src="../js/search-category.js"></script>
+
     <script>
         $(document).ready(function() {
             getData();
