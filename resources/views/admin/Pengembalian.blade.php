@@ -257,12 +257,12 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Buku</th>
+                                            <th>Nama Peminjam</th>
+                                            <th>Judul Buku</th>
                                             <th>Petugas</th>
-                                            <th>Pinjam</th>
-                                            <th>Kembali</th>
-                                            <th>Jumlah</th>
+                                            <th>Tanggal Pinjam</th>
+                                            <th>Tanggal Kembali</th>
+                                            <th>Jumlah Pinjam</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -337,7 +337,6 @@
 
     <!-- Page level custom scripts -->
     <script src="../js/pengembalian.js"></script>
-    <script src="../js/demo/datatables-demo.js"></script>
     <!--
     <script>
         document.addEventListener("DOMContentLoaded", function() {

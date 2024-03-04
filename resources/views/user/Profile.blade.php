@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>E-Litera | Profile</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../css/user.css" />
@@ -82,7 +83,7 @@
                         <a href="Kontak">Bantuan</a>
                     </button>
                 </div>
-                <button class="btn-logout">
+                <button class="btn-logout" onclick="logout()">
                     <div class="icon-logout">
                         <i class="bi bi-box-arrow-left"></i>
                     </div>
@@ -132,6 +133,8 @@
                     <label for="address" style="line-height: 60px;">Alamat Pengguna :</label>
                     <input type="text" name="address" id="address" placeholder="Alamat"
                         value="" readonly/>
+
+                    <label style="color: red; font-size: 12px; font-weight: 400">* tekan tombol Ubah Profil untuk melakukan perubahan profil</label>
                     <button id="editButton">
                         <a>Ubah Profil</a>
                     </button>
@@ -353,6 +356,27 @@
                 categoryList.append(li);
             });
         };
+
+        function logout() {
+            // Ambil token CSRF dari meta tag
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            // Kirim permintaan logout dengan menyertakan token CSRF
+            $.ajax({
+                url: appUrl + '/hapussession',
+                type: 'POST',
+                data: {
+                    _token: csrfToken // Sertakan token CSRF dalam data permintaan
+                },
+                success: function(response) {
+                    console.log(response);
+                    location.reload()
+                },
+                error: function(error) {
+                    console.error('Logout failed:', error);
+                }
+            });
+        }
     </script>
 
 </body>

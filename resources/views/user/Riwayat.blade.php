@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>E-Litera | Riwayat Pinjam</title>
     <link
       rel="stylesheet"
@@ -86,7 +87,7 @@
               <a href="Kontak">Bantuan</a>
             </button>
           </div>
-          <button class="btn-logout">
+          <button class="btn-logout" onclick="logout()">
             <div class="icon-logout">
               <i class="bi bi-box-arrow-left"></i>
             </div>
@@ -264,6 +265,27 @@
 
         function tutupDetail() {
             detail.classList.remove("open-detail");
+        }
+
+        function logout() {
+            // Ambil token CSRF dari meta tag
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            // Kirim permintaan logout dengan menyertakan token CSRF
+            $.ajax({
+                url: appUrl + '/hapussession',
+                type: 'POST',
+                data: {
+                    _token: csrfToken // Sertakan token CSRF dalam data permintaan
+                },
+                success: function(response) {
+                    console.log(response);
+                    location.reload()
+                },
+                error: function(error) {
+                    console.error('Logout failed:', error);
+                }
+            });
         }
     </script>
   </body>

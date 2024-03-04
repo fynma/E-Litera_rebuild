@@ -7,6 +7,9 @@ $(document).ready(function () {
     handlePinjam();
     getfavorite();
     favorite();
+    // $("#kirim_komen").click(function () {
+    //     handleCommentSubmission();
+    // });
 });
 
 function handlePinjam() {
@@ -49,10 +52,102 @@ function getData() {
                     "src",
                     "data:image/png;base64," + data.photo
                 );
+
+                userID = data.user_id;
+                userName = data.username;
+                console.log(userID);
+                console.log(userName);
             }
         },
     });
 }
+
+$(".menu-buku").on("click", "#kirim_komen", function () {
+    var tambahKomenInput = $("#tambah-komen");
+    var komentar = tambahKomenInput.val().trim();
+    var userId = userID; // Anda mungkin perlu mengatur nilai ini dengan ID pengguna yang masuk
+    var url = window.location.href;
+
+    // Mem-parse URL untuk mendapatkan pathnya
+    var urlParts = url.split("/");
+
+    // Mengambil bagian terakhir dari path, yang seharusnya menjadi id
+    var bookId = urlParts[urlParts.length - 1];
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = today.getFullYear();
+    var formattedDate = yyyy + "-" + mm + "-" + dd;
+    $.ajax({
+        url: appUrl + "/api/uploadComment",
+        type: "POST",
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}", // Pastikan untuk menyertakan token CSRF
+        },
+        data: {
+            user_id: userId,
+            book_id: bookId,
+            komentar: komentar,
+            tglkomen: formattedDate,
+        },
+        success: function (data) {
+            // Lakukan sesuatu setelah komentar berhasil ditambahkan, misalnya memperbarui tampilan
+            console.log("Komentar berhasil ditambahkan:", data);
+            $("#tambah-komen").val(""); // Mengosongkan input setelah berhasil menambahkan komentar
+        },
+        error: function (xhr, status, error) {
+            console.error("Error:", error);
+            // Menampilkan pesan kesalahan kepada pengguna
+        },
+    });
+});
+
+// function handleCommentSubmission() {
+//     var tambahKomenInput = $("#tambah-komen");
+//     var komentar = tambahKomenInput.val().trim();
+//     var userId = userID; // Anda mungkin perlu mengatur nilai ini dengan ID pengguna yang masuk
+//     var url = window.location.href;
+
+//     // Mem-parse URL untuk mendapatkan pathnya
+//     var urlParts = url.split("/");
+
+//     // Mengambil bagian terakhir dari path, yang seharusnya menjadi id
+//     var bookId = urlParts[urlParts.length - 1];
+
+//     if (komentar !== "") {
+//         tambahkanKomentar(userId, bookId, komentar);
+//     }
+// }
+
+// function tambahkanKomentar(userId, bookId, komentar) {
+//     var today = new Date();
+//     var dd = String(today.getDate()).padStart(2, "0");
+//     var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+//     var yyyy = today.getFullYear();
+//     var formattedDate = yyyy + "-" + mm + "-" + dd;
+//     $.ajax({
+//         url: appUrl + "/api/uploadComment",
+//         type: "POST",
+//         headers: {
+//             "X-CSRF-TOKEN": "{{ csrf_token() }}", // Pastikan untuk menyertakan token CSRF
+//         },
+//         data: {
+//             user_id: userId,
+//             book_id: bookId,
+//             komentar: komentar,
+//             tglkomen: formattedDate,
+//         },
+//         success: function (data) {
+//             // Lakukan sesuatu setelah komentar berhasil ditambahkan, misalnya memperbarui tampilan
+//             console.log("Komentar berhasil ditambahkan:", data);
+//             $("#tambah-komen").val(""); // Mengosongkan input setelah berhasil menambahkan komentar
+//         },
+//         error: function (xhr, status, error) {
+//             console.error("Error:", error);
+//             // Menampilkan pesan kesalahan kepada pengguna
+//         },
+//     });
+// }
 
 // Fungsi untuk mengambil data kategori dari API
 function getCategories() {
@@ -397,8 +492,6 @@ function favorite(books) {
         });
     });
 }
-
-
 // function getfavorite() {
 //     $.ajax({
 //         url: "http://127.0.0.1:8000/api/showFavorite",

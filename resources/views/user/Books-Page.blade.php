@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../../css/user.css" />
     <link rel="icon" href="../../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
@@ -211,13 +212,10 @@
                             @else
                                 <img id="prev_profile" alt="Nama Alt">
                             @endif
-                            <form id="komen" mhod="post">
-                                @csrf
-                                <input type="text" name="tambah-komen" id="tambah-komen"
+                            <input type="text" name="tambah-komen" id="tambah-komen"
                                     placeholder="Tambahkan Komentar..." />
                         </div>
-                        <button type="button" id="btn-komen"><i class="bi bi-send"></i></button>
-                        </form>
+                        <button id="kirim_komen"><i class="bi bi-send"></i></button>
                     </div>
                 </div>
             </div>
@@ -269,6 +267,25 @@
                 <br />
                 <a onclick="closeModal()">Tutup</a>
             </div>
+          </div>
+          <div class="widget">
+            <button id="btn-denda">
+              <img src="../../img/icon-denda.png" />
+              <a href="../Denda">Denda</a>
+            </button>
+            <button id="btn-bantuan">
+              <i class="bi bi-question-circle"></i>
+              <a href="../Kontak">Bantuan</a>
+            </button>
+          </div>
+          <button class="btn-logout" onclick="logout()">
+            <div class="icon-logout">
+              <i class="bi bi-box-arrow-left"></i>
+            </div>
+            <p>Keluar Dari Aplikasi</p>
+          </button>
+          <br />
+          <a onclick="closeModal()">Tutup</a>
         </div>
     </div>
 
@@ -441,6 +458,27 @@
                     window.location.href = link.href; // Mengarahkan ke URL yang ditentukan di dalam tag <a>
                 }
             });
+
+            function logout() {
+            // Ambil token CSRF dari meta tag
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            // Kirim permintaan logout dengan menyertakan token CSRF
+            $.ajax({
+                url: appUrl + '/hapussession',
+                type: 'POST',
+                data: {
+                    _token: csrfToken // Sertakan token CSRF dalam data permintaan
+                },
+                success: function(response) {
+                    console.log(response);
+                    location.reload()
+                },
+                error: function(error) {
+                    console.error('Logout failed:', error);
+                }
+            });
+        }
     </script>
     <script src="../../js/bookDetail.js"></script>
     <script src="../../js/search-category.js"></script>

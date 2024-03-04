@@ -23,21 +23,24 @@ function getData() {
                     "data:image/png;base64," + data.photo
                 );
 
-                userID = data.user_id;
+                var userID = data.user_id;
                 userName = data.username;
                 console.log(userID);
                 console.log(userName);
+                tampilkanDenda(userID);
             }
         },
     });
 }
 
-function tampilkanDenda() {
+function tampilkanDenda(userID) {
+    console.log(userID);
     $("#tabel-data").dataTable({
-        Destroy: true,
+        destroy: true,
         processing: true,
         ajax: {
             url: appUrl + "/api/list_denda",
+            data: { user_id: userID },
             dataSrc: "borrows",
         },
         columns: [
@@ -65,17 +68,19 @@ function tampilkanDenda() {
                         data.book_id +
                         '" data-tgl-kembali="' +
                         data.tgl_kembali +
+                        '" data-username="' +
+                        data.username +
                         '">Detail</button></div>'
                     );
                 },
             },
         ],
         language: {
-            lengthMenu: "Tampilkan MENU hasil",
+            lengthMenu: "Tampilkan _MENU_ hasil",
             zeroRecords: "Data tidak ditemukan",
-            info: "Menampilkan halaman PAGE dari PAGES",
+            info: "Menampilkan halaman _PAGE_ dari _PAGES_",
             infoEmpty: "Tidak ada data",
-            infoFiltered: "(filtered from MAX total records)",
+            infoFiltered: "(filtered from _MAX_ total records)",
             emptyTable: "Tidak ada data",
             search: "Cari data :",
             paginate: {
@@ -126,7 +131,9 @@ $("#tabel-data tbody").on("click", ".btn-view", function () {
     console.log($(this).data("user-id"));
     console.log($(this).data("book-id"));
     console.log($(this).data("tgl-kembali"));
+    console.log($(this).data("username"));
     var borrowID = $(this).data("id");
+    var usernama = $(this).data("username");
     var userID = $(this).data("user-id");
     var bookID = $(this).data("book-id");
     var tglKembali = $(this).data("tgl-kembali");
@@ -143,6 +150,8 @@ $("#tabel-data tbody").on("click", ".btn-view", function () {
     );
     totalHarga = lateDays * 1000;
 
+    $("#borrowID").val(borrowID);
+    $("#namauser").val(usernama);
     $("#user_id").val(userID);
     $("#book_id").val(bookID);
     $("#keterlambatan").val(lateDays);
@@ -177,29 +186,89 @@ $("#tabel-data tbody").on("click", ".btn-view", function () {
     });
 });
 
-
-function closeDetail() {
-    detail.classList.remove("openPopupDenda");
-}
-
+// midtrans
 $("#popupDenda").on("click", "#pay-button", function () {
-    var formData = $("#detailDenda").serialize();
-    var userName = userID;
-    console.log(userName);
+    var borrowID = $("#borrowID").val();
+    var namaUser = $("#namauser").val();
+    var totalHarga = $("#totalHarga").val();
+
     $.ajax({
-        url: appUrl + "/api/transaction",
-        method: "POST",
-        data: formData,
+        url: "http://127.0.0.1:8000/api/bayarDenda",
+        type: "POST",
+        data: {
+            idBorrow: borrowID,
+            totalHarga: totalHarga,
+            namauser: namaUser,
+        },
         success: function (response) {
             console.log(response);
+            window.snap.pay(response.snapToken, {
+                onSuccess: function (result) {
+                    $.ajax({
+                        url: "http://127.0.0.1:8000/api/bayarSukses",
+                        type: "POST",
+                        data: {
+                            idPinjam: result.order_id,
+                            transaction_status: result.transaction_status,
+                        },
+                        success: function (response) {
+                            console.log(
+                                "Status berhasil diperbarui:",
+                                response
+                            );
+                            location.reload();
+                            // Tambahkan logika atau tindakan lain setelah berhasil memperbarui status
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(
+                                "Gagal memperbarui status:",
+                                xhr.responseText
+                            );
+                            // Tangani kesalahan jika terjadi
+                        },
+                    });
+                    console.log(result);
+                },
+                onPending: function (result) {
+                    /* You may add your own implementation here */
+                    alert("wating your payment!");
+                    console.log(result);
+                },
+                onError: function (result) {
+                    /* You may add your own implementation here */
+                    alert("payment failed!");
+                    console.log(result);
+                },
+                onClose: function () {
+                    /* You may add your own implementation here */
+                    alert("you closed the popup without finishing the payment");
+                },
+            });
         },
         error: function (xhr, status, error) {
+            // Penanganan error jika terjadi
             console.error(xhr.responseText);
         },
     });
 });
+function closeDetail() {
+    detail.classList.remove("openPopupDenda");
+}
 
-var payButton = document.getElementById("pay-button");
-payButton.addEventListener("click", function () {
-    snap.pay(response.snaptoken);
-});
+// $("#popupDenda").on("click", "#pay-button", function () {
+//     var formData = $("#detailDenda").serialize();
+//     var userName = userID;
+//     console.log(userName);
+//     $.ajax({
+//         url: appUrl + "/api/transaction",
+//         method: "POST",
+//         data: formData,
+//         success: function (response) {
+//             console.log(response);
+//         },
+//         error: function (xhr, status, error) {
+//             // Handle error jika permintaan gagal
+//             console.error(xhr.responseText);
+//         },
+//     });
+// });

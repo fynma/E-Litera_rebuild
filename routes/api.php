@@ -15,6 +15,7 @@ use App\Http\Controllers\notifController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\BayarController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -63,6 +64,8 @@ Route::group([
     Route::post ('contact-admin', [contactController::class, 'sendReport']);
     Route::post ('favorite', [BookController::class, 'favorite']);
     Route::post ('sendNotif', [notifController::class, 'notification']);
+    Route::post  ('bayarDenda', [BayarController::class, 'bayarDenda']);
+    Route::post  ('bayarSukses', [BayarController::class, 'success']);
 
     Route::get  ('notifadmin', [notifController::class, 'showNotifAdmin']);
     Route::get  ('notifuser', [notifController::class, 'showNotifUser']);
@@ -86,6 +89,7 @@ Route::group([
     Route::get  ('detail-pinjam/{user_id}', [borrowController::class, 'showHistoryById']);
     Route::get  ('list_denda', [borrowController::class, 'listdenda']);
     Route::get  ('listPinjam', [borrowController::class, 'listPinjam']);
+    Route::get  ('listPermintaanPinjam', [borrowController::class, 'listPermintaanPinjam']);
     Route::get  ('dendaSatuan/{borrow_id}', [borrowController::class, 'dendaSatuan']);
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
     Route::get  ('showRating', [RatingController::class, 'averageRating']);

@@ -68,8 +68,8 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="Data-Buku.html">Data Buku</a>
-                        <a class="collapse-item" href="Kategori.html">Kategori</a>
+                        <a class="collapse-item" href="Data-Buku">Data Buku</a>
+                        <a class="collapse-item" href="Kategori">Kategori</a>
                     </div>
                 </div>
             </li>
@@ -84,8 +84,8 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="Komentar.html">Komentar</a>
-                        <a class="collapse-item" href="Aktivitas.html">Riwayat Aktivitas</a>
+                        <a class="collapse-item" href="Komentar">Komentar</a>
+                        <a class="collapse-item" href="Aktivitas">Riwayat Aktivitas</a>
                     </div>
                 </div>
             </li>
@@ -99,7 +99,7 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item active" href="Data-Peminjaman.html">Peminjaman</a>
+                        <a class="collapse-item active" href="Data-Peminjaman">Peminjaman</a>
                         <a class="collapse-item" href="Pengembalian">Pengembalian</a>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="Denda.html">
+                <a class="nav-link" href="Denda">
                     <i class="bi bi-cash"></i>
                     <span>Denda</span></a>
             </li>
@@ -258,12 +258,12 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Buku</th>
+                                            <th>Nama Peminjam</th>
+                                            <th>Judul Buku</th>
                                             <th>Petugas</th>
-                                            <th>Pinjam</th>
-                                            <th>Kembali</th>
-                                            <th>Jumlah</th>
+                                            <th>Tanggal Pinjam</th>
+                                            <th>Tanggal Kembali</th>
+                                            <th>Jumlah Pinjam</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -316,7 +316,7 @@
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">
                         Cancel
                     </button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="login">Logout</a>
                 </div>
             </div>
         </div>
@@ -338,7 +338,6 @@
 
     <!-- Page level custom scripts -->
     <script src="../js/peminjaman.js"></script>
-    <script src="../js/demo/datatables-demo.js"></script>
     <!--
     <script>
         document.addEventListener("DOMContentLoaded", function() {

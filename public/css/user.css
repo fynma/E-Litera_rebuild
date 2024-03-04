@@ -14,7 +14,7 @@ header {
     left: 0;
     width: 100%;
     padding: 30px 100px;
-    z-index: 100000;
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -92,7 +92,7 @@ input[type="search"]::-webkit-search-clear-button {
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    z-index: 100000;
+    z-index: 2;
     padding: 0 100px;
 }
 
@@ -510,7 +510,7 @@ input[type="search"]::-webkit-search-clear-button {
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
     display: flex;
-    z-index: 1000000;
+    z-index: 3;
 }
 
 .popup .isi-popup {
@@ -688,7 +688,7 @@ input[type="search"]::-webkit-search-clear-button {
 }
 
 .new-rilis .rilis-konten {
-    width: 750px;
+    min-width: 750px;
     min-height: 100px;
 }
 
@@ -703,6 +703,7 @@ input[type="search"]::-webkit-search-clear-button {
     font-weight: 600;
     color: #000;
     margin-bottom: 30px;
+    max-width: 750px;
 }
 
 .new-rilis .rilis-konten .quote-penulis {
@@ -1198,7 +1199,7 @@ input[type="search"]::-webkit-search-clear-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000000;
+    z-index: 3;
 }
 
 .open-nilai {
@@ -1908,7 +1909,7 @@ input[type="search"]::-webkit-search-clear-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000000;
+    z-index: 3;
 }
 
 .open-peminjaman {
@@ -2160,7 +2161,7 @@ input[type="search"]::-webkit-search-clear-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000000;
+    z-index: 3;
 }
 
 .open-detail {
@@ -2310,7 +2311,7 @@ tbody .btn-view {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000000;
+    z-index: 4;
 }
 
 .openPopupDenda {

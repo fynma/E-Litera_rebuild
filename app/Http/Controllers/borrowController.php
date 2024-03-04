@@ -181,11 +181,14 @@ class borrowController extends Controller
         ]);
     }
 
-    public function listdenda()
+    public function listdenda(Request $request)
     {
         // Mengambil data dari view menggunakan query builder
         $borrows = DB::table('borrow_view')
                     ->where('status', 'Terlambat')
+                    ->when($request->has('user_id'), function ($query) use ($request) {
+                        return $query->where('user_id', $request->user_id);
+                    })
                     ->get();
     
         // Mengirim data ke view untuk ditampilkan
@@ -196,6 +199,20 @@ class borrowController extends Controller
     {
         // Mengambil data dari view menggunakan query builder
         $borrows = DB::table('borrow_view')
+                    ->where('status', 'Dipinjam')
+                    ->get();
+    
+        // Mengirim data ke view untuk ditampilkan
+        return response()->json(['borrows' => $borrows]);
+    }
+    public function listPermintaanPinjam()
+    {
+        // Mengambil data dari view menggunakan query builder
+        $borrows = DB::table('borrow_view')
+                    ->where(function ($query) {
+                        $query->where('status', 'Sedang diproses')
+                              ->orWhere('status', 'Dipinjam');
+                    })    
                     ->get();
     
         // Mengirim data ke view untuk ditampilkan

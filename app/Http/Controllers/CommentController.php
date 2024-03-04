@@ -13,13 +13,13 @@ class CommentController extends Controller
 
     public function uploadComment(Request $request)
     {
-        $userid = $request->input('user_id');
-        $bookid = $request->input('book_id');
-            $validation = $request->validate([
+        $userid = $request->user_id;
+        $bookid = $request->book_id;
+        $validation = $request->validate([
             'komentar' => 'required|max:255',
         ]);
 
-        $datecomment = Carbon::now();
+        $datecomment = $request->tglkomen;
 
         $comment = new Comment([
             'komentar' => $validation['komentar'],
