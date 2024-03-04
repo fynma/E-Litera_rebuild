@@ -7,6 +7,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="" />
     <meta name="author" content="" />
     <meta name="user-id" content="{{ session('user_id') }}">
@@ -252,9 +253,7 @@
                   <div class="dropdown-divider"></div>
                   <a
                     class="dropdown-item"
-                    href="#"
-                    data-toggle="modal"
-                    data-target="#logoutModal"
+                    style="cursor: pointer;" onclick="logout()"
                   >
                     <i
                       class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
@@ -418,46 +417,28 @@
     <!-- <script src="../js/dendaAdmin.js"></script> -->
     <script src="../js/dendaAdmin.js"></script>
     <!-- <script src="../js/demo/datatables-demo.js"></script> -->
-<!-- 
+
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Ambil semua button yang digunakan untuk memunculkan popup
-        var buttons = document.querySelectorAll(".button-confirm");
-        var popup = document.getElementById("popup");
-        var tutupKonfirm = document.getElementById("tutup-konfirmasi");
+      function logout() {
+            // Ambil token CSRF dari meta tag
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        // Tambahkan event listener untuk setiap button
-        buttons.forEach(function (button) {
-          button.addEventListener("click", function () {
-            // Panggil fungsi untuk menampilkan popup
-            popup.classList.add("open-popup");
-            // Panggil fungsi untuk mengkonfirmasi peminjaman hanya untuk tombol ini
-            var btnOke = popup.querySelector(".oke");
-            btnOke.addEventListener("click", function () {
-              konfirmasiPeminjaman(button);
+            // Kirim permintaan logout dengan menyertakan token CSRF
+            $.ajax({
+                url: appUrl + '/hapussession',
+                type: 'POST',
+                data: {
+                    _token: csrfToken // Sertakan token CSRF dalam data permintaan
+                },
+                success: function(response) {
+                    console.log(response);
+                    location.reload()
+                },
+                error: function(error) {
+                    console.error('Logout failed:', error);
+                }
             });
-          });
-        });
-
-        function konfirmasiPeminjaman(button) {
-          button.innerText = "Dikonfirmasi";
-          button.classList.remove("confirm");
-          button.classList.add("terconfirm");
-          button.disabled = true;
-
-          // Tutup popup setelah dikonfirmasi
-          closeKonfirmasi();
-        }
-
-        tutupKonfirm.addEventListener("click", function () {
-          // Panggil fungsi untuk menampilkan popup
-          popup.classList.remove("open-popup");
-        });
-
-        function closeKonfirmasi() {
-          popup.classList.remove("open-popup");
-        }
-      });
-    </script> -->
+          }
+    </script>
   </body>
 </html>
