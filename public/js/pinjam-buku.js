@@ -60,30 +60,6 @@ function handlePinjam() {
     });
 }
 
-// function handlePinjam() {
-//     var userId = user-id;
-//     // Function to handle form submission
-//     $("form").submit(function (event) {
-//         event.preventDefault(); // Prevent default form submission
-//         var formData = $(this).serialize(); // Serialize form data
-
-//         // Kirim data form menggunakan AJAX
-//         $.ajax({
-//             url: appUrl + "/api/borrow",
-//             type: "POST",
-//             data: formData, // Menggunakan data yang telah di-serialize
-//             success: function (response) {
-//                 // Handle ketika permintaan berhasil
-//                 alert("Berhasil meminjam, tunggu konfirmasi petugas");
-//             },
-//             error: function (xhr, status, error) {
-//                 // Handle ketika terjadi kesalahan
-//                 alert("Gagal meminjam buku. Silakan coba lagi.");
-//                 console.error(xhr.responseText);
-//             },
-//         });
-//     });
-// }
 
 function getListBook() {
     $.ajax({
@@ -118,7 +94,6 @@ function displayBooks(books) {
             .attr("src", "data:image/png;base64," + book.gambar)
             .attr("alt", book.judul);
 
-        // var img = $('<img>').attr('src', '../img/' + book.gambar).attr('alt', book.judul);
         var details = $('<div class="details"></div>');
 
         var categories = $('<div id="kategori-buku"></div>');

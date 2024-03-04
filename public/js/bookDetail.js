@@ -135,32 +135,22 @@ function displayCategories(categories) {
 
 document.addEventListener("DOMContentLoaded", function () {
     var url = window.location.href;
-
-    // Mem-parse URL untuk mendapatkan pathnya
     var urlParts = url.split("/");
-
-    // Mengambil bagian terakhir dari path, yang seharusnya menjadi id
     var bookId = urlParts[urlParts.length - 1];
-
-    console.log(bookId);
-
-    // Fetch the book details from the database using the book ID
     $.ajax({
         url: appUrl + "/api/detail-buku/" + bookId,
         type: "GET",
         dataType: "json",
         success: function (response) {
             console.log(response);
-            // Tampilkan informasi pengguna dalam modal
             var bookData = response.displaydata[0];
-            // Ubah teks gambar menjadi URL gambar
             var imageUrl = "data:image/jpeg;base64," + bookData.gambar;
 
             var rating = $('<div class="rating"></div>');
-            var fullStars = Math.floor(bookData.rating); // Bintang penuh
-            var decimalPart = bookData.rating - fullStars; // Bagian desimal
-            var halfStar = decimalPart >= 0.25 && decimalPart < 0.75; // Setengah bintang
-            var fullStarAfterHalf = decimalPart >= 0.75; // Bintang penuh setelah setengah bintang
+            var fullStars = Math.floor(bookData.rating); 
+            var decimalPart = bookData.rating - fullStars; 
+            var halfStar = decimalPart >= 0.25 && decimalPart < 0.75; 
+            var fullStarAfterHalf = decimalPart >= 0.75; 
 
             for (var i = 1; i <= 5; i++) {
                 if (i <= fullStars) {
@@ -181,7 +171,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
                 }
             }
-            // Mengambil kategori unik
             var uniqueCategories = [...new Set(bookData.kategori)];
 
             var judulBuku = bookData.judul;
@@ -470,10 +459,6 @@ function favorite(books) {
     var bookId = urlParts[urlParts.length - 1];
     var userId = document.querySelector('meta[name="user-id"]').content;
 
-    // console.log("favorite user id :" + userId);
-    // console.log("favorite book id: " + bookId);
-
-    // Check if the bookId exists in the favorites
     var isFavorited = books.some(function (book) {
         return book.book_id.toString() === bookId;
     });

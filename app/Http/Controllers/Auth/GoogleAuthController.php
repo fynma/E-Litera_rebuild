@@ -20,18 +20,15 @@ class GoogleAuthController extends Controller
         try {
             $google_user = Socialite::driver('google')->user();
 
-            // if (!$google_user) {
-            //     return redirect()->route('login')->with('error', 'Google authentication failed');
-            // }
+
 
             $user = User::where('email', $google_user->getEmail())->first();
 
             $token = $google_user->token;
 
             session(['user' => $google_user]);
-            session(['user_id' => $google_user->user_id]); // Adjust this based on Google's response
-            session(['access' => $google_user->access]); // Assuming access refers to the token
-            session(['token' => $token]);
+            session(['user_id' => $google_user->user_id]); 
+            session(['access' => $google_user->access]); 
     
             $tokenFromSession = session('token');
             // dd($tokenFromSession);

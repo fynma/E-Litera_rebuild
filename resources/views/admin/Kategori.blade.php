@@ -291,6 +291,7 @@
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+
     <!-- Core plugin JavaScript-->
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -305,6 +306,7 @@
 
     <!-- javascript kategori admin -->
     <script src="../js/kategori-admin.js"></script>
+    <script src="../js/block-petugas.js"></script>
     <script>
         $(document).ready(function () {
             showNotifikasi();

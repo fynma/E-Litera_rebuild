@@ -16,6 +16,20 @@
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
+    <style>
+        .nilai-bintang {
+            cursor: pointer;
+        }
+
+        .bi-star, .bi-star-fill {
+      color: #ccc; /* Warna awal bintang (belum diklik) */
+      cursor: pointer;
+    }
+
+    .bi-star-fill {
+      color: gold !important; /* Warna bintang yang sudah diklik */
+    }
+    </style>
 </head>
 
 <body>
@@ -466,6 +480,7 @@
     </script>
     <script src="../../js/bookDetail.js"></script>
     <script src="../../js/search-category.js"></script>
+    <script src="../../js/rating.js"></script>
 
 </body>
 

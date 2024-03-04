@@ -39,8 +39,33 @@ Route::middleware(['web'])->group(function () {
         Route::post('register', [AuthController::class, 'register'])->name('register');
     });
     Route::group(['middleware' => ['roleCheck:petugas']], function () {
-        Route::get('/admin/home', function () {
+        Route::get('/admin/dashboard', function () {
             return view('admin.index');
+        });
+
+        Route::get('totalUser', [ProfileController::class, 'totalUser']);
+
+        Route::get('/admin/Kategori', function () {
+            return view('admin.Kategori');
+        });
+
+        Route::get('/admin/Tambah-Buku', function () {
+            return view('admin.Tambah-Buku');
+        });
+        Route::get('/admin/Data-Buku', function () {
+            return view('admin.Data-Buku');
+        });
+        Route::get('/admin/Data-Pengguna', function () {
+            return view('admin.Data-Pengguna');
+        });
+        Route::get('/admin/Data-Peminjaman', function () {
+            return view('admin.Data-Peminjaman');
+        });
+        Route::get('/admin/Pengembalian', function () {
+            return view('admin.Pengembalian');
+        });
+        Route::get('/admin/Denda', function () {
+            return view('admin.DendaAdmin');
         });
 
     });

@@ -293,6 +293,7 @@
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+
     <!-- Core plugin JavaScript-->
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -309,7 +310,7 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
     <script src="../js/data-user.js"></script>
-    <script src="../js/rolecheck.js"></script>
+    <script src="../js/block-petugas.js"></script>
     <script>
         $(document).ready(function () {
             showNotifikasi();

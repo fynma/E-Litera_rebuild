@@ -11,22 +11,31 @@ class RatingController extends Controller
     {
         $userid = $request->input('user_id');
         $bookid = $request->input('book_id');
+        
         $request->validate([
             'rating' => 'required|integer|between:1,5',
         ]);
-        if (Rating::where('user_id', $userid)->where('book_id', $bookid)->exists()) {
-            return response()->json(['message' => 'Rating already exists']);
+    
+        $existingRating = Rating::where('user_id', $userid)->where('book_id', $bookid)->first();
+    
+        if ($existingRating) {
+            $existingRating->update([
+                'rating' => $request->rating,
+            ]);
+    
+            return response()->json(['message' => 'Rating updated successfully', 'rating' => $existingRating]);
         }
-
         $rating = new Rating([
             'rating' => $request->rating,
             'user_id' => $userid,
             'book_id' => $bookid,
         ]);
-        $rating -> save();
-
+    
+        $rating->save();
+    
         return response()->json(['message' => 'Rating saved successfully', 'rating' => $rating]);
     }
+    
 
     public function averageRating()
     {

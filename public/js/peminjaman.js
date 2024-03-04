@@ -122,8 +122,7 @@ $("#dataTable tbody").on("click", ".btn-confirm", function () {
     var usernameygLogin = document.querySelector(
         'meta[name="username"]'
     ).content;
-    // $("#updateBorrow").submit();
-    // Kirim data ke controller API
+
     $.ajax({
         url: appUrl + "/api/confirmBorrow",
         method: "POST",
@@ -138,6 +137,7 @@ $("#dataTable tbody").on("click", ".btn-confirm", function () {
             console.log(response);
             alert("Peminjaman berhasil dikonfirmasi.");
             location.reload();
+
 
             var notifData = {
                 user_id: userygLogin,

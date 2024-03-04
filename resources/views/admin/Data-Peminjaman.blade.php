@@ -36,6 +36,13 @@
     <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
     <!-- Custom styles for this template-->
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
+    <style>
+        .non-interactive {
+            pointer-events: none;
+        }
+    </style>
+        <script src="../js/route-admin.js"></script>
+
 </head>
 
 <body id="page-top">

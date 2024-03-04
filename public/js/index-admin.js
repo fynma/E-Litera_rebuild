@@ -46,11 +46,12 @@ function displayNotifications(notification) {
                 "</div>" +
                 "</a>"
         );
-
-        // Menambahkan notifikasi ke dalam dropdown menu
-        dropdownMenu.append(notificationElement);
-    });
+            $('#username').text(response.data.username);
+            console.log(response);
+        }
+    );
 }
+
 
 function getData() {
     $.ajax({
