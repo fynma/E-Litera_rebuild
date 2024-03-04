@@ -14,6 +14,8 @@
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
+    <script src="../js/route-admin.js"></script>
+
 
     <title>E-Litera | Petugas - Data Peminjaman</title>
 
@@ -30,9 +32,9 @@
 
     <!-- Custom styles for this page -->
     <!-- <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" /> -->
-    <link rel="stylesheet"  href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css" />
-    <link rel="stylesheet"  href="https://cdn.datatables.net/buttons/3.0.0/css/buttons.dataTables.css" />
-    
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.0/css/buttons.dataTables.css" />
+
     <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
     <!-- Custom styles for this template-->
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
@@ -100,7 +102,8 @@
                     <i class="bi bi-arrow-left-right"></i>
                     <span>Transaksi</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item active" href="Data-Peminjaman">Peminjaman</a>
                         <a class="collapse-item" href="Pengembalian">Pengembalian</a>
@@ -144,10 +147,8 @@
                                 <span class="badge badge-danger badge-counter">!</span>
                             </a>
                             <!-- Dropdown - Alerts -->
-                            <div
-                                class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown" id="notifAdmin"
-                                >
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown" id="notifAdmin">
                                 <h6 class="dropdown-header">Notifikasi</h6>
                             </div>
                         </li>
@@ -314,19 +315,20 @@
     <!-- Page level custom scripts -->
     <script src="../js/peminjaman.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             showNotifikasi();
         });
+
         function showNotifikasi() {
             $.ajax({
                 url: "http://127.0.0.1:8000/api/notifadmin",
                 type: "GET",
-                success: function (response) {
+                success: function(response) {
                     console.log(response);
                     var notifs = response.data;
                     const notifContainer = $("#notifAdmin");
 
-                    $.each(notifs, function (index, notif) {
+                    $.each(notifs, function(index, notif) {
                         // Buat struktur HTML untuk setiap komentar
                         const notifDiv = `
                             <a class="dropdown-item d-flex align-items-center" href="#">
@@ -346,7 +348,7 @@
                         notifContainer.append(notifDiv);
                     });
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     console.error("Error:", error);
                 },
             });

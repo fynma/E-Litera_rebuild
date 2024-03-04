@@ -35,6 +35,8 @@
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
+    <script src="../js/block-petugas.js"></script>
+
 </head>
 
 <body id="page-top">

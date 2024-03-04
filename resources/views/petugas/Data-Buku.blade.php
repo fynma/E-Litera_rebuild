@@ -35,6 +35,8 @@
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
+    <script src="../js/route-admin.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -188,10 +190,8 @@
                                 <span class="badge badge-danger badge-counter">!</span>
                             </a>
                             <!-- Dropdown - Alerts -->
-                            <div
-                                class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown" id="notifAdmin"
-                                >
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown" id="notifAdmin">
                                 <h6 class="dropdown-header">Notifikasi</h6>
                             </div>
                         </li>
@@ -332,19 +332,20 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             showNotifikasi();
         });
+
         function showNotifikasi() {
             $.ajax({
                 url: "http://127.0.0.1:8000/api/notifadmin",
                 type: "GET",
-                success: function (response) {
+                success: function(response) {
                     console.log(response);
                     var notifs = response.data;
                     const notifContainer = $("#notifAdmin");
 
-                    $.each(notifs, function (index, notif) {
+                    $.each(notifs, function(index, notif) {
                         // Buat struktur HTML untuk setiap komentar
                         const notifDiv = `
                             <a class="dropdown-item d-flex align-items-center" href="#">
@@ -364,7 +365,7 @@
                         notifContainer.append(notifDiv);
                     });
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     console.error("Error:", error);
                 },
             });

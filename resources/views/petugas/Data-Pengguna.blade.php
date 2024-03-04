@@ -13,6 +13,8 @@
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
+        <script src="../js/block-petugas.js"></script>
+
 
     <title>E-Litera | Petugas - Data Pengguna</title>
 

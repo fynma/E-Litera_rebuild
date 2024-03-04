@@ -35,6 +35,8 @@
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
+    <script src="../js/route-admin.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -131,8 +133,10 @@
                         <input type="text" id="modalUsername" readonly
                             style="width: 100%; padding: 12px 20px; color:#484848; font-size: 1em; border:1px solid #484848; border-radius: 4px;">
                         <p style="width: 100%; margin-bottom:20px; margin-top: 20px; color:black;">
-                        <strong>Komentar:</strong></p>
-                        <textarea class="form-control" placeholder="Leave a comment here" id="modalKomen" readonly style="width: 100%; padding: 12px 20px; color:#484848; font-size: 1em; border:1px solid #484848; border-radius: 4px; height: 100px"></textarea>
+                            <strong>Komentar:</strong>
+                        </p>
+                        <textarea class="form-control" placeholder="Leave a comment here" id="modalKomen" readonly
+                            style="width: 100%; padding: 12px 20px; color:#484848; font-size: 1em; border:1px solid #484848; border-radius: 4px; height: 100px"></textarea>
                         <p style="width: 100%; margin-bottom:20px; margin-top: 20px; color:black;">
                     </div>
                     <div class="modal-footer">
@@ -169,10 +173,8 @@
                                 <span class="badge badge-danger badge-counter">!</span>
                             </a>
                             <!-- Dropdown - Alerts -->
-                            <div
-                                class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown" id="notifAdmin"
-                                >
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown" id="notifAdmin">
                                 <h6 class="dropdown-header">Notifikasi</h6>
                             </div>
                         </li>
@@ -303,19 +305,20 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             showNotifikasi();
         });
+
         function showNotifikasi() {
             $.ajax({
                 url: "http://127.0.0.1:8000/api/notifadmin",
                 type: "GET",
-                success: function (response) {
+                success: function(response) {
                     console.log(response);
                     var notifs = response.data;
                     const notifContainer = $("#notifAdmin");
 
-                    $.each(notifs, function (index, notif) {
+                    $.each(notifs, function(index, notif) {
                         // Buat struktur HTML untuk setiap komentar
                         const notifDiv = `
                             <a class="dropdown-item d-flex align-items-center" href="#">
@@ -335,7 +338,7 @@
                         notifContainer.append(notifDiv);
                     });
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     console.error("Error:", error);
                 },
             });
