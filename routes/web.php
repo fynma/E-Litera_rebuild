@@ -39,8 +39,36 @@ Route::middleware(['web'])->group(function () {
         Route::post('register', [AuthController::class, 'register'])->name('register');
     });
     Route::group(['middleware' => ['roleCheck:petugas']], function () {
-        Route::get('/admin/home', function () {
-            return view('admin.index');
+        Route::get('/petugas/dashboard', function () {
+            return view('petugas.index');
+        });
+
+        Route::get('totalUser', [ProfileController::class, 'totalUser']);
+
+        Route::get('/petugas/Kategori', function () {
+            return view('petugas.Kategori');
+        });
+
+        Route::get('/petugas/Tambah-Buku', function () {
+            return view('petugas.Tambah-Buku');
+        });
+        Route::get('/petugas/Data-Buku', function () {
+            return view('petugas.Data-Buku');
+        });
+        Route::get('/petugas/Data-Pengguna', function () {
+            return view('petugas.Data-Pengguna');
+        });
+        Route::get('/petugas/Data-Peminjaman', function () {
+            return view('petugas.Data-Peminjaman');
+        });
+        Route::get('/petugas/Pengembalian', function () {
+            return view('petugas.Pengembalian');
+        });
+        Route::get('/petugas/Denda', function () {
+            return view('petugas.DendaAdmin');
+        });
+        Route::get('/petugas/Komentar', function () {
+            return view('petugas.Komentar');
         });
 
     });
