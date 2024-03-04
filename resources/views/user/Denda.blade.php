@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>E-Litera | Denda</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
@@ -18,11 +19,14 @@
     <!-- js tabel -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-        data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
+    <!-- @TODO: replace SET_YOUR_CLIENT_KEY_HERE with your client key -->
+    <script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{config('midtrans.client_key')}}"></script>
+    <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
 </head>
 
 <body>
@@ -84,7 +88,7 @@
                         <a href="Kontak">Bantuan</a>
                     </button>
                 </div>
-                <button class="btn-logout">
+                <button class="btn-logout" onclick="logout()">
                     <div class="icon-logout">
                         <i class="bi bi-box-arrow-left"></i>
                     </div>
@@ -133,7 +137,8 @@
                 </div>
                 <div class="inputanDenda">
                     <form method="post" id="detailDenda">
-                        @csrf
+                        <input type="hidden" name="borrowID" id="borrowID" readonly>
+                        <input type="hidden" name="namauser" id="namauser" readonly>
                         <input type="text" name="titleBook" id="titleBook" readonly>
                         <input type="text" name="tglPinjam" id="tglPinjam" readonly>
                         <input type="text" name="tglKembali" id="tglKembali" readonly>
@@ -150,6 +155,9 @@
             </div>  
         </div>
     </div>
+
+    <!-- @TODO: You can add the desired ID as a reference for the embedId parameter. -->
+    <div id="snap-container"></div>
 
     <section class="denda">
         <h1>Denda</h1>
@@ -259,9 +267,31 @@
                 }
             });
 
-       
+        // button logout
+            function logout() {
+            // Ambil token CSRF dari meta tag
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            // Kirim permintaan logout dengan menyertakan token CSRF
+            $.ajax({
+                url: appUrl + '/hapussession',
+                type: 'POST',
+                data: {
+                    _token: csrfToken // Sertakan token CSRF dalam data permintaan
+                },
+                success: function(response) {
+                    console.log(response);
+                    location.reload()
+                },
+                error: function(error) {
+                    console.error('Logout failed:', error);
+                }
+            });
+        }
     </script>
     <script src="../js/denda.js"></script>
+    <script src="../js/search-category.js"></script>
+
 </body>
 
 </html>

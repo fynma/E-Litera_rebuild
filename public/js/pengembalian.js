@@ -2,6 +2,9 @@ $(document).ready(function () {
     tampilkanPinjam();
     getData();
     handleConfirm();
+    $(".btn-print").on("click", function () {
+        $(".dt-button.buttons-pdf.buttons-html5").click();
+    });
 });
 
 function getData() {
@@ -12,7 +15,7 @@ function getData() {
             console.log(response);
             if (response.success) {
                 var data = response.data;
-                $("#user").text(data.username);
+                $("#user").text(data.username + " | " + data.access);
                 $("#prev-prof").attr(
                     "src",
                     "data:image/png;base64," + data.photo
@@ -23,126 +26,71 @@ function getData() {
 }
 
 function tampilkanPinjam() {
-    $.ajax({
-        url: appUrl + "/api/returnList",
-        method: "GET",
-        success: function (response) {
-            console.log(response);
-            // Hapus semua baris yang ada di tabel
-            $("#dataTable tbody").empty();
-
-            // Array untuk menyimpan semua permintaan AJAX
-            var ajaxRequests = [];
-
-            // Tambahkan data user dan buku ke tabel
-            $.each(response.data, function (index, data) {
-                // Tambahkan permintaan AJAX untuk mendapatkan nama pengguna
-                var userRequest = $.ajax({
-                    url:
-                    appUrl + "/api/detail-user/" + data.user_id,
-                    method: "GET",
-                    success: function (userResponse) {
-                        console.log("User Response:", userResponse); // Debugging
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error getting user data:", error); // Error handling
-                    },
-                });
-
-                // Tambahkan permintaan AJAX untuk mendapatkan judul buku
-                var bookRequest = $.ajax({
-                    url:
-                    appUrl + "/api/detail-buku/" + data.book_id,
-                    method: "GET",
-                    success: function (bookResponse) {
-                        console.log("Book Response:", bookResponse); // Debugging
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error getting book data:", error); // Error handling
-                    },
-                });
-
-                // Tambahkan kedua permintaan ke dalam array
-                ajaxRequests.push(userRequest, bookRequest);
-            });
-
-            // Tunggu semua permintaan selesai menggunakan Promise.all
-            $.when.apply($, ajaxRequests).then(function () {
-                // Ambil hasil dari semua permintaan
-                var responses = arguments;
-
-                // Loop melalui setiap pasangan respons (user dan buku)
-                for (var i = 0; i < responses.length; i += 2) {
-                    var userResponse = responses[i][0].data; // Akses properti data dari respons userRequest
-                    var bookResponse = responses[i + 1][0].displaydata[0]; // Akses array displaydata dari respons bookRequest
-                    var data = response.data[i / 2];
-
-                    // Tambahkan data Borrow ke dalam tabel setelah mendapatkan data user dan buku
-                    var confirmButtonHtml =
-                        data.status !== "Dikembalikan"
-                            ? "<button class='btn-confirm' data-id='" +
-                              data.borrow_id +
-                              "' data-tgl-pinjam='" +
-                              data.tgl_pinjam +
-                              "' data-tgl-kembali='" +
-                              data.tgl_kembali +
-                              "' data-jumlah-pinjam='" +
-                              data.jumlah_pinjam +
-                              "'>Kembali</button>"
-                            : "<button class='btn-confirmed' disabled><i class='bi bi-check'></i></button>";
-
-                    var btnTelat =
-                        data.status !== "Terlambat"
-                            ? "<button class='btn-telat' data-id='" +
-                              data.borrow_id +
-                              "' data-tgl-pinjam='" +
-                              data.tgl_pinjam +
-                              "' data-tgl-kembali='" +
-                              data.tgl_kembali +
-                              "' data-jumlah-pinjam='" +
-                              data.jumlah_pinjam +
-                              "'>Terlambat</button>"
-                            : "<button class='btn-confirmed' disabled><i class='bi bi-check'></i></button>";
-
-                    var newRow =
-                        "<tr><td>" +
-                        (i / 2 + 1) +
-                        "</td>" +
-                        "<td>" +
-                        userResponse.username +
-                        "</td>" +
-                        "<td>" +
-                        bookResponse.judul +
-                        "</td>" +
-                        "<td>" +
-                        data.petugas_pinjam +
-                        "</td>" +
-                        "<td>" +
-                        data.tgl_pinjam +
-                        "</td>" +
-                        "<td>" +
-                        data.tgl_kembali +
-                        "</td>" +
-                        "<td>" +
-                        data.jumlah_pinjam +
-                        "</td>" +
-                        "<td id='confirm-pinjam'>" +
-                        data.status +
-                        "</td>" +
-                        "<td>" +
-                        "<button class='btn-view' onclick='openView(this)'><i class='bi bi-eye'></i></button>" +
-                        "<button class='btn-delete' onclick='openDelete(this)'><i class='bi bi-trash'></i></button>" +
-                        confirmButtonHtml +
-                        btnTelat +
-                        "</td></tr>";
-
-                    $("#dataTable tbody").append(newRow);
-                }
-            });
+    $("#dataTable").dataTable({
+        Destroy: true,
+        processing: true,
+        layout: {
+            topStart: {
+                buttons: ["pdf"],
+            },
         },
-        error: function (xhr, status, error) {
-            console.error(xhr.responseText);
-            alert("Gagal mengambil data borrow. Silakan coba lagi.");
+        ajax: {
+            url: appUrl + "/api/listPinjam",
+            dataSrc: "borrows",
+        },
+        columns: [
+            {
+                data: null,
+                render: function (data, type, row, meta) {
+                    return meta.row + 1;
+                },
+            },
+            { data: "username" },
+            { data: "judul" },
+            { data: "petugas_pinjam" },
+            { data: "tgl_pinjam" },
+            { data: "tgl_kembali" },
+            { data: "jumlah_pinjam" },
+            { data: "status" },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return (
+                        '<div><button class="btn-confirm" data-id="' +
+                        data.borrow_id +
+                        '" data-tgl-pinjam="' +
+                        data.tgl_pinjam +
+                        '" data-tgl-kembali="' +
+                        data.tgl_kembali +
+                        '" data-jumlah-pinjam="' +
+                        data.jumlah_pinjam +
+                        '">Konfirmasi</button><button class="btn-telat" data-id="' +
+                        data.borrow_id +
+                        '" data-tgl-pinjam="' +
+                        data.tgl_pinjam +
+                        '" data-tgl-kembali="' +
+                        data.tgl_kembali +
+                        '" data-jumlah-pinjam="' +
+                        data.jumlah_pinjam +
+                        '">Terlambat</button></div>'
+                    );
+                },
+            },
+        ],
+        language: {
+            lengthMenu: "Tampilkan _MENU_ hasil",
+            zeroRecords: "Data tidak ditemukan",
+            info: "Menampilkan halaman _PAGE_ dari _PAGES_",
+            infoEmpty: "Tidak ada data",
+            infoFiltered: "(filtered from _MAX_ total records)",
+            emptyTable: "Tidak ada data",
+            search: "Cari data :",
+            paginate: {
+                first: "Awal",
+                last: "Terakhir",
+                next: "Selanjutnya",
+                previous: "Sebelumnya",
+            },
         },
     });
 }

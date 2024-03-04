@@ -90,6 +90,7 @@ class AuthController extends Controller
         session(['user_id'      => $user->user_id]);
         session(['access'       => $user->access]);
         session(['token'        => $token]);
+        session(['username'     => $user->username]);
 
         $tokenFromSession = session('token');
         switch ($user->access) {

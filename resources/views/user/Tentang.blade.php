@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>E-Litera | Tentang</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../css/user.css" />
@@ -216,7 +217,7 @@
               <a href="Kontak">Bantuan</a>
             </button>
           </div>
-          <button class="btn-logout">
+          <button class="btn-logout" onclick="logout()">
             <div class="icon-logout">
               <i class="bi bi-box-arrow-left"></i>
             </div>
@@ -320,6 +321,7 @@
             <p>Perpustakaan Digital dengan berbagai ffitur</p>
         </div>
     </section>
+    <script src="../js/search-category.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -420,6 +422,27 @@
                     window.location.href = link.href; // Mengarahkan ke URL yang ditentukan di dalam tag <a>
                 }
             });
+        
+            function logout() {
+            // Ambil token CSRF dari meta tag
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            // Kirim permintaan logout dengan menyertakan token CSRF
+            $.ajax({
+                url: appUrl + '/hapussession',
+                type: 'POST',
+                data: {
+                    _token: csrfToken // Sertakan token CSRF dalam data permintaan
+                },
+                success: function(response) {
+                    console.log(response);
+                    location.reload()
+                },
+                error: function(error) {
+                    console.error('Logout failed:', error);
+                }
+            });
+        }
     </script>
 </body>
 

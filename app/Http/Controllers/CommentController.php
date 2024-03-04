@@ -13,13 +13,13 @@ class CommentController extends Controller
 
     public function uploadComment(Request $request)
     {
-        $userid = $request->input('user_id');
-        $bookid = $request->input('book_id');
+        $userid = $request->user_id;
+        $bookid = $request->book_id;
         $validation = $request->validate([
             'komentar' => 'required|max:255',
         ]);
 
-        $datecomment = Carbon::now();
+        $datecomment = $request->tglkomen;
 
         $comment = new Comment([
             'komentar' => $validation['komentar'],
@@ -36,11 +36,17 @@ class CommentController extends Controller
         }
     }
 
-    public function getComment()
+    public function getComment(Request $request)
     {
-        $comment = Comment::all();
+        $comment = DB::table('user_comment_view')
+            ->when($request->has('book_id'), function ($query) use ($request) {
+                return $query->where('book_id', $request->book_id); 
+            })
+            ->get();
+    
         return response()->json(['data' => $comment], 200);
     }
+    
 
     // public function deleteComment(Request $request)
     // {

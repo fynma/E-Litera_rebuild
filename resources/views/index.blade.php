@@ -11,17 +11,13 @@
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
+    <meta name="user-id" content="{{ session('user_id') }}">
+    <meta name="username" content="{{ session('username') }}">
 </head>
 
 <body>
     <header>
         <a href="index"><img src="img/logo aplikasi billa 1.png" /></a>
-        <!-- <div class="toggle">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </div>
-      <div class="bg-sidebar"></div> -->
         <div class="kotak-search">
             <input type="search" name="cari" id="cari" placeholder="Cari" />
             <i class="bi bi-search"></i>

@@ -9,6 +9,7 @@
     <meta name="author" content="" />
     <meta name="user-id" content="{{ session('user_id') }}">
     <meta name="access" content="{{ session('access') }}">
+    <meta name="username" content="{{ session('username') }}">
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
@@ -27,10 +28,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
     <!-- Custom styles for this page -->
-    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
-
-    <!-- Custom styles for this template-->
+    <!-- <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet"  href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css" />
+    <link rel="stylesheet"  href="https://cdn.datatables.net/buttons/3.0.0/css/buttons.dataTables.css" />
+    
     <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template-->
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
 </head>
 
@@ -67,8 +70,8 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="Data-Buku.html">Data Buku</a>
-                        <a class="collapse-item" href="Kategori.html">Kategori</a>
+                        <a class="collapse-item" href="Data-Buku">Data Buku</a>
+                        <a class="collapse-item" href="Kategori">Kategori</a>
                     </div>
                 </div>
             </li>
@@ -83,8 +86,8 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="Komentar.html">Komentar</a>
-                        <a class="collapse-item" href="Aktivitas.html">Riwayat Aktivitas</a>
+                        <a class="collapse-item" href="Komentar">Komentar</a>
+                        <a class="collapse-item" href="Aktivitas">Riwayat Aktivitas</a>
                     </div>
                 </div>
             </li>
@@ -98,7 +101,7 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item active" href="Data-Peminjaman.html">Peminjaman</a>
+                        <a class="collapse-item active" href="Data-Peminjaman">Peminjaman</a>
                         <a class="collapse-item" href="Pengembalian">Pengembalian</a>
                     </div>
                 </div>
@@ -106,7 +109,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="Denda.html">
+                <a class="nav-link" href="Denda">
                     <i class="bi bi-cash"></i>
                     <span>Denda</span></a>
             </li>
@@ -137,49 +140,14 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                <span class="badge badge-danger badge-counter">!</span>
                             </a>
                             <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">Alerts Center</h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to
-                                            download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for
-                                        your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                                    Alerts</a>
+                            <div
+                                class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown" id="notifAdmin"
+                                >
+                                <h6 class="dropdown-header">Notifikasi</h6>
                             </div>
                         </li>
 
@@ -257,12 +225,12 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Buku</th>
+                                            <th>Nama Peminjam</th>
+                                            <th>Judul Buku</th>
                                             <th>Petugas</th>
-                                            <th>Pinjam</th>
-                                            <th>Kembali</th>
-                                            <th>Jumlah</th>
+                                            <th>Tanggal Pinjam</th>
+                                            <th>Tanggal Kembali</th>
+                                            <th>Jumlah Pinjam</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -315,7 +283,7 @@
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">
                         Cancel
                     </button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="login">Logout</a>
                 </div>
             </div>
         </div>
@@ -332,12 +300,58 @@
     <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- <script src="../vendor/datatables/jquery.dataTables.min.js"></script> -->
+    <!-- <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.0/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.print.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="../js/peminjaman.js"></script>
-    <script src="../js/demo/datatables-demo.js"></script>
+    <script>
+        $(document).ready(function () {
+            showNotifikasi();
+        });
+        function showNotifikasi() {
+            $.ajax({
+                url: "http://127.0.0.1:8000/api/notifadmin",
+                type: "GET",
+                success: function (response) {
+                    console.log(response);
+                    var notifs = response.data;
+                    const notifContainer = $("#notifAdmin");
+
+                    $.each(notifs, function (index, notif) {
+                        // Buat struktur HTML untuk setiap komentar
+                        const notifDiv = `
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-warning">
+                                        <i class="fas fa-exclamation-triangle text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">${notif.created_at}</div>
+                                    ${notif.message}
+                                </div>
+                            </a>
+                        `;
+
+                        // Tambahkan komentar ke dalam container
+                        notifContainer.append(notifDiv);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                },
+            });
+        }
+    </script>
     <!--
     <script>
         document.addEventListener("DOMContentLoaded", function() {

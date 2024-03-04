@@ -1,7 +1,9 @@
 $(document).ready(function () {
     tampilkanPinjam();
     getData();
-    handleConfirm();
+    $(".btn-print").on("click", function () {
+        $(".dt-button.buttons-pdf.buttons-html5").click();
+    });
 });
 
 function getData() {
@@ -12,7 +14,7 @@ function getData() {
             console.log(response);
             if (response.success) {
                 var data = response.data;
-                $("#user").text(data.username);
+                $("#user").text(data.username + " | " + data.access);
                 $("#prev-prof").attr(
                     "src",
                     "data:image/png;base64," + data.photo
@@ -23,112 +25,83 @@ function getData() {
 }
 
 function tampilkanPinjam() {
-    $.ajax({
-        url: appUrl + "/api/borrowList",
-        method: "GET",
-        success: function (response) {
-            console.log(response);
-            // Hapus semua baris yang ada di tabel
-            $("#dataTable tbody").empty();
-
-            // Array untuk menyimpan semua permintaan AJAX
-            var ajaxRequests = [];
-
-            // Tambahkan data user dan buku ke tabel
-            $.each(response.data, function (index, data) {
-                // Tambahkan permintaan AJAX untuk mendapatkan nama pengguna
-                var userRequest = $.ajax({
-                    url:
-                    appUrl + "/api/detail-user/" + data.user_id,
-                    method: "GET",
-                    success: function (userResponse) {
-                        console.log("User Response:", userResponse); // Debugging
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error getting user data:", error); // Error handling
-                    },
-                });
-
-                // Tambahkan permintaan AJAX untuk mendapatkan judul buku
-                var bookRequest = $.ajax({
-                    url:
-                    appUrl + "/api/detail-buku/" + data.book_id,
-                    method: "GET",
-                    success: function (bookResponse) {
-                        console.log("Book Response:", bookResponse); // Debugging
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error getting book data:", error); // Error handling
-                    },
-                });
-
-                // Tambahkan kedua permintaan ke dalam array
-                ajaxRequests.push(userRequest, bookRequest);
-            });
-
-            // Tunggu semua permintaan selesai menggunakan Promise.all
-            $.when.apply($, ajaxRequests).then(function () {
-                // Ambil hasil dari semua permintaan
-                var responses = arguments;
-
-                // Loop melalui setiap pasangan respons (user dan buku)
-                for (var i = 0; i < responses.length; i += 2) {
-                    var userResponse = responses[i][0].data; // Akses properti data dari respons userRequest
-                    var bookResponse = responses[i + 1][0].displaydata[0]; // Akses array displaydata dari respons bookRequest
-                    var data = response.data[i / 2];
-
-                    // Tambahkan data Borrow ke dalam tabel setelah mendapatkan data user dan buku
-                    var confirmButtonHtml =
-                        data.status !== "Dipinjam"
-                            ? "<button class='btn-confirm' data-id='" +
-                              data.borrow_id +
-                              "' data-tgl-pinjam='" +
-                              data.tgl_pinjam +
-                              "' data-tgl-kembali='" +
-                              data.tgl_kembali +
-                              "' data-jumlah-pinjam='" +
-                              data.jumlah_pinjam +
-                              "'>Confirm</button>"
-                            : "<button class='btn-confirmed' disabled><i class='bi bi-check'></i></button>";
-
-                    var newRow =
-                        "<tr><td>" +
-                        (i / 2 + 1) +
-                        "</td>" +
-                        "<td>" +
-                        userResponse.username +
-                        "</td>" +
-                        "<td>" +
-                        bookResponse.judul +
-                        "</td>" +
-                        "<td>" +
-                        data.petugas_pinjam +
-                        "</td>" +
-                        "<td>" +
-                        data.tgl_pinjam +
-                        "</td>" +
-                        "<td>" +
-                        data.tgl_kembali +
-                        "</td>" +
-                        "<td>" +
-                        data.jumlah_pinjam +
-                        "</td>" +
-                        "<td id='confirm-pinjam'>" +
-                        data.status +
-                        "</td>" +
-                        "<td>" +
-                        "<button class='btn-view' onclick='openView(this)'><i class='bi bi-eye'></i></button>" +
-                        "<button class='btn-delete' onclick='openDelete(this)'><i class='bi bi-trash'></i></button>" +
-                        confirmButtonHtml +
-                        "</td></tr>";
-
-                    $("#dataTable tbody").append(newRow);
-                }
-            });
+    $("#dataTable").dataTable({
+        Destroy: true,
+        processing: true,
+        layout: {
+            topStart: {
+                buttons: ["pdf"],
+            },
         },
-        error: function (xhr, status, error) {
-            console.error(xhr.responseText);
-            alert("Gagal mengambil data borrow. Silakan coba lagi.");
+        ajax: {
+            url: appUrl + "/api/listPermintaanPinjam",
+            dataSrc: "borrows",
+        },
+        columns: [
+            {
+                data: null,
+                render: function (data, type, row, meta) {
+                    return meta.row + 1;
+                },
+            },
+            { data: "username" },
+            { data: "judul" },
+            { data: "petugas_pinjam" },
+            { data: "tgl_pinjam" },
+            { data: "tgl_kembali" },
+            { data: "jumlah_pinjam" },
+            { data: "status" },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    if (data.status === "Sedang diproses") {
+                        return (
+                            '<div><button class="btn-confirm" data-id="' +
+                            data.borrow_id +
+                            '" data-tgl-pinjam="' +
+                            data.tgl_pinjam +
+                            '" data-tgl-kembali="' +
+                            data.tgl_kembali +
+                            '" data-jumlah-pinjam="' +
+                            data.jumlah_pinjam +
+                            '" data-user-id="' +
+                            data.user_id +
+                            '" data-username="' +
+                            data.username +
+                            '">Konfirmasi</button></div>'
+                        );
+                    } else if (data.status === "Dipinjam") {
+                        return (
+                            '<div><button class="btn-confirmed" data-id="' +
+                            data.borrow_id +
+                            '" data-tgl-pinjam="' +
+                            data.tgl_pinjam +
+                            '" data-tgl-kembali="' +
+                            data.tgl_kembali +
+                            '" data-jumlah-pinjam="' +
+                            data.jumlah_pinjam +
+                            '">Selesai</button></div>'
+                        );
+                    } else {
+                        return "";
+                    }
+                },
+            },
+        ],
+        language: {
+            lengthMenu: "Tampilkan _MENU_ hasil",
+            zeroRecords: "Data tidak ditemukan",
+            info: "Menampilkan halaman _PAGE_ dari _PAGES_",
+            infoEmpty: "Tidak ada data",
+            infoFiltered: "(filtered from _MAX_ total records)",
+            emptyTable: "Tidak ada data",
+            search: "Cari data :",
+            paginate: {
+                first: "Awal",
+                last: "Terakhir",
+                next: "Selanjutnya",
+                previous: "Sebelumnya",
+            },
         },
     });
 }
@@ -138,66 +111,61 @@ $("#dataTable tbody").on("click", ".btn-confirm", function () {
     console.log($(this).data("tgl-pinjam"));
     console.log($(this).data("tgl-kembali"));
     console.log($(this).data("jumlah-pinjam"));
+    console.log($(this).data("user-id"));
+    console.log($(this).data("username"));
     var borrowID = $(this).data("id");
     var tglPinjam = $(this).data("tgl-pinjam");
     var tglKembali = $(this).data("tgl-kembali");
     var jmlPinjam = $(this).data("jumlah-pinjam");
-    $("#borrow-id").val(borrowID);
-    $("#tgl-pinjam").val(tglPinjam);
-    $("#tgl-kembali").val(tglKembali);
-    $("#jumlah-pinjam").val(jmlPinjam);
-    $("#updateBorrow").submit(); // Submit form setelah mengatur nilainya
-});
+    var userId = $(this).data("user-id");
+    var userygLogin = document.querySelector('meta[name="user-id"]').content;
+    var usernameygLogin = document.querySelector(
+        'meta[name="username"]'
+    ).content;
+    // $("#updateBorrow").submit();
+    // Kirim data ke controller API
+    $.ajax({
+        url: appUrl + "/api/confirmBorrow",
+        method: "POST",
+        data: {
+            borrow_id: borrowID,
+            tgl_pinjam: tglPinjam,
+            tgl_kembali: tglKembali,
+            jumlah_pinjam: jmlPinjam,
+            user_id: userId,
+        },
+        success: function (response) {
+            console.log(response);
+            alert("Peminjaman berhasil dikonfirmasi.");
+            location.reload();
 
-function handleConfirm() {
-    $("#updateBorrow").on("submit", function (event) {
-        event.preventDefault(); // Menghentikan perilaku default pengiriman formulir
+            var notifData = {
+                user_id: userygLogin,
+                to_user: userId,
+                title: "Peminjaman Baru",
+                message:
+                    "peminjaman telah dikonfirmasi oleh petugas " +
+                    usernameygLogin +
+                    " !. Buku sudah bisa diambil di perpustakaan.",
+            };
 
-        // Mengambil data dari formulir
-        var formData = $(this).serialize();
-
-        // Kirim data ke controller API
-        $.ajax({
-            url: appUrl + "/api/confirmBorrow",
-            method: "POST",
-            data: formData,
-            success: function (response) {
-                // Handle response jika sukses
-                console.log(response);
-                // Misalnya, tampilkan pesan sukses kepada pengguna
-                alert("Peminjaman berhasil dikonfirmasi.");
-                location.reload();
-            },
-            error: function (xhr, status, error) {
-                // Handle error jika permintaan gagal
-                console.error(xhr.responseText);
-                // Misalnya, tampilkan pesan kesalahan kepada pengguna
-                alert("Terjadi kesalahan. Silakan coba lagi.");
-            },
-        });
+            // Kirim data form notification menggunakan AJAX
+            $.ajax({
+                url: appUrl + "/api/sendNotif",
+                type: "POST",
+                data: notifData,
+                success: function (notifResponse) {
+                    console.log("Notifikasi berhasil dikirim");
+                },
+                error: function (notifXhr, notifStatus, notifError) {
+                    console.error("Gagal mengirim notifikasi");
+                    console.error(notifXhr.responseText);
+                },
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+            alert("Terjadi kesalahan. Silakan coba lagi.");
+        },
     });
-}
-
-// function confirmBorrow(button) {
-//     var borrowId = $(button).data("borrow_id");
-//     $.ajax({
-//         url: "http://127.0.0.1:8000/api/confirmBorrow",
-//         method: "POST",
-//         data: { borrow_id: borrowId },
-//         success: function (response) {
-//             alert("Peminjaman berhasil dikonfirmasi!");
-//             // Nonaktifkan tombol setelah berhasil dikonfirmasi
-//             $(button)
-//                 .removeClass("btn-confirm")
-//                 .addClass("btn-confirmed")
-//                 .prop("disabled", true)
-//                 .html("<i class='bi bi-check'></i>");
-//             // Reload atau refresh tabel setelah konfirmasi berhasil
-//             tampilkanPinjam();
-//         },
-//         error: function (xhr, status, error) {
-//             console.error("Error confirming borrow:", error);
-//             alert("Gagal mengkonfirmasi peminjaman. Silakan coba lagi.");
-//         },
-//     });
-// }
+});

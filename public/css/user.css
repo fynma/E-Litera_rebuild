@@ -14,7 +14,7 @@ header {
     left: 0;
     width: 100%;
     padding: 30px 100px;
-    z-index: 100000;
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -92,7 +92,7 @@ input[type="search"]::-webkit-search-clear-button {
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    z-index: 100000;
+    z-index: 2;
     padding: 0 100px;
 }
 
@@ -510,7 +510,7 @@ input[type="search"]::-webkit-search-clear-button {
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
     display: flex;
-    z-index: 1000000;
+    z-index: 3;
 }
 
 .popup .isi-popup {
@@ -688,7 +688,7 @@ input[type="search"]::-webkit-search-clear-button {
 }
 
 .new-rilis .rilis-konten {
-    width: 750px;
+    min-width: 750px;
     min-height: 100px;
 }
 
@@ -703,6 +703,7 @@ input[type="search"]::-webkit-search-clear-button {
     font-weight: 600;
     color: #000;
     margin-bottom: 30px;
+    max-width: 750px;
 }
 
 .new-rilis .rilis-konten .quote-penulis {
@@ -1198,7 +1199,7 @@ input[type="search"]::-webkit-search-clear-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000000;
+    z-index: 3;
 }
 
 .open-nilai {
@@ -1344,18 +1345,18 @@ input[type="search"]::-webkit-search-clear-button {
     display: none;
 }
 
-#content-comments .konten-komen {
+#content-comments #displayComent .konten-komen {
     width: 100%;
     max-height: 400px;
     overflow-y: auto;
     position: relative;
 }
 
-#content-comments .konten-komen::-webkit-scrollbar {
+#content-comments #displayComent .konten-komen::-webkit-scrollbar {
     display: none;
 }
 
-#content-comments .konten-komen .komentar {
+#content-comments #displayComent .konten-komen .komentar {
     width: 100%;
     min-height: 50px;
     display: flex;
@@ -1366,7 +1367,7 @@ input[type="search"]::-webkit-search-clear-button {
     border-radius: 6px;
 }
 
-#content-comments .konten-komen .komentar img {
+#content-comments #displayComent .konten-komen .komentar img {
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -1374,7 +1375,7 @@ input[type="search"]::-webkit-search-clear-button {
     margin-right: 20px;
 }
 
-#content-comments .konten-komen .komentar .isi-komen h2 {
+#content-comments #displayComent .konten-komen .komentar .isi-komen h2 {
     color: #484848;
     font-size: 20px;
     font-weight: 600;
@@ -1382,21 +1383,21 @@ input[type="search"]::-webkit-search-clear-button {
     text-transform: none;
 }
 
-#content-comments .konten-komen .komentar .isi-komen .tanggal-komen {
+#content-comments #displayComent .konten-komen .komentar .isi-komen .tanggal-komen {
     font-size: 18px;
     color: #484848;
     font-weight: 400;
     margin-bottom: 20px;
 }
 
-#content-comments .konten-komen .komentar .isi-komen .isi {
+#content-comments #displayComent .konten-komen .komentar .isi-komen .isi {
     font-size: 1em;
     color: #484848;
     font-weight: 400;
     margin-bottom: 20px;
 }
 
-#content-comments .konten-komen .komentar .isi-komen a {
+#content-comments #displayComent .konten-komen .komentar .isi-komen a {
     font-size: 1em;
     font-weight: 500;
     color: #000;
@@ -1908,7 +1909,7 @@ input[type="search"]::-webkit-search-clear-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000000;
+    z-index: 3;
 }
 
 .open-peminjaman {
@@ -2160,7 +2161,7 @@ input[type="search"]::-webkit-search-clear-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000000;
+    z-index: 3;
 }
 
 .open-detail {
@@ -2310,7 +2311,7 @@ tbody .btn-view {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000000;
+    z-index: 4;
 }
 
 .openPopupDenda {

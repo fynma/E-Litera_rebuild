@@ -4,11 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>E-Litera | Search</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
+    <title>E-Litera | Category</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../../css/user.css" />
     <link rel="icon" href="../../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -41,7 +38,7 @@
             <li><a href="../homepage">Beranda</a></li>
             <li><a href="../Tentang">Tentang</a></li>
             <li>
-                <a href="Riwayat">Riwayat</a>
+                <a href="../Riwayat">Riwayat</a>
             </li>
             <li><a href="../Kontak">Kontak</a></li>
         </ul>
@@ -64,42 +61,42 @@
                     @else
                         <img src="data:image/png;base64,{{ session('photo') }}" alt="Nama Alt">
                     @endif
-            <div class="username-popup">
-              <p id="username-popup"></p>
-              <button id="btn-profile">
-                <a href="../Profile">Lihat Profil</a>
-              </button>
+                    <div class="username-popup">
+                        <p id="username-popup"></p>
+                        <button id="btn-profile">
+                            <a href="../Profile">Lihat Profil</a>
+                        </button>
+                    </div>
+                </div>
+                <div class="widget">
+                    <button id="btn-denda">
+                        <img src="../../img/icon-denda.png" />
+                        <a href="../Denda">Denda</a>
+                    </button>
+                    <button id="btn-bantuan">
+                        <i class="bi bi-question-circle"></i>
+                        <a href="../Kontak">Bantuan</a>
+                    </button>
+                </div>
+                <button class="btn-logout">
+                    <div class="icon-logout">
+                        <i class="bi bi-box-arrow-left"></i>
+                    </div>
+                    <p>Keluar Dari Aplikasi</p>
+                </button>
+                <br />
+                <a onclick="closeModal()">Tutup</a>
             </div>
-          </div>
-          <div class="widget">
-            <button id="btn-denda">
-              <img src="../../img/icon-denda.png" />
-              <a href="Denda">Denda</a>
-            </button>
-            <button id="btn-bantuan">
-              <i class="bi bi-question-circle"></i>
-              <a href="../Kontak">Bantuan</a>
-            </button>
-          </div>
-          <button class="btn-logout">
-            <div class="icon-logout">
-              <i class="bi bi-box-arrow-left"></i>
-            </div>
-            <p>Keluar Dari Aplikasi</p>
-          </button>
-          <br />
-          <a onclick="closeModal()">Tutup</a>
         </div>
-      </div>
     </div>
 
 
     <section class="favorit">
-      <h1>Search key: <span id="search-key"> </span></h1>
-      <div class="content-favorit">
-        <div class="books-grid" style="height: auto" id="grid-item">
+        <h1> <span id="category-key"> </span></h1>
+        <div class="content-favorit">
+            <div class="books-grid" style="height: auto" id="grid-item">
+            </div>
         </div>
-      </div>
     </section>
 
     <section class="penutup">
@@ -179,10 +176,10 @@
                 categoryList.append(li);
             });
         }
-      // validasi Profil
-      window.addEventListener("load", function () {
-        closeModal();
-      });
+        // validasi Profil
+        window.addEventListener("load", function() {
+            closeModal();
+        });
 
         let popup = document.getElementById("popup");
 
@@ -220,8 +217,7 @@
                     window.location.href = link.href; // Mengarahkan ke URL yang ditentukan di dalam tag <a>
                 }
             });
-
-       
     </script>
-  </body>
+</body>
+
 </html>

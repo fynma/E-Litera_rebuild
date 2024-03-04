@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>E-Litera | Notifikasi</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../css/user.css" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <meta name="user-id" content="{{ session('user_id') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
@@ -83,7 +86,7 @@
               <a href="Kontak">Bantuan</a>
             </button>
           </div>
-          <button class="btn-logout">
+          <button class="btn-logout" onclick="logout()">
             <div class="icon-logout">
               <i class="bi bi-box-arrow-left"></i>
             </div>
@@ -97,43 +100,8 @@
 
     <section class="notifikasi">
         <h1>Notifikasi</h1>
-        <div class="content-notifikasi">
-            <div class="notifikasi-items">
-                <img src="../img/avatar.jpg" />
-                <div class="isi-notif">
-                    <h3>Sabilla Andini (Petugas)</h3>
-                    <p>
-                        Peminjaman buku kamu yang berjudul Help Me Find My Stomach
-                        Permintaan telah disetujui oleh petugas perpustakaan. Selamat
-                        membaca dan jangan lupa untuk mengembalikan bukunya yaa.
-                    </p>
-                    <p class="waktu-notif">10 menit yang lalu</p>
-                </div>
-            </div>
-            <div class="notifikasi-items">
-                <img src="../img/avatar.jpg" />
-                <div class="isi-notif">
-                    <h3>Sabilla Andini (Petugas)</h3>
-                    <p>
-                        Peminjaman buku kamu yang berjudul Help Me Find My Stomach
-                        Permintaan telah disetujui oleh petugas perpustakaan. Selamat
-                        membaca dan jangan lupa untuk mengembalikan bukunya yaa.
-                    </p>
-                    <p class="waktu-notif">10 menit yang lalu</p>
-                </div>
-            </div>
-            <div class="notifikasi-items">
-                <img src="../img/avatar.jpg" />
-                <div class="isi-notif">
-                    <h3>Sabilla Andini (Petugas)</h3>
-                    <p>
-                        Peminjaman buku kamu yang berjudul Help Me Find My Stomach
-                        Permintaan telah disetujui oleh petugas perpustakaan. Selamat
-                        membaca dan jangan lupa untuk mengembalikan bukunya yaa.
-                    </p>
-                    <p class="waktu-notif">10 menit yang lalu</p>
-                </div>
-            </div>
+        <div class="content-notifikasi" id="content-notifikasi">
+            
         </div>
     </section>
 
@@ -181,10 +149,13 @@
         </div>
     </section>
 
+    <script src="../js/search-category.js"></script>
+
     <script>
         $(document).ready(function() {
             getData();
             getCategories();
+            showNotifikasi();
         });
 
         function getData() {
@@ -275,6 +246,63 @@
                     window.location.href = link.href; // Mengarahkan ke URL yang ditentukan di dalam tag <a>
                 }
             });
+
+            function logout() {
+            // Ambil token CSRF dari meta tag
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            // Kirim permintaan logout dengan menyertakan token CSRF
+            $.ajax({
+                url: appUrl + '/hapussession',
+                type: 'POST',
+                data: {
+                    _token: csrfToken // Sertakan token CSRF dalam data permintaan
+                },
+                success: function(response) {
+                    console.log(response);
+                    location.reload()
+                },
+                error: function(error) {
+                    console.error('Logout failed:', error);
+                }
+            });
+        }
+
+        function showNotifikasi() {
+        var userId = document.querySelector('meta[name="user-id"]').content;
+        $.ajax({
+            url: "http://127.0.0.1:8000/api/tampilkanNotif",
+            data: {
+                to_user: userId,
+            },
+            type: "GET",
+            success: function (response) {
+                console.log(response);
+                var notifs = response.data;
+                const notifContainer = $("#content-notifikasi");
+
+                $.each(notifs, function (index, notif) {
+                    // Buat struktur HTML untuk setiap komentar
+                    const notifDiv = `
+                        <div class="notifikasi-items">
+                            <div class="isi-notif">
+                                <h3>${notif.username} (${notif.access})</h3>
+                                <p>
+                                    ${notif.message}
+                                </p>
+                            </div>
+                        </div>
+                    `;
+
+                    // Tambahkan komentar ke dalam container
+                    notifContainer.append(notifDiv);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error("Error:", error);
+            },
+        });
+    }
     </script>
 </body>
 

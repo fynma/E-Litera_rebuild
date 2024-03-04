@@ -137,49 +137,14 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                <span class="badge badge-danger badge-counter">!</span>
                             </a>
                             <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">Alerts Center</h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to
-                                            download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for
-                                        your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                                    Alerts</a>
+                            <div
+                                class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown" id="notifAdmin"
+                                >
+                                <h6 class="dropdown-header">Notifikasi</h6>
                             </div>
                         </li>
 
@@ -340,46 +305,44 @@
 
     <!-- javascript kategori admin -->
     <script src="../js/kategori-admin.js"></script>
-
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Ambil semua button yang digunakan untuk memunculkan popup
-            var buttons = document.querySelectorAll(".button-confirm");
-            var popup = document.getElementById("popup");
-            var tutupKonfirm = document.getElementById("tutup-konfirmasi");
-
-            // Tambahkan event listener untuk setiap button
-            buttons.forEach(function(button) {
-                button.addEventListener("click", function() {
-                    // Panggil fungsi untuk menampilkan popup
-                    popup.classList.add("open-popup");
-                    // Panggil fungsi untuk mengkonfirmasi peminjaman hanya untuk tombol ini
-                    var btnOke = popup.querySelector(".oke");
-                    btnOke.addEventListener("click", function() {
-                        konfirmasiPeminjaman(button);
-                    });
-                });
-            });
-
-            function konfirmasiPeminjaman(button) {
-                button.innerText = "Dikonfirmasi";
-                button.classList.remove("confirm");
-                button.classList.add("terconfirm");
-                button.disabled = true;
-
-                // Tutup popup setelah dikonfirmasi
-                closeKonfirmasi();
-            }
-
-            tutupKonfirm.addEventListener("click", function() {
-                // Panggil fungsi untuk menampilkan popup
-                popup.classList.remove("open-popup");
-            });
-
-            function closeKonfirmasi() {
-                popup.classList.remove("open-popup");
-            }
+        $(document).ready(function () {
+            showNotifikasi();
         });
+        function showNotifikasi() {
+            $.ajax({
+                url: "http://127.0.0.1:8000/api/notifadmin",
+                type: "GET",
+                success: function (response) {
+                    console.log(response);
+                    var notifs = response.data;
+                    const notifContainer = $("#notifAdmin");
+
+                    $.each(notifs, function (index, notif) {
+                        // Buat struktur HTML untuk setiap komentar
+                        const notifDiv = `
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-warning">
+                                        <i class="fas fa-exclamation-triangle text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">${notif.created_at}</div>
+                                    ${notif.message}
+                                </div>
+                            </a>
+                        `;
+
+                        // Tambahkan komentar ke dalam container
+                        notifContainer.append(notifDiv);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                },
+            });
+        }
     </script>
 </body>
 

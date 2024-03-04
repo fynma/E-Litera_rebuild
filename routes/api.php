@@ -11,10 +11,11 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
-use App\Models\Book;
+use App\Http\Controllers\notifController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\BayarController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -55,15 +56,21 @@ Route::group([
     Route::post ('borrow', [borrowController::class, 'borrowBook']);
     Route::post ('confirmBorrow', [borrowController::class, 'confirmBorrow']);
     Route::post ('returnBorrow', [borrowController::class, 'returnBorrow']);
-    Route::post ('cancelBorrow', [borrowController::class, 'cancelBorrow']); //opsional wkwkwk belum selesai juga
-    Route::post ('denda', [dendaController::class, 'newDenda']); //not fix wait ui finish
+    Route::post ('returnBorrowAfterPayment', [borrowController::class, 'returnBorrowAfterPayment']);
+    Route::post ('cancelBorrow', [borrowController::class, 'cancelBorrow']);
+    Route::post ('denda', [dendaController::class, 'newDenda']);
     Route::post ('bookDetail', [BookController::class, 'Bookdetail']);
     Route::post ('deleteUser', [ProfileController::class, 'deleteUser']);
     Route::post ('transaction', [transactionController::class, 'transaction_midtrans']);
     Route::post ('contact-admin', [contactController::class, 'sendReport']);
     Route::post ('favorite', [BookController::class, 'favorite']);
-    // Route::post ('logout', [ProfileController::class, 'logout']);
+    Route::post ('sendNotif', [notifController::class, 'notification']);
+    Route::post  ('bayarDenda', [BayarController::class, 'bayarDenda']);
+    Route::post  ('bayarSukses', [BayarController::class, 'success']);
+    // Route::post  ('showcomment', [CommentController::class, 'getComment']);
 
+    Route::get  ('notifadmin', [notifController::class, 'showNotifAdmin']);
+    Route::get  ('notifuser', [notifController::class, 'showNotifUser']);
     Route::get  ('HistoryBorrow', [borrowController::class, 'showHistory']);
     Route::get  ('showFavorite', [BookController::class, 'showFavorite']);
     Route::get  ('borrowList', [borrowController::class, 'showBorrow']);
@@ -83,13 +90,16 @@ Route::group([
     Route::get  ('detail-buku/{book_id}', [BookController::class, 'BookopenID']);
     Route::get  ('detail-pinjam/{user_id}', [borrowController::class, 'showHistoryById']);
     Route::get  ('list_denda', [borrowController::class, 'listdenda']);
+    Route::get  ('list_dendaAdmin', [borrowController::class, 'listdendaAdmin']);
     Route::get  ('listPinjam', [borrowController::class, 'listPinjam']);
+    Route::get  ('listPermintaanPinjam', [borrowController::class, 'listPermintaanPinjam']);
+    Route::get  ('showcomment', [CommentController::class, 'getComment']);
+    Route::get  ('tampilkanNotif', [notifController::class, 'tampilkanNotif']);
     Route::get  ('dendaSatuan/{borrow_id}', [borrowController::class, 'dendaSatuan']);
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
     Route::get  ('showRating', [RatingController::class, 'averageRating']);
     Route::get  ('showStok', [BookController::class, 'TotalBook']);
     Route::get  ('group_monthly', [borrowController::class, 'groupByMonth']);
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

@@ -21,6 +21,11 @@ Route::middleware(['web'])->group(function () {
 
     Route::get  ('profile', [ProfileController::class, 'profileweb']);
 
+    Route::get('/try', function () {
+        Notify::success('Selamat Datang', 'Administrator');
+        return view('try');
+    });
+
 
     Route::middleware(['guest'])->group(function () {
         Route::get('/Login', function () {
@@ -114,7 +119,6 @@ Route::middleware(['web'])->group(function () {
         Route::get('/user/search/{keyword}', function ($keyword) {
             return view('user.search', ['keyword' => $keyword]);
         });
-        
     });
 
     Route::get('/', function () {
