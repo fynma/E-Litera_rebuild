@@ -96,7 +96,7 @@ class AuthController extends Controller
 
         switch ($user->access) {
             case 'petugas':
-                return redirect('/admin/dashboard')->with([
+                return redirect('petugas/dashboard')->with([
                     'status' => 'success',
                     'user' => $user,
                     'auth' => [
