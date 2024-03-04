@@ -53,7 +53,7 @@ function getData() {
                     "data:image/png;base64," + data.photo
                 );
 
-                id_User = data.user_id;
+                userID = data.user_id;
                 userName = data.username;
                 console.log(userID);
                 console.log(userName);
@@ -101,6 +101,7 @@ $(".menu-buku").on("click", "#kirim_komen", function () {
         },
     });
 });
+
 
 // Fungsi untuk mengambil data kategori dari API
 function getCategories() {
@@ -495,6 +496,8 @@ function favorite(books) {
         });
     });
 }
+
+function tambahKomentar() {}
 // function getfavorite() {
 //     $.ajax({
 //         url: "http://127.0.0.1:8000/api/showFavorite",

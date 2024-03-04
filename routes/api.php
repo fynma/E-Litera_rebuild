@@ -67,7 +67,7 @@ Route::group([
     Route::post ('sendNotif', [notifController::class, 'notification']);
     Route::post  ('bayarDenda', [BayarController::class, 'bayarDenda']);
     Route::post  ('bayarSukses', [BayarController::class, 'success']);
-    // Route::post  ('showcomment', [CommentController::class, 'getComment']);
+
 
     Route::get  ('notifadmin', [notifController::class, 'showNotifAdmin']);
     Route::get  ('notifuser', [notifController::class, 'showNotifUser']);

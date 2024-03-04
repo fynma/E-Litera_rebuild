@@ -267,7 +267,6 @@
                 }
             });
         }
-
         function showNotifikasi() {
         var userId = document.querySelector('meta[name="user-id"]').content;
         $.ajax({
@@ -303,6 +302,7 @@
             },
         });
     }
+
     </script>
 </body>
 
