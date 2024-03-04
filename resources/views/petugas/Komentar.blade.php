@@ -8,8 +8,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <meta name="user-id" content="{{ session('user_id') }}">
+    <meta name="access" content="{{ session('access') }}">
 
-    <title>E-Litera | Petugas - Kategori</title>
+    <title>E-Litera | Petugas - Data Buku</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -21,6 +23,8 @@
 
     <!-- bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 
     <!-- Custom styles for this page -->
     <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
@@ -28,8 +32,6 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
-    <meta name="user-id" content="{{ session('user_id') }}">
-    <meta name="access" content="{{ session('access') }}">
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
@@ -41,13 +43,13 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-admin sidebar sidebar-light accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/petugas/dashboard">
                 <img src="../img/logo aplikasi billa 1.png" />
             </a>
 
-            <!-- Nav Item - Data Peminjaman Buku -->
+            <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/admin/dashboard">
+                <a class="nav-link" href="/petugas/dashboard">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -60,7 +62,7 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="bi bi-pencil-square"></i>
@@ -69,13 +71,13 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="Data-Buku">Data Buku</a>
-                        <a class="collapse-item active" href="Kategori">Kategori</a>
+                        <a class="collapse-item" href="Kategori">Kategori</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="bi bi-graph-up"></i>
@@ -84,7 +86,7 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="Komentar">Komentar</a>
+                        <a class="collapse-item active" href="Komentar">Komentar</a>
                         <a class="collapse-item" href="Aktivitas">Riwayat Aktivitas</a>
                     </div>
                 </div>
@@ -114,6 +116,32 @@
         </ul>
         <!-- End of Sidebar -->
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Komentar</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p style="width: 100%; margin-bottom:20px; color:black;"><strong>Username:</strong></p>
+                        <input type="text" id="modalUsername" readonly
+                            style="width: 100%; padding: 12px 20px; color:#484848; font-size: 1em; border:1px solid #484848; border-radius: 4px;">
+                        <p style="width: 100%; margin-bottom:20px; margin-top: 20px; color:black;">
+                        <strong>Komentar:</strong></p>
+                        <textarea class="form-control" placeholder="Leave a comment here" id="modalKomen" readonly style="width: 100%; padding: 12px 20px; color:#484848; font-size: 1em; border:1px solid #484848; border-radius: 4px; height: 100px"></textarea>
+                        <p style="width: 100%; margin-bottom:20px; margin-top: 20px; color:black;">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
@@ -126,8 +154,8 @@
                     </button>
 
                     <div class="header-navbar">
-                        <h2>Data Kategori Buku</h2>
-                        <p>Data Kategori Buku</p>
+                        <h2>Data Komentar</h2>
+                        <p>Data Komentar</p>
                     </div>
 
                     <!-- Topbar Navbar -->
@@ -178,49 +206,12 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <!-- Tambah Kategori -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <div class="card shadow mb-4" style="width: 100%;">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h3 class="m-0 font-weight-semibold text-orange">
-                                    Tambah Kategori
-                                </h3>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div class="konten-tambah-kategori">
-                                    <form id="form-tambah-kategori">
-                                        @csrf
-                                        <label for="nama-kategori">Nama Kategori</label>
-                                        <input type="text" name="nama-kategori" id="nama-kategori">
-                                        <button type="submit"><i class="bi bi-plus-lg"></i> Tambah Kategori</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- desain popup alert -->
-                    <div class="popup" id="popup">
-                        <div class="isi-popup">
-                            <div class="content-popup">
-                                <img src="../img/alert-icon1.png" />
-                                <h2>Apakah Anda yakin ingin mengkonfirmasi peminjaman?</h2>
-                                <div class="button-container">
-                                    <button class="batal" id="tutup-konfirmasi">Batal</button>
-                                    <button class="oke">Oke</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Content Row -->
                     <!-- Project Card Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-orange">
-                                List Data Kategori
+                                List Data Komentar
                             </h6>
                         </div>
                         <div class="card-body">
@@ -229,8 +220,9 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 30px;">No</th>
-                                            <th>Kategori</th>
-                                            <th style="width: 70px;">Aksi</th>
+                                            <th>Nama Pembuat Komentar</th>
+                                            <th>Isi Komentar</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -296,15 +288,20 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin-2.min.js"></script>
-
     <!-- Page level plugins -->
     <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
+    <script src="../js/data-komen.js"></script>
 
-    <!-- javascript kategori admin -->
-    <script src="../js/kategori-admin.js"></script>
+    <!-- bootstrap cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+    </script>
     <script>
         $(document).ready(function () {
             showNotifikasi();

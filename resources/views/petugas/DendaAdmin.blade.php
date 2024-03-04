@@ -60,14 +60,14 @@
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="/admin/dashboard"
+          href="/petugas/dashboard"
         >
           <img src="../img/logo aplikasi billa 1.png" />
         </a>
 
         <!-- Nav Item - Pengembalian Buku -->
         <li class="nav-item">
-          <a class="nav-link" href="/admin/dashboard">
+          <a class="nav-link" href="/petugas/dashboard">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span></a
           >

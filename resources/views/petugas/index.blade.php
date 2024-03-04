@@ -42,19 +42,19 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-admin sidebar sidebar-light accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/petugas/dashboard">
                 <img src="../img/logo aplikasi billa 1.png" />
             </a>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/admin/dashboard">
+                <a class="nav-link" href="/petugas/dashboard">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/admin/Data-Pengguna">
+                <a class="nav-link" href="/petugas/Data-Pengguna">
                     <i class="bi bi-people"></i>
                     <span>Data Pengguna</span></a>
             </li>

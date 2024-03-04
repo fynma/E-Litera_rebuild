@@ -8,8 +8,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <meta name="user-id" content="{{ session('user_id') }}">
+    <meta name="access" content="{{ session('access') }}">
+    <script>
+        var appUrl = "{{ config('APP_URL') }}";
+    </script>
 
-    <title>E-Litera | Petugas - Kategori</title>
+    <title>E-Litera | Petugas - Pengembalian Buku</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -23,16 +28,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
     <!-- Custom styles for this page -->
-    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <!-- <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet"  href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css" />
+    <link rel="stylesheet"  href="https://cdn.datatables.net/buttons/3.0.0/css/buttons.dataTables.css" />
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
-    <meta name="user-id" content="{{ session('user_id') }}">
-    <meta name="access" content="{{ session('access') }}">
-    <script>
-        var appUrl = "{{ config('APP_URL') }}";
-    </script>
 </head>
 
 <body id="page-top">
@@ -41,13 +43,13 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-admin sidebar sidebar-light accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/petugas/dashboard">
                 <img src="../img/logo aplikasi billa 1.png" />
             </a>
 
-            <!-- Nav Item - Data Peminjaman Buku -->
+            <!-- Nav Item - Pengembalian Buku -->
             <li class="nav-item">
-                <a class="nav-link" href="/admin/dashboard">
+                <a class="nav-link" href="/petugas/dashboard">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -60,7 +62,7 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="bi bi-pencil-square"></i>
@@ -69,7 +71,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="Data-Buku">Data Buku</a>
-                        <a class="collapse-item active" href="Kategori">Kategori</a>
+                        <a class="collapse-item" href="Kategori">Kategori</a>
                     </div>
                 </div>
             </li>
@@ -91,7 +93,7 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="bi bi-arrow-left-right"></i>
@@ -100,7 +102,7 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="Data-Peminjaman">Peminjaman</a>
-                        <a class="collapse-item" href="Pengembalian">Pengembalian</a>
+                        <a class="collapse-item active" href="Pengembalian">Pengembalian</a>
                     </div>
                 </div>
             </li>
@@ -126,8 +128,8 @@
                     </button>
 
                     <div class="header-navbar">
-                        <h2>Data Kategori Buku</h2>
-                        <p>Data Kategori Buku</p>
+                        <h2>Pengembalian Buku</h2>
+                        <p>Pengembalian Buku</p>
                     </div>
 
                     <!-- Topbar Navbar -->
@@ -178,27 +180,11 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <!-- Tambah Kategori -->
+                    <!-- Button Print Laporan -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <div class="card shadow mb-4" style="width: 100%;">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h3 class="m-0 font-weight-semibold text-orange">
-                                    Tambah Kategori
-                                </h3>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div class="konten-tambah-kategori">
-                                    <form id="form-tambah-kategori">
-                                        @csrf
-                                        <label for="nama-kategori">Nama Kategori</label>
-                                        <input type="text" name="nama-kategori" id="nama-kategori">
-                                        <button type="submit"><i class="bi bi-plus-lg"></i> Tambah Kategori</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        <button class="btn-print">
+                            <i class="bi bi-printer"></i>Print
+                        </button>
                     </div>
 
                     <!-- desain popup alert -->
@@ -206,7 +192,7 @@
                         <div class="isi-popup">
                             <div class="content-popup">
                                 <img src="../img/alert-icon1.png" />
-                                <h2>Apakah Anda yakin ingin mengkonfirmasi peminjaman?</h2>
+                                <h2>Apakah Anda yakin ingin mengkonfirmasi pengembalian?</h2>
                                 <div class="button-container">
                                     <button class="batal" id="tutup-konfirmasi">Batal</button>
                                     <button class="oke">Oke</button>
@@ -220,17 +206,32 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-orange">
-                                List Data Kategori
+                                List Pengembalian Buku
                             </h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                                <form action="" method="post" id="updateBorrow">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{ session('user_id') }}">
+                                    <input type="hidden" name="borrow_id" id="borrow-id">
+                                    <input type="hidden" name="konfirmasi_kembali" id="konfirmasi-kembali">
+                                    <input type="hidden" name="tgl_pinjam" id="tgl-pinjam">
+                                    <input type="hidden" name="tgl_kembali" id="tgl-kembali">
+                                    <input type="hidden" name="jumlah_pinjam" id="jumlah-pinjam">
+                                </form>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th style="width: 30px;">No</th>
-                                            <th>Kategori</th>
-                                            <th style="width: 70px;">Aksi</th>
+                                            <th>No</th>
+                                            <th>Nama Peminjam</th>
+                                            <th>Judul Buku</th>
+                                            <th>Petugas</th>
+                                            <th>Tanggal Pinjam</th>
+                                            <th>Tanggal Kembali</th>
+                                            <th>Jumlah Pinjam</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -298,13 +299,20 @@
     <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
+    
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.0/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.print.min.js"></script>
 
     <!-- Page level custom scripts -->
-
-    <!-- javascript kategori admin -->
-    <script src="../js/kategori-admin.js"></script>
+    <script src="../js/pengembalian.js"></script>
     <script>
         $(document).ready(function () {
             showNotifikasi();
@@ -365,6 +373,47 @@
             });
         }
     </script>
+    <!--
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Ambil semua button yang digunakan untuk memunculkan popup
+            var buttons = document.querySelectorAll(".button-confirm");
+            var popup = document.getElementById("popup");
+            var tutupKonfirm = document.getElementById("tutup-konfirmasi");
+
+            // Tambahkan event listener untuk setiap button
+            buttons.forEach(function(button) {
+                button.addEventListener("click", function() {
+                    // Panggil fungsi untuk menampilkan popup
+                    popup.classList.add("open-popup");
+                    // Panggil fungsi untuk mengkonfirmasi peminjaman hanya untuk tombol ini
+                    var btnOke = popup.querySelector(".oke");
+                    btnOke.addEventListener("click", function() {
+                        konfirmasiPeminjaman(button);
+                    });
+                });
+            });
+
+            function konfirmasiPeminjaman(button) {
+                button.innerText = "Dikonfirmasi";
+                button.classList.remove("confirm");
+                button.classList.add("terconfirm");
+                button.disabled = true;
+
+                // Tutup popup setelah dikonfirmasi
+                closeKonfirmasi();
+            }
+
+            tutupKonfirm.addEventListener("click", function() {
+                // Panggil fungsi untuk menampilkan popup
+                popup.classList.remove("open-popup");
+            });
+
+            function closeKonfirmasi() {
+                popup.classList.remove("open-popup");
+            }
+        });
+    </script> -->
 </body>
 
 </html>

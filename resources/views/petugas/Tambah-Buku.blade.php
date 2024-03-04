@@ -8,8 +8,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <meta name="user-id" content="{{ session('user_id') }}">
+    <meta name="access" content="{{ session('access') }}">
 
-    <title>E-Litera | Petugas - Kategori</title>
+    <title>E-Litera | Petugas - Tambah Buku</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -28,8 +30,6 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
     <link rel="icon" href="../img/logo-tanpa-tulisan.ico" type="image/x-icon" />
-    <meta name="user-id" content="{{ session('user_id') }}">
-    <meta name="access" content="{{ session('access') }}">
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>
@@ -41,13 +41,13 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-admin sidebar sidebar-light accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/petugas/dashboard">
                 <img src="../img/logo aplikasi billa 1.png" />
             </a>
 
-            <!-- Nav Item - Data Peminjaman Buku -->
+            <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/admin/dashboard">
+                <a class="nav-link" href="/petugas/dashboard">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -68,8 +68,8 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="Data-Buku">Data Buku</a>
-                        <a class="collapse-item active" href="Kategori">Kategori</a>
+                        <a class="collapse-item" href="Data-Buku active">Data Buku</a>
+                        <a class="collapse-item" href="Kategori">Kategori</a>
                     </div>
                 </div>
             </li>
@@ -126,8 +126,8 @@
                     </button>
 
                     <div class="header-navbar">
-                        <h2>Data Kategori Buku</h2>
-                        <p>Data Kategori Buku</p>
+                        <h2>Tambah Buku</h2>
+                        <p>Tambah Buku</p>
                     </div>
 
                     <!-- Topbar Navbar -->
@@ -178,64 +178,57 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <!-- Tambah Kategori -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <div class="card shadow mb-4" style="width: 100%;">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h3 class="m-0 font-weight-semibold text-orange">
-                                    Tambah Kategori
-                                </h3>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div class="konten-tambah-kategori">
-                                    <form id="form-tambah-kategori">
-                                        @csrf
-                                        <label for="nama-kategori">Nama Kategori</label>
-                                        <input type="text" name="nama-kategori" id="nama-kategori">
-                                        <button type="submit"><i class="bi bi-plus-lg"></i> Tambah Kategori</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- desain popup alert -->
-                    <div class="popup" id="popup">
-                        <div class="isi-popup">
-                            <div class="content-popup">
-                                <img src="../img/alert-icon1.png" />
-                                <h2>Apakah Anda yakin ingin mengkonfirmasi peminjaman?</h2>
-                                <div class="button-container">
-                                    <button class="batal" id="tutup-konfirmasi">Batal</button>
-                                    <button class="oke">Oke</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Content Row -->
                     <!-- Project Card Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-orange">
-                                List Data Kategori
+                                Tambah Buku
                             </h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 30px;">No</th>
-                                            <th>Kategori</th>
-                                            <th style="width: 70px;">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                            <div class="form-buat-buku">
+                                <form>
+                                    @csrf
+                                    <div class="tambah-buku-kiri">
+                                        <label for="checkboxContainer" class="judul-form-buku">Kategori</label>
+                                        <div class="checkbox-kategori" id="checkboxContainer">
+                                        </div>
+                                        <label for="kode_buku" class="judul-form-buku">Kode Buku</label>
+                                        <input type="text" name="kode_buku" id="kode_buku"
+                                            placeholder="Ketik kode buku disini..">
+                                        <label for="judul" class="judul-form-buku">Judul Buku</label>
+                                        <input type="text" name="judul" id="judul"
+                                            placeholder="Ketik judul buku disini..">
+                                        <label for="penulis" class="judul-form-buku">Nama Penulis</label>
+                                        <input type="text" name="penulis" id="penulis"
+                                            placeholder="Ketik nama penulis disini..">
+                                        <label for="penerbit" class="judul-form-buku">Penerbit</label>
+                                        <input type="text" name="penerbit" id="penerbit"
+                                            placeholder="Ketik penerbit disini..">
+                                        <label for="tahun_terbit" class="judul-form-buku">Tahun Rilis</label>
+                                        <input type="text" name="tahun_terbit" id="tahun_terbit"
+                                            placeholder="Ketik tahun rilis disini..">
+                                        <label for="total_buku" class="judul-form-buku">Stok Buku</label>
+                                        <input type="number" name="total_buku" id="total_buku"
+                                            placeholder="Tentukan stok buku disini.." pattern="[0-9]*">
+                                    </div>
+                                    <div class="tambah-buku-kanan">
+                                        <label for="deskripsi" class="judul-form-buku">Deskripsi</label>
+                                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"
+                                            placeholder="Tulis deskripsi atau sinopsis buku disini.."></textarea>
+                                        <label for="sampul" class="judul-form-buku">Sampul Buku <span>(png, jpg,
+                                                jpeg)</span></label>
+                                        <input type="file" id="gambar" accept=".png, .jpg, .jpeg"
+                                            onchange="previewImage()" lang="id" title="Pilih Berkas"
+                                            name="gambar">
+                                        <img id="preview" src="#" alt="Preview" style="display: none;">
+                                        <div class="btn-kirimbatal">
+                                            <button onclick="goBack()" class="btn-kembali">Kembali</button>
+                                            <button type="submit" class="btn-kirim ml-3">Kirim</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -302,9 +295,8 @@
     <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-
-    <!-- javascript kategori admin -->
-    <script src="../js/kategori-admin.js"></script>
+    <script src="../js/demo/datatables-demo.js"></script>
+    <script src="../js/tambah-buku.js"></script>
     <script>
         $(document).ready(function () {
             showNotifikasi();

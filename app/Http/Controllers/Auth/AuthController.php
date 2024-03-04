@@ -95,7 +95,7 @@ class AuthController extends Controller
         $tokenFromSession = session('token');
         switch ($user->access) {
             case 'petugas':
-                return redirect('admin/home')->with([
+                return redirect('petugas/dashboard')->with([
                     'status' => 'success',
                     'user' => $user,
                     'auth' => [
