@@ -5,30 +5,80 @@ $(document).ready(function () {
     setTglPinjam();
 });
 
+
 // Fungsi untuk menangani submit form
 function handlePinjam() {
-    // Function to handle form submission
+    var userId = document.querySelector('meta[name="user-id"]').content;
+    var username = document.querySelector('meta[name="usernamee"]').content;
+
     $("form").submit(function (event) {
         event.preventDefault(); // Prevent default form submission
         var formData = $(this).serialize(); // Serialize form data
 
-        // Kirim data form menggunakan AJAX
+        // Kirim data form borrow menggunakan AJAX
         $.ajax({
-            url: appUrl + "/api/borrow", // Ganti dengan URL endpoint API Anda
+            url: appUrl + "/api/borrow", 
             type: "POST",
-            data: formData, // Menggunakan data yang telah di-serialize
+            data: formData,
             success: function (response) {
                 // Handle ketika permintaan berhasil
                 alert("Berhasil meminjam, tunggu konfirmasi petugas");
+
+                var notifData = {
+                    user_id: userId, 
+                    title: "Peminjaman Baru",
+                    message: "Terdapat peminjaman baru oleh user id "+ userId + " dengan username " + username + " !", 
+                };
+
+                // Kirim data form notification menggunakan AJAX
+                $.ajax({
+                    url: appUrl + "/api/sendNotif",
+                    type: "POST",
+                    data: notifData,
+                    success: function (notifResponse) {
+                        // Handle ketika permintaan notifikasi berhasil
+                        console.log("Notifikasi berhasil dikirim");
+                    },
+                    error: function (notifXhr, notifStatus, notifError) {
+                        // Handle ketika terjadi kesalahan pada permintaan notifikasi
+                        console.error("Gagal mengirim notifikasi");
+                        console.error(notifXhr.responseText);
+                    }
+                });
             },
             error: function (xhr, status, error) {
-                // Handle ketika terjadi kesalahan
+                // Handle ketika terjadi kesalahan pada permintaan borrow
                 alert("Gagal meminjam buku. Silakan coba lagi.");
                 console.error(xhr.responseText);
             },
         });
     });
 }
+
+// function handlePinjam() {
+//     var userId = user-id;
+//     // Function to handle form submission
+//     $("form").submit(function (event) {
+//         event.preventDefault(); // Prevent default form submission
+//         var formData = $(this).serialize(); // Serialize form data
+
+//         // Kirim data form menggunakan AJAX
+//         $.ajax({
+//             url: appUrl + "/api/borrow", 
+//             type: "POST",
+//             data: formData, // Menggunakan data yang telah di-serialize
+//             success: function (response) {
+//                 // Handle ketika permintaan berhasil
+//                 alert("Berhasil meminjam, tunggu konfirmasi petugas");
+//             },
+//             error: function (xhr, status, error) {
+//                 // Handle ketika terjadi kesalahan
+//                 alert("Gagal meminjam buku. Silakan coba lagi.");
+//                 console.error(xhr.responseText);
+//             },
+//         });
+//     });
+// }
 
 function getListBook() {
     $.ajax({

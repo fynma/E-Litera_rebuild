@@ -10,7 +10,6 @@
 
 <body>
     <form action="/postlogin" method="post">
-        @csrf
         <input type="text" name="email" id="">
         <input type="password" name="password" id="">
         <input type="submit" value="Submit">

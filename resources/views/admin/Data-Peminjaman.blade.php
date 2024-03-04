@@ -9,6 +9,7 @@
     <meta name="author" content="" />
     <meta name="user-id" content="{{ session('user_id') }}">
     <meta name="access" content="{{ session('access') }}">
+    <meta name="username" content="{{ session('username') }}">
     <script>
         var appUrl = "{{ config('APP_URL') }}";
     </script>

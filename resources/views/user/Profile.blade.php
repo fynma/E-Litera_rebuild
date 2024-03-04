@@ -274,7 +274,7 @@
                 var formData = new FormData(this);
 
                 $.ajax({
-                    url: appUrl + 'h/api/profile-edit',
+                    url: appUrl + '/api/profile-edit',
                     type: 'POST',
                     data: formData,
                     contentType: false,
@@ -290,7 +290,7 @@
                     },
                     error: function(xhr, status, error) {
                         // Tampilkan pesan kesalahan jika permintaan gagal
-                        alert('Terjadi kesalahan saat mengirim permintaan API.');
+                        alert('Lengkapi semua bagian profile. foto tidak boleh lebih dari 50kb.');
                         console.error(xhr.responseText);
                     }
                 });

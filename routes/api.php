@@ -11,7 +11,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
-use App\Models\Book;
+use App\Http\Controllers\notifController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
@@ -62,7 +62,10 @@ Route::group([
     Route::post ('transaction', [transactionController::class, 'transaction_midtrans']);
     Route::post ('contact-admin', [contactController::class, 'sendReport']);
     Route::post ('favorite', [BookController::class, 'favorite']);
+    Route::post ('sendNotif', [notifController::class, 'notification']);
 
+    Route::get  ('notifadmin', [notifController::class, 'showNotifAdmin']);
+    Route::get  ('notifuser', [notifController::class, 'showNotifUser']);
     Route::get  ('HistoryBorrow', [borrowController::class, 'showHistory']);
     Route::get  ('showFavorite', [BookController::class, 'showFavorite']);
     Route::get  ('borrowList', [borrowController::class, 'showBorrow']);

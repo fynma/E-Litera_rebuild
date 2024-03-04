@@ -5,7 +5,42 @@ $(document).ready(function () {
     getTotalPinjam();
     getTotalStok();
     getTotalDenda();
+
+    
+    showNotif();
+    displayNotifications();
 });
+
+function showNotif() {
+    $.ajax({
+        url: appUrl + '/api/notifadmin',
+        type: 'GET',
+        success: function (response) {
+            displayNotifications(response.notif);
+        }
+    });
+}
+
+function displayNotifications(notification) {
+    var dropdownMenu = $('#dropdown-menu'); // Ganti dengan ID sesuai kebutuhan Anda
+    dropdownMenu.empty(); // Mengosongkan konten sebelum menambahkan notifikasi baru
+
+    $.each(notification, function(index, notification) {
+        var formattedDate = moment(notification.created_at).format('YYYY-MM-DD HH:mm:ss');
+
+        // Membuat elemen HTML notifikasi
+        var notificationElement = $('<a class="dropdown-item d-flex align-items-center" href="#">' +
+            '<div>' +
+            '<div class="small text-gray-500">' + formattedDate + '</div>' +
+            '<span><span class="font-weight-bold">' + notification.title + '</span>' +
+            '<span id="username"><span class="font-weight-bold">' + notification.message + '</span></span>' +
+            '</div>' +
+            '</a>');
+
+        // Menambahkan notifikasi ke dalam dropdown menu
+        dropdownMenu.append(notificationElement);
+    });
+}
 
 
 
@@ -112,7 +147,7 @@ function getTotalStok() {
 
 function getTotalDenda() {
     $.ajax({
-        url: appUrl+'/api/list_denda',
+        url: appUrl + '/api/list_denda',
         type: 'GET',
         success: function (response) {
             console.log(response);

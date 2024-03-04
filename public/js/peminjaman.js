@@ -28,37 +28,32 @@ function tampilkanPinjam() {
         method: "GET",
         success: function (response) {
             console.log(response);
-            // Hapus semua baris yang ada di tabel
             $("#dataTable tbody").empty();
-
-            // Array untuk menyimpan semua permintaan AJAX
             var ajaxRequests = [];
-
-            // Tambahkan data user dan buku ke tabel
             $.each(response.data, function (index, data) {
-                // Tambahkan permintaan AJAX untuk mendapatkan nama pengguna
                 var userRequest = $.ajax({
                     url:
                     appUrl + "/api/detail-user/" + data.user_id,
                     method: "GET",
                     success: function (userResponse) {
-                        console.log("User Response:", userResponse); // Debugging
+                        console.log("User Response:", userResponse); 
+                        var userIdFromDetailUser = userResponse.user_id;
+                        handleConfirm(userIdFromDetailUser);
+
                     },
                     error: function (xhr, status, error) {
-                        console.error("Error getting user data:", error); // Error handling
+                        console.error("Error getting user data:", error);
                     },
                 });
-
-                // Tambahkan permintaan AJAX untuk mendapatkan judul buku
                 var bookRequest = $.ajax({
                     url:
                     appUrl + "/api/detail-buku/" + data.book_id,
                     method: "GET",
                     success: function (bookResponse) {
-                        console.log("Book Response:", bookResponse); // Debugging
+                        console.log("Book Response:", bookResponse); 
                     },
                     error: function (xhr, status, error) {
-                        console.error("Error getting book data:", error); // Error handling
+                        console.error("Error getting book data:", error);
                     },
                 });
 
@@ -149,7 +144,12 @@ $("#dataTable tbody").on("click", ".btn-confirm", function () {
     $("#updateBorrow").submit(); // Submit form setelah mengatur nilainya
 });
 
-function handleConfirm() {
+function handleConfirm(userIdFromDetailUser) {
+    console.log("User ID:", userIdFromDetailUser);
+    var userId = document.querySelector('meta[name="user-id"]').content;
+    var username = document.querySelector('meta[name="username"]').content;
+
+
     $("#updateBorrow").on("submit", function (event) {
         event.preventDefault(); // Menghentikan perilaku default pengiriman formulir
 
@@ -162,42 +162,37 @@ function handleConfirm() {
             method: "POST",
             data: formData,
             success: function (response) {
-                // Handle response jika sukses
                 console.log(response);
-                // Misalnya, tampilkan pesan sukses kepada pengguna
                 alert("Peminjaman berhasil dikonfirmasi.");
                 location.reload();
+
+
+                var notifData = {
+                    user_id: userId, 
+                    to_user: userIdFromDetailUser,
+                    title: "Peminjaman Baru",
+                    message: "peminjaman telah dikonfirmasi oleh petugas " + username + " !. Buku sudah bisa diambil di perpustakaan.", 
+                };
+
+                // Kirim data form notification menggunakan AJAX
+                $.ajax({
+                    url: appUrl + "/api/sendNotif",
+                    type: "POST",
+                    data: notifData,
+                    success: function (notifResponse) {
+                        console.log("Notifikasi berhasil dikirim");
+                    },
+                    error: function (notifXhr, notifStatus, notifError) {
+                        console.error("Gagal mengirim notifikasi");
+                        console.error(notifXhr.responseText);
+                    }
+                });
             },
             error: function (xhr, status, error) {
-                // Handle error jika permintaan gagal
                 console.error(xhr.responseText);
-                // Misalnya, tampilkan pesan kesalahan kepada pengguna
                 alert("Terjadi kesalahan. Silakan coba lagi.");
             },
         });
     });
 }
 
-// function confirmBorrow(button) {
-//     var borrowId = $(button).data("borrow_id");
-//     $.ajax({
-//         url: "http://127.0.0.1:8000/api/confirmBorrow",
-//         method: "POST",
-//         data: { borrow_id: borrowId },
-//         success: function (response) {
-//             alert("Peminjaman berhasil dikonfirmasi!");
-//             // Nonaktifkan tombol setelah berhasil dikonfirmasi
-//             $(button)
-//                 .removeClass("btn-confirm")
-//                 .addClass("btn-confirmed")
-//                 .prop("disabled", true)
-//                 .html("<i class='bi bi-check'></i>");
-//             // Reload atau refresh tabel setelah konfirmasi berhasil
-//             tampilkanPinjam();
-//         },
-//         error: function (xhr, status, error) {
-//             console.error("Error confirming borrow:", error);
-//             alert("Gagal mengkonfirmasi peminjaman. Silakan coba lagi.");
-//         },
-//     });
-// }

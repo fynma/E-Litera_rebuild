@@ -12,6 +12,8 @@
     <script>
         var appUrl = "{{ config('API_URL') }}";
     </script>
+    <meta name="user-id" content="{{ session('user_id') }}">
+    <meta name="usernamee" content="{{ session('username') }}">
 </head>
 
 <body>
@@ -71,7 +73,7 @@
                         <label for="nama">Nama</label>
                         <p>:</p>
                         <div class="data-get-pinjam">
-                            <input type="text" name="nama" id="username_pop" style="pointer-events: none;"
+                            <input type="text" name="nama" id="username_pop" style="pointer-events: none;" 
                                 readonly />
                         </div>
                     </div>

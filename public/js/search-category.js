@@ -1,6 +1,6 @@
 $(document).ready(function () {
     getData();
-    displayBooks();
+    displayBooksFiltered();
 
     if (isTargetURLsearch()) {
         searchBooks();
@@ -105,14 +105,14 @@ function searchBooks(keyword) {
                     return searchResults.includes(book.judul);
                 });
                 console.log('Informasi buku yang ditemukan:', books);
-                displayBooks(books);
+                displayBooksFiltered(books);
             }
         },
     });
 }
 
 
-function displayBooks(books) {
+function displayBooksFiltered(books) {
 
     var gridContainer = $("#grid-item");
     gridContainer.empty();
@@ -230,7 +230,7 @@ function categoryOpen() {
                 });
 
                 console.log('Informasi buku yang ditemukan:', filteredBooks);
-                displayBooks(filteredBooks);
+                displayBooksFiltered(filteredBooks);
             }
         }
     });
