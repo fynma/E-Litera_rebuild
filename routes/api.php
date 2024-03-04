@@ -56,8 +56,9 @@ Route::group([
     Route::post ('borrow', [borrowController::class, 'borrowBook']);
     Route::post ('confirmBorrow', [borrowController::class, 'confirmBorrow']);
     Route::post ('returnBorrow', [borrowController::class, 'returnBorrow']);
-    Route::post ('cancelBorrow', [borrowController::class, 'cancelBorrow']); //opsional wkwkwk belum selesai juga
-    Route::post ('denda', [dendaController::class, 'newDenda']); //not fix wait ui finish
+    Route::post ('returnBorrowAfterPayment', [borrowController::class, 'returnBorrowAfterPayment']);
+    Route::post ('cancelBorrow', [borrowController::class, 'cancelBorrow']);
+    Route::post ('denda', [dendaController::class, 'newDenda']);
     Route::post ('bookDetail', [BookController::class, 'Bookdetail']);
     Route::post ('deleteUser', [ProfileController::class, 'deleteUser']);
     Route::post ('transaction', [transactionController::class, 'transaction_midtrans']);
@@ -66,6 +67,7 @@ Route::group([
     Route::post ('sendNotif', [notifController::class, 'notification']);
     Route::post  ('bayarDenda', [BayarController::class, 'bayarDenda']);
     Route::post  ('bayarSukses', [BayarController::class, 'success']);
+    // Route::post  ('showcomment', [CommentController::class, 'getComment']);
 
     Route::get  ('notifadmin', [notifController::class, 'showNotifAdmin']);
     Route::get  ('notifuser', [notifController::class, 'showNotifUser']);
@@ -88,8 +90,11 @@ Route::group([
     Route::get  ('detail-buku/{book_id}', [BookController::class, 'BookopenID']);
     Route::get  ('detail-pinjam/{user_id}', [borrowController::class, 'showHistoryById']);
     Route::get  ('list_denda', [borrowController::class, 'listdenda']);
+    Route::get  ('list_dendaAdmin', [borrowController::class, 'listdendaAdmin']);
     Route::get  ('listPinjam', [borrowController::class, 'listPinjam']);
     Route::get  ('listPermintaanPinjam', [borrowController::class, 'listPermintaanPinjam']);
+    Route::get  ('showcomment', [CommentController::class, 'getComment']);
+    Route::get  ('tampilkanNotif', [notifController::class, 'tampilkanNotif']);
     Route::get  ('dendaSatuan/{borrow_id}', [borrowController::class, 'dendaSatuan']);
     Route::get  ('reset-password', [ResetController::class, 'passwordLoad']);
     Route::get  ('showRating', [RatingController::class, 'averageRating']);

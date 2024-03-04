@@ -53,7 +53,7 @@ function getData() {
                     "data:image/png;base64," + data.photo
                 );
 
-                userID = data.user_id;
+                id_User = data.user_id;
                 userName = data.username;
                 console.log(userID);
                 console.log(userName);
@@ -65,7 +65,7 @@ function getData() {
 $(".menu-buku").on("click", "#kirim_komen", function () {
     var tambahKomenInput = $("#tambah-komen");
     var komentar = tambahKomenInput.val().trim();
-    var userId = userID; // Anda mungkin perlu mengatur nilai ini dengan ID pengguna yang masuk
+    var userId = document.querySelector('meta[name="user-id"]').content; // Anda mungkin perlu mengatur nilai ini dengan ID pengguna yang masuk
     var url = window.location.href;
 
     // Mem-parse URL untuk mendapatkan pathnya
@@ -101,53 +101,6 @@ $(".menu-buku").on("click", "#kirim_komen", function () {
         },
     });
 });
-
-// function handleCommentSubmission() {
-//     var tambahKomenInput = $("#tambah-komen");
-//     var komentar = tambahKomenInput.val().trim();
-//     var userId = userID; // Anda mungkin perlu mengatur nilai ini dengan ID pengguna yang masuk
-//     var url = window.location.href;
-
-//     // Mem-parse URL untuk mendapatkan pathnya
-//     var urlParts = url.split("/");
-
-//     // Mengambil bagian terakhir dari path, yang seharusnya menjadi id
-//     var bookId = urlParts[urlParts.length - 1];
-
-//     if (komentar !== "") {
-//         tambahkanKomentar(userId, bookId, komentar);
-//     }
-// }
-
-// function tambahkanKomentar(userId, bookId, komentar) {
-//     var today = new Date();
-//     var dd = String(today.getDate()).padStart(2, "0");
-//     var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-//     var yyyy = today.getFullYear();
-//     var formattedDate = yyyy + "-" + mm + "-" + dd;
-//     $.ajax({
-//         url: appUrl + "/api/uploadComment",
-//         type: "POST",
-//         headers: {
-//             "X-CSRF-TOKEN": "{{ csrf_token() }}", // Pastikan untuk menyertakan token CSRF
-//         },
-//         data: {
-//             user_id: userId,
-//             book_id: bookId,
-//             komentar: komentar,
-//             tglkomen: formattedDate,
-//         },
-//         success: function (data) {
-//             // Lakukan sesuatu setelah komentar berhasil ditambahkan, misalnya memperbarui tampilan
-//             console.log("Komentar berhasil ditambahkan:", data);
-//             $("#tambah-komen").val(""); // Mengosongkan input setelah berhasil menambahkan komentar
-//         },
-//         error: function (xhr, status, error) {
-//             console.error("Error:", error);
-//             // Menampilkan pesan kesalahan kepada pengguna
-//         },
-//     });
-// }
 
 // Fungsi untuk mengambil data kategori dari API
 function getCategories() {
@@ -254,6 +207,71 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Gagal mengambil data buku. Silakan coba lagi.");
         },
     });
+
+    // Fungsi untuk mengambil data komentar dari API
+    function fetchData(bookId) {
+        $.ajax({
+            url: "http://127.0.0.1:8000/api/showcomment",
+            data: {
+                book_id: bookId,
+            },
+            type: "GET",
+            success: function (response) {
+                console.log(response);
+                var comments = response.data;
+                const komentarContainer = $("#displayComent");
+
+                $.each(comments, function (index, comment) {
+                    // Buat struktur HTML untuk setiap komentar
+                    const komentarDiv = `
+                        <div class="konten-komen">
+                            <div class="komentar">
+                                <img src="data:image/png;base64,${comment.photo}" /> <!-- Menggunakan base64 untuk gambar -->
+                                <div class="isi-komen">
+                                    <h2 class="username-komen" id="username-komen">${comment.username}</h2>
+                                    <p class="tanggal-komen" id="tanggal-komen">${comment.tgl_komentar}</p>
+                                    <p class="isi" id="isi">${comment.komentar}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    // Tambahkan komentar ke dalam container
+                    komentarContainer.append(komentarDiv);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error("Error:", error);
+            },
+        });
+    }
+
+    // Fungsi untuk menampilkan komentar ke dalam HTML
+    // function displayComments() {
+    //     const komentarContainer = $("#content-comments");
+
+    //     $.each(filteredComments, function (index, comment) {
+    //         // Buat struktur HTML untuk setiap komentar
+    //         const komentarDiv = `
+    //             <div class="konten-komen">
+    //                 <div class="komentar">
+    //                     <img src="data:image/png;base64,${comment.photo}" /> <!-- Menggunakan base64 untuk gambar -->
+    //                     <div class="isi-komen">
+    //                         <h2 class="username-komen" id="username-komen">${comment.username}</h2>
+    //                         <p class="tanggal-komen" id="tanggal-komen">${comment.tgl_komentar}</p>
+    //                         <p class="isi" id="isi">${comment.komentar}</p>
+    //                         <a href="#">Balas</a>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         `;
+
+    //         // Tambahkan komentar ke dalam container
+    //         komentarContainer.append(komentarDiv);
+    //     });
+    // }
+
+    fetchData(bookId);
 });
 
 function getListBook() {
@@ -303,10 +321,10 @@ function displayBooks(books) {
 
         var title = $(
             '<h3 id="judul-buku"><a style="cursor:pointer;" id="book_judul" data-id="' +
-            book.book_id +
-            '">' +
-            book.judul +
-            "</a></h3>"
+                book.book_id +
+                '">' +
+                book.judul +
+                "</a></h3>"
         );
         var author = $(
             '<a href="#" id="penulis-buku">By: ' + book.penulis + "</a>"
@@ -339,8 +357,8 @@ function displayBooks(books) {
         var linkPinjam = $('<div class="link-pinjam" id="disabledLink"></div>');
         var buttonPinjam = $(
             '<button style="cursor: pointer" id="btn-pinjam" onclick="openPinjam()" data-id=' +
-            book.book_id +
-            "><a>Pinjam</a></button>"
+                book.book_id +
+                "><a>Pinjam</a></button>"
         );
 
         details.append(

@@ -1,7 +1,9 @@
 $(document).ready(function () {
     tampilkanPinjam();
     getData();
-    handleConfirm();
+    $(".btn-print").on("click", function () {
+        $(".dt-button.buttons-pdf.buttons-html5").click();
+    });
 });
 
 function getData() {
@@ -26,6 +28,11 @@ function tampilkanPinjam() {
     $("#dataTable").dataTable({
         Destroy: true,
         processing: true,
+        layout: {
+            topStart: {
+                buttons: ["pdf"],
+            },
+        },
         ajax: {
             url: appUrl + "/api/listPermintaanPinjam",
             dataSrc: "borrows",
@@ -57,6 +64,10 @@ function tampilkanPinjam() {
                             data.tgl_kembali +
                             '" data-jumlah-pinjam="' +
                             data.jumlah_pinjam +
+                            '" data-user-id="' +
+                            data.user_id +
+                            '" data-username="' +
+                            data.username +
                             '">Konfirmasi</button></div>'
                         );
                     } else if (data.status === "Dipinjam") {
@@ -100,66 +111,61 @@ $("#dataTable tbody").on("click", ".btn-confirm", function () {
     console.log($(this).data("tgl-pinjam"));
     console.log($(this).data("tgl-kembali"));
     console.log($(this).data("jumlah-pinjam"));
+    console.log($(this).data("user-id"));
+    console.log($(this).data("username"));
     var borrowID = $(this).data("id");
     var tglPinjam = $(this).data("tgl-pinjam");
     var tglKembali = $(this).data("tgl-kembali");
     var jmlPinjam = $(this).data("jumlah-pinjam");
-    $("#borrow-id").val(borrowID);
-    $("#tgl-pinjam").val(tglPinjam);
-    $("#tgl-kembali").val(tglKembali);
-    $("#jumlah-pinjam").val(jmlPinjam);
-    $("#updateBorrow").submit(); // Submit form setelah mengatur nilainya
-});
+    var userId = $(this).data("user-id");
+    var userygLogin = document.querySelector('meta[name="user-id"]').content;
+    var usernameygLogin = document.querySelector(
+        'meta[name="username"]'
+    ).content;
+    // $("#updateBorrow").submit();
+    // Kirim data ke controller API
+    $.ajax({
+        url: appUrl + "/api/confirmBorrow",
+        method: "POST",
+        data: {
+            borrow_id: borrowID,
+            tgl_pinjam: tglPinjam,
+            tgl_kembali: tglKembali,
+            jumlah_pinjam: jmlPinjam,
+            user_id: userId,
+        },
+        success: function (response) {
+            console.log(response);
+            alert("Peminjaman berhasil dikonfirmasi.");
+            location.reload();
 
-function handleConfirm(userIdFromDetailUser) {
-    console.log("User ID:", userIdFromDetailUser);
-    var userId = document.querySelector('meta[name="user-id"]').content;
-    var username = document.querySelector('meta[name="username"]').content;
+            var notifData = {
+                user_id: userygLogin,
+                to_user: userId,
+                title: "Peminjaman Baru",
+                message:
+                    "peminjaman telah dikonfirmasi oleh petugas " +
+                    usernameygLogin +
+                    " !. Buku sudah bisa diambil di perpustakaan.",
+            };
 
-    $("#updateBorrow").on("submit", function (event) {
-        event.preventDefault(); // Menghentikan perilaku default pengiriman formulir
-
-        // Mengambil data dari formulir
-        var formData = $(this).serialize();
-
-        // Kirim data ke controller API
-        $.ajax({
-            url: appUrl + "/api/confirmBorrow",
-            method: "POST",
-            data: formData,
-            success: function (response) {
-                console.log(response);
-                alert("Peminjaman berhasil dikonfirmasi.");
-                location.reload();
-
-                var notifData = {
-                    user_id: userId,
-                    to_user: userIdFromDetailUser,
-                    title: "Peminjaman Baru",
-                    message:
-                        "peminjaman telah dikonfirmasi oleh petugas " +
-                        username +
-                        " !. Buku sudah bisa diambil di perpustakaan.",
-                };
-
-                // Kirim data form notification menggunakan AJAX
-                $.ajax({
-                    url: appUrl + "/api/sendNotif",
-                    type: "POST",
-                    data: notifData,
-                    success: function (notifResponse) {
-                        console.log("Notifikasi berhasil dikirim");
-                    },
-                    error: function (notifXhr, notifStatus, notifError) {
-                        console.error("Gagal mengirim notifikasi");
-                        console.error(notifXhr.responseText);
-                    },
-                });
-            },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText);
-                alert("Terjadi kesalahan. Silakan coba lagi.");
-            },
-        });
+            // Kirim data form notification menggunakan AJAX
+            $.ajax({
+                url: appUrl + "/api/sendNotif",
+                type: "POST",
+                data: notifData,
+                success: function (notifResponse) {
+                    console.log("Notifikasi berhasil dikirim");
+                },
+                error: function (notifXhr, notifStatus, notifError) {
+                    console.error("Gagal mengirim notifikasi");
+                    console.error(notifXhr.responseText);
+                },
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+            alert("Terjadi kesalahan. Silakan coba lagi.");
+        },
     });
-}
+});

@@ -36,11 +36,17 @@ class CommentController extends Controller
         }
     }
 
-    public function getComment()
+    public function getComment(Request $request)
     {
-        $comment = Comment::all();
+        $comment = DB::table('user_comment_view')
+            ->when($request->has('book_id'), function ($query) use ($request) {
+                return $query->where('book_id', $request->book_id); 
+            })
+            ->get();
+    
         return response()->json(['data' => $comment], 200);
     }
+    
 
     // public function deleteComment(Request $request)
     // {

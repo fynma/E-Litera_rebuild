@@ -54,14 +54,14 @@ class borrowController extends Controller
     public function confirmBorrow(Request $request)
     {
 
-        $id = $request->input('borrow_id');
+        $id = $request->borrow_id;
 
         $borrow = Borrow::findOrFail($id);
         $petugas = User::find($request->user_id);
 
-        $tgl_pinjam = $request->input('tgl_pinjam');
-        $tgl_kembali = $request->input('tgl_kembali');
-        $jumlah_pinjam = $request->input('jumlah_pinjam');
+        $tgl_pinjam = $request->tgl_pinjam;
+        $tgl_kembali = $request->tgl_kembali;
+        $jumlah_pinjam = $request->jumlah_pinjam;
         if ($borrow) {
             $borrow->update([
                 'konfirmasi_pinjam' => '1',
@@ -116,6 +116,38 @@ class borrowController extends Controller
                 } else {
                     return response()->json(['message' => 'Peminjaman sudah dikonfirmasi sebelumnya'], 400);
                 }
+            } else {
+                return response()->json(['message' => 'Buku tidak ditemukan'], 404);
+            }
+        } else {
+            return response()->json(['message' => 'Peminjaman tidak ditemukan'], 404);
+        }
+    }
+    public function returnBorrowAfterPayment(Request $request)
+    {
+        $id = $request->borrowId;
+        $borrow = Borrow::findOrFail($id);
+        $petugas = User::find($request->userid);
+        $tgl_pinjam = $request->tglpinjam;
+        $tgl_kembali = $request->tglkembali;
+        $jumlah_pinjam = $request->jumlahpinjam;
+        $konfirmasi = $request->konfirmasiKembali;
+        $status = 'Dikembalikan';
+
+        if ($borrow) {
+            $book = Book::find($borrow->book_id);
+
+            if ($book) {
+                $borrow->update([
+                    'konfirmasi_kembali' => $konfirmasi,
+                    'status' => $status,
+                    'petugas_kembali' => $petugas->long_name,
+                    'tgl_kembali' => $tgl_kembali,
+                    'tgl_pinjam' => $tgl_pinjam,
+                    'jumlah_pinjam' => $jumlah_pinjam,
+                ]);
+
+                return response()->json(['message' => 'Peminjaman sudah dikonfirmasi.'], 200);
             } else {
                 return response()->json(['message' => 'Buku tidak ditemukan'], 404);
             }
@@ -188,6 +220,20 @@ class borrowController extends Controller
                     ->where('status', 'Terlambat')
                     ->when($request->has('user_id'), function ($query) use ($request) {
                         return $query->where('user_id', $request->user_id);
+                    })
+                    ->get();
+    
+        // Mengirim data ke view untuk ditampilkan
+        return response()->json(['borrows' => $borrows]);
+    }
+
+    public function listdendaAdmin(Request $request)
+    {
+        // Mengambil data dari view menggunakan query builder
+        $borrows = DB::table('borrow_view')
+                    ->where(function ($query) {
+                        $query->where('status', 'Terlambat')
+                            ->orWhere('status', 'Telah dibayar');
                     })
                     ->get();
     

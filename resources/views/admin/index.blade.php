@@ -137,21 +137,14 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                <span class="badge badge-danger badge-counter">!</span>
                             </a>
                             <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header"  id="dropdown-menu">New reports !</h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div>
-                                        <div class="small text-gray-500" id="created_at">date</div>
-                                        <span><span class="font-weight-bold" id="title">title</span>
-                                        <span id="username"><span class="font-weight-bold" id="message">message</span></span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                                    Alerts</a>
+                            <div
+                                class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown" id="notifAdmin"
+                                >
+                                <h6 class="dropdown-header">Notifikasi</h6>
                             </div>
                         </li>
 

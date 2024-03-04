@@ -2,6 +2,9 @@ $(document).ready(function () {
     tampilkanPinjam();
     getData();
     handleConfirm();
+    $(".btn-print").on("click", function () {
+        $(".dt-button.buttons-pdf.buttons-html5").click();
+    });
 });
 
 function getData() {
@@ -26,6 +29,11 @@ function tampilkanPinjam() {
     $("#dataTable").dataTable({
         Destroy: true,
         processing: true,
+        layout: {
+            topStart: {
+                buttons: ["pdf"],
+            },
+        },
         ajax: {
             url: appUrl + "/api/listPinjam",
             dataSrc: "borrows",

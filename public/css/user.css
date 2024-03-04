@@ -1345,18 +1345,18 @@ input[type="search"]::-webkit-search-clear-button {
     display: none;
 }
 
-#content-comments .konten-komen {
+#content-comments #displayComent .konten-komen {
     width: 100%;
     max-height: 400px;
     overflow-y: auto;
     position: relative;
 }
 
-#content-comments .konten-komen::-webkit-scrollbar {
+#content-comments #displayComent .konten-komen::-webkit-scrollbar {
     display: none;
 }
 
-#content-comments .konten-komen .komentar {
+#content-comments #displayComent .konten-komen .komentar {
     width: 100%;
     min-height: 50px;
     display: flex;
@@ -1367,7 +1367,7 @@ input[type="search"]::-webkit-search-clear-button {
     border-radius: 6px;
 }
 
-#content-comments .konten-komen .komentar img {
+#content-comments #displayComent .konten-komen .komentar img {
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -1375,7 +1375,7 @@ input[type="search"]::-webkit-search-clear-button {
     margin-right: 20px;
 }
 
-#content-comments .konten-komen .komentar .isi-komen h2 {
+#content-comments #displayComent .konten-komen .komentar .isi-komen h2 {
     color: #484848;
     font-size: 20px;
     font-weight: 600;
@@ -1383,21 +1383,21 @@ input[type="search"]::-webkit-search-clear-button {
     text-transform: none;
 }
 
-#content-comments .konten-komen .komentar .isi-komen .tanggal-komen {
+#content-comments #displayComent .konten-komen .komentar .isi-komen .tanggal-komen {
     font-size: 18px;
     color: #484848;
     font-weight: 400;
     margin-bottom: 20px;
 }
 
-#content-comments .konten-komen .komentar .isi-komen .isi {
+#content-comments #displayComent .konten-komen .komentar .isi-komen .isi {
     font-size: 1em;
     color: #484848;
     font-weight: 400;
     margin-bottom: 20px;
 }
 
-#content-comments .konten-komen .komentar .isi-komen a {
+#content-comments #displayComent .konten-komen .komentar .isi-komen a {
     font-size: 1em;
     font-weight: 500;
     color: #000;

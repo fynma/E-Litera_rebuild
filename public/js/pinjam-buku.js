@@ -5,7 +5,6 @@ $(document).ready(function () {
     setTglPinjam();
 });
 
-
 // Fungsi untuk menangani submit form
 function handlePinjam() {
     var userId = document.querySelector('meta[name="user-id"]').content;
@@ -17,7 +16,7 @@ function handlePinjam() {
 
         // Kirim data form borrow menggunakan AJAX
         $.ajax({
-            url: appUrl + "/api/borrow", 
+            url: appUrl + "/api/borrow",
             type: "POST",
             data: formData,
             success: function (response) {
@@ -25,9 +24,15 @@ function handlePinjam() {
                 alert("Berhasil meminjam, tunggu konfirmasi petugas");
 
                 var notifData = {
-                    user_id: userId, 
+                    user_id: userId,
+                    to_user: null,
                     title: "Peminjaman Baru",
-                    message: "Terdapat peminjaman baru oleh user id "+ userId + " dengan username " + username + " !", 
+                    message:
+                        "Terdapat peminjaman baru oleh user id " +
+                        userId +
+                        " dengan username " +
+                        username +
+                        " !",
                 };
 
                 // Kirim data form notification menggunakan AJAX
@@ -43,7 +48,7 @@ function handlePinjam() {
                         // Handle ketika terjadi kesalahan pada permintaan notifikasi
                         console.error("Gagal mengirim notifikasi");
                         console.error(notifXhr.responseText);
-                    }
+                    },
                 });
             },
             error: function (xhr, status, error) {
@@ -64,7 +69,7 @@ function handlePinjam() {
 
 //         // Kirim data form menggunakan AJAX
 //         $.ajax({
-//             url: appUrl + "/api/borrow", 
+//             url: appUrl + "/api/borrow",
 //             type: "POST",
 //             data: formData, // Menggunakan data yang telah di-serialize
 //             success: function (response) {
@@ -105,12 +110,12 @@ function displayBooks(books) {
 
     books = books.slice(0, 6).reverse();
 
-
     $.each(books, function (index, book) {
         var gridItem = $(
             '<div class="grid-item" data-rating="' + book.rating + '"></div>'
         );
-        var img = $("<img>").attr("src", "data:image/png;base64," + book.gambar)
+        var img = $("<img>")
+            .attr("src", "data:image/png;base64," + book.gambar)
             .attr("alt", book.judul);
 
         // var img = $('<img>').attr('src', '../img/' + book.gambar).attr('alt', book.judul);

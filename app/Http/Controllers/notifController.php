@@ -36,7 +36,7 @@ class notifController extends Controller
             ->where('access', 'user')
             ->get();
     
-        return response()->json(['notif' => $notif], 200);
+        return response()->json(['data' => $notif], 200);
     }
 
     public function showNotifUser()
@@ -46,6 +46,18 @@ class notifController extends Controller
             ->get();
     
         return response()->json(['notif' => $notif], 200);
+    }
+
+    public function tampilkanNotif(Request $request)
+    {
+        $notif = DB::table('user_notification')
+            ->where('access', 'administrator')
+            ->when($request->has('to_user'), function ($query) use ($request) {
+                return $query->where('to_user', $request->to_user);
+            })
+            ->get();
+    
+        return response()->json(['data' => $notif], 200);
     }
     
 }

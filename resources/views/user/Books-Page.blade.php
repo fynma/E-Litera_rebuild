@@ -189,8 +189,11 @@
                 </div>
 
                 <div id="content-comments" class="content">
-                    {{-- pemanggilan id="komentar" pada div konten komen --}}
-                    <div class="konten-komen">
+                    <div id="displayComent">
+                        
+                    </div>
+                    <!-- pemanggilan id="komentar" pada div konten komen -->
+                    <!-- <div class="konten-komen">
                         <div class="komentar">
                             <img src="../../img/avatar.jpg" />
                             <div class="isi-komen">
@@ -204,7 +207,7 @@
                                 <a href="#">Balas</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="tambah-komen">
                         <div class="inputan">
                             @if (!session('photo'))
@@ -250,42 +253,23 @@
                 </div>
                 <div class="widget">
                     <button id="btn-denda">
-                        <img src="../../img/icon-denda.png" />
-                        <a href="../Denda">Denda</a>
+                    <img src="../../img/icon-denda.png" />
+                    <a href="../Denda">Denda</a>
                     </button>
                     <button id="btn-bantuan">
-                        <i class="bi bi-question-circle"></i>
-                        <a href="../Kontak">Bantuan</a>
+                    <i class="bi bi-question-circle"></i>
+                    <a href="../Kontak">Bantuan</a>
                     </button>
                 </div>
-                <button class="btn-logout">
+                <button class="btn-logout" onclick="logout()">
                     <div class="icon-logout">
-                        <i class="bi bi-box-arrow-left"></i>
+                    <i class="bi bi-box-arrow-left"></i>
                     </div>
                     <p>Keluar Dari Aplikasi</p>
                 </button>
                 <br />
                 <a onclick="closeModal()">Tutup</a>
             </div>
-          </div>
-          <div class="widget">
-            <button id="btn-denda">
-              <img src="../../img/icon-denda.png" />
-              <a href="../Denda">Denda</a>
-            </button>
-            <button id="btn-bantuan">
-              <i class="bi bi-question-circle"></i>
-              <a href="../Kontak">Bantuan</a>
-            </button>
-          </div>
-          <button class="btn-logout" onclick="logout()">
-            <div class="icon-logout">
-              <i class="bi bi-box-arrow-left"></i>
-            </div>
-            <p>Keluar Dari Aplikasi</p>
-          </button>
-          <br />
-          <a onclick="closeModal()">Tutup</a>
         </div>
     </div>
 
