@@ -62,8 +62,9 @@ function displayCategories(categories) {
     });
 }
 
-function getListBook(userID) {
-    console.log(userID);
+function getListBook() {
+    var userID = document.querySelector('meta[name="user-id"]').content;
+    console.log();
     $.ajax({
         url: appUrl + "/api/detail-pinjam/" + userID,
         type: "GET",
